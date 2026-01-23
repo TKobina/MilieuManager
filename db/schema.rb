@@ -40,6 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "kind"
+    t.date "lastupdate"
     t.integer "milieu_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
@@ -54,6 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.date "date"
     t.text "details"
     t.string "kind"
+    t.date "lastupdate"
     t.integer "milieu_id", null: false
     t.string "summary"
     t.datetime "updated_at", null: false
@@ -105,6 +107,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "language_id", null: false
+    t.date "lastupdate"
     t.string "meaning"
     t.datetime "updated_at", null: false
     t.string "word"
@@ -146,16 +149,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "event_id", null: false
-    t.integer "inferiors_id"
+    t.integer "inferior_id", null: false
     t.string "kind"
+    t.date "lastupda"
     t.string "name"
-    t.integer "superiors_id"
+    t.integer "superior_id", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_relations_on_event_id"
-    t.index ["inferiors_id"], name: "index_relations_on_inferiors_id"
+    t.index ["inferior_id"], name: "index_relations_on_inferior_id"
     t.index ["kind"], name: "index_relations_on_kind"
     t.index ["name"], name: "index_relations_on_name"
-    t.index ["superiors_id"], name: "index_relations_on_superiors_id"
+    t.index ["superior_id"], name: "index_relations_on_superior_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -199,9 +203,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
   add_foreign_key "milieus", "users"
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"
-  add_foreign_key "relations", "entities", column: "inferiors_id"
-  add_foreign_key "relations", "entities", column: "inferiors_id"
-  add_foreign_key "relations", "entities", column: "superiors_id"
-  add_foreign_key "relations", "entities", column: "superiors_id"
+  add_foreign_key "relations", "entities", column: "inferior_id"
+  add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
 end

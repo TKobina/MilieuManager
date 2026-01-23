@@ -6,6 +6,7 @@ class CreateLexemes < ActiveRecord::Migration[8.1]
       t.string :word
       t.string :meaning
       t.text :details
+      t.date :lastupdate
     end
   end
 end

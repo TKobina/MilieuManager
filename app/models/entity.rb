@@ -6,11 +6,11 @@ class Entity < ApplicationRecord
   #has_and_belongs_to_many :superiors, class_name: "Relation", dependent: :destroy
   #has_and_belongs_to_many :inferiors, class_name: "Relation", dependent: :destroy
 
-  has_many :inferiors, class_name: "Relation", foreign_key: "superiors_id", dependent: :destroy
-  has_many :active_relationships, through: :inferiors, source: :relation
+  has_many :inferior_relations, class_name: "Relation", foreign_key: "superior_id", dependent: :destroy
+  has_many :inferiors, through: :inferior_relations, source: :inferior
   
-  has_many :superiors, class_name: "Relation", foreign_key: "inferiors_id", dependent: :destroy
-  has_many :passive_relationships, through: :superiors, source: :entity
+  has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id", dependent: :destroy
+  has_many :superiors, through: :superior_relations, source: :superior
   
   has_one :dialect
   has_many :properties

@@ -4,6 +4,3 @@
 
 ### DATABASE
 * LASTUPDATED FIELDS FOR MODELS
-
-### GIT
-* publish to GIT!!!
