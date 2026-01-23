@@ -28,7 +28,7 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :patterns, :pattern
 
     
-    add_foreign_key :relations, :entities, column: :superiors_id
-    add_foreign_key :relations, :entities, column: :inferiors_id
+    #add_foreign_key :relations, :entities, column: :superior_id
+    #add_foreign_key :relations, :entities, column: :inferior_id
   end
 end

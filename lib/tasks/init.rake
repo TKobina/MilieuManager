@@ -60,5 +60,18 @@ namespace :init do
 
       entity.properties << property
     end
+
+    entity = Entity.new(milieu: milieu, kind: "person", name: "M'aera")
+    entity.save!
+
+    event = Event.new(milieu: milieu, kind: "birth", date: Date.current, summary: "blah blah blah")
+    event.save!
+
+
+    rel = Relation.new(event: event, superior: Entity.first, inferior: Entity.last, kind: "membership", name: "of")
+    rel.save
+
+
+
   end
 end

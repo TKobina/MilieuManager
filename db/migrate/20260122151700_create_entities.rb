@@ -6,6 +6,7 @@ class CreateEntities < ActiveRecord::Migration[8.1]
       t.string :name
       t.string :kind
       t.text :details
+      t.date :lastupdate
     end
   end
 

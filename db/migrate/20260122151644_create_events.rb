@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.string :kind
       t.string :summary
       t.text :details
+      t.date :lastupdate
     end
   end
 end
