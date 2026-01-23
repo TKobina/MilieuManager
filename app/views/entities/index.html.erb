@@ -1,0 +1,19 @@
+<h1>Entities</h1>
+<%= link_to "Back", pages_path %></br>
+
+</p>
+
+<div id="entities">
+  <ul>
+  <% @entities.each do |entity| %>
+    <div>
+      <li><%= link_to entity.name, entity_path(entity.id) %><sup>(<%=entity.id %>)</sup> - <%=entity.kind%> <br></li>
+      <ul>  
+      <% entity.properties.each do |property| %>
+        <li><%= property.kind %>: <%= property.value %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </ul>
+</div>

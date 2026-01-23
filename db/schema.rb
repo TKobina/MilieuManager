@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   create_table "compositions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "sublexeme_id_id", null: false
@@ -50,19 +50,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.index ["name"], name: "index_entities_on_name"
   end
 
+  create_table "entities_events", id: false, force: :cascade do |t|
+    t.integer "entity_id", null: false
+    t.integer "event_id", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.date "date"
     t.text "details"
     t.string "kind"
     t.date "lastupdate"
     t.integer "milieu_id", null: false
     t.string "summary"
     t.datetime "updated_at", null: false
-    t.index ["date"], name: "index_events_on_date"
-    t.index ["kind", "date"], name: "index_events_on_kind_and_date"
+    t.integer "ydate_id", null: false
+    t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["milieu_id"], name: "index_events_on_milieu_id"
+    t.index ["ydate_id"], name: "index_events_on_ydate_id"
   end
 
   create_table "frequencies", force: :cascade do |t|
@@ -151,7 +156,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.integer "event_id", null: false
     t.integer "inferior_id", null: false
     t.string "kind"
-    t.date "lastupda"
+    t.date "lastupdate"
     t.string "name"
     t.integer "superior_id", null: false
     t.datetime "updated_at", null: false
@@ -188,12 +193,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "ydates", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "date"
+    t.integer "milieu_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["milieu_id"], name: "index_ydates_on_milieu_id"
+  end
+
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id_id"
   add_foreign_key "dialects", "entities"
   add_foreign_key "dialects", "languages"
   add_foreign_key "entities", "milieus"
   add_foreign_key "events", "milieus"
+  add_foreign_key "events", "ydates"
   add_foreign_key "frequencies", "dialects"
   add_foreign_key "frequencies", "letters"
   add_foreign_key "frequencies", "patterns"
@@ -206,4 +220,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_22_151742) do
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
+  add_foreign_key "ydates", "milieus"
 end

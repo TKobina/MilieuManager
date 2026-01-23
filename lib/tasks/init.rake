@@ -64,7 +64,7 @@ namespace :init do
     entity = Entity.new(milieu: milieu, kind: "person", name: "M'aera")
     entity.save!
 
-    event = Event.new(milieu: milieu, kind: "birth", date: Date.current, summary: "blah blah blah")
+    event = Event.new(milieu: milieu, kind: "birth", ydate_id: Ydate.create!(date:0).id, summary: "blah blah blah")
     event.save!
 
 

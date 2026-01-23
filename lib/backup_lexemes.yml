@@ -1,0 +1,2756 @@
+---
+- id: 1
+  created_at: '2026-01-02T17:54:11.186Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.186Z'
+  user_id: 1
+  word: b
+- id: 2
+  created_at: '2026-01-02T17:54:11.193Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.193Z'
+  user_id: 1
+  word: c
+- id: 3
+  created_at: '2026-01-02T17:54:11.200Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.200Z'
+  user_id: 1
+  word: d
+- id: 4
+  created_at: '2026-01-02T17:54:11.229Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.229Z'
+  user_id: 1
+  word: ḍ
+- id: 5
+  created_at: '2026-01-02T17:54:11.236Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.236Z'
+  user_id: 1
+  word: f
+- id: 6
+  created_at: '2026-01-02T17:54:11.243Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.243Z'
+  user_id: 1
+  word: g
+- id: 7
+  created_at: '2026-01-02T17:54:11.251Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.251Z'
+  user_id: 1
+  word: j
+- id: 8
+  created_at: '2026-01-02T17:54:11.259Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.259Z'
+  user_id: 1
+  word: k
+- id: 9
+  created_at: '2026-01-02T17:54:11.266Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.266Z'
+  user_id: 1
+  word: m
+- id: 10
+  created_at: '2026-01-02T17:54:11.275Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.275Z'
+  user_id: 1
+  word: "n"
+- id: 11
+  created_at: '2026-01-02T17:54:11.282Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.282Z'
+  user_id: 1
+  word: p
+- id: 12
+  created_at: '2026-01-02T17:54:11.289Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.289Z'
+  user_id: 1
+  word: s
+- id: 13
+  created_at: '2026-01-02T17:54:11.325Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.325Z'
+  user_id: 1
+  word: š
+- id: 14
+  created_at: '2026-01-02T17:54:11.332Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.332Z'
+  user_id: 1
+  word: t
+- id: 15
+  created_at: '2026-01-02T17:54:11.339Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.339Z'
+  user_id: 1
+  word: ŧ
+- id: 16
+  created_at: '2026-01-02T17:54:11.345Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.345Z'
+  user_id: 1
+  word: ţ
+- id: 17
+  created_at: '2026-01-02T17:54:11.351Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.351Z'
+  user_id: 1
+  word: v
+- id: 18
+  created_at: '2026-01-02T17:54:11.359Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.359Z'
+  user_id: 1
+  word: z
+- id: 19
+  created_at: '2026-01-02T17:54:11.365Z'
+  description:
+  meaning:
+  part: consonant
+  updated_at: '2026-01-02T17:54:11.365Z'
+  user_id: 1
+  word: ž
+- id: 20
+  created_at: '2026-01-02T17:54:11.371Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.371Z'
+  user_id: 1
+  word: "'"
+- id: 21
+  created_at: '2026-01-02T17:54:11.395Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.395Z'
+  user_id: 1
+  word: "y"
+- id: 22
+  created_at: '2026-01-02T17:54:11.402Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.402Z'
+  user_id: 1
+  word: yy
+- id: 23
+  created_at: '2026-01-02T17:54:11.408Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-12T19:08:07.423Z'
+  user_id: 1
+  word: r
+- id: 24
+  created_at: '2026-01-02T17:54:11.417Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.417Z'
+  user_id: 1
+  word: ŕ
+- id: 25
+  created_at: '2026-01-02T17:54:11.423Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.423Z'
+  user_id: 1
+  word: hr
+- id: 26
+  created_at: '2026-01-02T17:54:11.429Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.429Z'
+  user_id: 1
+  word: l
+- id: 27
+  created_at: '2026-01-02T17:54:11.436Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.436Z'
+  user_id: 1
+  word: ĺ
+- id: 28
+  created_at: '2026-01-02T17:54:11.443Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.443Z'
+  user_id: 1
+  word: hl
+- id: 29
+  created_at: '2026-01-02T17:54:11.457Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.457Z'
+  user_id: 1
+  word: w
+- id: 30
+  created_at: '2026-01-02T17:54:11.464Z'
+  description:
+  meaning:
+  part: bridge
+  updated_at: '2026-01-02T17:54:11.464Z'
+  user_id: 1
+  word: hw
+- id: 31
+  created_at: '2026-01-02T17:54:11.470Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.470Z'
+  user_id: 1
+  word: a
+- id: 32
+  created_at: '2026-01-02T17:54:11.477Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.477Z'
+  user_id: 1
+  word: ä
+- id: 33
+  created_at: '2026-01-02T17:54:11.484Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.484Z'
+  user_id: 1
+  word: ă
+- id: 34
+  created_at: '2026-01-02T17:54:11.490Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.490Z'
+  user_id: 1
+  word: e
+- id: 35
+  created_at: '2026-01-02T17:54:11.497Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.497Z'
+  user_id: 1
+  word: ë
+- id: 36
+  created_at: '2026-01-02T17:54:11.504Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.504Z'
+  user_id: 1
+  word: i
+- id: 37
+  created_at: '2026-01-02T17:54:11.510Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.510Z'
+  user_id: 1
+  word: ï
+- id: 38
+  created_at: '2026-01-02T17:54:11.518Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.518Z'
+  user_id: 1
+  word: o
+- id: 39
+  created_at: '2026-01-02T17:54:11.525Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.525Z'
+  user_id: 1
+  word: ö
+- id: 40
+  created_at: '2026-01-02T17:54:11.532Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.532Z'
+  user_id: 1
+  word: u
+- id: 41
+  created_at: '2026-01-02T17:54:11.538Z'
+  description:
+  meaning:
+  part: vowel
+  updated_at: '2026-01-02T17:54:11.538Z'
+  user_id: 1
+  word: ü
+- id: 42
+  created_at: '2026-01-02T17:54:11.544Z'
+  description:
+  meaning: nurture
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.544Z'
+  user_id: 1
+  word: b
+- id: 43
+  created_at: '2026-01-02T17:54:11.551Z'
+  description:
+  meaning: light, energy
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.551Z'
+  user_id: 1
+  word: c
+- id: 44
+  created_at: '2026-01-02T17:54:11.558Z'
+  description:
+  meaning: place
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.558Z'
+  user_id: 1
+  word: d
+- id: 45
+  created_at: '2026-01-02T17:54:11.564Z'
+  description:
+  meaning: child, spawn, progeny
+  part: morpheme
+  updated_at: '2026-01-02T20:14:27.217Z'
+  user_id: 1
+  word: ḍ
+- id: 46
+  created_at: '2026-01-02T17:54:11.572Z'
+  description:
+  meaning: purpose
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.572Z'
+  user_id: 1
+  word: f
+- id: 47
+  created_at: '2026-01-02T17:54:11.578Z'
+  description:
+  meaning: doing
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.578Z'
+  user_id: 1
+  word: g
+- id: 48
+  created_at: '2026-01-02T17:54:11.586Z'
+  description:
+  meaning: part, division
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.586Z'
+  user_id: 1
+  word: j
+- id: 49
+  created_at: '2026-01-02T17:54:11.592Z'
+  description:
+  meaning: essence, idea
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.592Z'
+  user_id: 1
+  word: k
+- id: 50
+  created_at: '2026-01-02T17:54:11.598Z'
+  description:
+  meaning: link, connection, language
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.598Z'
+  user_id: 1
+  word: m
+- id: 51
+  created_at: '2026-01-02T17:54:11.604Z'
+  description:
+  meaning: source, collection
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.604Z'
+  user_id: 1
+  word: "n"
+- id: 52
+  created_at: '2026-01-02T17:54:11.611Z'
+  description:
+  meaning: being, flavor, taste, scent
+  part: morpheme
+  updated_at: '2026-01-03T13:37:10.743Z'
+  user_id: 1
+  word: p
+- id: 53
+  created_at: '2026-01-02T17:54:11.617Z'
+  description:
+  meaning: fire, change, heat
+  part: morpheme
+  updated_at: '2026-01-03T18:25:24.270Z'
+  user_id: 1
+  word: s
+- id: 54
+  created_at: '2026-01-02T17:54:11.626Z'
+  description:
+  meaning: water, growth, flow, pressure, force
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.626Z'
+  user_id: 1
+  word: š
+- id: 55
+  created_at: '2026-01-02T17:54:11.632Z'
+  description:
+  meaning: stone, physical, solidity, resistance, gravity/mass
+  part: morpheme
+  updated_at: '2026-01-02T19:05:41.100Z'
+  user_id: 1
+  word: t
+- id: 56
+  created_at: '2026-01-02T17:54:11.638Z'
+  description:
+  meaning: darkness, absence, need
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.638Z'
+  user_id: 1
+  word: ŧ
+- id: 57
+  created_at: '2026-01-02T17:54:11.646Z'
+  description:
+  meaning: end, death
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.646Z'
+  user_id: 1
+  word: ţ
+- id: 58
+  created_at: '2026-01-02T17:54:11.652Z'
+  description:
+  meaning: air, movement, sound
+  part: morpheme
+  updated_at: '2026-01-03T17:12:51.616Z'
+  user_id: 1
+  word: v
+- id: 59
+  created_at: '2026-01-02T17:54:11.659Z'
+  description:
+  meaning: time
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.659Z'
+  user_id: 1
+  word: z
+- id: 60
+  created_at: '2026-01-02T17:54:11.666Z'
+  description:
+  meaning: feeling, sense
+  part: morpheme
+  updated_at: '2026-01-03T14:41:09.152Z'
+  user_id: 1
+  word: ž
+- id: 61
+  created_at: '2026-01-02T17:54:11.672Z'
+  description:
+  meaning: "[very]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.672Z'
+  user_id: 1
+  word: "'"
+- id: 62
+  created_at: '2026-01-02T17:54:11.678Z'
+  description:
+  meaning: "[not]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.678Z'
+  user_id: 1
+  word: "y"
+- id: 63
+  created_at: '2026-01-02T17:54:11.686Z'
+  description:
+  meaning: "[inverted/reversed]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.686Z'
+  user_id: 1
+  word: yy
+- id: 64
+  created_at: '2026-01-02T17:54:11.693Z'
+  description:
+  meaning: "[subordinating conjunction]"
+  part: morpheme
+  updated_at: '2026-01-12T19:08:45.534Z'
+  user_id: 1
+  word: r
+- id: 65
+  created_at: '2026-01-02T17:54:11.700Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.700Z'
+  user_id: 1
+  word: ra
+- id: 66
+  created_at: '2026-01-02T17:54:11.706Z'
+  description:
+  meaning: if
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.706Z'
+  user_id: 1
+  word: rä
+- id: 67
+  created_at: '2026-01-02T17:54:11.712Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.712Z'
+  user_id: 1
+  word: ră
+- id: 68
+  created_at: '2026-01-02T17:54:11.719Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.719Z'
+  user_id: 1
+  word: re
+- id: 69
+  created_at: '2026-01-02T17:54:11.726Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.726Z'
+  user_id: 1
+  word: rë
+- id: 70
+  created_at: '2026-01-02T17:54:11.732Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.732Z'
+  user_id: 1
+  word: ri
+- id: 71
+  created_at: '2026-01-02T17:54:11.740Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.740Z'
+  user_id: 1
+  word: rï
+- id: 72
+  created_at: '2026-01-02T17:54:11.746Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.746Z'
+  user_id: 1
+  word: ro
+- id: 73
+  created_at: '2026-01-02T17:54:11.754Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.754Z'
+  user_id: 1
+  word: rö
+- id: 74
+  created_at: '2026-01-02T17:54:11.760Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.760Z'
+  user_id: 1
+  word: ru
+- id: 75
+  created_at: '2026-01-02T17:54:11.766Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.766Z'
+  user_id: 1
+  word: rü
+- id: 76
+  created_at: '2026-01-02T17:54:11.772Z'
+  description:
+  meaning: and
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.772Z'
+  user_id: 1
+  word: ŕ
+- id: 77
+  created_at: '2026-01-02T17:54:11.779Z'
+  description:
+  meaning: and
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.779Z'
+  user_id: 1
+  word: ŕă
+- id: 78
+  created_at: '2026-01-02T17:54:11.785Z'
+  description:
+  meaning: not
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.785Z'
+  user_id: 1
+  word: ŕa
+- id: 79
+  created_at: '2026-01-02T17:54:11.794Z'
+  description:
+  meaning: or
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.794Z'
+  user_id: 1
+  word: ŕä
+- id: 80
+  created_at: '2026-01-02T17:54:11.800Z'
+  description:
+  meaning: as; in
+  part: morpheme
+  updated_at: '2026-01-08T19:18:15.261Z'
+  user_id: 1
+  word: ŕe
+- id: 81
+  created_at: '2026-01-02T17:54:11.806Z'
+  description:
+  meaning: for, to
+  part: morpheme
+  updated_at: '2026-01-11T19:46:05.454Z'
+  user_id: 1
+  word: ŕë
+- id: 82
+  created_at: '2026-01-02T17:54:11.814Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.814Z'
+  user_id: 1
+  word: ŕi
+- id: 83
+  created_at: '2026-01-02T17:54:11.820Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.820Z'
+  user_id: 1
+  word: ŕï
+- id: 84
+  created_at: '2026-01-02T17:54:11.826Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.826Z'
+  user_id: 1
+  word: ŕo
+- id: 85
+  created_at: '2026-01-02T17:54:11.833Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.833Z'
+  user_id: 1
+  word: ŕö
+- id: 86
+  created_at: '2026-01-02T17:54:11.839Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.839Z'
+  user_id: 1
+  word: ŕu
+- id: 87
+  created_at: '2026-01-02T17:54:11.845Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.845Z'
+  user_id: 1
+  word: ŕü
+- id: 88
+  created_at: '2026-01-02T17:54:11.854Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.854Z'
+  user_id: 1
+  word: hr
+- id: 89
+  created_at: '2026-01-02T17:54:11.860Z'
+  description:
+  meaning: "[facing, in direction of]"
+  part: morpheme
+  updated_at: '2026-01-03T13:53:35.095Z'
+  user_id: 1
+  word: w
+- id: 90
+  created_at: '2026-01-02T17:54:11.868Z'
+  description:
+  meaning:
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.868Z'
+  user_id: 1
+  word: hw
+- id: 91
+  created_at: '2026-01-02T17:54:11.874Z'
+  description:
+  meaning: "[sacredly, devotionally]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.874Z'
+  user_id: 1
+  word: l
+- id: 92
+  created_at: '2026-01-02T17:54:11.880Z'
+  description:
+  meaning: "[respectfully, formally]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.880Z'
+  user_id: 1
+  word: ĺ
+- id: 93
+  created_at: '2026-01-02T17:54:11.887Z'
+  description:
+  meaning: "[lovingly, intimately]"
+  part: morpheme
+  updated_at: '2026-01-02T17:54:11.887Z'
+  user_id: 1
+  word: hl
+- id: 94
+  created_at: '2026-01-02T17:54:11.893Z'
+  description:
+  meaning: "[single]"
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.893Z'
+  user_id: 1
+  word: a
+- id: 95
+  created_at: '2026-01-02T17:54:11.899Z'
+  description:
+  meaning: "[dual]"
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.899Z'
+  user_id: 1
+  word: ä
+- id: 96
+  created_at: '2026-01-02T17:54:11.908Z'
+  description:
+  meaning: "[plural]"
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.908Z'
+  user_id: 1
+  word: ă
+- id: 97
+  created_at: '2026-01-02T17:54:11.915Z'
+  description:
+  meaning: "[unknown/unknownable quantity/identity]"
+  part: affix, noun
+  updated_at: '2026-01-03T18:45:04.504Z'
+  user_id: 1
+  word: e
+- id: 98
+  created_at: '2026-01-02T17:54:11.922Z'
+  description:
+  meaning: "[all]"
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.922Z'
+  user_id: 1
+  word: ë
+- id: 99
+  created_at: '2026-01-02T17:54:11.929Z'
+  description:
+  meaning:
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.929Z'
+  user_id: 1
+  word: i
+- id: 100
+  created_at: '2026-01-02T17:54:11.935Z'
+  description:
+  meaning: "[feminine]"
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.935Z'
+  user_id: 1
+  word: ï
+- id: 101
+  created_at: '2026-01-02T17:54:11.941Z'
+  description: belongs to, owned by, part of
+  meaning: "[possessed]"
+  part: affix, noun
+  updated_at: '2026-01-02T23:54:34.837Z'
+  user_id: 1
+  word: o
+- id: 102
+  created_at: '2026-01-02T17:54:11.948Z'
+  description:
+  meaning:
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.948Z'
+  user_id: 1
+  word: ö
+- id: 103
+  created_at: '2026-01-02T17:54:11.955Z'
+  description:
+  meaning:
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.955Z'
+  user_id: 1
+  word: u
+- id: 104
+  created_at: '2026-01-02T17:54:11.963Z'
+  description:
+  meaning:
+  part: affix, noun
+  updated_at: '2026-01-02T17:54:11.963Z'
+  user_id: 1
+  word: ü
+- id: 105
+  created_at: '2026-01-02T17:54:11.970Z'
+  description:
+  meaning: "[past]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:11.970Z'
+  user_id: 1
+  word: a
+- id: 106
+  created_at: '2026-01-02T17:54:11.976Z'
+  description:
+  meaning: "[present]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:11.976Z'
+  user_id: 1
+  word: ä
+- id: 107
+  created_at: '2026-01-02T17:54:11.983Z'
+  description:
+  meaning: "[future]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:11.983Z'
+  user_id: 1
+  word: ă
+- id: 108
+  created_at: '2026-01-02T17:54:11.989Z'
+  description:
+  meaning: "[unspecified]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:11.989Z'
+  user_id: 1
+  word: e
+- id: 109
+  created_at: '2026-01-02T17:54:11.996Z'
+  description:
+  meaning: "[always]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:11.996Z'
+  user_id: 1
+  word: ë
+- id: 110
+  created_at: '2026-01-02T17:54:12.003Z'
+  description:
+  meaning: "[continuous, closed]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.003Z'
+  user_id: 1
+  word: i
+- id: 111
+  created_at: '2026-01-02T17:54:12.009Z'
+  description:
+  meaning: "[continuous, open]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.009Z'
+  user_id: 1
+  word: ï
+- id: 112
+  created_at: '2026-01-02T17:54:12.015Z'
+  description:
+  meaning:
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.015Z'
+  user_id: 1
+  word: o
+- id: 113
+  created_at: '2026-01-02T17:54:12.023Z'
+  description:
+  meaning: "[repeating]"
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.023Z'
+  user_id: 1
+  word: ö
+- id: 114
+  created_at: '2026-01-02T17:54:12.030Z'
+  description:
+  meaning:
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.030Z'
+  user_id: 1
+  word: u
+- id: 115
+  created_at: '2026-01-02T17:54:12.037Z'
+  description:
+  meaning:
+  part: affix, verb
+  updated_at: '2026-01-02T17:54:12.037Z'
+  user_id: 1
+  word: ü
+- id: 116
+  created_at: '2026-01-02T17:54:12.045Z'
+  description:
+  meaning: "[1st person]"
+  part: pronoun
+  updated_at: '2026-01-02T17:54:12.045Z'
+  user_id: 1
+  word: d
+- id: 117
+  created_at: '2026-01-02T17:54:12.051Z'
+  description:
+  meaning: "[2nd person]"
+  part: pronoun
+  updated_at: '2026-01-02T17:54:12.051Z'
+  user_id: 1
+  word: k
+- id: 118
+  created_at: '2026-01-02T17:54:12.058Z'
+  description:
+  meaning: "[3rd person]"
+  part: pronoun
+  updated_at: '2026-01-02T17:54:12.058Z'
+  user_id: 1
+  word: t
+- id: 119
+  created_at: '2026-01-02T17:54:12.064Z'
+  description:
+  meaning: require, demand
+  part: verb
+  updated_at: '2026-01-02T17:54:12.064Z'
+  user_id: 1
+  word: ïv
+- id: 120
+  created_at: '2026-01-02T17:54:12.099Z'
+  description:
+  meaning: commune
+  part: verb
+  updated_at: '2026-01-02T17:54:12.099Z'
+  user_id: 1
+  word: en
+- id: 121
+  created_at: '2026-01-02T17:54:12.118Z'
+  description:
+  meaning: to inquire, seek; to consume; to live
+  part: verb
+  updated_at: '2026-01-03T18:37:16.908Z'
+  user_id: 1
+  word: es
+- id: 122
+  created_at: '2026-01-02T17:54:12.138Z'
+  description:
+  meaning: inform
+  part: verb
+  updated_at: '2026-01-02T17:54:12.138Z'
+  user_id: 1
+  word: eb
+- id: 123
+  created_at: '2026-01-02T17:54:12.163Z'
+  description:
+  meaning: to flow, to pour, to leak
+  part: verb
+  updated_at: '2026-01-03T12:51:53.745Z'
+  user_id: 1
+  word: eš
+- id: 124
+  created_at: '2026-01-02T17:54:12.183Z'
+  description:
+  meaning: submit
+  part: verb
+  updated_at: '2026-01-02T17:54:12.183Z'
+  user_id: 1
+  word: ež
+- id: 125
+  created_at: '2026-01-02T17:54:12.207Z'
+  description:
+  meaning: to rest, to stand; to taste, to scent;
+  part: verb
+  updated_at: '2026-01-03T13:36:42.466Z'
+  user_id: 1
+  word: ep
+- id: 126
+  created_at: '2026-01-02T17:54:12.227Z'
+  description:
+  meaning: witness, see
+  part: verb
+  updated_at: '2026-01-03T14:52:28.212Z'
+  user_id: 1
+  word: ežc
+- id: 127
+  created_at: '2026-01-02T17:54:12.247Z'
+  description:
+  meaning: accept
+  part: verb
+  updated_at: '2026-01-02T17:54:12.247Z'
+  user_id: 1
+  word: eg
+- id: 128
+  created_at: '2026-01-02T17:54:12.275Z'
+  description:
+  meaning: entertain
+  part: verb
+  updated_at: '2026-01-02T17:54:12.275Z'
+  user_id: 1
+  word: ez
+- id: 129
+  created_at: '2026-01-02T17:54:12.297Z'
+  description:
+  meaning: to breed, to preserve
+  part: verb
+  updated_at: '2026-01-03T01:46:34.204Z'
+  user_id: 1
+  word: eḍ
+- id: 130
+  created_at: '2026-01-02T17:54:12.320Z'
+  description:
+  meaning: criticize, accuse, divide, cut
+  part: verb
+  updated_at: '2026-01-03T12:51:15.530Z'
+  user_id: 1
+  word: ej
+- id: 131
+  created_at: '2026-01-02T17:54:12.345Z'
+  description:
+  meaning: bind, covenant
+  part: verb
+  updated_at: '2026-01-02T17:54:12.345Z'
+  user_id: 1
+  word: em
+- id: 132
+  created_at: '2026-01-02T17:54:12.366Z'
+  description:
+  meaning: offer, give
+  part: verb
+  updated_at: '2026-01-02T17:54:12.366Z'
+  user_id: 1
+  word: ef
+- id: 133
+  created_at: '2026-01-02T17:54:12.386Z'
+  description:
+  meaning: request, urge
+  part: verb
+  updated_at: '2026-01-02T17:54:12.386Z'
+  user_id: 1
+  word: eŧ
+- id: 134
+  created_at: '2026-01-02T17:54:12.407Z'
+  description:
+  meaning: finish
+  part: verb
+  updated_at: '2026-01-02T17:54:12.407Z'
+  user_id: 1
+  word: eţ
+- id: 135
+  created_at: '2026-01-02T18:10:57.638Z'
+  description: refers to the energy implicit in "being"
+  meaning: energy of essence, potential energy
+  part: noun
+  updated_at: '2026-01-02T18:10:57.638Z'
+  user_id: 1
+  word: kc
+- id: 136
+  created_at: '2026-01-02T18:28:34.712Z'
+  description: ''
+  meaning: light source
+  part: noun
+  updated_at: '2026-01-02T18:28:34.712Z'
+  user_id: 1
+  word: cn
+- id: 138
+  created_at: '2026-01-02T18:40:25.623Z'
+  description: all light of the source
+  meaning: plane of light
+  part: noun
+  updated_at: '2026-01-02T18:40:25.623Z'
+  user_id: 1
+  word: nëc
+- id: 139
+  created_at: '2026-01-02T18:51:01.891Z'
+  description: purposes of the plane of light
+  meaning: priest/priestess
+  part: noun
+  updated_at: '2026-01-02T18:51:01.891Z'
+  user_id: 1
+  word: nëcăf
+- id: 140
+  created_at: '2026-01-02T18:51:01.929Z'
+  description: ''
+  meaning: to preach, empower, give purpose of the light
+  part: verb
+  updated_at: '2026-01-02T18:52:44.674Z'
+  user_id: 1
+  word: enëcăf
+- id: 141
+  created_at: '2026-01-02T19:26:43.952Z'
+  description: source of very much light
+  meaning: sun
+  part: noun
+  updated_at: '2026-01-02T19:26:43.952Z'
+  user_id: 1
+  word: c'ăn
+- id: 142
+  created_at: '2026-01-02T19:26:43.991Z'
+  description: source of some light
+  meaning: star
+  part: noun
+  updated_at: '2026-01-02T19:26:43.991Z'
+  user_id: 1
+  word: căn
+- id: 143
+  created_at: '2026-01-02T19:26:44.039Z'
+  description: seeking of a place, hearth
+  meaning: locus, nexus, focal point
+  part: noun
+  updated_at: '2026-01-03T12:57:29.778Z'
+  user_id: 1
+  word: ds
+- id: 144
+  created_at: '2026-01-02T19:26:44.062Z'
+  description: time's light
+  meaning: day
+  part: noun
+  updated_at: '2026-01-02T19:26:44.062Z'
+  user_id: 1
+  word: zc
+- id: 145
+  created_at: '2026-01-02T19:26:44.107Z'
+  description: time's darkness
+  meaning: month
+  part: noun
+  updated_at: '2026-01-02T19:26:44.107Z'
+  user_id: 1
+  word: zŧ
+- id: 146
+  created_at: '2026-01-02T19:26:44.130Z'
+  description: time's division
+  meaning: year
+  part: noun
+  updated_at: '2026-01-02T19:26:44.130Z'
+  user_id: 1
+  word: zj
+- id: 147
+  created_at: '2026-01-02T19:26:44.152Z'
+  description: time's waters
+  meaning: season
+  part: noun
+  updated_at: '2026-01-02T19:26:44.152Z'
+  user_id: 1
+  word: zš
+- id: 148
+  created_at: '2026-01-02T19:26:44.193Z'
+  description: all emotion of the source
+  meaning: plane of emotionality
+  part: noun
+  updated_at: '2026-01-02T19:26:44.193Z'
+  user_id: 1
+  word: nëž
+- id: 149
+  created_at: '2026-01-02T19:26:44.201Z'
+  description: emotion's source
+  meaning: source of emotion, heart
+  part: noun
+  updated_at: '2026-01-02T19:26:44.201Z'
+  user_id: 1
+  word: žn
+- id: 150
+  created_at: '2026-01-02T19:26:44.223Z'
+  description: ''
+  meaning: aspect of emotion
+  part: noun
+  updated_at: '2026-01-02T19:26:44.223Z'
+  user_id: 1
+  word: žan
+- id: 151
+  created_at: '2026-01-02T19:26:44.251Z'
+  description: all physicality of the source
+  meaning: plane of physicality
+  part: noun
+  updated_at: '2026-01-02T19:26:44.251Z'
+  user_id: 1
+  word: nët
+- id: 152
+  created_at: '2026-01-02T19:26:44.279Z'
+  description: ''
+  meaning: source of physicality
+  part: noun
+  updated_at: '2026-01-02T19:26:44.279Z'
+  user_id: 1
+  word: tn
+- id: 153
+  created_at: '2026-01-02T19:26:44.300Z'
+  description: ''
+  meaning: aspect of physicality, body
+  part: noun
+  updated_at: '2026-01-02T19:26:44.300Z'
+  user_id: 1
+  word: tan
+- id: 154
+  created_at: '2026-01-02T19:26:44.324Z'
+  description: all thoughts/ideas of the source
+  meaning: plane of rationality
+  part: noun
+  updated_at: '2026-01-02T19:26:44.324Z'
+  user_id: 1
+  word: nëk
+- id: 155
+  created_at: '2026-01-02T19:26:44.351Z'
+  description: ''
+  meaning: source of thought, brain
+  part: noun
+  updated_at: '2026-01-02T19:26:44.351Z'
+  user_id: 1
+  word: kn
+- id: 156
+  created_at: '2026-01-02T19:26:44.374Z'
+  description: ''
+  meaning: aspect of thought, mind
+  part: noun
+  updated_at: '2026-01-02T19:26:44.374Z'
+  user_id: 1
+  word: kan
+- id: 157
+  created_at: '2026-01-03T00:11:23.984Z'
+  description: '0'
+  meaning: '0'
+  part: number
+  updated_at: '2026-01-03T00:11:23.984Z'
+  user_id: 1
+  word: yël
+- id: 158
+  created_at: '2026-01-03T00:13:08.525Z'
+  description: '1'
+  meaning: '1'
+  part: number
+  updated_at: '2026-01-03T00:13:08.525Z'
+  user_id: 1
+  word: al
+- id: 159
+  created_at: '2026-01-03T00:13:08.532Z'
+  description: '2'
+  meaning: '2'
+  part: number
+  updated_at: '2026-01-03T00:13:08.532Z'
+  user_id: 1
+  word: äl
+- id: 160
+  created_at: '2026-01-03T00:13:08.539Z'
+  description: '3'
+  meaning: '3'
+  part: number
+  updated_at: '2026-01-03T00:13:08.539Z'
+  user_id: 1
+  word: ăl
+- id: 161
+  created_at: '2026-01-03T00:13:08.545Z'
+  description: 0 + 4x1
+  meaning: '4'
+  part: number
+  updated_at: '2026-01-03T00:13:08.545Z'
+  user_id: 1
+  word: yëla
+- id: 162
+  created_at: '2026-01-03T00:13:08.552Z'
+  description: 1 + 4x1
+  meaning: '5'
+  part: number
+  updated_at: '2026-01-03T00:13:08.552Z'
+  user_id: 1
+  word: ala
+- id: 163
+  created_at: '2026-01-03T00:13:08.582Z'
+  description: 2 + 4x1
+  meaning: '6'
+  part: number
+  updated_at: '2026-01-03T00:13:08.582Z'
+  user_id: 1
+  word: äla
+- id: 164
+  created_at: '2026-01-03T00:13:08.588Z'
+  description: 3 + 4x1
+  meaning: '7'
+  part: number
+  updated_at: '2026-01-03T00:13:08.588Z'
+  user_id: 1
+  word: ăla
+- id: 165
+  created_at: '2026-01-03T00:13:08.596Z'
+  description: 0 + 4x2
+  meaning: '8'
+  part: number
+  updated_at: '2026-01-03T00:13:08.596Z'
+  user_id: 1
+  word: yëlä
+- id: 166
+  created_at: '2026-01-03T00:13:08.603Z'
+  description: 1 + 4x2
+  meaning: '9'
+  part: number
+  updated_at: '2026-01-03T00:13:08.603Z'
+  user_id: 1
+  word: alä
+- id: 167
+  created_at: '2026-01-03T00:13:08.610Z'
+  description: 2 + 4x2
+  meaning: '10'
+  part: number
+  updated_at: '2026-01-03T00:13:08.610Z'
+  user_id: 1
+  word: älä
+- id: 168
+  created_at: '2026-01-03T00:13:41.724Z'
+  description: 3 + 4x2
+  meaning: '11'
+  part: number
+  updated_at: '2026-01-03T00:13:41.724Z'
+  user_id: 1
+  word: ălä
+- id: 169
+  created_at: '2026-01-03T00:13:41.731Z'
+  description: 0 + 4x3
+  meaning: '12'
+  part: number
+  updated_at: '2026-01-03T00:13:41.731Z'
+  user_id: 1
+  word: yëlă
+- id: 170
+  created_at: '2026-01-03T00:13:41.738Z'
+  description: 1 + 4x3
+  meaning: '13'
+  part: number
+  updated_at: '2026-01-03T00:13:41.738Z'
+  user_id: 1
+  word: ală
+- id: 171
+  created_at: '2026-01-03T00:13:41.745Z'
+  description: 2 + 4x3
+  meaning: '14'
+  part: number
+  updated_at: '2026-01-03T00:13:41.745Z'
+  user_id: 1
+  word: älă
+- id: 172
+  created_at: '2026-01-03T00:13:41.751Z'
+  description: 3 + 4x3
+  meaning: '15'
+  part: number
+  updated_at: '2026-01-03T00:13:41.751Z'
+  user_id: 1
+  word: ălă
+- id: 173
+  created_at: '2026-01-03T00:13:41.780Z'
+  description: 0 + 16x1
+  meaning: '16'
+  part: number
+  updated_at: '2026-01-03T00:13:41.780Z'
+  user_id: 1
+  word: yëhla
+- id: 174
+  created_at: '2026-01-03T00:13:41.787Z'
+  description: 1 + 16x1
+  meaning: '17'
+  part: number
+  updated_at: '2026-01-03T00:13:41.787Z'
+  user_id: 1
+  word: ahla
+- id: 175
+  created_at: '2026-01-03T00:13:41.795Z'
+  description: 2 + 16x1
+  meaning: '18'
+  part: number
+  updated_at: '2026-01-03T00:13:41.795Z'
+  user_id: 1
+  word: ähla
+- id: 176
+  created_at: '2026-01-03T00:13:41.802Z'
+  description: 3 + 16x1
+  meaning: '19'
+  part: number
+  updated_at: '2026-01-03T00:13:41.802Z'
+  user_id: 1
+  word: ăhla
+- id: 177
+  created_at: '2026-01-03T00:13:41.808Z'
+  description: 0 + 4x1 + 16x1
+  meaning: '20'
+  part: number
+  updated_at: '2026-01-03T00:13:41.808Z'
+  user_id: 1
+  word: yëlahla
+- id: 178
+  created_at: '2026-01-03T00:14:25.676Z'
+  description: 1 + 4x1 + 16x1
+  meaning: '21'
+  part: number
+  updated_at: '2026-01-03T00:14:25.676Z'
+  user_id: 1
+  word: alahla
+- id: 179
+  created_at: '2026-01-03T00:14:25.684Z'
+  description: 2 + 4x1 + 16x1
+  meaning: '22'
+  part: number
+  updated_at: '2026-01-03T00:14:25.684Z'
+  user_id: 1
+  word: älahla
+- id: 180
+  created_at: '2026-01-03T00:14:25.690Z'
+  description: 3 + 4x1 + 16x1
+  meaning: '23'
+  part: number
+  updated_at: '2026-01-03T00:14:25.690Z'
+  user_id: 1
+  word: ălahla
+- id: 181
+  created_at: '2026-01-03T00:14:25.697Z'
+  description: 0 + 4x2 + 16x1
+  meaning: '24'
+  part: number
+  updated_at: '2026-01-03T00:14:25.697Z'
+  user_id: 1
+  word: yëlähla
+- id: 182
+  created_at: '2026-01-03T00:14:25.704Z'
+  description: 1 + 4x2 + 16x1
+  meaning: '25'
+  part: number
+  updated_at: '2026-01-03T00:14:25.704Z'
+  user_id: 1
+  word: alähla
+- id: 183
+  created_at: '2026-01-03T00:14:25.733Z'
+  description: 2 + 4x2 + 16x1
+  meaning: '26'
+  part: number
+  updated_at: '2026-01-03T00:14:25.733Z'
+  user_id: 1
+  word: älähla
+- id: 184
+  created_at: '2026-01-03T00:14:25.740Z'
+  description: 3 + 4x2 + 16x1
+  meaning: '27'
+  part: number
+  updated_at: '2026-01-03T00:14:25.740Z'
+  user_id: 1
+  word: ălähla
+- id: 185
+  created_at: '2026-01-03T00:14:25.748Z'
+  description: 0 + 4x3 + 16x1
+  meaning: '28'
+  part: number
+  updated_at: '2026-01-03T00:14:25.748Z'
+  user_id: 1
+  word: yëlăla
+- id: 186
+  created_at: '2026-01-03T00:14:25.755Z'
+  description: 1 + 4x3 + 16x1
+  meaning: '29'
+  part: number
+  updated_at: '2026-01-03T00:14:25.755Z'
+  user_id: 1
+  word: alăla
+- id: 187
+  created_at: '2026-01-03T00:14:25.761Z'
+  description: 2 + 4x3 + 16x1
+  meaning: '30'
+  part: number
+  updated_at: '2026-01-03T00:14:25.761Z'
+  user_id: 1
+  word: älăhla
+- id: 188
+  created_at: '2026-01-03T00:14:25.770Z'
+  description: 3 + 4x4 + 16x1
+  meaning: '31'
+  part: number
+  updated_at: '2026-01-03T00:14:25.770Z'
+  user_id: 1
+  word: ălăhla
+- id: 189
+  created_at: '2026-01-03T00:14:25.776Z'
+  description: 0 + 16x2
+  meaning: '32'
+  part: number
+  updated_at: '2026-01-03T00:14:25.776Z'
+  user_id: 1
+  word: yëhlä
+- id: 190
+  created_at: '2026-01-03T00:14:25.783Z'
+  description: One of Two
+  meaning: First [of a House], 1 of 2
+  part: noun
+  updated_at: '2026-01-03T00:14:25.783Z'
+  user_id: 1
+  word: Äloal
+- id: 191
+  created_at: '2026-01-03T00:14:25.844Z'
+  description: Two of Two
+  meaning: Second [of a House], 2 of 2
+  part: noun
+  updated_at: '2026-01-03T00:16:32.144Z'
+  user_id: 1
+  word: Äloäl
+- id: 192
+  created_at: '2026-01-03T00:30:14.607Z'
+  description: 3 + 4x3 + 16x3
+  meaning: '63'
+  part: number
+  updated_at: '2026-01-03T00:30:14.607Z'
+  user_id: 1
+  word: ălăhlă
+- id: 193
+  created_at: '2026-01-03T00:30:14.615Z'
+  description: 0 + 16x1 + 16x3
+  meaning: '64'
+  part: number
+  updated_at: '2026-01-03T00:30:14.615Z'
+  user_id: 1
+  word: yëhlahlă
+- id: 194
+  created_at: '2026-01-03T00:30:14.622Z'
+  description: title for the one selected and/or bound to follow the Second
+  meaning: Second-in-waiting
+  part: noun
+  updated_at: '2026-01-03T00:30:14.622Z'
+  user_id: 1
+  word: Oäloäl
+- id: 195
+  created_at: '2026-01-03T00:30:14.628Z'
+  description: title for the one selected and/or bound to follow the First
+  meaning: First-in-waiting
+  part: noun
+  updated_at: '2026-01-03T00:30:14.628Z'
+  user_id: 1
+  word: Oäloal
+- id: 196
+  created_at: '2026-01-03T01:50:51.718Z'
+  description: ''
+  meaning: neuter
+  part: affix, noun
+  updated_at: '2026-01-03T01:50:51.718Z'
+  user_id: 1
+  word: yï
+- id: 197
+  created_at: '2026-01-03T01:50:51.744Z'
+  description: ''
+  meaning: masculine
+  part: affix, noun
+  updated_at: '2026-01-03T01:50:51.744Z'
+  user_id: 1
+  word: yyï
+- id: 198
+  created_at: '2026-01-03T01:50:51.784Z'
+  description: stream/flow of nurture
+  meaning: food
+  part: noun
+  updated_at: '2026-01-03T01:50:51.784Z'
+  user_id: 1
+  word: bš
+- id: 199
+  created_at: '2026-01-03T01:50:51.810Z'
+  description: ''
+  meaning: to feed
+  part: verb
+  updated_at: '2026-01-03T01:50:51.810Z'
+  user_id: 1
+  word: ebš
+- id: 200
+  created_at: '2026-01-03T01:50:51.833Z'
+  description: place to seek comfort & nurture
+  meaning: home
+  part: noun
+  updated_at: '2026-01-03T01:50:51.833Z'
+  user_id: 1
+  word: bds
+- id: 201
+  created_at: '2026-01-03T01:50:51.877Z'
+  description: the feeling's/thought's/body's source
+  meaning: soul
+  part: noun
+  updated_at: '2026-01-03T01:50:51.877Z'
+  user_id: 1
+  word: žktno
+- id: 202
+  created_at: '2026-01-03T01:50:51.920Z'
+  description: ''
+  meaning: source of language
+  part: noun
+  updated_at: '2026-01-03T01:50:51.920Z'
+  user_id: 1
+  word: nm
+- id: 203
+  created_at: '2026-01-03T01:50:51.960Z'
+  description: ''
+  meaning: book, scroll
+  part: noun
+  updated_at: '2026-01-03T01:50:51.960Z'
+  user_id: 1
+  word: nma
+- id: 204
+  created_at: '2026-01-03T01:50:51.985Z'
+  description: ''
+  meaning: mother
+  part: noun
+  updated_at: '2026-01-03T01:50:51.985Z'
+  user_id: 1
+  word: nmaï
+- id: 205
+  created_at: '2026-01-03T01:50:52.022Z'
+  description: ''
+  meaning: neuter parent
+  part: noun
+  updated_at: '2026-01-03T01:50:52.022Z'
+  user_id: 1
+  word: nmayï
+- id: 206
+  created_at: '2026-01-03T01:50:52.051Z'
+  description: ''
+  meaning: father
+  part: noun
+  updated_at: '2026-01-03T01:50:52.051Z'
+  user_id: 1
+  word: nmayyï
+- id: 207
+  created_at: '2026-01-03T01:50:52.081Z'
+  description: ''
+  meaning: partner
+  part: noun
+  updated_at: '2026-01-03T01:50:52.081Z'
+  user_id: 1
+  word: nbš
+- id: 208
+  created_at: '2026-01-03T01:50:52.105Z'
+  description: ''
+  meaning: consort
+  part: noun
+  updated_at: '2026-01-03T01:50:52.105Z'
+  user_id: 1
+  word: nhlbš
+- id: 209
+  created_at: '2026-01-03T01:50:52.127Z'
+  description: ''
+  meaning: consorte (feminine)
+  part: noun
+  updated_at: '2026-01-03T01:50:52.127Z'
+  user_id: 1
+  word: nhlabïš
+- id: 210
+  created_at: '2026-01-03T01:50:52.152Z'
+  description: ''
+  meaning: consort (neuter)
+  part: noun
+  updated_at: '2026-01-03T01:50:52.152Z'
+  user_id: 1
+  word: nhlabyïš
+- id: 211
+  created_at: '2026-01-03T01:50:52.182Z'
+  description: ''
+  meaning: consort (masculine)
+  part: noun
+  updated_at: '2026-01-03T01:50:52.182Z'
+  user_id: 1
+  word: nhlabyyïš
+- id: 212
+  created_at: '2026-01-03T01:50:52.211Z'
+  description: ''
+  meaning: spouse
+  part: noun
+  updated_at: '2026-01-03T01:50:52.211Z'
+  user_id: 1
+  word: nhlt
+- id: 213
+  created_at: '2026-01-03T01:50:52.241Z'
+  description: ''
+  meaning: wife
+  part: noun
+  updated_at: '2026-01-03T01:50:52.241Z'
+  user_id: 1
+  word: nhlït
+- id: 214
+  created_at: '2026-01-03T01:50:52.264Z'
+  description: ''
+  meaning: spouse (neuter)
+  part: noun
+  updated_at: '2026-01-03T01:50:52.264Z'
+  user_id: 1
+  word: nhlyït
+- id: 215
+  created_at: '2026-01-03T01:50:52.286Z'
+  description: ''
+  meaning: husband
+  part: noun
+  updated_at: '2026-01-03T01:50:52.286Z'
+  user_id: 1
+  word: nhlyyït
+- id: 216
+  created_at: '2026-01-03T01:50:52.308Z'
+  description: ''
+  meaning: child
+  part: noun
+  updated_at: '2026-01-03T01:50:52.308Z'
+  user_id: 1
+  word: bšḍ
+- id: 217
+  created_at: '2026-01-03T01:50:52.332Z'
+  description: ''
+  meaning: girl
+  part: noun
+  updated_at: '2026-01-03T01:50:52.332Z'
+  user_id: 1
+  word: bšïd
+- id: 218
+  created_at: '2026-01-03T01:50:52.349Z'
+  description: ''
+  meaning: neuter child
+  part: noun
+  updated_at: '2026-01-03T01:50:52.349Z'
+  user_id: 1
+  word: bšyïd
+- id: 219
+  created_at: '2026-01-03T01:50:52.366Z'
+  description: ''
+  meaning: boy
+  part: noun
+  updated_at: '2026-01-03T01:50:52.366Z'
+  user_id: 1
+  word: bšyyïd
+- id: 220
+  created_at: '2026-01-03T01:50:52.384Z'
+  description: ''
+  meaning: unpossessed
+  part: affix, noun
+  updated_at: '2026-01-03T01:50:52.384Z'
+  user_id: 1
+  word: yo
+- id: 221
+  created_at: '2026-01-03T01:50:52.399Z'
+  description: insult, if to someone who has a parent
+  meaning: parentless child, orphan
+  part: noun
+  updated_at: '2026-01-03T01:50:52.399Z'
+  user_id: 1
+  word: bšyod
+- id: 222
+  created_at: '2026-01-03T01:50:52.416Z'
+  description: A reference to the hearth of a House
+  meaning: Seat [of a House]
+  part: noun
+  updated_at: '2026-01-03T01:50:52.416Z'
+  user_id: 1
+  word: S'äl
+- id: 223
+  created_at: '2026-01-03T01:50:52.446Z'
+  description: ''
+  meaning: bond, oath
+  part: noun
+  updated_at: '2026-01-03T01:50:52.446Z'
+  user_id: 1
+  word: mḍ
+- id: 224
+  created_at: '2026-01-03T01:50:52.467Z'
+  description: one who holds a bond or oath
+  meaning: bond- or oath-holder
+  part: noun
+  updated_at: '2026-01-03T01:50:52.467Z'
+  user_id: 1
+  word: nmḍ
+- id: 225
+  created_at: '2026-01-03T01:50:52.490Z'
+  description: one who is bound by a bond, oath, or covenant (one who needed to be
+    bonded)
+  meaning: bondsperson, oathsword
+  part: noun
+  updated_at: '2026-01-03T01:50:52.490Z'
+  user_id: 1
+  word: mḍŧ
+- id: 226
+  created_at: '2026-01-03T01:50:52.512Z'
+  description: ''
+  meaning: bondling, child of a bondsperson or oathsworn
+  part: noun
+  updated_at: '2026-01-03T01:50:52.512Z'
+  user_id: 1
+  word: mḍŧoj
+- id: 227
+  created_at: '2026-01-03T01:50:52.542Z'
+  description: dark water
+  meaning: blood
+  part: noun
+  updated_at: '2026-01-03T01:50:52.542Z'
+  user_id: 1
+  word: šŧ
+- id: 228
+  created_at: '2026-01-03T01:50:52.565Z'
+  description: ''
+  meaning: bloodbond
+  part: noun
+  updated_at: '2026-01-03T01:50:52.565Z'
+  user_id: 1
+  word: mḍšŧ
+- id: 229
+  created_at: '2026-01-03T01:50:52.587Z'
+  description: ''
+  meaning: silence, vacuum
+  part: noun
+  updated_at: '2026-01-05T18:58:52.315Z'
+  user_id: 1
+  word: yv
+- id: 230
+  created_at: '2026-01-03T14:20:48.958Z'
+  description: meaning unknown
+  meaning: 'Location: Yldr Valley'
+  part: noun
+  updated_at: '2026-01-03T14:20:48.958Z'
+  user_id: 1
+  word: Yldr
+- id: 231
+  created_at: '2026-01-03T14:20:49.027Z'
+  description: ''
+  meaning: ''
+  part: noun
+  updated_at: '2026-01-03T17:56:30.900Z'
+  user_id: 1
+  word: mj
+- id: 232
+  created_at: '2026-01-03T14:20:49.050Z'
+  description: ''
+  meaning: hearth, tribe
+  part: noun
+  updated_at: '2026-01-03T14:20:49.050Z'
+  user_id: 1
+  word: des
+- id: 233
+  created_at: '2026-01-03T14:20:49.073Z'
+  description: ''
+  meaning: creature, animal
+  part: noun
+  updated_at: '2026-01-03T14:20:49.073Z'
+  user_id: 1
+  word: dšŧ
+- id: 234
+  created_at: '2026-01-03T14:20:49.118Z'
+  description: ''
+  meaning: ''
+  part: human, person, bloodline
+  updated_at: '2026-01-03T14:20:49.118Z'
+  user_id: 1
+  word: nšŧ
+- id: 235
+  created_at: '2026-01-03T14:20:49.140Z'
+  description: ''
+  meaning: woman
+  part: noun
+  updated_at: '2026-01-03T14:20:49.140Z'
+  user_id: 1
+  word: nšïŧ
+- id: 236
+  created_at: '2026-01-03T14:20:49.162Z'
+  description: ''
+  meaning: neuter person
+  part: noun
+  updated_at: '2026-01-03T14:20:49.162Z'
+  user_id: 1
+  word: nšyïŧ
+- id: 237
+  created_at: '2026-01-03T14:20:49.203Z'
+  description: ''
+  meaning: man
+  part: noun
+  updated_at: '2026-01-03T14:20:49.203Z'
+  user_id: 1
+  word: nšyyïŧ
+- id: 238
+  created_at: '2026-01-03T14:20:49.225Z'
+  description: ''
+  meaning: source of bloodline, ancestor
+  part: noun
+  updated_at: '2026-01-03T14:20:49.225Z'
+  user_id: 1
+  word: nnošŧ
+- id: 239
+  created_at: '2026-01-03T14:20:49.260Z'
+  description: ''
+  meaning: to think, to create
+  part: verb
+  updated_at: '2026-01-03T14:20:49.260Z'
+  user_id: 1
+  word: ek
+- id: 240
+  created_at: '2026-01-03T14:20:49.283Z'
+  description: ''
+  meaning: to speak, to communicate
+  part: verb
+  updated_at: '2026-01-03T14:20:49.283Z'
+  user_id: 1
+  word: emj
+- id: 241
+  created_at: '2026-01-03T14:20:49.304Z'
+  description: ''
+  meaning: hunger for knowledge
+  part: noun
+  updated_at: '2026-01-03T14:20:49.304Z'
+  user_id: 1
+  word: sk
+- id: 242
+  created_at: '2026-01-03T14:20:49.328Z'
+  description: ''
+  meaning: to study, to learn
+  part: verb
+  updated_at: '2026-01-03T14:20:49.328Z'
+  user_id: 1
+  word: esk
+- id: 243
+  created_at: '2026-01-03T14:20:49.350Z'
+  description: ''
+  meaning: hunger for purpose, quest, search
+  part: noun
+  updated_at: '2026-01-03T14:20:49.350Z'
+  user_id: 1
+  word: sf
+- id: 244
+  created_at: '2026-01-03T14:20:49.374Z'
+  description: ''
+  meaning: to seek, to journey
+  part: verb
+  updated_at: '2026-01-03T14:20:49.374Z'
+  user_id: 1
+  word: esf
+- id: 245
+  created_at: '2026-01-03T14:20:49.396Z'
+  description: ''
+  meaning: object, thing
+  part: noun
+  updated_at: '2026-01-03T18:53:13.387Z'
+  user_id: 1
+  word: yg
+- id: 246
+  created_at: '2026-01-03T14:20:49.418Z'
+  description: ''
+  meaning: passive-aggression
+  part: noun
+  updated_at: '2026-01-03T14:20:49.418Z'
+  user_id: 1
+  word: yyg
+- id: 247
+  created_at: '2026-01-03T14:20:49.441Z'
+  description: ''
+  meaning: to wait, to be still
+  part: verb
+  updated_at: '2026-01-03T14:20:49.441Z'
+  user_id: 1
+  word: eyg
+- id: 248
+  created_at: '2026-01-03T14:20:49.498Z'
+  description: ''
+  meaning: weakness, lightness
+  part: noun
+  updated_at: '2026-01-03T14:20:49.498Z'
+  user_id: 1
+  word: yt
+- id: 249
+  created_at: '2026-01-03T14:20:49.547Z'
+  description: ''
+  meaning: power
+  part: noun
+  updated_at: '2026-01-03T14:20:49.547Z'
+  user_id: 1
+  word: nf
+- id: 250
+  created_at: '2026-01-03T14:20:49.573Z'
+  description: ''
+  meaning: night
+  part: noun
+  updated_at: '2026-01-03T14:20:49.573Z'
+  user_id: 1
+  word: ŧd
+- id: 251
+  created_at: '2026-01-03T14:20:49.595Z'
+  description: ''
+  meaning: plane of darkness
+  part: noun
+  updated_at: '2026-01-03T14:20:49.595Z'
+  user_id: 1
+  word: neŧ
+- id: 252
+  created_at: '2026-01-03T14:20:49.624Z'
+  description: ''
+  meaning: source of darkness
+  part: noun
+  updated_at: '2026-01-03T14:20:49.624Z'
+  user_id: 1
+  word: ŧn
+- id: 253
+  created_at: '2026-01-03T14:20:49.646Z'
+  description: ''
+  meaning: moon
+  part: noun
+  updated_at: '2026-01-03T14:20:49.646Z'
+  user_id: 1
+  word: ŧ'an
+- id: 254
+  created_at: '2026-01-03T14:20:49.676Z'
+  description: knowledge of purpose
+  meaning: wisdom
+  part: noun
+  updated_at: '2026-01-03T14:20:49.676Z'
+  user_id: 1
+  word: fk
+- id: 255
+  created_at: '2026-01-03T14:20:49.699Z'
+  description: modifies/states the position of the preceding noun, or the subject
+    of the verb
+  meaning: "[standing/doing, in relation to]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.699Z'
+  user_id: 1
+  word: hr
+- id: 256
+  created_at: '2026-01-03T14:20:49.706Z'
+  description: ''
+  meaning: "[in front of/before]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.706Z'
+  user_id: 1
+  word: hra
+- id: 257
+  created_at: '2026-01-03T14:20:49.723Z'
+  description: ''
+  meaning: "[north of]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.723Z'
+  user_id: 1
+  word: hrä
+- id: 258
+  created_at: '2026-01-03T14:20:49.742Z'
+  description: ''
+  meaning: "[east of]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.742Z'
+  user_id: 1
+  word: hră
+- id: 259
+  created_at: '2026-01-03T14:20:49.760Z'
+  description: ''
+  meaning: "[above]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.760Z'
+  user_id: 1
+  word: hre
+- id: 260
+  created_at: '2026-01-03T14:20:49.777Z'
+  description: ''
+  meaning: "[outside of]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.777Z'
+  user_id: 1
+  word: hrë
+- id: 261
+  created_at: '2026-01-03T14:20:49.796Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:31:28.239Z'
+  user_id: 1
+  word: hri
+- id: 262
+  created_at: '2026-01-03T14:20:49.814Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.814Z'
+  user_id: 1
+  word: hrï
+- id: 263
+  created_at: '2026-01-03T14:20:49.832Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.832Z'
+  user_id: 1
+  word: hro
+- id: 264
+  created_at: '2026-01-03T14:20:49.852Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.852Z'
+  user_id: 1
+  word: hrö
+- id: 265
+  created_at: '2026-01-03T14:20:49.869Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.869Z'
+  user_id: 1
+  word: hru
+- id: 266
+  created_at: '2026-01-03T14:20:49.887Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.887Z'
+  user_id: 1
+  word: hrü
+- id: 267
+  created_at: '2026-01-03T14:20:49.905Z'
+  description: ''
+  meaning: "[facing, in direction of]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.905Z'
+  user_id: 1
+  word: w
+- id: 268
+  created_at: '2026-01-03T14:20:49.924Z'
+  description: ''
+  meaning: "[forward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.924Z'
+  user_id: 1
+  word: wa
+- id: 269
+  created_at: '2026-01-03T14:20:49.942Z'
+  description: ''
+  meaning: "[northward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.942Z'
+  user_id: 1
+  word: wä
+- id: 270
+  created_at: '2026-01-03T14:20:49.959Z'
+  description: ''
+  meaning: "[eastward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.959Z'
+  user_id: 1
+  word: wă
+- id: 271
+  created_at: '2026-01-03T14:20:49.978Z'
+  description: ''
+  meaning: "[upward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.978Z'
+  user_id: 1
+  word: we
+- id: 272
+  created_at: '2026-01-03T14:20:49.996Z'
+  description: ''
+  meaning: "[outward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:49.996Z'
+  user_id: 1
+  word: wë
+- id: 273
+  created_at: '2026-01-03T14:20:50.013Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.013Z'
+  user_id: 1
+  word: wi
+- id: 274
+  created_at: '2026-01-03T14:20:50.032Z'
+  description: ''
+  meaning: "[like, similar to]"
+  part: morpheme
+  updated_at: '2026-01-03T15:14:31.803Z'
+  user_id: 1
+  word: wï
+- id: 275
+  created_at: '2026-01-03T14:20:50.050Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.050Z'
+  user_id: 1
+  word: wo
+- id: 276
+  created_at: '2026-01-03T14:20:50.067Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.067Z'
+  user_id: 1
+  word: wö
+- id: 277
+  created_at: '2026-01-03T14:20:50.084Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.084Z'
+  user_id: 1
+  word: wu
+- id: 278
+  created_at: '2026-01-03T14:20:50.103Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.103Z'
+  user_id: 1
+  word: wü
+- id: 279
+  created_at: '2026-01-03T14:20:50.121Z'
+  description: ''
+  meaning: "[moving, heading toward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.121Z'
+  user_id: 1
+  word: hw
+- id: 280
+  created_at: '2026-01-03T14:20:50.138Z'
+  description: ''
+  meaning: "[forward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.138Z'
+  user_id: 1
+  word: hwa
+- id: 281
+  created_at: '2026-01-03T14:20:50.157Z'
+  description: ''
+  meaning: "[northward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.157Z'
+  user_id: 1
+  word: hwä
+- id: 282
+  created_at: '2026-01-03T14:20:50.172Z'
+  description: ''
+  meaning: "[eastward]"
+  part: modifier
+  updated_at: '2026-01-18T17:34:47.822Z'
+  user_id: 1
+  word: hwă
+- id: 283
+  created_at: '2026-01-03T14:20:50.188Z'
+  description: ''
+  meaning: "[upward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.188Z'
+  user_id: 1
+  word: hwe
+- id: 284
+  created_at: '2026-01-03T14:20:50.202Z'
+  description: ''
+  meaning: "[outward]"
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.202Z'
+  user_id: 1
+  word: hwë
+- id: 285
+  created_at: '2026-01-03T14:20:50.219Z'
+  description: ''
+  meaning: "[swift, quick]"
+  part: morpheme
+  updated_at: '2026-01-03T15:24:15.324Z'
+  user_id: 1
+  word: hwi
+- id: 286
+  created_at: '2026-01-03T14:20:50.234Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.234Z'
+  user_id: 1
+  word: hwï
+- id: 287
+  created_at: '2026-01-03T14:20:50.250Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.250Z'
+  user_id: 1
+  word: hwo
+- id: 288
+  created_at: '2026-01-03T14:20:50.269Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.269Z'
+  user_id: 1
+  word: hwö
+- id: 289
+  created_at: '2026-01-03T14:20:50.287Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.287Z'
+  user_id: 1
+  word: hwu
+- id: 290
+  created_at: '2026-01-03T14:20:50.305Z'
+  description: ''
+  meaning: ''
+  part: modifier
+  updated_at: '2026-01-03T14:20:50.305Z'
+  user_id: 1
+  word: hwü
+- id: 291
+  created_at: '2026-01-03T14:51:09.747Z'
+  description: ''
+  meaning: sight
+  part: noun
+  updated_at: '2026-01-03T14:51:09.747Z'
+  user_id: 1
+  word: žc
+- id: 292
+  created_at: '2026-01-03T15:02:40.538Z'
+  description: ''
+  meaning: eye
+  part: noun
+  updated_at: '2026-01-03T15:02:40.538Z'
+  user_id: 1
+  word: jžc
+- id: 293
+  created_at: '2026-01-03T15:02:40.571Z'
+  description: ''
+  meaning: plant
+  part: noun
+  updated_at: '2026-01-03T15:04:11.709Z'
+  user_id: 1
+  word: dšv
+- id: 294
+  created_at: '2026-01-03T15:15:45.149Z'
+  description: the flavor of light
+  meaning: color
+  part: noun
+  updated_at: '2026-01-03T15:15:45.149Z'
+  user_id: 1
+  word: cp
+- id: 295
+  created_at: '2026-01-03T15:20:52.320Z'
+  description: ''
+  meaning: skin
+  part: noun
+  updated_at: '2026-01-03T15:20:52.320Z'
+  user_id: 1
+  word: jžs
+- id: 296
+  created_at: '2026-01-03T15:28:03.709Z'
+  description: ''
+  meaning: sky
+  part: noun
+  updated_at: '2026-01-03T15:31:16.409Z'
+  user_id: 1
+  word: nvš
+- id: 297
+  created_at: '2026-01-03T15:31:08.154Z'
+  description: ''
+  meaning: storm
+  part: noun
+  updated_at: '2026-01-03T15:31:08.154Z'
+  user_id: 1
+  word: vš
+- id: 298
+  created_at: '2026-01-03T15:54:53.186Z'
+  description: ''
+  meaning: arm
+  part: noun
+  updated_at: '2026-01-03T15:54:53.186Z'
+  user_id: 1
+  word: jg
+- id: 299
+  created_at: '2026-01-03T15:54:53.218Z'
+  description: ''
+  meaning: hand
+  part: noun
+  updated_at: '2026-01-03T15:54:53.218Z'
+  user_id: 1
+  word: jgţ
+- id: 300
+  created_at: '2026-01-03T15:54:53.265Z'
+  description: ''
+  meaning: finger
+  part: noun
+  updated_at: '2026-01-03T15:54:53.265Z'
+  user_id: 1
+  word: jjgţ
+- id: 301
+  created_at: '2026-01-03T15:54:53.290Z'
+  description: ''
+  meaning: slow
+  part: modifier
+  updated_at: '2026-01-03T15:54:53.290Z'
+  user_id: 1
+  word: yhwi
+- id: 302
+  created_at: '2026-01-03T15:54:53.313Z'
+  description: ''
+  meaning: tree
+  part: noun
+  updated_at: '2026-01-03T15:54:53.313Z'
+  user_id: 1
+  word: vyhwi
+- id: 303
+  created_at: '2026-01-03T15:54:53.353Z'
+  description: ''
+  meaning: fingertip
+  part: noun
+  updated_at: '2026-01-03T15:54:53.353Z'
+  user_id: 1
+  word: jgţḍ
+- id: 304
+  created_at: '2026-01-03T15:54:53.376Z'
+  description: ''
+  meaning: fish
+  part: noun
+  updated_at: '2026-01-03T15:54:53.376Z'
+  user_id: 1
+  word: ŧš
+- id: 305
+  created_at: '2026-01-03T15:54:53.383Z'
+  description: ''
+  meaning: a stick
+  part: noun
+  updated_at: '2026-01-03T15:54:53.383Z'
+  user_id: 1
+  word: vyhwij
+- id: 306
+  created_at: '2026-01-03T15:54:53.400Z'
+  description: ''
+  meaning: bird
+  part: noun
+  updated_at: '2026-01-03T15:54:53.400Z'
+  user_id: 1
+  word: dvŧ
+- id: 307
+  created_at: '2026-01-03T15:54:53.448Z'
+  description: ''
+  meaning: edge, knife, tooth
+  part: noun
+  updated_at: '2026-01-03T15:54:53.448Z'
+  user_id: 1
+  word: jj
+- id: 308
+  created_at: '2026-01-03T15:54:53.463Z'
+  description: ''
+  meaning: music
+  part: noun
+  updated_at: '2026-01-03T15:54:53.463Z'
+  user_id: 1
+  word: nv
+- id: 309
+  created_at: '2026-01-03T15:54:53.485Z'
+  description: ''
+  meaning: ear
+  part: noun
+  updated_at: '2026-01-03T15:54:53.485Z'
+  user_id: 1
+  word: jžv
+- id: 310
+  created_at: '2026-01-03T18:29:18.849Z'
+  description: ''
+  meaning: breath, life
+  part: noun
+  updated_at: '2026-01-03T18:29:18.849Z'
+  user_id: 1
+  word: šv
+- id: 311
+  created_at: '2026-01-03T18:29:18.882Z'
+  description: ''
+  meaning: all life
+  part: noun
+  updated_at: '2026-01-03T18:29:18.882Z'
+  user_id: 1
+  word: švëšŧ
+- id: 312
+  created_at: '2026-01-03T18:29:18.944Z'
+  description: all of the breaths of the end
+  meaning: prophecy
+  part: noun
+  updated_at: '2026-01-03T18:29:18.944Z'
+  user_id: 1
+  word: ţšoëv
+- id: 313
+  created_at: '2026-01-03T18:29:19.003Z'
+  description: ''
+  meaning: language
+  part: noun
+  updated_at: '2026-01-03T18:29:19.003Z'
+  user_id: 1
+  word: km
+- id: 314
+  created_at: '2026-01-03T18:29:19.026Z'
+  description: ''
+  meaning: word, meaning
+  part: noun
+  updated_at: '2026-01-03T18:29:19.026Z'
+  user_id: 1
+  word: kmj
+- id: 315
+  created_at: '2026-01-03T18:29:19.049Z'
+  description: ''
+  meaning: tongue
+  part: noun
+  updated_at: '2026-01-03T18:29:19.049Z'
+  user_id: 1
+  word: jnm
+- id: 316
+  created_at: '2026-01-03T18:29:19.090Z'
+  description: gift or purpose of the storm
+  meaning: rain
+  part: noun
+  updated_at: '2026-01-03T18:29:19.090Z'
+  user_id: 1
+  word: všf
+- id: 317
+  created_at: '2026-01-03T18:29:19.112Z'
+  description: ''
+  meaning: hole, pit
+  part: noun
+  updated_at: '2026-01-03T18:29:19.112Z'
+  user_id: 1
+  word: ŧk
+- id: 318
+  created_at: '2026-01-03T18:29:19.135Z'
+  description: ''
+  meaning: body hole
+  part: noun
+  updated_at: '2026-01-03T18:29:19.135Z'
+  user_id: 1
+  word: jŧk
+- id: 319
+  created_at: '2026-01-03T18:29:19.166Z'
+  description: ''
+  meaning: mouth
+  part: noun
+  updated_at: '2026-01-03T18:29:19.166Z'
+  user_id: 1
+  word: jŧkm
+- id: 320
+  created_at: '2026-01-03T18:29:19.188Z'
+  description: ''
+  meaning: salt
+  part: noun
+  updated_at: '2026-01-03T18:29:19.188Z'
+  user_id: 1
+  word: pk
+- id: 321
+  created_at: '2026-01-03T18:29:19.212Z'
+  description: ''
+  meaning: body of water
+  part: noun
+  updated_at: '2026-01-03T18:29:19.212Z'
+  user_id: 1
+  word: dš
+- id: 322
+  created_at: '2026-01-03T18:29:19.234Z'
+  description: ''
+  meaning: body of fresh water
+  part: noun
+  updated_at: '2026-01-03T18:29:19.234Z'
+  user_id: 1
+  word: dšp
+- id: 323
+  created_at: '2026-01-03T18:29:19.257Z'
+  description: ''
+  meaning: thirst
+  part: noun
+  updated_at: '2026-01-03T18:29:19.257Z'
+  user_id: 1
+  word: škŧ
+- id: 324
+  created_at: '2026-01-03T18:29:19.288Z'
+  description: ''
+  meaning: a lake
+  part: noun
+  updated_at: '2026-01-03T18:29:19.288Z'
+  user_id: 1
+  word: dšep
+- id: 325
+  created_at: '2026-01-03T18:29:19.311Z'
+  description: ''
+  meaning: a sea
+  part: noun
+  updated_at: '2026-01-03T18:29:19.311Z'
+  user_id: 1
+  word: dše
+- id: 326
+  created_at: '2026-01-03T18:29:19.335Z'
+  description: ''
+  meaning: forest
+  part: noun
+  updated_at: '2026-01-03T18:29:19.335Z'
+  user_id: 1
+  word: nvyhwi
+- id: 327
+  created_at: '2026-01-03T18:29:19.357Z'
+  description: ''
+  meaning: crop, field
+  part: noun
+  updated_at: '2026-01-03T18:29:19.357Z'
+  user_id: 1
+  word: ndšb
+- id: 328
+  created_at: '2026-01-03T18:29:19.385Z'
+  description: ''
+  meaning: head
+  part: noun
+  updated_at: '2026-01-03T18:29:19.385Z'
+  user_id: 1
+  word: jkn
+- id: 329
+  created_at: '2026-01-03T18:29:19.408Z'
+  description: ''
+  meaning: hunger
+  part: noun
+  updated_at: '2026-01-03T18:29:19.408Z'
+  user_id: 1
+  word: žs
+- id: 330
+  created_at: '2026-01-03T18:29:19.431Z'
+  description: ''
+  meaning: stomach
+  part: noun
+  updated_at: '2026-01-03T18:29:19.431Z'
+  user_id: 1
+  word: džs
+- id: 331
+  created_at: '2026-01-03T18:29:19.456Z'
+  description: ''
+  meaning: nose
+  part: noun
+  updated_at: '2026-01-03T18:29:19.456Z'
+  user_id: 1
+  word: džp
+- id: 340
+  created_at: '2026-01-03T19:10:00.133Z'
+  description: ''
+  meaning: to eat
+  part: verb
+  updated_at: '2026-01-03T19:10:00.133Z'
+  user_id: 1
+  word: esb
+- id: 341
+  created_at: '2026-01-03T19:10:00.164Z'
+  description: ''
+  meaning: to drink
+  part: verb
+  updated_at: '2026-01-03T19:10:00.164Z'
+  user_id: 1
+  word: esš
+- id: 342
+  created_at: '2026-01-03T19:10:00.210Z'
+  description: ''
+  meaning: married couple
+  part: noun
+  updated_at: '2026-01-03T19:10:00.210Z'
+  user_id: 1
+  word: nhlät
+- id: 343
+  created_at: '2026-01-03T19:10:00.232Z'
+  description: unspecified person/people
+  meaning: who
+  part: noun
+  updated_at: '2026-01-03T19:10:00.232Z'
+  user_id: 1
+  word: nšeŧ
+- id: 344
+  created_at: '2026-01-03T19:10:00.255Z'
+  description: unspecified place(s)
+  meaning: where
+  part: noun
+  updated_at: '2026-01-03T19:10:00.255Z'
+  user_id: 1
+  word: de
+- id: 345
+  created_at: '2026-01-03T19:10:00.300Z'
+  description: unspecified time(s)
+  meaning: when
+  part: noun
+  updated_at: '2026-01-03T19:10:00.300Z'
+  user_id: 1
+  word: ze
+- id: 346
+  created_at: '2026-01-03T19:10:00.322Z'
+  description: ''
+  meaning: place of stone; fortress; safety
+  part: noun
+  updated_at: '2026-01-03T19:10:00.322Z'
+  user_id: 1
+  word: dt
+- id: 347
+  created_at: '2026-01-03T19:10:00.361Z'
+  description: ''
+  meaning: how
+  part: noun
+  updated_at: '2026-01-03T19:10:00.361Z'
+  user_id: 1
+  word: ge
+- id: 348
+  created_at: '2026-01-03T19:10:00.383Z'
+  description: ''
+  meaning: what
+  part: noun
+  updated_at: '2026-01-03T19:10:00.383Z'
+  user_id: 1
+  word: yge
+- id: 349
+  created_at: '2026-01-03T19:10:00.456Z'
+  description: used between SOdOi, particularly if they are not directly stated ([I]
+    ĺ [I] ĺ dinner prepared)
+  meaning: "[break/next]"
+  part: conjunction
+  updated_at: '2026-01-03T19:10:00.456Z'
+  user_id: 1
+  word: ĺ
+- id: 350
+  created_at: '2026-01-09T22:29:05.834Z'
+  description:
+  meaning: lifeblood
+  part: noun
+  updated_at: '2026-01-09T22:29:05.834Z'
+  user_id: 1
+  word: šëŧ
+- id: 351
+  created_at: '2026-01-11T15:30:38.683Z'
+  description: one who always learns
+  meaning: scholar
+  part: noun
+  updated_at: '2026-01-11T15:41:04.590Z'
+  user_id: 1
+  word: alësk
+- id: 354
+  created_at: '2026-01-11T15:43:35.118Z'
+  description:
+  meaning: group of students; school
+  part: noun
+  updated_at: '2026-01-11T15:43:35.118Z'
+  user_id: 1
+  word: elesk
+- id: 355
+  created_at: '2026-01-12T19:10:27.122Z'
+  description:
+  meaning: oration, argument
+  part: noun
+  updated_at: '2026-01-12T19:10:27.122Z'
+  user_id: 1
+  word: vrss
