@@ -11,10 +11,9 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :entities, :kind
     add_index :entities, :name
     add_index :entities, [:kind, :name]
-    
-    add_index :events, :date
+
     add_index :events, :kind
-    add_index :events, [:kind, :date]
+    add_index :events, [:kind, :ydate_id]
 
     add_index :dialects, :name
     add_index :dialects, [:language_id, :entity_id]
@@ -26,9 +25,5 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :properties, :value
 
     add_index :patterns, :pattern
-
-    
-    #add_foreign_key :relations, :entities, column: :superior_id
-    #add_foreign_key :relations, :entities, column: :inferior_id
   end
 end

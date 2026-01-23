@@ -1,10 +1,7 @@
 class Entity < ApplicationRecord
   belongs_to :milieu
   
-  has_and_belongs_to_many :events, dependent: :destroy
-
-  #has_and_belongs_to_many :superiors, class_name: "Relation", dependent: :destroy
-  #has_and_belongs_to_many :inferiors, class_name: "Relation", dependent: :destroy
+  has_and_belongs_to_many :events
 
   has_many :inferior_relations, class_name: "Relation", foreign_key: "superior_id", dependent: :destroy
   has_many :inferiors, through: :inferior_relations, source: :inferior

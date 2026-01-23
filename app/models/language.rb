@@ -5,4 +5,5 @@ class Language < ApplicationRecord
   has_many :dialects, dependent: :destroy
   has_many :lexemes, dependent: :destroy
   has_many :patterns, dependent: :destroy
+
 end
