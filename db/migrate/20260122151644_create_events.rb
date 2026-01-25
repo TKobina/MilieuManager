@@ -5,9 +5,9 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.references :milieu, null: false, foreign_key: true
       t.references :ydate, null: false, foreign_key: true
       t.string :kind
-      t.string :summary
+      t.string :name
       t.text :details
-      t.date :lastupdate
+      t.datetime :lastupdate
     end
   end
 end

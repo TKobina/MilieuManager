@@ -40,7 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "kind"
-    t.date "lastupdate"
+    t.datetime "lastupdate"
     t.integer "milieu_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
@@ -59,14 +59,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "kind"
-    t.date "lastupdate"
+    t.datetime "lastupdate"
     t.integer "milieu_id", null: false
-    t.string "summary"
+    t.string "name"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
     t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["milieu_id"], name: "index_events_on_milieu_id"
+    t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
   end
 
@@ -112,7 +113,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "language_id", null: false
-    t.date "lastupdate"
+    t.datetime "lastupdate"
     t.string "meaning"
     t.datetime "updated_at", null: false
     t.string "word"
@@ -156,7 +157,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.integer "event_id", null: false
     t.integer "inferior_id", null: false
     t.string "kind"
-    t.date "lastupdate"
+    t.datetime "lastupdate"
     t.string "name"
     t.integer "superior_id", null: false
     t.datetime "updated_at", null: false
@@ -196,6 +197,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   create_table "ydates", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "date"
+    t.datetime "lastupdate"
     t.integer "milieu_id", null: false
     t.datetime "updated_at", null: false
     t.index ["milieu_id"], name: "index_ydates_on_milieu_id"

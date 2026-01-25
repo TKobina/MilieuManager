@@ -1,10 +1,9 @@
 class EntitiesController < ApplicationController
   def index
-    milieu = Milieu.includes(:user)
-    @entities = Entity.includes(:milieu)
+    @entities = current_user.entities
   end
 
   def show
-    @entity = Entity.find(params[:id])
+    @entity = current_user.entities.find(params[:id])
   end
 end
