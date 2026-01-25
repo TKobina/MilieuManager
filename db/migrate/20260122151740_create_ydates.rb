@@ -4,6 +4,7 @@ class CreateYdates < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :milieu, null: false, foreign_key: true
       t.integer :date
+      t.datetime :lastupdate
     end
   end
 end

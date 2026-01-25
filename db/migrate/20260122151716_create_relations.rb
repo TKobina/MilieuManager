@@ -8,7 +8,7 @@ class CreateRelations < ActiveRecord::Migration[8.1]
       t.string :kind
       t.string :name
       t.text :details
-      t.date :lastupdate
+      t.datetime :lastupdate
     end
   end
 end

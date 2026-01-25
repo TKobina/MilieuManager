@@ -13,6 +13,7 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :entities, [:kind, :name]
 
     add_index :events, :kind
+    add_index :events, :name
     add_index :events, [:kind, :ydate_id]
 
     add_index :dialects, :name

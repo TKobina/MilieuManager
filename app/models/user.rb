@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :milieu
+  has_many :events, through: :milieu 
+  has_many :entities, through: :milieu
+  has_many :languages, through: :milieu
 end

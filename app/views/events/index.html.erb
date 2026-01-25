@@ -1,0 +1,14 @@
+<h1>Events</h1>
+<%= link_to "Back", pages_path %></br>
+
+</p>
+
+<div id="Events">
+  <ul>
+  <% @events.each do |event| %>
+    <div>
+      <li><%= link_to event.name, event_path(event.id) %><sup>(<%=event.id %>)</sup> - <%=event.kind%> <br></li>
+    </div>
+  <% end %>
+  </ul>
+</div>

@@ -18,5 +18,7 @@ class Milieu < ApplicationRecord
     Ydate.random(self, year: year)
   end
 
-
+  def from_user(user)
+    self.where(user: current_user)
+  end
 end
