@@ -15,12 +15,14 @@ class Property < ApplicationRecord
   end
 
   def check_duplicate_property
-    if self.entity.properties.map{|property| property.name}.include?(self.kind)
+    if self.entity.properties.map{|property| property.kind}.include?(self.kind)
       other = entity.properties.where(kind: self.kind).first
-      other.value = self.value
-      other.details = self.details if !self.details.nil?
-      other.save  
-      errors.add("", "#{self.entity.name} already has property #{self.kind}")
+      if other
+        other.value = self.value
+        other.details = self.details if !self.details.nil?
+        other.save  
+        errors.add("", "#{self.entity.name} already has property #{self.kind}")
+      end
     end
   end
 end

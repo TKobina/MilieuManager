@@ -12,42 +12,44 @@ namespace :init do
       user = User.create!(email: duser[:email], password: duser[:password], password_confirmation: duser[:password])
     end
 
-    unless user = User.where(email: tuser[:email]).first
-      user = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
-    end
-
-    unless milieu = Milieu.where(user_id: user.id, name: "Yldra").first
-      milieu = Milieu.create!(user_id: user.id, name: "Yldra")
-    end
-
-    unless language = Language.where(milieu_id: milieu.id, name: "Lëdru").first
-      language = Language.create!(milieu_id: milieu.id, name: "Lëdru")
-    end
-
-    #generate letters
-    alphabet = YAML.load_file(File.join(Rails.root, paths['alphabet']))
-    letters_present = language.letters.map{|letter| letter.letter}
-    alphabet.each do |kind, letters|
-      letters.each do |key, value|
-        if !letters_present.include?(key)
-          Letter.create!(language_id: language.id, kind: kind, letter: key, sortkey: value)
-        end
-      end
+    unless user2 = User.where(email: tuser[:email]).first
+      user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
     end
     
-    #generate patterns
-    parts = [ "b", "c", "v" ]
-    if Pattern.count < 500 
-      3.times do |i| 
-        perms = parts.repeated_permutation(i + 3).to_a
-        perms.each do |perm|
-          pattern = Pattern.create(language: language, pattern: perm.join)
-          if !pattern.save
-            #puts "Pattern failed validation: #{pattern.errors.full_messages.join(', ')}"
-          end
-        end
-      end
+    unless milieu = Milieu.where(user_id: user.id, name: "Ildera").first
+      milieu = Milieu.create!(user_id: user.id, name: "Ildera")
     end
+    
+    Event.check_obsidian(Milieu.first)
+    
+    # unless language = Language.where(milieu_id: milieu.id, name: "Lëdru").first
+    #   language = Language.create!(milieu_id: milieu.id, name: "Lëdru")
+    # end
+
+    # #generate letters
+    # alphabet = YAML.load_file(File.join(Rails.root, paths['alphabet']))
+    # letters_present = language.letters.map{|letter| letter.letter}
+    # alphabet.each do |kind, letters|
+    #   letters.each do |key, value|
+    #     if !letters_present.include?(key)
+    #       Letter.create!(language_id: language.id, kind: kind, letter: key, sortkey: value)
+    #     end
+    #   end
+    # end
+    
+    # #generate patterns
+    # parts = [ "b", "c", "v" ]
+    # if Pattern.count < 500 
+    #   3.times do |i| 
+    #     perms = parts.repeated_permutation(i + 3).to_a
+    #     perms.each do |perm|
+    #       pattern = Pattern.create(language: language, pattern: perm.join)
+    #       if !pattern.save
+    #         #puts "Pattern failed validation: #{pattern.errors.full_messages.join(', ')}"
+    #       end
+    #     end
+    #   end
+    # end
 
     # houses = YAML.load_file(File.join(Rails.root, paths['houses']))
     # houses.each do |house, properties|
@@ -66,14 +68,8 @@ namespace :init do
     #   entity.properties << property
     # end
 
-    #Event.create!(milieu_id: milieu.id, kind: "formation", ydate_id: Ydate.create!(milieu: milieu, date:0).id, summary: "unhoused")
-    #Event.create!(milieu: milieu, kind: "birth", ydate_id: Ydate.create!(milieu: milieu, date:0).id, summary: "unknown")
-    
-    entity = Entity.includes(:milieu).find_or_create_by!(milieu: milieu, kind: "person", name: "unknown")
-    property = Property.includes(:entity).find_or_create_by!(entity: entity, kind: "birthdate", value: milieu.get_date_from_intdate(0))
-    entity.properties << property
-
     # rel = Relation.new(event: event, superior: Entity.first, inferior: Entity.last, kind: "membership", name: "of")
     # rel.save
+
   end
 end

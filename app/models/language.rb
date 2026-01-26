@@ -1,5 +1,5 @@
 class Language < ApplicationRecord
-  belongs_to :milieu
+  belongs_to :entity
 
   has_many :letters, dependent: :destroy
   has_many :dialects, dependent: :destroy
