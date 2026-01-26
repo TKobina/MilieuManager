@@ -14,50 +14,50 @@ class Entity < ApplicationRecord
   has_many :properties
   
   validate :check_duplicate_entity
-  after_create_commit :proc_new
 
-  def self.build(event)
-    #Nation gets a language
-    #House gets a dialect
-    #House belongs to Nation
-    #Person belongs to House (or unhoused)
-    
+  def self.build(event)    
     entity = Entity.new(milieu: event.milieu)
     core = event.name.split()
     name, gender = core[0].split("-")
     
     entity.name = name
-
-    birthdate = Property.new(kind: "birthdate", value: event.ydate)
-    entity.properties << birthdate
     entity.events << event
-
-    p core
+    
     case event.kind
     when "Founding"
+      entity.properties << Property.new(kind: "foundingdate", value: event.ydate)
       org_kind, status = core[1].split("-")
       entity.kind = org_kind
       case org_kind
       when "Nation"
-        pname = nil
+        entity.save
+        Language.create!(entity_id: entity.id, name: entity.name)
       when "House"
+        entity.save
         pname = core[3]
+        parent = Entity.where(milieu: event.milieu, name: pname).first
         entity_status = Property.new(kind: "status", value: status)
         entity.properties << entity_status
+        Dialect.create!(language: parent.language, entity: entity, name: name)
+
+        ["w", "n", "m"].each do |sgender|
+          society = Entity.create!(milieu: event.milieu, name: name + "-" + sgender, kind: "Society")
+          Dialect.create!(language: parent.language, entity: society, name: society.name)
+          entity.inferiors << society
+        end
       end
     when "Birth"
       entity.kind = "Person"
       pname = core[2]
       gender = Property.new(kind: "gender", value: gender)
       entity.properties << gender
+      entity.properties << Property.new(kind: "birthdate", value: event.ydate)
+      entity.save!
     end
-
-    entity.save!
     
     if !pname.nil?
       pname = "Yldr" if entity.name == pname
       parent = Entity.where(milieu: event.milieu, name: pname).first
-      binding.pry
       parent.inferiors << entity if !pname.nil? && parent != entity
       parent.events << event if !pname.nil? && parent != entity
     end
@@ -69,10 +69,6 @@ class Entity < ApplicationRecord
     if !Entity.where(milieu: self.milieu, kind: self.kind, name: self.name).empty?
       errors.add("", "#{self.kind} | #{self.name} already exists")
     end
-  end
-
-  def proc_new
-    #LEDLANG.add_entity(user, self)
   end
 
   def <=>(other)

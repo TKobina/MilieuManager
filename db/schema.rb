@@ -87,10 +87,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   create_table "languages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "milieu_id", null: false
+    t.integer "entity_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
-    t.index ["milieu_id"], name: "index_languages_on_milieu_id"
+    t.index ["entity_id"], name: "index_languages_on_entity_id"
     t.index ["name"], name: "index_languages_on_name"
   end
 
@@ -154,14 +154,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   create_table "relations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "event_id"
     t.integer "inferior_id", null: false
     t.string "kind"
     t.datetime "lastupdate"
     t.string "name"
     t.integer "superior_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
     t.index ["kind"], name: "index_relations_on_kind"
     t.index ["name"], name: "index_relations_on_name"
@@ -213,7 +211,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   add_foreign_key "frequencies", "dialects"
   add_foreign_key "frequencies", "letters"
   add_foreign_key "frequencies", "patterns"
-  add_foreign_key "languages", "milieus"
+  add_foreign_key "languages", "entities"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
   add_foreign_key "milieus", "users"
@@ -221,6 +219,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   add_foreign_key "properties", "entities"
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
-  add_foreign_key "relations", "events"
   add_foreign_key "ydates", "milieus"
 end
