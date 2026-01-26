@@ -7,10 +7,12 @@ class Property < ApplicationRecord
   def date
     @date
   end
+  
   private
+
   def property_accessed
     if self.kind.include?("date")
-      @date = Ydate.find(self.value.to_i)
+      @date = Ydate.from_string(self.entity.milieu, self.value)
     end
   end
 
