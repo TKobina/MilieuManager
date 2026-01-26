@@ -23,7 +23,6 @@ class Entity < ApplicationRecord
     #Person belongs to House (or unhoused)
     
     entity = Entity.new(milieu: event.milieu)
-    kind = event.kind
     core = event.name.split()
     name, gender = core[0].split("-")
     
@@ -36,7 +35,16 @@ class Entity < ApplicationRecord
     p core
     case event.kind
     when "Founding"
-      pname = core[1] == "Nation" ? nil : core[3]
+      org_kind, status = core[1].split("-")
+      entity.kind = org_kind
+      case org_kind
+      when "Nation"
+        pname = nil
+      when "House"
+        pname = core[3]
+        entity_status = Property.new(kind: "status", value: status)
+        entity.properties << entity_status
+      end
     when "Birth"
       entity.kind = "Person"
       pname = core[2]
@@ -44,10 +52,10 @@ class Entity < ApplicationRecord
       entity.properties << gender
     end
 
-    entity.kind = kind
-    entity.save
+    entity.save!
     
     if !pname.nil?
+      pname = "Yldr" if entity.name == pname
       parent = Entity.where(milieu: event.milieu, name: pname).first
       binding.pry
       parent.inferiors << entity if !pname.nil? && parent != entity

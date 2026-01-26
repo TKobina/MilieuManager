@@ -2,7 +2,6 @@ class Event < ApplicationRecord
   belongs_to :milieu
   belongs_to :ydate
   
-  has_many :relations
   has_and_belongs_to_many :entities
 
   after_create_commit :proc_event
@@ -134,7 +133,7 @@ class Event < ApplicationRecord
 
   def proc_event
     case self.kind
-    when "Formation", "Birth" then Entity.build(self)
+    when "Founding", "Birth" then Entity.build(self)
     when "Death" then return
     when "Adoption" then return
     when "Raising" then return

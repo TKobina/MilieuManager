@@ -154,7 +154,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   create_table "relations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "event_id", null: false
+    t.integer "event_id"
     t.integer "inferior_id", null: false
     t.string "kind"
     t.datetime "lastupdate"
