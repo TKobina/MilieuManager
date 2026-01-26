@@ -1,5 +1,5 @@
 class Ydate < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
   belongs_to :milieu
 
   DAYS_MONTH = 24
