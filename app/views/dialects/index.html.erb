@@ -1,0 +1,38 @@
+<h1>YOU MADE IT TO STATISTICS!!!</h1>
+
+<table>
+    <thead>
+        <tr> 
+            <th>Letter</th>
+        <% @dialects.each do |dia|%>
+            <th class="rotate"><span><%= dia %></span></th>
+        <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <% @columns[:core].each do |key| %>
+            <tr>
+                <th> <%= key %> </th>
+                <% @dialects.each do |dia| %>
+                    <td><%= @stats[dia][:core][key] %></td>
+                <% end %>
+            </tr>
+        <% end %>
+        <% @columns[:letters].each do |key| %>
+            <tr>
+                <th> <%= key %> </th>
+                <% @dialects.each do |dia| %>
+                    <td><%= @stats[dia][:letters][key] %></td>
+                <% end %>
+            </tr>
+        <% end %>
+        <% @columns[:patterns].each do |key| %>
+            <tr>
+                <th> <%= key %> </th>
+                <% @dialects.each do |dia| %>
+                    <td><%= @stats[dia][:patterns][key] %></td>
+                <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

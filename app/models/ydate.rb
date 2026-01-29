@@ -2,6 +2,10 @@ class Ydate < ApplicationRecord
   has_many :events, dependent: :destroy
   belongs_to :milieu
 
+  def <=>(other)
+    self.date <=> other.date
+  end
+
   DAYS_MONTH = 24
   DAYS_SEASON = 4 * DAYS_MONTH
   DAYS_YEAR = 4 * DAYS_SEASON

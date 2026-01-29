@@ -1,4 +1,5 @@
 class Entity < ApplicationRecord
+  include Comparable
   belongs_to :milieu
   
   has_and_belongs_to_many :events
@@ -14,6 +15,13 @@ class Entity < ApplicationRecord
   has_many :properties, dependent: :destroy
   
   validate :check_duplicate_entity
+
+
+  def <=>(other)
+    #p self.name
+    #p other.name
+    Language.first.sort(self.name, other.name)
+  end
 
   class Former
     def initialize(event)
@@ -42,6 +50,10 @@ class Entity < ApplicationRecord
     end
   end
 
+  def language?
+    self.language ? self.language : self.superiors.first.language?
+  end
+
   private
 
   def check_duplicate_entity
@@ -50,36 +62,35 @@ class Entity < ApplicationRecord
     end
   end
 
-  def <=>(other)
-    #LEDLANG.sort(self.name, other.name)
-  end
-
   def self.founding(former)
     entity = former.entity?
     entity.properties << Property.new(kind: "foundingdate", value: former.event?.ydate)
     org_kind, status = former.core?[1].split("-")
     entity.kind = org_kind
+    entity.save
 
     case org_kind
     when "Nation"
-      entity.save
-      Language.create!(entity_id: entity.id, name: entity.name)
+      language = Language.create!(entity_id: entity.id, name: entity.name)
+      Dialect.create!(language: language, entity: entity, name: former.name?)
+      parent = entity
     when "House"
-      entity.save
       pname = former.core?[3]
       parent = Entity.where(milieu: former.event?.milieu, name: pname).first
       parent.inferiors << entity
-      Relation.last.update!(kind: "political", name: "nation")
+      Relation.last.update!(kind: "political", name: "house of")
       entity_status = Property.new(kind: "status", value: status)
       entity.properties << entity_status
       Dialect.create!(language: parent.language, entity: entity, name: former.name?)
+    end
 
-      ["w", "n", "m"].each do |sgender|
-        society = Entity.create!(milieu: former.event?.milieu, name: former.name? + "-" + sgender, kind: "Society")
-        Dialect.create!(language: parent.language, entity: society, name: society.name)
-        entity.inferiors << society
-        Relation.last.update!(kind: "political", name: "house")
-      end
+    ["w", "n", "m"].each do |sgender|
+      society = Entity.create!(milieu: former.event?.milieu, name: former.name? + "-" + sgender, kind: "Society")
+      Dialect.create!(language: parent.language, entity: society, name: society.name)
+      entity.inferiors << society
+      Relation.last.update!(kind: "political", name: "society of")
+
+      
     end
   end
 
@@ -97,13 +108,15 @@ class Entity < ApplicationRecord
       parent = Entity.where(milieu: former.event?.milieu, name: pname).first
       parent.inferiors << entity if !pname.nil? && parent != entity
       parent.events << former.event?
-      Relation.last.update!(kind: "familial", name: "parent")
+      Relation.last.update!(kind: "familial", name: "child")
     end
 
     hname = "Yldr" if hname == ""
-    house = Entity.where(milieu: former.event?.milieu, name: hname).first
-    house.inferiors << entity
-    house.events << former.event?
+    society = Entity.where(milieu: former.event?.milieu, name: hname + "-" + gender.value).first
+    society.inferiors << entity
+    society.events << former.event?
     Relation.last.update!(kind: "political", name: "of")
+
+    Dialect.proc_name(society, entity) unless (entity.name == "unknown") || Entity.where(name: entity.name).count > 1
   end
 end

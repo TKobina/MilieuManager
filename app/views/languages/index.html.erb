@@ -1,0 +1,9 @@
+<%= link_to "Lexemes", lexemes_path %></br>
+
+<div>
+    <ul>
+    <% @languages.each do |lang| %>
+        <li> <%= link_to lang.name, controller: "dialects", action: "index", language_id: lang.id %> </li>
+    <% end %>
+    </ul>
+</div>

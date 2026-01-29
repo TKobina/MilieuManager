@@ -5,6 +5,7 @@ namespace :init do
   task base: :environment do
     Milieu.destroy_all
 
+    puts "Initializing base users & milieus"
     duser = Rails.application.credentials.default_user
     tuser = Rails.application.credentials.test_user
     paths = Rails.application.credentials.paths
@@ -21,39 +22,13 @@ namespace :init do
     unless milieu = Milieu.where(user_id: user.id, name: "Ildera").first
       milieu = Milieu.create!(user_id: user.id, name: "Ildera")
     end
-    
+     
+    puts "Loading and parsing events from Obsidian"
     Event.check_obsidian(Milieu.first)
 
-    language = Entity.where(kind: "Nation").first.language
-    language.update!(name: "Lëdru")
-    #language.name = "Lëdru"
-  
-
-    #generate letters
-    alphabet = YAML.load_file(File.join(Rails.root, paths['alphabet']))
-    letters_present = language.letters.map{|letter| letter.letter}
-    alphabet.each do |kind, letters|
-      letters.each do |key, value|
-        if !letters_present.include?(key)
-          Letter.create!(language_id: language.id, kind: kind, letter: key, sortkey: value)
-        end
-      end
-    end
+    puts "Renaming base nation's Language"
+    Language.includes(:name).where(name: "Yldr").first.update!(name: "Lëdru")
     
-    #generate patterns
-    parts = [ "b", "c", "v" ]
-    if Pattern.count < 500 
-      3.times do |i| 
-        perms = parts.repeated_permutation(i + 3).to_a
-        perms.each do |perm|
-          pattern = Pattern.create(language: language, pattern: perm.join)
-          if !pattern.save
-            #puts "Pattern failed validation: #{pattern.errors.full_messages.join(', ')}"
-          end
-        end
-      end
-    end
-
     # houses = YAML.load_file(File.join(Rails.root, paths['houses']))
     # houses.each do |house, properties|
     #   entity = Entity.new(milieu: milieu, kind: "house", name: house)
@@ -76,3 +51,8 @@ namespace :init do
 
   end
 end
+
+
+
+
+
