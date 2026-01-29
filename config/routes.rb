@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources "entities"
   resources "events"
+  resources "languages"
+  resources "dialects"
+  
+
+  resources "lexemes"
+
   resources "pages"
   root "pages#index"
 end

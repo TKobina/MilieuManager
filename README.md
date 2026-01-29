@@ -3,9 +3,9 @@
 - better names for entity relationships than political/etc.
 
 ## PRIORITIES
+- PROC STATISTICS
 - Initialize in init file
-- Set up initial languages
-- When house instantiated, create dialect
+- having a foreign key issue with Ydates when rolling back
 ### DATABASE
 
 ## OBSIDIAN

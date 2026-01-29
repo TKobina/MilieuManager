@@ -24,6 +24,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.datetime "created_at", null: false
     t.integer "entity_id", null: false
     t.integer "language_id", null: false
+    t.integer "n_bridges"
+    t.integer "n_consonants"
+    t.integer "n_names"
+    t.integer "n_patterns"
+    t.integer "n_vowels"
     t.string "name"
     t.datetime "updated_at", null: false
     t.float "var_bridges"
