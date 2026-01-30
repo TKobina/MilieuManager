@@ -1,8 +1,8 @@
 class Pattern < ApplicationRecord
   belongs_to :language
-  validate :check_pattern
+  #validate :check_pattern
 
-  has_many :frequencies
+  has_many :frequencies, dependent: :destroy
   
   private
   
@@ -12,13 +12,13 @@ class Pattern < ApplicationRecord
   # bc must be led by a vowel
   # never more than 1 consecutive bridge
   def check_pattern
-    bridge = "b"
-    if (pattern[0] == bridge) or (pattern[-1] == bridge)
-      errors.add("", "#{self.pattern} must not start or end with #{bridge}")
-    elsif /ccc|bcc|ccb|cbb|cbc|bcc|bcb|vvv|bb/.match?(pattern)
-      errors.add("", "#{self.pattern} is an invalid pattern")
-    elsif !Pattern.where(language: self.language, pattern: pattern).first.nil?
-      errors.add("", "#{self.pattern} already present in #{self.language.name}")
+
+  end
+
+  def <=>(other)
+    if self.value.length != other.value.length
+      self.value.length <=> other.value.length
     end
+    self.value <=> other.value
   end
 end

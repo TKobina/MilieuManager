@@ -104,14 +104,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.string "details"
     t.string "kind"
     t.integer "language_id", null: false
-    t.string "letter"
     t.integer "sortkey"
     t.string "sound"
     t.datetime "updated_at", null: false
+    t.string "value"
     t.index ["kind"], name: "index_letters_on_kind"
     t.index ["language_id"], name: "index_letters_on_language_id"
-    t.index ["letter"], name: "index_letters_on_letter"
     t.index ["sortkey"], name: "index_letters_on_sortkey"
+    t.index ["value"], name: "index_letters_on_value"
   end
 
   create_table "lexemes", force: :cascade do |t|
@@ -135,13 +135,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.index ["user_id"], name: "index_milieus_on_user_id"
   end
 
+  create_table "names", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "dialect_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "value"
+    t.index ["dialect_id"], name: "index_names_on_dialect_id"
+  end
+
   create_table "patterns", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "language_id", null: false
-    t.string "pattern"
     t.datetime "updated_at", null: false
+    t.string "value"
     t.index ["language_id"], name: "index_patterns_on_language_id"
-    t.index ["pattern"], name: "index_patterns_on_pattern"
+    t.index ["value"], name: "index_patterns_on_value"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -199,10 +207,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
 
   create_table "ydates", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "date"
     t.datetime "lastupdate"
     t.integer "milieu_id", null: false
     t.datetime "updated_at", null: false
+    t.integer "value"
     t.index ["milieu_id"], name: "index_ydates_on_milieu_id"
   end
 
@@ -220,6 +228,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
   add_foreign_key "milieus", "users"
+  add_foreign_key "names", "dialects"
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"
   add_foreign_key "relations", "entities", column: "inferior_id"

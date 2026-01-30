@@ -3,7 +3,7 @@ class Ydate < ApplicationRecord
   belongs_to :milieu
 
   def <=>(other)
-    self.date <=> other.date
+    self.value <=> other.value
   end
 
   DAYS_MONTH = 24
@@ -11,8 +11,8 @@ class Ydate < ApplicationRecord
   DAYS_YEAR = 4 * DAYS_SEASON
 
   def to_s
-    return "" if self.date.nil?
-    year, r = self.date.divmod(DAYS_YEAR)
+    return "" if self.value.nil?
+    year, r = self.value.divmod(DAYS_YEAR)
     season, r = r.divmod(DAYS_SEASON)
     month, day = r.divmod(DAYS_MONTH)
 
@@ -20,16 +20,16 @@ class Ydate < ApplicationRecord
   end
 
   def self.from_days(milieu, intdate)
-    ydate = Ydate.find_by(milieu: Milieu.first, date: intdate)
-    ydate.nil? ? create!(milieu: milieu, date: intdate) : ydate
+    ydate = Ydate.find_by(milieu: Milieu.first, value: intdate)
+    ydate.nil? ? create!(milieu: milieu, value: intdate) : ydate
   end
 
   def self.from_string(milieu, strdate)
     year, season, month, day = strdate.split(".").map! { |s| (s.to_i - 1) }
     days = (year * DAYS_YEAR) + (season * DAYS_SEASON) + (month * DAYS_MONTH) + day
-    ydate = Ydate.find_by(milieu: Milieu.first, date: days)
+    ydate = Ydate.find_by(milieu: Milieu.first, value: days)
 
-    ydate.nil? ? create!(milieu: milieu, date: days) : ydate
+    ydate.nil? ? create!(milieu: milieu, value: days) : ydate
   end
 
   def self.random(milieu, year: 0)
@@ -38,9 +38,9 @@ class Ydate < ApplicationRecord
     month = Random.new.rand(1...4)
     day = Random.new.rand(1...24)
     days = (year * DAYS_YEAR) + (season * DAYS_SEASON) + (month * DAYS_MONTH) + day
-    ydate = Ydate.find_by(milieu: Milieu.first, date: days)
+    ydate = Ydate.find_by(milieu: Milieu.first, value: days)
 
-    ydate.nil? ? create!(milieu: milieu, date: days) : ydate
+    ydate.nil? ? create!(milieu: milieu, value: days) : ydate
   end
 
   private

@@ -15,7 +15,7 @@ class Language < ApplicationRecord
   end
 
   def get_type(char)
-    self.letters.where(letter: char).first.kind
+    self.letters.where(value: char).first.kind
   end
   
   def sort(xword, yword)
@@ -31,7 +31,7 @@ class Language < ApplicationRecord
       return 0  if  x.nil? &&  y.nil?
       return 1  if !x.nil? &&  y.nil?
 
-      comp = self.letters.where(letter: x).first <=> self.letters.where(letter: y).first
+      comp = self.letters.where(value: x).first <=> self.letters.where(value: y).first
       return comp if comp!= 0
     end
     0
@@ -47,11 +47,11 @@ class Language < ApplicationRecord
     paths = Rails.application.credentials.paths
 
     alphabet = YAML.load_file(File.join(Rails.root, paths['alphabet']))
-    letters_present = self.letters.map{|letter| letter.letter}
+    letters_present = self.letters.map{|letter| letter.value}
     alphabet.each do |kind, letters|
       letters.each do |key, value|
         if !letters_present.include?(key)
-          Letter.create!(language: self, kind: kind, letter: key, sortkey: value)
+          Letter.create!(language: self, kind: kind, value: key, sortkey: value)
         end
       end
     end
@@ -65,12 +65,18 @@ class Language < ApplicationRecord
       6.times do |i| 
         perms = parts.repeated_permutation(i + 3).to_a
         perms.each do |perm|
-          pattern = Pattern.create(language: self, pattern: perm.join)
-          if !pattern.save
-            #puts "Pattern failed validation: #{pattern.errors.full_messages.join(', ')}"
-          end
+          check_pattern(perm.join)
         end
       end
     end
+    puts "Pattern generation complete"
+  end
+  
+  def check_pattern(pattern)
+    bridge = "b"
+    return false if (pattern[0] == bridge) or (pattern[-1] == bridge)
+    return false if /bb|ccc|bcc|ccb|cbb|cbc|bcc|bcb|vvv/.match?(pattern)
+    return false if !Pattern.where(language: self, value: pattern).first.nil?
+    pattern = Pattern.create!(language: self, value: pattern)
   end
 end

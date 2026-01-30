@@ -11,7 +11,7 @@ class Entity < ApplicationRecord
   has_many :superiors, through: :superior_relations, source: :superior
   
   has_one :language, dependent: :destroy
-  has_one :dialect
+  has_one :dialect, dependent: :destroy
   has_many :properties, dependent: :destroy
   
   validate :check_duplicate_entity
@@ -89,8 +89,6 @@ class Entity < ApplicationRecord
       Dialect.create!(language: parent.language, entity: society, name: society.name)
       entity.inferiors << society
       Relation.last.update!(kind: "political", name: "society of")
-
-      
     end
   end
 
@@ -117,6 +115,6 @@ class Entity < ApplicationRecord
     society.events << former.event?
     Relation.last.update!(kind: "political", name: "of")
 
-    Dialect.proc_name(society, entity) unless (entity.name == "unknown") || Entity.where(name: entity.name).count > 1
+    society.dialect.proc_name(entity.name) unless (entity.name == "unknown") || Entity.where(name: entity.name).count > 1
   end
 end

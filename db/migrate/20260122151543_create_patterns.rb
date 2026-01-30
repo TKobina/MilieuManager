@@ -4,7 +4,7 @@ class CreatePatterns < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :language, null: false, foreign_key: true
       
-      t.string :pattern
+      t.string :value
 
     end
   end

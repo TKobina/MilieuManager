@@ -31,12 +31,16 @@
 }
 
 /* Optional: Add basic table styling for clarity */
+th {
+  text-align: center;
+}
 
 td, tr {
   border: 1px solid #ccc;
   padding: 5px 10px;
   text-align: center;
 }
+
 td[data-value=""] { background-color: black; }
 td[data-value="0"] { background-color: rgb(38,151,47,0.4); }
 td[data-value="1"] { background-color: rgb(39,149,47,0.4); }

@@ -1,15 +1,16 @@
-<h1>YOU MADE IT TO STATISTICS!!!</h1>
+<h1>Name Distributions in <%= @language.name%></h1>
 
 <table>
     <thead>
-        <tr> 
-            <th>Letter</th>
+        <tr>
+            <th></th>
         <% @dialects.each do |dia|%>
             <th class="rotate"><span><%= dia %></span></th>
         <% end %>
         </tr>
     </thead>
     <tbody>
+        <th colspan=100%; style="background-color: black; color: white;">CORE STATISTICS</th>
         <% @columns[:core].each do |key| %>
             <tr>
                 <th> <%= key %> </th>
@@ -18,19 +19,21 @@
                 <% end %>
             </tr>
         <% end %>
+        <th colspan=100%; style="background-color: black; color: white;">LETTERS</th>
         <% @columns[:letters].each do |key| %>
             <tr>
                 <th> <%= key %> </th>
                 <% @dialects.each do |dia| %>
-                    <td><%= @stats[dia][:letters][key] %></td>
+                   <td style="background-color: <%= @stats[dia][:rletters][key].nil? ? "" : @stats[dia][:rletters][key] %>;"><%= @stats[dia][:letters][key] %></td>
                 <% end %>
             </tr>
         <% end %>
+        <th colspan=100%; style="background-color: black; color: white;">PATTERNS</th>
         <% @columns[:patterns].each do |key| %>
             <tr>
                 <th> <%= key %> </th>
                 <% @dialects.each do |dia| %>
-                    <td><%= @stats[dia][:patterns][key] %></td>
+                   <td style="background-color: <%= @stats[dia][:rpatterns][key].nil? ? "" : @stats[dia][:rpatterns][key] %>;"><%= @stats[dia][:patterns][key] %></td>
                 <% end %>
             </tr>
         <% end %>
