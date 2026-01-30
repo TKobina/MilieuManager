@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :milieu
   belongs_to :ydate
   
-  has_and_belongs_to_many :entities
+  has_and_belongs_to_many :entities, dependent: :destroy
 
   after_create_commit :proc_event
 

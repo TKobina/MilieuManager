@@ -4,7 +4,7 @@ class AddIndexes < ActiveRecord::Migration[8.1]
 
     add_index :letters, :sortkey
     add_index :letters, :kind
-    add_index :letters, :letter
+    add_index :letters, :value
 
     add_index :lexemes, :word
  
@@ -25,6 +25,6 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :properties, :kind
     add_index :properties, :value
 
-    add_index :patterns, :pattern
+    add_index :patterns, :value
   end
 end

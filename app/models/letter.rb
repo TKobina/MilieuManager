@@ -1,7 +1,7 @@
 class Letter < ApplicationRecord
   belongs_to :language
 
-  has_many :frequencies
+  has_many :frequencies, dependent: :destroy
 
   def <=>(other)
     return self.sortkey <=> other.sortkey

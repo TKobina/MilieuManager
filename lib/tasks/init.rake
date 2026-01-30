@@ -3,6 +3,10 @@ require 'yaml'
 namespace :init do
   desc "Create new base user, milieu, language"
   task base: :environment do
+    Ydate.destroy_all
+    Entity.destroy_all
+    Event.destroy_all
+    Language.destroy_all
     Milieu.destroy_all
 
     puts "Initializing base users & milieus"
@@ -27,7 +31,7 @@ namespace :init do
     Event.check_obsidian(Milieu.first)
 
     puts "Renaming base nation's Language"
-    Language.includes(:name).where(name: "Yldr").first.update!(name: "Lëdru")
+    Language.where(name: "Yldr").first.update!(name: "Lëdru")
     
     # houses = YAML.load_file(File.join(Rails.root, paths['houses']))
     # houses.each do |house, properties|
@@ -49,6 +53,10 @@ namespace :init do
     # rel = Relation.new(event: event, superior: Entity.first, inferior: Entity.last, kind: "membership", name: "of")
     # rel.save
 
+  end
+
+  task namegen: :environment do
+    1000.times { Dialect.all.sample.generate_name }
   end
 end
 
