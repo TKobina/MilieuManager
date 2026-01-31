@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "compositions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "sublexeme_id_id", null: false
@@ -41,17 +41,45 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.index ["name"], name: "index_dialects_on_name"
   end
 
-  create_table "entities", force: :cascade do |t|
+  create_table "encyclofolders", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.text "details"
-    t.string "kind"
+    t.integer "encyclopedium_id", null: false
     t.datetime "lastupdate"
-    t.integer "milieu_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["encyclopedium_id"], name: "index_encyclofolders_on_encyclopedium_id"
+  end
+
+  create_table "encyclopedia", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "milieu_id", null: false
+    t.string "rootdir"
+    t.datetime "updated_at", null: false
+    t.index ["milieu_id"], name: "index_encyclopedia_on_milieu_id"
+  end
+
+  create_table "encylofiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "encyclofolders_id", null: false
+    t.datetime "lastupdate"
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["encyclofolders_id"], name: "index_encylofiles_on_encyclofolders_id"
+  end
+
+  create_table "entities", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.text "details"
+    t.integer "event_id", null: false
+    t.string "kind"
+    t.string "name"
+    t.text "private_details"
+    t.boolean "public"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_entities_on_event_id"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
-    t.index ["milieu_id"], name: "index_entities_on_milieu_id"
     t.index ["name"], name: "index_entities_on_name"
   end
 
@@ -61,17 +89,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.string "code"
     t.datetime "created_at", null: false
     t.text "details"
     t.string "kind"
-    t.datetime "lastupdate"
-    t.integer "milieu_id", null: false
     t.string "name"
+    t.text "private_details"
+    t.boolean "public"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
     t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
     t.index ["kind"], name: "index_events_on_kind"
-    t.index ["milieu_id"], name: "index_events_on_milieu_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
   end
@@ -118,7 +146,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "language_id", null: false
-    t.datetime "lastupdate"
     t.string "meaning"
     t.datetime "updated_at", null: false
     t.string "word"
@@ -153,30 +180,49 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   end
 
   create_table "properties", force: :cascade do |t|
+    t.string "code"
     t.datetime "created_at", null: false
     t.text "detail"
     t.integer "entity_id", null: false
+    t.integer "event_id", null: false
     t.string "kind"
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["entity_id"], name: "index_properties_on_entity_id"
+    t.index ["event_id"], name: "index_properties_on_event_id"
     t.index ["kind"], name: "index_properties_on_kind"
     t.index ["value"], name: "index_properties_on_value"
   end
 
   create_table "relations", force: :cascade do |t|
+    t.string "code"
     t.datetime "created_at", null: false
     t.text "details"
+    t.integer "event_id", null: false
     t.integer "inferior_id", null: false
     t.string "kind"
-    t.datetime "lastupdate"
     t.string "name"
+    t.text "private_details"
+    t.boolean "public"
     t.integer "superior_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
     t.index ["kind"], name: "index_relations_on_kind"
     t.index ["name"], name: "index_relations_on_name"
     t.index ["superior_id"], name: "index_relations_on_superior_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.integer "chapter"
+    t.datetime "created_at", null: false
+    t.text "details"
+    t.integer "encyclofile_id", null: false
+    t.datetime "lastupdate"
+    t.boolean "public"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["encyclofile_id"], name: "index_stories_on_encyclofile_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -218,8 +264,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id_id"
   add_foreign_key "dialects", "entities"
   add_foreign_key "dialects", "languages"
-  add_foreign_key "entities", "milieus"
-  add_foreign_key "events", "milieus"
+  add_foreign_key "encyclofolders", "encyclopedia"
+  add_foreign_key "encyclopedia", "milieus"
+  add_foreign_key "encylofiles", "encyclofolders", column: "encyclofolders_id"
+  add_foreign_key "entities", "events"
   add_foreign_key "events", "ydates"
   add_foreign_key "frequencies", "dialects"
   add_foreign_key "frequencies", "letters"
@@ -231,7 +279,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_23_151742) do
   add_foreign_key "names", "dialects"
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"
+  add_foreign_key "properties", "events"
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
+  add_foreign_key "relations", "events"
+  add_foreign_key "stories", "encyclofiles"
   add_foreign_key "ydates", "milieus"
 end

@@ -58,14 +58,18 @@ class Language < ApplicationRecord
   end
 
   def set_patterns
+    def factorial(n) = n == 0 ? 1 : (1..n).inject(:*)
     puts "Generating patterns"
-
+    t = 4
+    min = 4
+    progressbar = ProgressBar.create(total: factorial(t+min) - factorial(min))
     parts = [ "b", "c", "v" ]
     if Pattern.count < 500 
-      6.times do |i| 
-        perms = parts.repeated_permutation(i + 3).to_a
+      t.times do |i| 
+        perms = parts.repeated_permutation(i + min).to_a
         perms.each do |perm|
           check_pattern(perm.join)
+          progressbar.increment
         end
       end
     end

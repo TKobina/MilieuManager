@@ -2,8 +2,10 @@ class Milieu < ApplicationRecord
   belongs_to :user
   
   has_many :ydates, dependent: :destroy
-  has_many :entities, dependent: :destroy
-  has_many :events, dependent: :destroy
+  has_one :encyclopedium, dependent: :destroy
+  #has_many :entities, dependent: :destroy
+  #has_many :events, dependent: :destroy
+  #has_many :stories, dependent: :destroy
 
   def get_date_from_strdate(strdate)
     Ydate.from_string(self, strdate)

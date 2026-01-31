@@ -20,6 +20,12 @@
             </tr>
         <% end %>
         <th colspan=100%; style="background-color: black; color: white;">LETTERS</th>
+         <tr>
+            <th></th>
+        <% @dialects.each do |dia|%>
+            <th class="rotate"><span><%= dia %></span></th>
+        <% end %>
+        </tr>
         <% @columns[:letters].each do |key| %>
             <tr>
                 <th> <%= key %> </th>
@@ -29,6 +35,12 @@
             </tr>
         <% end %>
         <th colspan=100%; style="background-color: black; color: white;">PATTERNS</th>
+         <tr>
+            <th></th>
+        <% @dialects.each do |dia|%>
+            <th class="rotate"><span><%= dia %></span></th>
+        <% end %>
+        </tr>
         <% @columns[:patterns].each do |key| %>
             <tr>
                 <th> <%= key %> </th>
