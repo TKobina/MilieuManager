@@ -1,118 +1,121 @@
 class Entity < ApplicationRecord
   include Comparable
   belongs_to :milieu
-  
-  has_and_belongs_to_many :events
+  belongs_to :event
 
   has_many :inferior_relations, class_name: "Relation", foreign_key: "superior_id", dependent: :destroy
   has_many :inferiors, through: :inferior_relations, source: :inferior
   
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior
+
+  has_many :events, class_name: "Event", foreign_key: "events_id"
   
   has_one :language, dependent: :destroy
   has_one :dialect, dependent: :destroy
   has_many :properties, dependent: :destroy
   
-  validate :check_duplicate_entity
+  validate :not_exists?
 
+  #after_create_commit :proc_entity
+  SOCIETIES = ["w","n","m"]
 
-  def <=>(other)
-    Language.first.sort(self.name, other.name)
+  def <=>(other) = self.language?.sort(self.name, other.name)
+  def language? = self.language ? self.language : self.superiors.first.language?
+  def dialect? = self.dialect ? self.dialect : self.superiors.first.dialect?  
+
+  def formation(instruction)
+    # formation | name-eid | kind | milieu
+   instrs = instruction.split("|").map{|x| x.strip()}
+   name, eid = instrs[1].split("-")
+   self.milieu = self.event.milieu
+   self.eid = eid
+   self.name = name
+   self.kind = instrs[2]
+   self.public = false
+   self.save!
   end
 
-  class Former
-    def initialize(event)
-      @event = event
-      @entity = Entity.new(milieu: event.milieu)
-      @core = @event.name.split()
-      @name, @gender = @core[0].split("-")
-      
-      @entity.name = @name
-      @entity.events << @event
+  def founding(instruction)
+    # founding | name-eid | kind | status | parent-eid
+    instrs = instruction.split("|").map{|x| x.strip()}
+    name, eid = instrs[1].split("-")
+    self.milieu = self.event.milieu
+    self.eid = eid
+    self.name = name
+    self.kind = instrs[2]
+    self.public = false
+    self.save!
+
+    self.properties << Property.new(kind: "founding date", value: self.event.ydate)
+    self.properties << Property.new(kind: "status", value: instrs[3]) unless instrs[3] == ""
+    self.properties.each{|x| x.event = self.event; x.save! }
+
+    case instrs[2]
+    when "world" then return
+    when "nation"
+      rkind = "political"
+      rname = "Nation of"
+      Language.create!(entity: self, name: self.name)
+    when "house" 
+      rkind = "political" 
+      rname = "House of"
     end
 
-    def event? = @event
-    def entity? = @entity
-    def core? = @core
-    def name? = @name
-    def gender? = @gender
+    set_parent(instrs[4], rkind, rname)
+    gen_societies
   end
 
-  def self.build(event)    
-    former = Former.new(event)
-    
-    case event.kind
-    when "Founding" then founding(former)
-    when "Birth" then birth(former)
-    end
-  end
+  def birth(instruction)
+    # birth | name-eid | gender | parent-eid
+    instrs = instruction.split("|").map{|x| x.strip()}
+    name, eid = instrs[1].split("-")
+    self.milieu = self.event.milieu
+    self.eid = eid
+    self.name = name
+    self.kind = "person"
+    self.public = false
+    self.save!
 
-  def language?
-    self.language ? self.language : self.superiors.first.language?
+    set_parent(instrs[3], "familial", "child of")
+
+    self.properties << Property.new(kind: "birth date", value: self.event.ydate)
+    self.properties << Property.new(kind: "gender", value: instrs[2])
+    self.properties.each{|x| x.event = self.event; x.save! }
+
+    society = get_society
+    Relation.create!(event: self.event, superior: society, inferior: self, kind: "societal", name: "member of") unless society.nil?
   end
 
   private
+  
+  def not_exists?
+    self.milieu.entities.where(eid: self.eid).empty?
+  end
 
-  def check_duplicate_entity
-    if !Entity.where(milieu: self.milieu, kind: self.kind, name: self.name).empty?
-      errors.add("", "#{self.kind} | #{self.name} already exists")
+  def set_parent(piden, rkind, rname)
+    pname, peid = piden.split("-")
+    parent = self.event.milieu.entities.where(eid: peid).first
+    unless parent.nil?
+      Relation.create!(event: self.event, superior: parent, inferior: self, kind: rkind, name: rname)
+      return parent
     end
   end
 
-  def self.founding(former)
-    entity = former.entity?
-    entity.properties << Property.new(kind: "foundingdate", value: former.event?.ydate)
-    org_kind, status = former.core?[1].split("-")
-    entity.kind = org_kind
-    entity.save
-
-    case org_kind
-    when "Nation"
-      language = Language.create!(entity_id: entity.id, name: entity.name)
-      Dialect.create!(language: language, entity: entity, name: former.name?)
-      parent = entity
-    when "House"
-      pname = former.core?[3]
-      parent = Entity.where(milieu: former.event?.milieu, name: pname).first
-      parent.inferiors << entity
-      Relation.last.update!(kind: "political", name: "house of")
-      entity_status = Property.new(kind: "status", value: status)
-      entity.properties << entity_status
-      Dialect.create!(language: parent.language, entity: entity, name: former.name?)
-    end
-
-    ["w", "n", "m"].each do |sgender|
-      society = Entity.create!(milieu: former.event?.milieu, name: former.name? + "-" + sgender, kind: "Society")
-      Dialect.create!(language: parent.language, entity: society, name: society.name)
-      entity.inferiors << society
-      Relation.last.update!(kind: "political", name: "society of")
+  def gen_societies
+    language = language?
+    Dialect.create!(language: language, entity: self, name: self.name)
+    SOCIETIES.each do |sname|
+      society = Entity.create!(event: self.event, milieu: self.milieu, eid: self.eid + sname, name: self.name + "-" + sname, kind: "society")
+      Relation.create!(event: self.event, superior: self, inferior: society, kind: "political", name: "Society of")
+      Dialect.create!(language: language, entity: society, name: society.name)
     end
   end
 
-  def self.birth(former)
-    entity = former.entity?
-    entity.kind = "Person"
-    pname = former.core?[2]
-    hname = former.core?[4]
-    gender = Property.new(kind: "gender", value: former.gender?)
-    entity.properties << gender
-    entity.properties << Property.new(kind: "birthdate", value: former.event?.ydate)
-    entity.save!
-
-    if !pname.nil? && entity.name != pname
-      parent = Entity.where(milieu: former.event?.milieu, name: pname).first
-      parent.inferiors << entity if !pname.nil? && parent != entity
-      parent.events << former.event?
-      Relation.last.update!(kind: "familial", name: "child")
-    end
-
-    hname = "Yldr" if hname == ""
-    society = Entity.where(milieu: former.event?.milieu, name: hname + "-" + gender.value).first
-    society.inferiors << entity
-    society.events << former.event?
-    Relation.last.update!(kind: "political", name: "of")
-
-    society.dialect.proc_name(entity.name) unless (entity.name == "unknown") || Entity.where(name: entity.name).count > 1
+  def get_society
+    gender = self.properties.where(kind: "gender").first.value
+    parent = self.superiors.first
+    phouse = parent.kind!="person" ? parent : parent.superiors.where(kind: "society").first.superiors.first
+    phouse.inferiors.where(kind: "society").where("entities.name LIKE ?", "%#{gender}").first
   end
 end

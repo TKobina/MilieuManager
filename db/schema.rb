@@ -44,11 +44,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "efiles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "efolder_id", null: false
+    t.integer "encyclopedium_id", null: false
     t.datetime "lastupdate"
     t.string "name"
     t.string "path"
     t.datetime "updated_at", null: false
     t.index ["efolder_id"], name: "index_efiles_on_efolder_id"
+    t.index ["encyclopedium_id"], name: "index_efiles_on_encyclopedium_id"
   end
 
   create_table "efolders", force: :cascade do |t|
@@ -75,18 +77,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "entities", force: :cascade do |t|
-    t.string "code"
     t.datetime "created_at", null: false
     t.text "details"
+    t.string "eid", null: false
     t.integer "event_id", null: false
+    t.integer "events_id"
     t.string "kind"
+    t.integer "milieu_id", null: false
     t.string "name"
     t.text "private_details"
     t.boolean "public"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_entities_on_event_id"
+    t.index ["events_id"], name: "index_entities_on_events_id"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
+    t.index ["milieu_id"], name: "index_entities_on_milieu_id"
     t.index ["name"], name: "index_entities_on_name"
   end
 
@@ -96,19 +102,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "code"
+    t.text "code"
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "file_id", null: false
+    t.integer "efile_id", null: false
     t.string "kind"
+    t.integer "milieu_id", null: false
     t.string "name"
     t.text "private_details"
     t.boolean "public"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
-    t.index ["file_id"], name: "index_events_on_file_id"
+    t.index ["efile_id"], name: "index_events_on_efile_id"
     t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
     t.index ["kind"], name: "index_events_on_kind"
+    t.index ["milieu_id"], name: "index_events_on_milieu_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
   end
@@ -274,12 +282,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "dialects", "entities"
   add_foreign_key "dialects", "languages"
   add_foreign_key "efiles", "efolders"
+  add_foreign_key "efiles", "encyclopedia"
   add_foreign_key "efolders", "efolders", column: "efolders_id"
   add_foreign_key "efolders", "efolders", column: "parent_id"
   add_foreign_key "efolders", "encyclopedia"
   add_foreign_key "encyclopedia", "milieus"
   add_foreign_key "entities", "events"
-  add_foreign_key "events", "files"
+  add_foreign_key "entities", "events", column: "events_id"
+  add_foreign_key "entities", "milieus"
+  add_foreign_key "events", "efiles"
+  add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
   add_foreign_key "frequencies", "dialects"
   add_foreign_key "frequencies", "letters"

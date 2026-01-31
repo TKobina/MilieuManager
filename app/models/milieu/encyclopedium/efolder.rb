@@ -16,16 +16,16 @@ class Efolder < ApplicationRecord
       if File.directory?(File.join(self.path, self.name, entry))
         parse_folder(File.join(self.path, self.name), entry) 
       else
-        parse_file(File.join(self.path, self.name), entry)
+        parse_file(File.join(self.path, self.name), entry) if entry.end_with?(".md")
       end
     end
   end
 
   def parse_folder(path, name)
-    Efolder.find_or_create_by!(parent: self, path: path, name: name)
+    Efolder.find_or_create_by!(encyclopedium: self.encyclopedium, parent: self, path: path, name: name)
   end
 
   def parse_file(path, name)
-    Efile.find_or_create_by!(efolder: self, path: path, name: name, lastupdate: File.mtime(File.join(path,name)))
+    Efile.find_or_create_by!(encyclopedium: self.encyclopedium, efolder: self, path: path, name: name, lastupdate: File.mtime(File.join(path,name)))
   end
 end
