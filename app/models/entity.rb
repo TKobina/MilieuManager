@@ -18,8 +18,6 @@ class Entity < ApplicationRecord
 
 
   def <=>(other)
-    #p self.name
-    #p other.name
     Language.first.sort(self.name, other.name)
   end
 

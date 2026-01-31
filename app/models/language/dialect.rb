@@ -4,19 +4,12 @@ class Dialect < ApplicationRecord
 
   has_many :frequencies, dependent: :destroy
   has_many :names, dependent: :destroy
-
-  #def self.proc_name(organization, entity)
-  #  organization.dialect.proc_name(entity) if !organization.dialect.nil?
-  #  organization.superiors.where(kind: ["House", "Nation"]).each {|susuperior| Dialect.proc_name(susuperior, entity) }
-  #end
   
   def proc_name(name)
     self.entity.superiors.where(kind: ["House", "Nation"]).each {|susuperior| susuperior.dialect.proc_name(name) }
     name_pattern = ""
     
     self.update!(n_names: self[:n_names].to_i + 1)
-
-    #self[:n_names] = self[:n_names].to_i + 1
 
     name.each_char.with_index do |char, index|
       char = char.downcase
@@ -51,7 +44,6 @@ class Dialect < ApplicationRecord
     ns = Dialect.column_names.select { |name| name.start_with?('n_') } 
     ns.each {|n| stats[:core][n] = self[n]}
 
-    #letters = self.language.letters
      ["vowel", "consonant", "bridge"].each do |kind|
       kfreqs = {}    
       lfreqs = self.frequencies.where(kind: kind)
@@ -92,21 +84,22 @@ class Dialect < ApplicationRecord
   end
 
   def generate_name
-    #select pattern
     @parents = self.entity.superiors
     @parent_dialect = @parents.empty? ? nil : @parents.sample.dialect 
     pattern = generate_pattern
 
     name = ""
     pattern.each_char do |kind|
-      case kind
-      when 'v'
-        name += generate_letter("vowel")
-      when 'b'
-        name += generate_letter("bridge")
-      when 'c'
-        name += generate_letter("consonant")
+      while true
+        case kind
+        when 'v' then char = generate_letter("vowel")
+        when 'b' then char = generate_letter("bridge")
+        when 'c' then char = generate_letter("consonant")
+        end
+        break if char != name[-1]
+        break if name.length == 1
       end
+      name += char
     end
     name = name.capitalize
     
@@ -163,7 +156,7 @@ class Dialect < ApplicationRecord
     plengths = self.language.patterns.map{|pattern| pattern.value.length}
     min = plengths.min
     max = plengths.max
-    length = (min + (max - min) * (rand**1)).ceil
+    length = (min + (max + 1 - min) * (rand**2.5)).floor
     vpatterns = []
     self.language.patterns.find_each { |pattern| vpatterns << pattern if pattern.value.length == length }
     return vpatterns.sample.value

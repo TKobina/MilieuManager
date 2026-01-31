@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :entity
+  belogns_to :event
   
   validate :check_duplicate_property
   after_find :property_accessed

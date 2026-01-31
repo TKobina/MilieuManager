@@ -18,15 +18,14 @@ namespace :init do
     unless user = User.where(email: duser[:email]).first
       user = User.create!(email: duser[:email], password: duser[:password], password_confirmation: duser[:password])
     end
-
-    unless user2 = User.where(email: tuser[:email]).first
-      user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
-    end
-    
+    # unless user2 = User.where(email: tuser[:email]).first
+    #   user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
+    # end    
     unless milieu = Milieu.where(user_id: user.id, name: "Ildera").first
       milieu = Milieu.create!(user_id: user.id, name: "Ildera")
     end
      
+    
     puts "Loading and parsing events from Obsidian"
     Event.check_obsidian(Milieu.first)
 
@@ -54,9 +53,10 @@ namespace :init do
     # rel.save
 
   end
-
+  
   task namegen: :environment do
-    1000.times { Dialect.all.sample.generate_name }
+    progressbar = ProgressBar.create(total: 5000)
+    5000.times { Dialect.all.sample.generate_name ; progressbar.increment }
   end
 end
 
