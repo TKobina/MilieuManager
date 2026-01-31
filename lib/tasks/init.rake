@@ -21,16 +21,19 @@ namespace :init do
     # unless user2 = User.where(email: tuser[:email]).first
     #   user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
     # end    
-    unless milieu = Milieu.where(user_id: user.id, name: "Ildera").first
-      milieu = Milieu.create!(user_id: user.id, name: "Ildera")
+    unless milieu = Milieu.where(user: user, name: "Ildera").first
+      milieu = Milieu.create!(user: user, name: "Ildera")
     end
      
-    
-    puts "Loading and parsing events from Obsidian"
-    Event.check_obsidian(Milieu.first)
+    unless encyc = Encyclopedium.where(milieu: milieu).first
+      encyc = Encyclopedium.create!(milieu: milieu, rootdir: Rails.root.join("lib"), rootfolder: "obsidian")
+    end
 
-    puts "Renaming base nation's Language"
-    Language.where(name: "Yldr").first.update!(name: "Lëdru")
+    # puts "Loading and parsing events from Obsidian"
+    # Event.check_obsidian(Milieu.first)
+
+    # puts "Renaming base nation's Language"
+    # Language.where(name: "Yldr").first.update!(name: "Lëdru")
     
     # houses = YAML.load_file(File.join(Rails.root, paths['houses']))
     # houses.each do |house, properties|

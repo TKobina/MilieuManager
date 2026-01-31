@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :ydate
+  belongs_to :file
   
   has_many :entities, dependent: :destroy
   has_many :relations, dependent: :destroy

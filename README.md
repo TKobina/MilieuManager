@@ -22,7 +22,10 @@
 * Obsidian
   * Event Formatting
     * "## indicates title
+    * "## title followed by ~ indicates public record/story
     * Each line between ``` and ``` should be procc'd (has details about how to process event)
+    * Everything between titles not in a code block is are details
+    * public details between ~ and ~
     * Specifics
       * birth | name | gender | parent | parent's house
       * founding | name | kind | status | parent

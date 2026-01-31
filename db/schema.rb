@@ -41,30 +41,37 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["name"], name: "index_dialects_on_name"
   end
 
-  create_table "encyclofolders", force: :cascade do |t|
+  create_table "efiles", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "encyclopedium_id", null: false
+    t.integer "efolder_id", null: false
     t.datetime "lastupdate"
     t.string "name"
+    t.string "path"
     t.datetime "updated_at", null: false
-    t.index ["encyclopedium_id"], name: "index_encyclofolders_on_encyclopedium_id"
+    t.index ["efolder_id"], name: "index_efiles_on_efolder_id"
+  end
+
+  create_table "efolders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "efolders_id"
+    t.integer "encyclopedium_id"
+    t.datetime "lastupdate"
+    t.string "name"
+    t.integer "parent_id"
+    t.string "path"
+    t.datetime "updated_at", null: false
+    t.index ["efolders_id"], name: "index_efolders_on_efolders_id"
+    t.index ["encyclopedium_id"], name: "index_efolders_on_encyclopedium_id"
+    t.index ["parent_id"], name: "index_efolders_on_parent_id"
   end
 
   create_table "encyclopedia", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "milieu_id", null: false
     t.string "rootdir"
+    t.string "rootfolder"
     t.datetime "updated_at", null: false
     t.index ["milieu_id"], name: "index_encyclopedia_on_milieu_id"
-  end
-
-  create_table "encylofiles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "encyclofolders_id", null: false
-    t.datetime "lastupdate"
-    t.string "name"
-    t.datetime "updated_at", null: false
-    t.index ["encyclofolders_id"], name: "index_encylofiles_on_encyclofolders_id"
   end
 
   create_table "entities", force: :cascade do |t|
@@ -92,12 +99,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.string "code"
     t.datetime "created_at", null: false
     t.text "details"
+    t.integer "file_id", null: false
     t.string "kind"
     t.string "name"
     t.text "private_details"
     t.boolean "public"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
+    t.index ["file_id"], name: "index_events_on_file_id"
     t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
     t.index ["kind"], name: "index_events_on_kind"
     t.index ["name"], name: "index_events_on_name"
@@ -217,12 +226,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "chapter"
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "encyclofile_id", null: false
+    t.integer "files_id", null: false
     t.datetime "lastupdate"
     t.boolean "public"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["encyclofile_id"], name: "index_stories_on_encyclofile_id"
+    t.index ["files_id"], name: "index_stories_on_files_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -264,10 +273,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id_id"
   add_foreign_key "dialects", "entities"
   add_foreign_key "dialects", "languages"
-  add_foreign_key "encyclofolders", "encyclopedia"
+  add_foreign_key "efiles", "efolders"
+  add_foreign_key "efolders", "efolders", column: "efolders_id"
+  add_foreign_key "efolders", "efolders", column: "parent_id"
+  add_foreign_key "efolders", "encyclopedia"
   add_foreign_key "encyclopedia", "milieus"
-  add_foreign_key "encylofiles", "encyclofolders", column: "encyclofolders_id"
   add_foreign_key "entities", "events"
+  add_foreign_key "events", "files"
   add_foreign_key "events", "ydates"
   add_foreign_key "frequencies", "dialects"
   add_foreign_key "frequencies", "letters"
@@ -283,6 +295,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
-  add_foreign_key "stories", "encyclofiles"
+  add_foreign_key "stories", "files", column: "files_id"
   add_foreign_key "ydates", "milieus"
 end
