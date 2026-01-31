@@ -2,7 +2,7 @@ class CreateStories < ActiveRecord::Migration[8.1]
   def change
     create_table :stories do |t|
       t.timestamps
-      t.references :encyclofile, null: false, foreign_key: true
+      t.references :files, null: false, foreign_key: true
       t.integer :chapter
       t.string :title
       t.boolean :public

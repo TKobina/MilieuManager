@@ -3,6 +3,7 @@ class CreateEvents < ActiveRecord::Migration[8.1]
     create_table :events do |t|
       t.timestamps
       t.references :ydate, null: false, foreign_key: true
+      t.references :file, null: false, foreign_key: true
       t.string :code
       t.string :kind
       t.string :name

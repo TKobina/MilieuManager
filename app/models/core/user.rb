@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :milieu
+  has_many :milieus, dependent: :destroy
   has_many :events, through: :milieu 
   has_many :entities, through: :milieu
   has_many :languages, through: :milieu
