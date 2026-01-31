@@ -1,7 +1,8 @@
 # README
 ## QUESTIONS
 
-## PRIORITIES
+## PRIORITIEs
+* CHECK FOR DUPLICATE EVENTS
 * EVENT IMPORT FORMATTING AND PROCCING OF ALL EVENT TYPES, ENTITIES
 * better names for entity relationships than political/etc.
 * Name generation abberations: 
@@ -12,24 +13,32 @@
   * write out permissible groups of consonants
 * ID's for files??
 * IF EVENTS CHANGE, REPROC THINGS FROM EVENTS
-* Maintain filetree with updates???
+* Relations: remove excess fields
+
 ### DATABASE
+* Indices for encyclopedium stuff??
 
 ## OBSIDIAN
 
-### NOTES
+* Event Formatting
+  * "## indicates title
+  * Each line between ``` and ``` should be procc'd (has details about how to process event)
+  * "proc | event/story/entity | public/private" in the code block tells the efile to process it
+  * public in the code block indicates entity/event is public; otherwise, it's private
+  * Everything between titles not in a code block is are details
+  * public details between ~ and ~
+  * Specifics
+    * formation | name-eid | "World" | milieu
+    * founding | name-eid | kind | status | parentname-eid
+    * birth | name-eid | gender | parent-parentname-eid
+    * raising | name-eid | entity-eid | title | newname-eid
 
-* Obsidian
-  * Event Formatting
-    * "## indicates title
-    * "## title followed by ~ indicates public record/story
-    * Each line between ``` and ``` should be procc'd (has details about how to process event)
-    * Everything between titles not in a code block is are details
-    * public details between ~ and ~
-    * Specifics
-      * birth | name | gender | parent | parent's house
-      * founding | name | kind | status | parent
-  * Plugins
-    * Folder Index
-    * Link with alias
+### NOTES
+* public/private
+  * events: noted in the code block, private by default
+  * entities: private by default, look for a file for the entity in the file directory by name
+* rail db:migrate VERSION=0 cascade=true
+* Obsidian Plugins
+  * Folder Index
+  * Link with alias
 * git diff --stat $(git hash-object -t tree /dev/null)

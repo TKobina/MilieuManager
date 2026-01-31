@@ -9,6 +9,9 @@ class Language < ApplicationRecord
 
   after_create_commit :proc_new_language
 
+  MINNAMELEN = 3
+  MAXNAMELEN = 6
+
   def proc_new_language
     set_alphabet
     set_patterns
@@ -60,13 +63,11 @@ class Language < ApplicationRecord
   def set_patterns
     def factorial(n) = n == 0 ? 1 : (1..n).inject(:*)
     puts "Generating patterns"
-    t = 4
-    min = 4
-    progressbar = ProgressBar.create(total: factorial(t+min) - factorial(min))
+    progressbar = ProgressBar.create(total: factorial(MAXNAMELEN) - factorial(MINNAMELEN))
     parts = [ "b", "c", "v" ]
     if Pattern.count < 500 
-      t.times do |i| 
-        perms = parts.repeated_permutation(i + min).to_a
+      (MAXNAMELEN - MINNAMELEN).times do |i| 
+        perms = parts.repeated_permutation(i + MINNAMELEN).to_a
         perms.each do |perm|
           check_pattern(perm.join)
           progressbar.increment
