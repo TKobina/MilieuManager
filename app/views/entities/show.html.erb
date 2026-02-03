@@ -1,15 +1,18 @@
-<h1><%= @entity.name %>
+<h1><%= @entity.name %><%=@entity.id %></h1>
 
 </p>
 <%= link_to "Entity List", entities_path %></br>
 <%= link_to "Back", "javascript:history.back()" %></br>
 
-</p>
-<b>Events:</b>
-<% @entity.events do |event| %>
+<h2>Information</h2>
+<%= @entity.text["pri"] %></p>
+<%= @entity.text["pub"] %></p>
+<h2>Events</h2>
+<% @entity.events.each do |event| %>
   <div>
-  <%= event.name %>
-  <%= event.details %>
+  <h3><%= event.ydate.to_s %>: <%= event.name %></h3>
+  <%= event.text["pri"] %></p>
+  <%= event.text["pub"] %></p>
   </div>
 <% end %>
 
