@@ -94,6 +94,7 @@ class Entity < ApplicationRecord
   end
 
   def get_details
+    self.update!(text: {pri: "", pub: ""})    
     efile = self.events.first.efile.encyclopedium.efiles.where(name: self.name + "-" + self.eid + ".md").first
     efile&.proc(target: self)
   end

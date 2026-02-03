@@ -30,7 +30,6 @@ class Efile < ApplicationRecord
 
   def proc_entity(entity)
     return if entity.nil?
-    entity.text = {pri: "", pub: ""}
     self.contents.each do |key, content|
       entity.text["pri"] += content["pri"]
       entity.text["pub"] += content["pub"]
