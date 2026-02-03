@@ -1,8 +1,6 @@
 class Pattern < ApplicationRecord
   belongs_to :language
   #validate :check_pattern
-
-  has_many :frequencies, dependent: :destroy
   
   private
   

@@ -16,12 +16,11 @@ class Event < ApplicationRecord
   private
 
   def proc_event
-    instruction = code.split("\n")
     self.kind.split(",").each_with_index do |kind, index|
       case kind
-      when "formation" then         Entity.new(event: self).formation(instruction[index])
-      when "founding" then          Entity.new(event: self).founding(instruction[index])
-      when "birth" then             Entity.new(event: self).birth(instruction[index])
+      when "formation" then         Entity.new(event: self).formation(self.code[index])
+      when "founding" then          Entity.new(event: self).founding(self.code[index])
+      when "birth" then             Entity.new(event: self).birth(self.code[index])
       when "death" then return
       when "adoption" then return
       when "raising" then return

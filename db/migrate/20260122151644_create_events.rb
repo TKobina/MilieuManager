@@ -7,9 +7,8 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.references :efile, null: false, foreign_key: true
       t.string :kind
       t.string :name
-      t.text :code
-      t.text :details
-      t.text :private_details
+      t.json :code
+      t.json :text
       t.boolean :public
     end
   end
