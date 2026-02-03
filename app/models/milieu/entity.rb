@@ -17,6 +17,8 @@ class Entity < ApplicationRecord
   
   validate :not_exists?
 
+  after_create_commit :get_details
+
   #after_create_commit :proc_entity
   SOCIETIES = ["w","n","m"]
 
@@ -26,19 +28,19 @@ class Entity < ApplicationRecord
 
   def formation(instruction)
     # formation | name-eid | kind | milieu
-   instrs = instruction.split("|").map{|x| x.strip()}
-   name, eid = instrs[1].split("-")
-   self.milieu = self.event.milieu
-   self.eid = eid
-   self.name = name
-   self.kind = instrs[2]
-   self.public = false
-   self.save!
+    instrs = instruction.split("|")
+    name, eid = instrs[1].split("-")
+    self.milieu = self.event.milieu
+    self.eid = eid
+    self.name = name
+    self.kind = instrs[2]
+    self.public = false
+    self.save!
   end
 
   def founding(instruction)
     # founding | name-eid | kind | status | parent-eid
-    instrs = instruction.split("|").map{|x| x.strip()}
+    instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.event.milieu
     self.eid = eid
@@ -68,7 +70,7 @@ class Entity < ApplicationRecord
 
   def birth(instruction)
     # birth | name-eid | gender | parent-eid
-    instrs = instruction.split("|").map{|x| x.strip()}
+    instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.event.milieu
     self.eid = eid
@@ -91,6 +93,11 @@ class Entity < ApplicationRecord
   
   def not_exists?
     self.milieu.entities.where(eid: self.eid).empty?
+  end
+
+  def get_details
+    efile = self.event.efile.encyclopedium.efiles.where(name: self.name + "-" + self.eid + ".md").first
+    efile&.proc(target: self)
   end
 
   def set_parent(piden, rkind, rname)

@@ -24,17 +24,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "created_at", null: false
     t.integer "entity_id", null: false
     t.integer "language_id", null: false
-    t.integer "n_bridges"
-    t.integer "n_consonants"
-    t.integer "n_names"
-    t.integer "n_patterns"
-    t.integer "n_vowels"
     t.string "name"
+    t.json "occurances"
     t.datetime "updated_at", null: false
-    t.float "var_bridges"
-    t.float "var_consonants"
-    t.float "var_patterns"
-    t.float "var_vowels"
+    t.json "variances"
     t.index ["entity_id"], name: "index_dialects_on_entity_id"
     t.index ["language_id", "entity_id"], name: "index_dialects_on_language_id_and_entity_id"
     t.index ["language_id"], name: "index_dialects_on_language_id"
@@ -42,12 +35,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "efiles", force: :cascade do |t|
+    t.json "contents"
     t.datetime "created_at", null: false
     t.integer "efolder_id", null: false
     t.integer "encyclopedium_id", null: false
     t.datetime "lastupdate"
     t.string "name"
     t.string "path"
+    t.json "properties"
     t.datetime "updated_at", null: false
     t.index ["efolder_id"], name: "index_efiles_on_efolder_id"
     t.index ["encyclopedium_id"], name: "index_efiles_on_encyclopedium_id"
@@ -78,15 +73,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
 
   create_table "entities", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.text "details"
     t.string "eid", null: false
     t.integer "event_id", null: false
     t.integer "events_id"
     t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
-    t.text "private_details"
     t.boolean "public"
+    t.json "text"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_entities_on_event_id"
     t.index ["events_id"], name: "index_entities_on_events_id"
@@ -102,15 +96,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.text "code"
+    t.json "code"
     t.datetime "created_at", null: false
-    t.text "details"
     t.integer "efile_id", null: false
     t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
-    t.text "private_details"
     t.boolean "public"
+    t.json "text"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
     t.index ["efile_id"], name: "index_events_on_efile_id"
@@ -119,19 +112,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["milieu_id"], name: "index_events_on_milieu_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
-  end
-
-  create_table "frequencies", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "dialect_id", null: false
-    t.string "kind", null: false
-    t.integer "letter_id"
-    t.integer "n", default: 0
-    t.integer "pattern_id"
-    t.datetime "updated_at", null: false
-    t.index ["dialect_id"], name: "index_frequencies_on_dialect_id"
-    t.index ["letter_id"], name: "index_frequencies_on_letter_id"
-    t.index ["pattern_id"], name: "index_frequencies_on_pattern_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -214,14 +194,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "relations", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", null: false
-    t.text "details"
     t.integer "event_id", null: false
     t.integer "inferior_id", null: false
     t.string "kind"
     t.string "name"
-    t.text "private_details"
     t.boolean "public"
     t.integer "superior_id", null: false
+    t.json "text"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
@@ -293,9 +272,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "events", "efiles"
   add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
-  add_foreign_key "frequencies", "dialects"
-  add_foreign_key "frequencies", "letters"
-  add_foreign_key "frequencies", "patterns"
   add_foreign_key "languages", "entities"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"

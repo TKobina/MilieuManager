@@ -7,6 +7,8 @@ class Encyclopedium < ApplicationRecord
 
   
   def parse_root_folder
+    puts "Parsing external directories"
     Efolder.find_or_create_by!(encyclopedium: self, path: self.rootdir, name: self.rootfolder)
+    puts "Parsing complete"
   end
 end

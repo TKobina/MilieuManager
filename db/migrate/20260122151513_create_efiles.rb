@@ -6,6 +6,8 @@ class CreateEfiles < ActiveRecord::Migration[8.1]
       t.references :efolder, null: false, foreign_key: true
       t.string :name
       t.string :path
+      t.json :properties
+      t.json :contents
       t.datetime :lastupdate
     end
   end

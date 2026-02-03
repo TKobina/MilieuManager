@@ -8,8 +8,7 @@ class CreateRelations < ActiveRecord::Migration[8.1]
       t.string :code
       t.string :kind
       t.string :name
-      t.text :details
-      t.text :private_details
+      t.json :text
       t.boolean :public
     end
   end
