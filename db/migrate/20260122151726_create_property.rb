@@ -4,7 +4,7 @@ class CreateProperty < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :entity, null: false, foreign_key: true      
       t.references :event, null: false, foreign_key: true
-      t.string :code
+      t.json :code
       t.string :kind
       t.string :value
       t.text :detail

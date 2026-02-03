@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :milieus, dependent: :destroy
-  has_many :events, through: :milieu 
-  has_many :entities, through: :milieu
-  has_many :languages, through: :milieu
+  has_many :events, through: :milieus 
+  has_many :entities, through: :milieus
+  has_many :languages, through: :milieus
 end

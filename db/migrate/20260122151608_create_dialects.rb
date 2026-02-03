@@ -3,7 +3,7 @@ class CreateDialects < ActiveRecord::Migration[8.1]
     create_table :dialects do |t|
       t.timestamps
       t.references :language, null: false, foreign_key: true
-      t.references :entity, null: false, foreign_key: true
+      #t.references :entity, null: false, foreign_key: true
       t.string :name
       t.json :occurances
       t.json :variances
