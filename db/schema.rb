@@ -74,16 +74,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "entities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "eid", null: false
-    t.integer "event_id", null: false
-    t.integer "events_id"
     t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
     t.boolean "public"
     t.json "text"
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_entities_on_event_id"
-    t.index ["events_id"], name: "index_entities_on_events_id"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
     t.index ["milieu_id"], name: "index_entities_on_milieu_id"
@@ -177,7 +173,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string "code"
+    t.json "code"
     t.datetime "created_at", null: false
     t.text "detail"
     t.integer "entity_id", null: false
@@ -258,7 +254,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
 
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id_id"
-  add_foreign_key "dialects", "entities"
   add_foreign_key "dialects", "languages"
   add_foreign_key "efiles", "efolders"
   add_foreign_key "efiles", "encyclopedia"
@@ -266,13 +261,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "efolders", "efolders", column: "parent_id"
   add_foreign_key "efolders", "encyclopedia"
   add_foreign_key "encyclopedia", "milieus"
-  add_foreign_key "entities", "events"
-  add_foreign_key "entities", "events", column: "events_id"
   add_foreign_key "entities", "milieus"
   add_foreign_key "events", "efiles"
   add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
-  add_foreign_key "languages", "entities"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
   add_foreign_key "milieus", "users"

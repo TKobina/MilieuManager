@@ -2,8 +2,8 @@ class Event < ApplicationRecord
   belongs_to :milieu
   belongs_to :ydate
   belongs_to :efile
-  
-  has_many :entities, dependent: :destroy
+  has_and_belongs_to_many :entities
+
   has_many :relations, dependent: :destroy
   has_many :properties, dependent: :destroy
 
@@ -18,9 +18,9 @@ class Event < ApplicationRecord
   def proc_event
     self.kind.split(",").each_with_index do |kind, index|
       case kind
-      when "formation" then         Entity.new(event: self).formation(self.code[index])
-      when "founding" then          Entity.new(event: self).founding(self.code[index])
-      when "birth" then             Entity.new(event: self).birth(self.code[index])
+      when "formation" then         Entity.new(events: [self]).formation(self.code[index])
+      when "founding" then          Entity.new(events: [self]).founding(self.code[index])
+      when "birth" then             Entity.new(events: [self]).birth(self.code[index])
       when "death" then return
       when "adoption" then return
       when "raising" then return

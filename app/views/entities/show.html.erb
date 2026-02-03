@@ -1,0 +1,15 @@
+<h1><%= @entity.name %>
+
+</p>
+<%= link_to "Entity List", entities_path %></br>
+<%= link_to "Back", "javascript:history.back()" %></br>
+
+</p>
+<b>Events:</b>
+<% @entity.events do |event| %>
+  <div>
+  <%= event.name %>
+  <%= event.details %>
+  </div>
+<% end %>
+
