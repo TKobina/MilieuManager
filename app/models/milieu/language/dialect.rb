@@ -3,37 +3,6 @@ class Dialect < ApplicationRecord
   belongs_to :language
 
   has_many :names, dependent: :destroy
-  
-  def proc_name(name)
-    self.entity.superiors.where(kind: ["House", "Nation"]).each {|susuperior| susuperior.dialect.proc_name(name) }
-    name_pattern = ""
-    
-    self.update!(n_names: self[:n_names].to_i + 1)
-
-    name.each_char.with_index do |char, index|
-      char = char.downcase
-      next if char == "h" #not a "character" by itself
-      char = "h" + char if [ "w", "r", "l", "y" ].include?(char) && name[index-1] == "h"
-      
-      letter = self.language.letters.find { |letter| letter.value == char }
-      freq = letter.frequencies.find {|frequency| frequency.dialect == self }
-      freq = Frequency.create!(letter: letter, dialect: self, kind: letter.kind) if freq.nil?
-      freq.update!(n: freq.n.to_i + 1)
-
-      ctype = self.language.get_type(char)
-      name_pattern += ctype[0]
-      ctype = "n_" + ctype + "s"
-      self[ctype] = self[ctype].to_i + 1
-    end
-    
-    pattern = Pattern.find_or_create_by!(value: name_pattern, language: self.language)
-    freq = pattern.frequencies.find {|frequency| frequency.dialect == self }
-    if freq.nil?
-      freq = Frequency.create!(pattern: pattern, dialect: self, kind: "pattern")
-      self.update!(n_patterns: self.n_patterns.to_i + 1)
-    end
-    freq.update!(n: freq.n.to_i + 1)
-  end
 
   def stats?
     stats = {core: {}, letters: {}, rletters: {}, patterns: {}, rpatterns: {}}
@@ -43,23 +12,23 @@ class Dialect < ApplicationRecord
     ns = Dialect.column_names.select { |name| name.start_with?('n_') } 
     ns.each {|n| stats[:core][n] = self[n]}
 
-     ["vowel", "consonant", "bridge"].each do |kind|
-      kfreqs = {}    
-      lfreqs = self.frequencies.where(kind: kind)
-      lfreqs.each do |freq|
-        kfreqs[freq.letter.value] = freq.n.to_i
-        stats[:letters][freq.letter.value] = freq.n.to_i
-      end
-      rel_freqs = calc_rel_freq(kfreqs.values)
-      kfreqs.keys.zip(rel_freqs) {|key, relfreq| stats[:rletters][key] = relfreq}
-    end
+    #  ["vowel", "consonant", "bridge"].each do |kind|
+    #   kfreqs = {}    
+    #   lfreqs = self.frequencies.where(kind: kind)
+    #   lfreqs.each do |freq|
+    #     kfreqs[freq.letter.value] = freq.n.to_i
+    #     stats[:letters][freq.letter.value] = freq.n.to_i
+    #   end
+    #   rel_freqs = calc_rel_freq(kfreqs.values)
+    #   kfreqs.keys.zip(rel_freqs) {|key, relfreq| stats[:rletters][key] = relfreq}
+    # end
   
-    pfreqs = self.frequencies.where(kind: "pattern")
-    pfreqs.each do |freq|
-      stats[:patterns][freq.pattern.value] = freq.n.to_i
-    end
-    rel_freqs = calc_rel_freq(stats[:patterns].values)
-    stats[:patterns].keys.zip(rel_freqs) {|key, relfreq| stats[:rpatterns][key] = relfreq}
+    # pfreqs = self.frequencies.where(kind: "pattern")
+    # pfreqs.each do |freq|
+    #   stats[:patterns][freq.pattern.value] = freq.n.to_i
+    # end
+    # rel_freqs = calc_rel_freq(stats[:patterns].values)
+    # stats[:patterns].keys.zip(rel_freqs) {|key, relfreq| stats[:rpatterns][key] = relfreq}
 
   stats
   end

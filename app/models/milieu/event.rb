@@ -33,5 +33,13 @@ class Event < ApplicationRecord
       else return "Special!!"
       end
     end
+
+    get_details
+  end
+
+  def get_details
+    self.update!(text: {pri: "", pub: ""})    
+    efile = self.efile.encyclopedium.efiles.where(name: self.name + ".md").first
+    efile&.proc(target: self)
   end
 end

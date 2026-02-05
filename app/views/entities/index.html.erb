@@ -7,7 +7,7 @@
   <ul>
   <% @entities.each do |entity| %>
     <div>
-      <li><%= link_to entity.name, entity_path(entity.id) %><sup>(<%=entity.id %>)</sup> - <%=entity.kind%> <br></li>
+      <li><strong><%= link_to entity.name, entity_path(entity.id) %></strong> (<%=entity.kind%>)<sup><%=entity.id %></sup> </li>
       <ul>  
       <% entity.properties.each do |property| %>
         <li><%= property.kind %>: <%= property.value %></li>

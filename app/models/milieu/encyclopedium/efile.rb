@@ -1,4 +1,6 @@
 class Efile < ApplicationRecord
+  include Comparable
+
   belongs_to :encyclopedium
   belongs_to :efolder
   has_many :events, dependent: :destroy
@@ -18,23 +20,24 @@ class Efile < ApplicationRecord
     self.contents = @contents
     self.save
 
-    proc
+    #proc
   end
   
   def proc(target: nil)
     case self.properties["kind"]
     when "date" then proc_date
-    when "entity" then proc_entity(target)
+    when "event" then  proc_details(target)
+    when "entity" then proc_details(target)
     end
   end
 
-  def proc_entity(entity)
-    return if entity.nil?
+  def proc_details(target)
+    return if target.nil?
     self.contents.each do |key, content|
-      entity.text["pri"] += content["pri"]
-      entity.text["pub"] += content["pub"]
+      target.text["pri"] += content["pri"]
+      target.text["pub"] += content["pub"]
     end
-    entity.save
+    target.save
   end
 
   private
@@ -43,9 +46,9 @@ class Efile < ApplicationRecord
     self.contents.keys.each do |key|
       code = {kinds: []}
       
-      self.contents[key]["code"][1..].map{|x| code[:kinds] << x.split("|").map{|y| y.strip()}[0] }
+      self.contents[key]["code"][1..]&.map{|x| code[:kinds] << x.split("|").map{|y| y.strip()}[0] }
       code[:insts] = self.contents[key]["code"][1..]
-      code[:proc], code[:kind], code[:public] = self.contents[key]["code"].first.split("|")
+      code[:proc], code[:kind], code[:public] = self.contents[key]["code"]&.first&.split("|")
       
       Event.create!(
         milieu: self.encyclopedium.milieu,
@@ -109,5 +112,9 @@ class Efile < ApplicationRecord
     return BLANK if line.starts_with?(CODE)
     @contents[@section][:code] << line.split("|").map{|x| x.strip()}.join("|")
     CODE
+  end
+
+  def <=>(other)
+    self.name <=> other.name
   end
 end
