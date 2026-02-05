@@ -17,8 +17,7 @@ class Entity < ApplicationRecord
 
   after_create_commit :get_details
 
-  #after_create_commit :proc_entity
-  SOCIETIES = ["w","n","m"]
+  HOUSESOCIETIES = ["w","n","m"]
 
   def <=>(other) = self.language?.sort(self.name, other.name)
   def language? = self.language ? self.language : self.superiors.first.language?
@@ -37,7 +36,7 @@ class Entity < ApplicationRecord
   end
 
   def founding(instruction)
-    # founding | name-eid | kind | status | parent-eid
+    # founding | name-eid | kind | status | parent-eid | Language (if Nation)
     instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.events.first.milieu
@@ -56,7 +55,7 @@ class Entity < ApplicationRecord
     when "nation"
       rkind = "political"
       rname = "Nation of"
-      Language.create!(entity: self, name: self.name)
+      Language.create!(entity: self, name: instrs[5])
     when "house" 
       rkind = "political" 
       rname = "House of"
@@ -67,7 +66,7 @@ class Entity < ApplicationRecord
   end
 
   def birth(instruction)
-    # birth | name-eid | gender | parent-eid
+    # birth | name-eid | gender | parent-eid | house-eid
     instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.events.first.milieu
@@ -83,8 +82,12 @@ class Entity < ApplicationRecord
     self.properties << Property.new(kind: "gender", value: instrs[2])
     self.properties.each{|x| x.event = self.events.first; x.save! }
 
-    society = get_society
-    Relation.create!(event: self.events.first, superior: society, inferior: self, kind: "societal", name: "member of") unless society.nil?
+    set_society(parenthouse: instrs[4])
+    Rails.cache.write("personids", Rails.cache.read("personids") << self.id) unless self.name == "unknown"
+  end
+
+  def proc_name
+    Name::proc_name_society(self, self.superiors.where(kind: "society").first)
   end
 
   private
@@ -108,20 +111,27 @@ class Entity < ApplicationRecord
     end
   end
 
-  def gen_societies
-    language = language?
-    Dialect.create!(language: language, entity: self, name: self.name)
-    SOCIETIES.each do |sname|
-      society = Entity.create!(events: [self.events.first], milieu: self.milieu, eid: self.eid + sname, name: self.name + "-" + sname, kind: "society")
-      Relation.create!(event: self.events.first, superior: self, inferior: society, kind: "political", name: "Society of")
-      Dialect.create!(language: language, entity: society, name: society.name)
+  def set_society(parenthouse: nil)
+    gender = self.properties.where(kind: "gender").first.value
+    if !parenthouse.nil?
+      phousename, peid = parenthouse.split("-")
+      phouse = self.milieu.entities.where(eid: peid).first
+    else
+      parent = self.superiors.first
+      phouse = parent.kind != "person" ? parent : parent.superiors.where(kind: "society").first.superiors.first
     end
+    society = phouse.inferiors.where(kind: "society").where("entities.name LIKE ?", "%#{gender}").first
+    Relation.create!(event: self.events.first, superior: society, inferior: self, kind: "societal", name: "member of")
+    return society
   end
 
-  def get_society
-    gender = self.properties.where(kind: "gender").first.value
-    parent = self.superiors.first
-    phouse = parent.kind!="person" ? parent : parent.superiors.where(kind: "society").first.superiors.first
-    phouse.inferiors.where(kind: "society").where("entities.name LIKE ?", "%#{gender}").first
+  def gen_societies
+    language = language?
+    Dialect.create!(language: language, entity: self, name: self.name, occurances: {letters: {}, patterns: {}}, variances: {})
+    HOUSESOCIETIES.each do |sname|
+      society = Entity.create!(events: [self.events.first], milieu: self.milieu, eid: self.eid + sname, name: self.name + "-" + sname, kind: "society")
+      Relation.create!(event: self.events.first, superior: self, inferior: society, kind: "political", name: "Society of")
+      Dialect.create!(language: language, entity: society, name: society.name, occurances: {letters: {}, patterns: {}}, variances: {})
+    end
   end
 end

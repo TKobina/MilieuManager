@@ -1,4 +1,4 @@
-<h1><%= @entity.name %><%=@entity.id %></h1>
+<h1><%= @entity.name %><sup><%=@entity.id %></sup></h1>
 
 </p>
 <%= link_to "Entity List", entities_path %></br>
@@ -7,12 +7,25 @@
 <h2>Information</h2>
 <%= @entity.text["pri"] %></p>
 <%= @entity.text["pub"] %></p>
+
+<h2>Relations</h2>
+<h3>Belongs To</h3>
+<% @superiors.zip(@superior_relations).each do |sup, rel| %>
+  <div>
+    <%= rel.name.capitalize %> <%= sup.name %></br>
+  </div>
+<% end %>
+<h3>Possesses</h3>
+<% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
+  <div>
+    <%= rel.name.capitalize %> <%= inf.name %></br>
+  </div>
+<% end %>
 <h2>Events</h2>
-<% @entity.events.each do |event| %>
+<% @events.each do |event| %>
   <div>
   <h3><%= event.ydate.to_s %>: <%= event.name %></h3>
   <%= event.text["pri"] %></p>
   <%= event.text["pub"] %></p>
   </div>
 <% end %>
-

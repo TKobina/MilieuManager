@@ -10,7 +10,7 @@ class Language < ApplicationRecord
   after_create_commit :proc_new_language
 
   MINNAMELEN = 3
-  MAXNAMELEN = 6
+  MAXNAMELEN = 7
 
   def proc_new_language
     set_alphabet
@@ -62,8 +62,7 @@ class Language < ApplicationRecord
 
   def set_patterns
     def factorial(n) = n == 0 ? 1 : (1..n).inject(:*)
-    puts "Generating patterns"
-    progressbar = ProgressBar.create(total: factorial(MAXNAMELEN) - factorial(MINNAMELEN))
+    progressbar = ProgressBar.create(title: "Generating patterns", total: factorial(MAXNAMELEN) - factorial(MINNAMELEN))
     parts = [ "b", "c", "v" ]
     if Pattern.count < 500 
       (MAXNAMELEN - MINNAMELEN).times do |i| 
@@ -82,6 +81,6 @@ class Language < ApplicationRecord
     return false if (pattern[0] == bridge) or (pattern[-1] == bridge)
     return false if /bb|ccc|bcc|ccb|cbb|cbc|bcc|bcb|vvv/.match?(pattern)
     return false if !Pattern.where(language: self, value: pattern).first.nil?
-    pattern = Pattern.create!(language: self, value: pattern)
+    Pattern.create!(language: self, value: pattern)
   end
 end

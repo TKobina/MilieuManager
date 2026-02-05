@@ -1,6 +1,6 @@
 class LanguagesController < ApplicationController
   def index
-    @languages = current_user.milieu.entities.includes(:language).where(kind: "Nation").map {|ent| ent.language }
+    @languages = current_user.entities.includes(:language).where(kind: "Nation").map {|ent| ent.language }
   end
 end
 

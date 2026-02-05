@@ -29,32 +29,6 @@ namespace :init do
       encyc = Encyclopedium.create!(milieu: milieu, rootdir: Rails.root.join("lib"), rootfolder: "obsidian")
     end
 
-    # puts "Loading and parsing events from Obsidian"
-    # Event.check_obsidian(Milieu.first)
-
-    # puts "Renaming base nation's Language"
-    # Language.where(name: "Yldr").first.update!(name: "Lëdru")
-    
-    # houses = YAML.load_file(File.join(Rails.root, paths['houses']))
-    # houses.each do |house, properties|
-    #   entity = Entity.new(milieu: milieu, kind: "house", name: house)
-    #   if !entity.save
-    #     puts "Entity failed to save:  #{entity.errors.full_messages.join(', ')}"
-    #     next
-    #   end
-      
-    #   property = Property.new(entity: entity, kind: properties['kind'], value: properties['status'])
-    #   if !property.save
-    #     puts "Property failed to save: #{property.errors.full_messages.join(', ')}"
-    #     next
-    #   end
-
-    #   entity.properties << property
-    # end
-
-    # rel = Relation.new(event: event, superior: Entity.first, inferior: Entity.last, kind: "membership", name: "of")
-    # rel.save
-
   end
   
   task namegen: :environment do
