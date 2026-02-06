@@ -5,7 +5,7 @@ class CreateDialects < ActiveRecord::Migration[8.1]
       t.references :language, null: false, foreign_key: true
       #t.references :entity, null: false, foreign_key: true
       t.string :name
-      t.json :occurances
+      t.json :occurrences
       t.json :variances
       #t.integer :n_names
       #t.integer :n_patterns

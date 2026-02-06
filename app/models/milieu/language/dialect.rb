@@ -3,34 +3,117 @@ class Dialect < ApplicationRecord
   belongs_to :language
 
   has_many :names, dependent: :destroy
+   after_create_commit :get_base_abberations
 
-  def stats?
-    stats = {core: {}, letters: {}, rletters: {}, patterns: {}, rpatterns: {}}
-    vars = Dialect.column_names.select { |name| name.start_with?('var') } 
-    vars.each {|var| stats[:core][var] = self[var]}
+  VARS = ["pattern", "vowel", "consonant", "bridge"]
 
-    ns = Dialect.column_names.select { |name| name.start_with?('n_') } 
-    ns.each {|n| stats[:core][n] = self[n]}
+  def get_base_abberations
+    self.variances = self.language.get_vars(self)
+    self.save
+  end
 
-    #  ["vowel", "consonant", "bridge"].each do |kind|
-    #   kfreqs = {}    
-    #   lfreqs = self.frequencies.where(kind: kind)
-    #   lfreqs.each do |freq|
-    #     kfreqs[freq.letter.value] = freq.n.to_i
-    #     stats[:letters][freq.letter.value] = freq.n.to_i
-    #   end
-    #   rel_freqs = calc_rel_freq(kfreqs.values)
-    #   kfreqs.keys.zip(rel_freqs) {|key, relfreq| stats[:rletters][key] = relfreq}
-    # end
+  def generate_name
+    @parent_dialect = self.entity.superiors.where(kind: ["house", "society", "nation"]).sample&.dialect
+    @parent_dialect = self.language.entity.dialect if @parent_dialect.nil?
+    pattern = self.language.patterns.find(self.generate_pattern).value
+
+    name = ""
+    pattern.each_char do |kind|
+      while true
+        case kind
+        when 'v' then char = Letter.find(generate_letter("vowel")).value
+        when 'b' then char = Letter.find(generate_letter("bridge")).value
+        when 'c' then char = Letter.find(generate_letter("consonant")).value
+        end
+        break if char != name[-1]
+        break if name.length == 1
+      end
+      name += char
+    end
+    name = name.capitalize
+    self.names << Name.proc_name_society(name, self.entity, keep: true)
+  end
+
+  def generate_pattern
+    if self.calc_abberation("pattern") == 1
+      return random_pattern if @parent_dialect.nil?
+      return @parent_dialect.generate_pattern unless @parent_dialect == self
+    end
+    patterns = build_pattern_distribution.max_by { |_, weight| rand ** (1.0 / weight) }
+    return patterns.first unless patterns.nil?
+    return random_pattern
+  end
+
+  def build_pattern_distribution
+    patterns = self.occurrences["patterns"]
+    sum = 0
+    dist = {}
+    patterns.each do |key, n|
+      sum += n
+      dist[key] = sum
+    end
+    dist
+  end
+
+  def generate_letter(kind)
+    if self.calc_abberation(kind) == 1
+      return random_letter(kind) if @parent_dialect.nil?    
+      return @parent_dialect.generate_letter(kind) unless @parent_dialect == self
+    end
+    letters = build_letter_distribution(kind).max_by { |_, weight| rand ** (1.0 / weight) }
+    return letters.first unless letters.nil?
+    return random_letter(kind)
+  end
   
-    # pfreqs = self.frequencies.where(kind: "pattern")
-    # pfreqs.each do |freq|
-    #   stats[:patterns][freq.pattern.value] = freq.n.to_i
-    # end
-    # rel_freqs = calc_rel_freq(stats[:patterns].values)
-    # stats[:patterns].keys.zip(rel_freqs) {|key, relfreq| stats[:rpatterns][key] = relfreq}
+  def build_letter_distribution(kind)
+    sum = 0
+    dist = {}
+    self.occurrences["letters"][kind].each do |key, n|
+      sum += n
+      dist[key] = sum
+    end
+    dist
+  end
 
-  stats
+  def random_letter(kind)
+    self.language.letters.where(kind: kind).sample.id
+  end
+
+  def random_pattern
+    plengths = self.language.patterns.map{|pattern| pattern.value.length}
+    min = plengths.min
+    max = plengths.max
+    length = (min + (max + 1 - min) * (rand**2.5)).floor
+    vpatterns = []
+    self.language.patterns.find_each { |pattern| vpatterns << pattern if pattern.value.length == length }
+    return vpatterns.sample.id
+  end
+
+  
+  def stats?
+    stats = {kinds: {}, letters: {}, patterns: {}, base_variations: {}}
+    VARS.each do |var| 
+      stats[:base_variations][var + "s"] = self.variances[var + "s"]
+      stats[:kinds][var] = self.occurrences[var]
+    end
+    stats[:kinds]["pattern"] = self.occurrences["patterns"].keys.count
+
+    ["vowel", "consonant", "bridge"].each do |kind|
+      stats[:letters][kind] = {}
+      values = self.occurrences["letters"][kind].values
+      dist = calc_rel_freq(values)
+      self.occurrences["letters"][kind].zip(dist).each do |ns, rs|
+        stats[:letters][kind][ns.first] = [ns.second, rs]
+      end
+    end
+
+    stats[:patterns] = {}
+    values = self.occurrences["patterns"].values
+    dist = calc_rel_freq(values)
+    self.occurrences["patterns"].zip(dist).each do |ns, rs|
+      stats[:patterns][ns.first] = [ns.second, rs]
+    end
+    stats
   end
 
   def calc_rel_freq(dist)
@@ -51,89 +134,12 @@ class Dialect < ApplicationRecord
     values
   end
 
-  def generate_name
-    @parents = self.entity.superiors
-    @parent_dialect = @parents.empty? ? nil : @parents.sample.dialect 
-    pattern = generate_pattern
-
-    name = ""
-    pattern.each_char do |kind|
-      while true
-        case kind
-        when 'v' then char = generate_letter("vowel")
-        when 'b' then char = generate_letter("bridge")
-        when 'c' then char = generate_letter("consonant")
-        end
-        break if char != name[-1]
-        break if name.length == 1
-      end
-      name += char
-    end
-    name = name.capitalize
-    
-    Name.create!(dialect: self, value: name)
-    self.proc_name(name)
-  end
-
-  def generate_letter(kind)
-    if Dialect.calc_abberation(self.n_names) == 1
-      return @parent_dialect.generate_letter(kind) unless @parent_dialect.nil?
-      return random_letter(kind)      
-    end
-    letter = build_letter_distribution(kind).max_by { |_, weight| rand ** (1.0 / weight) }
-    return letter.first unless letter.nil?
-    return random_letter(kind)
-  end
-  
-  def build_letter_distribution(kind)
-    sum = 0
-    dist = {}
-    self.frequencies.where(kind: kind).each do |freq|
-      sum += freq.n
-      dist[freq.letter.value] = sum
-    end
-    dist
-  end
-
-  def generate_pattern
-    if Dialect.calc_abberation(self.frequencies.where(kind: "pattern").count) == 1
-      return @parent_dialect.generate_pattern unless @parent_dialect.nil?
-      return random_pattern      
-    end
-    pattern = build_pattern_distribution.max_by { |_, weight| rand ** (1.0 / weight) }
-    return pattern.first unless pattern.nil?
-    return random_pattern
-  end
-
-  def build_pattern_distribution
-    patterns = self.frequencies.where(kind: "pattern")
-    sum = 0
-    dist = {}
-    patterns.each do |pattern|
-      sum += pattern.n
-      dist[pattern.pattern.value] = sum
-    end
-    dist
-  end
-
-  def random_letter(kind)
-    self.language.letters.where(kind: kind).sample.value
-  end
-
-  def random_pattern
-    plengths = self.language.patterns.map{|pattern| pattern.value.length}
-    min = plengths.min
-    max = plengths.max
-    length = (min + (max + 1 - min) * (rand**2.5)).floor
-    vpatterns = []
-    self.language.patterns.find_each { |pattern| vpatterns << pattern if pattern.value.length == length }
-    return vpatterns.sample.value
-  end
-
-  def self.calc_abberation(n) 
+  def calc_abberation(kind) 
+    n = self.occurrences["names"]
+    var = self.variances[kind + "s"]
     n ||= 0
     return 1 if n.zero?
-    prob = -1.132086 + 85.76358*Math::E**(-0.07854533*n)
+    prob = -1.132086 + 85.76358*Math::E**(-0.07854533*n) + var
     (rand*100 <= prob) ? 1 : 0
   end
 end

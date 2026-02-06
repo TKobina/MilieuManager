@@ -15,6 +15,7 @@ class Language < ApplicationRecord
   def proc_new_language
     set_alphabet
     set_patterns
+    get_base_abberations
   end
 
   def get_type(char)
@@ -52,25 +53,21 @@ class Language < ApplicationRecord
     alphabet = YAML.load_file(File.join(Rails.root, paths['alphabet']))
     letters_present = self.letters.map{|letter| letter.value}
     alphabet.each do |kind, letters|
-      letters.each do |key, value|
-        if !letters_present.include?(key)
-          Letter.create!(language: self, kind: kind, value: key, sortkey: value)
-        end
+      letters.each do |key, value|        
+          Letter.create!(language: self, kind: kind, value: key, sortkey: value) if !letters_present.include?(key)
       end
     end
   end
 
   def set_patterns
     def factorial(n) = n == 0 ? 1 : (1..n).inject(:*)
-    progressbar = ProgressBar.create(title: "Generating patterns", total: factorial(MAXNAMELEN) - factorial(MINNAMELEN))
+
+    progressbar = ProgressBar.create(title: "Generating patterns", total: 0.5*factorial(MAXNAMELEN) - factorial(MINNAMELEN))
     parts = [ "b", "c", "v" ]
     if Pattern.count < 500 
       (MAXNAMELEN - MINNAMELEN).times do |i| 
         perms = parts.repeated_permutation(i + MINNAMELEN).to_a
-        perms.each do |perm|
-          check_pattern(perm.join)
-          progressbar.increment
-        end
+        perms.each { |perm| check_pattern(perm.join); progressbar.increment }
       end
     end
     puts "Pattern generation complete"
@@ -80,7 +77,17 @@ class Language < ApplicationRecord
     bridge = "b"
     return false if (pattern[0] == bridge) or (pattern[-1] == bridge)
     return false if /bb|ccc|bcc|ccb|cbb|cbc|bcc|bcb|vvv/.match?(pattern)
-    return false if !Pattern.where(language: self, value: pattern).first.nil?
+    return false if !self.patterns.where(value: pattern).first.nil?
     Pattern.create!(language: self, value: pattern)
+  end
+
+  def get_base_abberations
+    paths = Rails.application.credentials.paths
+
+    Rails.cache.write(self.id.to_s + "abberations", YAML.load_file(File.join(Rails.root, paths['abberations'])), expires_in: 2.hours)
+  end
+
+  def get_vars(society)
+    Rails.cache.read(self.id.to_s + "abberations")[society.name]
   end
 end

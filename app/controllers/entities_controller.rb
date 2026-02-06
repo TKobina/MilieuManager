@@ -1,6 +1,6 @@
 class EntitiesController < ApplicationController
   def index
-    @entities = current_user.entities
+    @entities = current_user.entities.where.not(kind: "world").sort
   end
 
   def show

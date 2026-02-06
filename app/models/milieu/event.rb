@@ -22,7 +22,7 @@ class Event < ApplicationRecord
       when "founding" then          Entity.new(events: [self]).founding(self.code[index])
       when "birth" then             Entity.new(events: [self]).birth(self.code[index])
       when "death" then return
-      when "adoption" then return
+      when "adoption" then          Entity.event(kind, self, self.code[index])
       when "raising" then return
       when "bonding" then return
       when "hiring" then return

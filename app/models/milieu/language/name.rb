@@ -2,9 +2,12 @@ class Name < ApplicationRecord
   belongs_to :dialect
   after_create_commit :parse_name
 
-  def self.proc_name_society(entity, society)
-    Name.create!(dialect: society.dialect, value: entity.name).destroy! unless entity.name == "Unknown"
-    society.superiors.where(kind: ["house", "society", "nation"]).each {|sup| proc_name_society(entity, sup)}
+  def self.proc_name_society(name, society, keep: false)
+    return if name == "Unknown"
+    nn = Name.create!(dialect: society.dialect, value: name)
+    nn.destroy! unless keep
+    society.superiors.where(kind: ["house", "society", "nation"]).each {|sup| proc_name_society(name, sup)}
+    nn
   end
 
   private
@@ -19,11 +22,12 @@ class Name < ApplicationRecord
       kind = letter.kind
       word_pattern += kind[0]
 
-      self.dialect[:occurances][kind] = self.dialect[:occurances][kind].to_i + 1
-      self.dialect[:occurances]["letters"][letter.id] = self.dialect[:occurances]["letters"][letter.id].to_i + 1
+      self.dialect.occurrences[kind] = self.dialect.occurrences[kind].to_i + 1
+      self.dialect.occurrences["letters"][kind][letter.id] = self.dialect.occurrences["letters"][kind][letter.id].to_i + 1
     end
     pattern = self.dialect.language.patterns.where(value: word_pattern).first
-    self.dialect[:occurances]["patterns"][pattern.id] = self.dialect[:occurances]["patterns"][pattern.id].to_i + 1
+    self.dialect.occurrences["names"] = self.dialect.occurrences["names"].to_i + 1
+    self.dialect.occurrences["patterns"][pattern.id] = self.dialect.occurrences["patterns"][pattern.id].to_i + 1
     self.dialect.save
   end
 end

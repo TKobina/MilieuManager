@@ -1,6 +1,13 @@
-<h1><%= @event.name %></h1>
+<h1><%= @event.ydate.to_s %>: <%= @event.name %></h1>
 <%= link_to "Events List", events_path %></br>
 <%= link_to "Back", "javascript:history.back()" %></br>
 </p>
+<ul>
+<div>
+<% @event.code.each do |code| %>
+    <li><%= code.split("|").join(" | ") %></li>
+<% end %>
+</div>
+</ul>
 <%= @event.text["pri"] %></p>
 <%= @event.text["pub"] %>

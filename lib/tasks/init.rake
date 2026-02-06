@@ -29,11 +29,25 @@ namespace :init do
       encyc = Encyclopedium.create!(milieu: milieu, rootdir: Rails.root.join("lib"), rootfolder: "obsidian")
     end
 
+    Dialect.first.generate_name
+
   end
   
   task namegen: :environment do
-    progressbar = ProgressBar.create(total: 5000)
-    5000.times { Dialect.all.sample.generate_name ; progressbar.increment }
+    progressbar = ProgressBar.create(total: 5)
+    5.times { Dialect.all.each { |dia| dia.generate_name } ; progressbar.increment }
+  end
+
+  task proc_old_events: :environment do
+    events = YAML.load_file("#{Rails.root}/lib/backup_events.yml")
+    ydate = Ydate.to_s(event["edate"])
+    kind = event["etype"]
+    dets = event["details"]
+
+    File.open(Rails.root.join('lib/obsidian/World/Enyclopedia/Events', ydate + ".md"), 'w') do |file|
+      file.puts "---\nkind: date\n---\n# Birth of Ŧëc Amdëlu\n```\nproc | event | public\nbirth | Amdëlu | wr | unknown | Ŧëc\n```"
+      file.puts "\n#{kind}: #{dets}"
+    end
   end
 end
 

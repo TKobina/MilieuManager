@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "entity_id", null: false
     t.integer "language_id", null: false
     t.string "name"
-    t.json "occurances"
+    t.json "occurrences"
     t.datetime "updated_at", null: false
     t.json "variances"
     t.index ["entity_id"], name: "index_dialects_on_entity_id"
