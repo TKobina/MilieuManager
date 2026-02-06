@@ -31,7 +31,8 @@
     * formation | name-eid | "World" | milieu
     * founding | name-eid | kind | status | parentname-eid
     * birth | name-eid | gender | parent-parentname-eid
-    * raising | name-eid | entity-eid | title | newname-eid
+    * adoption | entity-eid (house, society) | name-eid | newname-eid
+    * raising | name-eid | entity-eid (house) | title | newname-eid
 
 ### NOTES
 * public/private

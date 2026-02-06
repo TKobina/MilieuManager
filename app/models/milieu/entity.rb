@@ -20,8 +20,18 @@ class Entity < ApplicationRecord
   HOUSESOCIETIES = ["w","n","m"]
 
   def <=>(other) = self.language?.sort(self.name, other.name)
-  def language? = self.language ? self.language : self.superiors.first.language?
-  def dialect? = self.dialect ? self.dialect : self.superiors.first.dialect?  
+  def language? = dialect?.language
+  def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
+
+  def self.event(kind, event, instruction)
+    instrs = instruction.split("|")
+    case kind
+    when "adoption"
+      # adoption | entity-eid (house, society) | name-eid | newname-eid
+      name, eid = instrs[2].split("-")
+      get_entity(eid).adoption(event, instrs)
+    end
+  end
 
   def formation(instruction)
     # formation | name-eid | kind | milieu
@@ -85,12 +95,25 @@ class Entity < ApplicationRecord
     set_society(parenthouse: instrs[4])
     Rails.cache.write("personids", Rails.cache.read("personids") << self.id) unless self.name == "unknown"
   end
+    
+  def adoption(event, instrs)
+    # adoption | entity-eid (house, society) | name-eid | newname-eid
+    self.name = instrs[3].split("-").first
+    self.events << event
+    self.save
+    self.properties << Property.new(event: event, kind: "adoption", value: "by " + instrs[1].split("-").first)
+    self.set_society(parenthouse: instrs[1])
+  end
 
   def proc_name
-    Name::proc_name_society(self, self.superiors.where(kind: "society").first)
+    Name::proc_name_society(self.name, self.superiors.where(kind: "society").first)
   end
 
   private
+
+  def self.get_entity(eid)
+    Entity.where(eid: eid).first
+  end
   
   def not_exists?
     self.milieu.entities.where(eid: self.eid).empty?
@@ -121,17 +144,23 @@ class Entity < ApplicationRecord
       phouse = parent.kind != "person" ? parent : parent.superiors.where(kind: "society").first.superiors.first
     end
     society = phouse.inferiors.where(kind: "society").where("entities.name LIKE ?", "%#{gender}").first
-    Relation.create!(event: self.events.first, superior: society, inferior: self, kind: "societal", name: "member of")
+    society.events << self.events.last
+    Relation.create!(event: self.events.last, superior: society, inferior: self, kind: "society", name: society.name)
     return society
   end
 
   def gen_societies
     language = language?
-    Dialect.create!(language: language, entity: self, name: self.name, occurances: {letters: {}, patterns: {}}, variances: {})
+    Dialect.create!(language: language, entity: self, name: self.name, occurrences: {names: 0, letters: {vowel: {}, consonant: {}, bridge: {}}, patterns: {}}, variances: {})
     HOUSESOCIETIES.each do |sname|
       society = Entity.create!(events: [self.events.first], milieu: self.milieu, eid: self.eid + sname, name: self.name + "-" + sname, kind: "society")
       Relation.create!(event: self.events.first, superior: self, inferior: society, kind: "political", name: "Society of")
-      Dialect.create!(language: language, entity: society, name: society.name, occurances: {letters: {}, patterns: {}}, variances: {})
+      Dialect.create!(language: language, entity: society, name: society.name, occurrences: {names: 0, letters: {vowel: {}, consonant: {}, bridge: {}}, patterns: {}}, variances: {})
+
+      parentsocieties = []
+      self.superiors.where(kind: ["house", "nation"]).each{|sup| parentsocieties << sup.inferiors.where(kind: "society")}
+      psociety = parentsocieties.flatten.find{|psoc|  psoc.name[-1] == sname[-1]}
+      Relation.create!(event: self.events.first, superior: psociety, inferior: society, kind: "societal", name: "Chapter of") unless psociety.nil?
     end
   end
 end

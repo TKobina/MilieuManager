@@ -1,123 +1,4 @@
 ---
-- id: 1
-  created_at: '2026-01-04T12:24:20.685Z'
-  details: Kunka-33-w by unknown-0 of Des'Mäŧën
-  edate: 138281
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.685Z'
-  user_id: 1
-- id: 2
-  created_at: '2026-01-04T12:24:20.693Z'
-  details: Amdëlu-31-w by unknown-0  of Ŧëc
-  edate: 138284
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.693Z'
-  user_id: 1
-- id: 3
-  created_at: '2026-01-04T12:24:20.700Z'
-  details: Šïäcieš-34-w by unknown-0  of Avënŕe
-  edate: 141732
-  etype: birth
-  updated_at: '2026-01-15T00:54:03.983Z'
-  user_id: 1
-- id: 4
-  created_at: '2026-01-04T12:24:20.706Z'
-  details: Maŕaj-20-w by unknown-0  of Des'Mŭŕ
-  edate: 143774
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.706Z'
-  user_id: 1
-- id: 5
-  created_at: '2026-01-04T12:24:20.713Z'
-  details: Najila-45-n by unknown-0  of Des'Mŭŕ
-  edate: 144035
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.713Z'
-  user_id: 1
-- id: 6
-  created_at: '2026-01-04T12:24:20.750Z'
-  details: Emdëla-30-w by Amdëlu-31 of Ŧëc
-  edate: 146040
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.750Z'
-  user_id: 1
-- id: 7
-  created_at: '2026-01-04T12:24:20.758Z'
-  details: Madöŧ-29-m by Amdëlu-31 of Ŧëc
-  edate: 147466
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.758Z'
-  user_id: 1
-- id: 8
-  created_at: '2026-01-04T12:24:20.765Z'
-  details: Des'Mäŧën exiled Kunka-33
-  edate: 148757
-  etype: exile
-  updated_at: '2026-01-04T12:24:20.765Z'
-  user_id: 1
-- id: 9
-  created_at: '2026-01-04T12:24:20.772Z'
-  details: Ïüŕïe-35-w by unknown-0  of Avënŕe
-  edate: 149246
-  etype: birth
-  updated_at: '2026-01-15T00:54:03.992Z'
-  user_id: 1
-- id: 10
-  created_at: '2026-01-04T12:24:20.778Z'
-  details: Goŕë-21-m by Maŕaj-20 of Des'Mŭŕ
-  edate: 152055
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.778Z'
-  user_id: 1
-- id: 11
-  created_at: '2026-01-04T12:24:20.787Z'
-  details: Andland-42-m by unknown-0  of Trö'Mŭŕ
-  edate: 152081
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.787Z'
-  user_id: 1
-- id: 12
-  created_at: '2026-01-04T12:24:20.793Z'
-  details: Jaeme-32-w by unknown-0  of unhoused
-  edate: 152537
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.793Z'
-  user_id: 1
-- id: 13
-  created_at: '2026-01-04T12:24:20.800Z'
-  details: Aenaţaë-36-w by unknown-0  of Avënŕe
-  edate: 154119
-  etype: birth
-  updated_at: '2026-01-15T00:54:03.997Z'
-  user_id: 1
-- id: 14
-  created_at: '2026-01-04T12:24:20.828Z'
-  details: Amlera-27-w by Emdëla-30 of Ŧëc
-  edate: 155168
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.828Z'
-  user_id: 1
-- id: 15
-  created_at: '2026-01-04T12:24:20.836Z'
-  details: Ömec-19-w by unknown-0  of Ašënŕe
-  edate: 156095
-  etype: birth
-  updated_at: '2026-01-15T00:52:05.655Z'
-  user_id: 1
-- id: 16
-  created_at: '2026-01-04T12:24:20.842Z'
-  details: Naras-46-w by Najila-45 of Des'Mŭŕ
-  edate: 156906
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.842Z'
-  user_id: 1
-- id: 17
-  created_at: '2026-01-04T12:24:20.849Z'
-  details: Otapï-49-m by Najila-45 of Des'Mŭŕ
-  edate: 157169
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.849Z'
-  user_id: 1
 - id: 18
   created_at: '2026-01-04T12:24:20.856Z'
   details: Ëtïŕa-26-w by Emdëla-30 of Ŧëc
@@ -188,13 +69,6 @@
   etype: birth
   updated_at: '2026-01-15T00:54:04.006Z'
   user_id: 1
-- id: 28
-  created_at: '2026-01-04T12:24:20.944Z'
-  details: Ësoŧ-07-w by Jadölu-28 of unhoused
-  edate: 164755
-  etype: birth
-  updated_at: '2026-01-04T12:24:20.944Z'
-  user_id: 1
 - id: 29
   created_at: '2026-01-04T12:24:20.950Z'
   details: Vürsis-38-n by unknown-0  of Des'Ëdär
@@ -250,13 +124,6 @@
   edate: 168637
   etype: birth
   updated_at: '2026-01-04T12:24:21.004Z'
-  user_id: 1
-- id: 37
-  created_at: '2026-01-04T12:24:21.012Z'
-  details: Ašrë-02-w by unknown-0  of Nä'drë'e
-  edate: 168939
-  etype: birth
-  updated_at: '2026-01-04T12:24:21.012Z'
   user_id: 1
 - id: 38
   created_at: '2026-01-04T12:24:21.018Z'
@@ -327,20 +194,6 @@
   edate: 176708
   etype: birth
   updated_at: '2026-01-15T00:54:04.049Z'
-  user_id: 1
-- id: 48
-  created_at: '2026-01-04T12:24:21.089Z'
-  details: Dämöŧ-05-m by Ësoŧ-07 of Ŧëc
-  edate: 176957
-  etype: birth
-  updated_at: '2026-01-04T12:24:21.089Z'
-  user_id: 1
-- id: 49
-  created_at: '2026-01-04T12:24:21.095Z'
-  details: Dasaera-06-w by Ašrë-02 of Nä'drë'e
-  edate: 176958
-  etype: birth
-  updated_at: '2026-01-04T12:24:21.095Z'
   user_id: 1
 - id: 50
   created_at: '2026-01-04T12:24:21.103Z'
