@@ -20,19 +20,18 @@ class Entity < ApplicationRecord
   HOUSESOCIETIES = ["w","n","m"]
 
   def <=>(other) = self.language?.sort(self.name, other.name)
-  def language? = dialect?.language
+  def language? = self.language.present? ? self.language : self.superiors.first.language?
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
-  def self.event(kind, event, instruction)
+  def self.fetch(kind, event, instruction)
     instrs = instruction.split("|")
     case kind
-    when "adoption"
-      # adoption | entity-eid (house, society) | name-eid | newname-eid
-      name, eid = instrs[2].split("-")
-      get_entity(eid).adoption(event, instrs)
+    when "adoption" then return get_entity(instrs[2].split("-").second)
+    when "death" then return get_entity(instrs[1].split("-").second)
     end
   end
 
+  ## ----------------------------------CORE ENTITY EVENTS---------------------------------------
   def formation(instruction)
     # formation | name-eid | kind | milieu
     instrs = instruction.split("|")
@@ -92,28 +91,42 @@ class Entity < ApplicationRecord
     self.properties << Property.new(kind: "gender", value: instrs[2])
     self.properties.each{|x| x.event = self.events.first; x.save! }
 
+    return self if self.name == "unknown"
     set_society(parenthouse: instrs[4])
-    Rails.cache.write("personids", Rails.cache.read("personids") << self.id) unless self.name == "unknown"
+    Rails.cache.write("personids", Rails.cache.read("personids") << self.id)
   end
-    
-  def adoption(event, instrs)
+  
+  def death (event, instrs)
+    self.events << event
+    self.properties << Property.new(kind: "death date", value: self.events.last.ydate)
+    self.save
+  end
+  
+  def adoption(event, instruction)
     # adoption | entity-eid (house, society) | name-eid | newname-eid
-    self.name = instrs[3].split("-").first
+    instrs = instruction.split("|")
+    name = instrs[3]&.split("-")&.first
+    self.name = name if name.present?
     self.events << event
     self.save
-    self.properties << Property.new(event: event, kind: "adoption", value: "by " + instrs[1].split("-").first)
     self.set_society(parenthouse: instrs[1])
+    self.properties << Property.new(event: event, kind: "adoption", value: "by " + instrs[1].split("-").first)
   end
+
+
+
+  ## ------------------------------------SUPPORTING METHODS--------------------------------------------
 
   def proc_name
     Name::proc_name_society(self.name, self.superiors.where(kind: "society").first)
   end
-
-  private
-
+  
   def self.get_entity(eid)
     Entity.where(eid: eid).first
   end
+
+  private
+
   
   def not_exists?
     self.milieu.entities.where(eid: self.eid).empty?
@@ -129,6 +142,7 @@ class Entity < ApplicationRecord
     pname, peid = piden.split("-")
     parent = self.events.first.milieu.entities.where(eid: peid).first
     unless parent.nil?
+      parent.events << self.events.last
       Relation.create!(event: self.events.first, superior: parent, inferior: self, kind: rkind, name: rname)
       return parent
     end
@@ -137,7 +151,7 @@ class Entity < ApplicationRecord
   def set_society(parenthouse: nil)
     gender = self.properties.where(kind: "gender").first.value
     if !parenthouse.nil?
-      phousename, peid = parenthouse.split("-")
+      peid = parenthouse.split("-").second
       phouse = self.milieu.entities.where(eid: peid).first
     else
       parent = self.superiors.first
@@ -151,6 +165,7 @@ class Entity < ApplicationRecord
 
   def gen_societies
     language = language?
+    p "generating dialect for #{self.name}"
     Dialect.create!(language: language, entity: self, name: self.name, occurrences: {names: 0, letters: {vowel: {}, consonant: {}, bridge: {}}, patterns: {}}, variances: {})
     HOUSESOCIETIES.each do |sname|
       society = Entity.create!(events: [self.events.first], milieu: self.milieu, eid: self.eid + sname, name: self.name + "-" + sname, kind: "society")

@@ -26,6 +26,7 @@ class Name < ApplicationRecord
       self.dialect.occurrences["letters"][kind][letter.id] = self.dialect.occurrences["letters"][kind][letter.id].to_i + 1
     end
     pattern = self.dialect.language.patterns.where(value: word_pattern).first
+    pattern = Pattern.create!(language: self.dialect.language, value: word_pattern) if pattern.nil?
     self.dialect.occurrences["names"] = self.dialect.occurrences["names"].to_i + 1
     self.dialect.occurrences["patterns"][pattern.id] = self.dialect.occurrences["patterns"][pattern.id].to_i + 1
     self.dialect.save

@@ -3,10 +3,10 @@ require 'yaml'
 namespace :init do
   desc "Create new base user, milieu, language"
   task base: :environment do
-    Ydate.destroy_all
-    Entity.destroy_all
-    Event.destroy_all
-    Language.destroy_all
+    #Ydate.destroy_all
+    #Entity.destroy_all
+    #Event.destroy_all
+    #Language.destroy_all
     Milieu.destroy_all
 
     puts "Initializing base users & milieus"
@@ -39,14 +39,15 @@ namespace :init do
   end
 
   task proc_old_events: :environment do
-    events = YAML.load_file("#{Rails.root}/lib/backup_events.yml")
-    ydate = Ydate.to_s(event["edate"])
-    kind = event["etype"]
-    dets = event["details"]
+    events = YAML.load_file("#{Rails.root}/lib/backup_events.yml").each do |event|
+      ydate = Ydate.to_s(event["edate"])
+      kind = event["etype"]
+      dets = event["details"]
 
-    File.open(Rails.root.join('lib/obsidian/World/Enyclopedia/Events', ydate + ".md"), 'w') do |file|
-      file.puts "---\nkind: date\n---\n# Birth of Ŧëc Amdëlu\n```\nproc | event | public\nbirth | Amdëlu | wr | unknown | Ŧëc\n```"
-      file.puts "\n#{kind}: #{dets}"
+      File.open("#{Rails.root}/lib/obsidian/World/Encyclopedia/Events/" + ydate + ".md", 'a') do |file|
+        file.puts "---\nkind: date\n---\n# Birth of Ŧëc Amdëlu\n```\nproc | event | public\nbirth | Amdëlu | wr | unknown | Ŧëc\n```"
+        file.puts "\n#{kind}: #{dets}"
+      end
     end
   end
 end
