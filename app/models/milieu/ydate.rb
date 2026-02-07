@@ -19,7 +19,7 @@ class Ydate < ApplicationRecord
    [year, season, month, day].map{ |val| (val += 1).to_s }.join(".")
   end
 
-  def self.to_s(intdate)
+  def self.to_str(intdate)
     return "" if intdate.nil?
     year, r = intdate.divmod(DAYS_YEAR)
     season, r = r.divmod(DAYS_SEASON)

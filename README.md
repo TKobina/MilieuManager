@@ -2,16 +2,15 @@
 ## QUESTIONS
 
 ## PRIORITIEs
+* FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
 * CHECK FOR DUPLICATE EVENTS
-* EVENT IMPORT FORMATTING AND PROCCING OF ALL EVENT TYPES, ENTITIES
+* PROCCING OF ALL EVENT TYPES, ENTITIES
 * better names for entity relationships than political/etc.
 * Name generation abberations: 
   * abberations for societies
   * hiercharcy can include multiple parents for houses/societies
-* On name delection, adjust stats(?)
 * CC, CCC: groups of consonants: char(?) in pattern for naming
   * write out permissible groups of consonants
-* ID's for files??
 * IF EVENTS CHANGE, REPROC THINGS FROM EVENTS
 * Relations: remove excess fields
 
@@ -31,8 +30,14 @@
     * formation | name-eid | "World" | milieu
     * founding | name-eid | kind | status | parentname-eid
     * birth | name-eid | gender | parent-parentname-eid
-    * adoption | entity-eid (house, society) | name-eid | newname-eid
-    * raising | name-eid | entity-eid (house) | title | newname-eid
+    * adoption | entity-eid | name-eid | newname-eid
+    * exile | entity-eid | name-eid
+    * raising | entity-eid| name-eid | title | newname-eid
+    * claiming | name-eid | claimed-eid | kind
+    * disclaiming | name-eid | disclaimed-eid | kind
+    * hiring | entity-eid | name-eid | title
+    * firing | entity-eid | name-eid
+    * death | name-eid
 
 ### NOTES
 * public/private

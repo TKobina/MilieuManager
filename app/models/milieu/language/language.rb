@@ -65,7 +65,7 @@ class Language < ApplicationRecord
     progressbar = ProgressBar.create(title: "Generating patterns", total: 0.5*factorial(MAXNAMELEN) - factorial(MINNAMELEN))
     parts = [ "b", "c", "v" ]
     if Pattern.count < 500 
-      (MAXNAMELEN - MINNAMELEN).times do |i| 
+      (1 + MAXNAMELEN - MINNAMELEN).times do |i| 
         perms = parts.repeated_permutation(i + MINNAMELEN).to_a
         perms.each { |perm| check_pattern(perm.join); progressbar.increment }
       end

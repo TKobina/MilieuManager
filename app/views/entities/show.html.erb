@@ -18,7 +18,7 @@
 <h3>Possesses</h3>
 <% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
-    <%= rel.name.capitalize %> <%= link_to inf.name, entity_path(inf.id) %></br>
+    <%= link_to inf.name, entity_path(inf.id) %></br>
   </div>
 <% end %>
 <h2>Events</h2>

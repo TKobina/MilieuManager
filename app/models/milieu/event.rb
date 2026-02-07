@@ -21,15 +21,14 @@ class Event < ApplicationRecord
       when "formation" then         Entity.new(events: [self]).formation(self.code[index])
       when "founding" then          Entity.new(events: [self]).founding(self.code[index])
       when "birth" then             Entity.new(events: [self]).birth(self.code[index])
-      when "death" then return
-      when "adoption" then          Entity.event(kind, self, self.code[index])
+      when "death" then             Entity.fetch(kind, self, self.code[index]).death(self, self.code[index])
+      when "adoption" then          Entity.fetch(kind, self, self.code[index]).adoption(self, self.code[index])
+      when "exiling" then return
       when "raising" then return
-      when "bonding" then return
+      when "claiming" then return
+      when "disclaiming" then return
       when "hiring" then return
       when "firing" then return
-      when "consorting" then return
-      when "marriage" then return
-      when "divorce" then return
       else return "Special!!"
       end
     end
