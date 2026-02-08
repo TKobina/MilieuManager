@@ -1,9 +1,15 @@
-<%= link_to "Lexemes", lexemes_path %></br>
+<%= link_to "Pages", pages_path %></br>
+<%= link_to "Back", "javascript:history.back()" %></br>
+<h1>Languages by <%= current_user.email %></h1>
 
 <div>
     <ul>
     <% @languages.each do |lang| %>
-        <li> <%= link_to lang.name, controller: "dialects", action: "index", language_id: lang.id %> </li>
+        <li> <%= lang.name %></li>
+        <ul>
+            <li> <%= link_to "statistics", controller: "dialects", action: "index", language_id: lang.id %> </li>
+            <li> <%= link_to "lexemes", controller: "lexemes", action: "index", language_id: lang.id %> </li>
+        </ul>
     <% end %>
     </ul>
 </div>

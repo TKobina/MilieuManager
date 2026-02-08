@@ -11,9 +11,11 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :letters, :value
 
     add_index :lexemes, :word
+    add_index :lexemes, :eid
  
     add_index :entities, :kind
     add_index :entities, :name
+    add_index :entities, :eid
     add_index :entities, [:kind, :name]
 
     add_index :events, :kind

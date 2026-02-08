@@ -1,6 +1,10 @@
 class LanguagesController < ApplicationController
   def index
-    @languages = current_user.entities.includes(:language).where(kind: "Nation").map {|ent| ent.language }
+    @languages = current_user.languages
+  end
+
+  def show
+    @language = current_user.languages.find(params[:id])
   end
 end
 

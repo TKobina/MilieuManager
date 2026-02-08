@@ -1,332 +1,4 @@
 ---
-- id: 1
-  created_at: '2026-01-02T17:54:11.186Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.186Z'
-  user_id: 1
-  word: b
-- id: 2
-  created_at: '2026-01-02T17:54:11.193Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.193Z'
-  user_id: 1
-  word: c
-- id: 3
-  created_at: '2026-01-02T17:54:11.200Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.200Z'
-  user_id: 1
-  word: d
-- id: 4
-  created_at: '2026-01-02T17:54:11.229Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.229Z'
-  user_id: 1
-  word: ḍ
-- id: 5
-  created_at: '2026-01-02T17:54:11.236Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.236Z'
-  user_id: 1
-  word: f
-- id: 6
-  created_at: '2026-01-02T17:54:11.243Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.243Z'
-  user_id: 1
-  word: g
-- id: 7
-  created_at: '2026-01-02T17:54:11.251Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.251Z'
-  user_id: 1
-  word: j
-- id: 8
-  created_at: '2026-01-02T17:54:11.259Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.259Z'
-  user_id: 1
-  word: k
-- id: 9
-  created_at: '2026-01-02T17:54:11.266Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.266Z'
-  user_id: 1
-  word: m
-- id: 10
-  created_at: '2026-01-02T17:54:11.275Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.275Z'
-  user_id: 1
-  word: "n"
-- id: 11
-  created_at: '2026-01-02T17:54:11.282Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.282Z'
-  user_id: 1
-  word: p
-- id: 12
-  created_at: '2026-01-02T17:54:11.289Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.289Z'
-  user_id: 1
-  word: s
-- id: 13
-  created_at: '2026-01-02T17:54:11.325Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.325Z'
-  user_id: 1
-  word: š
-- id: 14
-  created_at: '2026-01-02T17:54:11.332Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.332Z'
-  user_id: 1
-  word: t
-- id: 15
-  created_at: '2026-01-02T17:54:11.339Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.339Z'
-  user_id: 1
-  word: ŧ
-- id: 16
-  created_at: '2026-01-02T17:54:11.345Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.345Z'
-  user_id: 1
-  word: ţ
-- id: 17
-  created_at: '2026-01-02T17:54:11.351Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.351Z'
-  user_id: 1
-  word: v
-- id: 18
-  created_at: '2026-01-02T17:54:11.359Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.359Z'
-  user_id: 1
-  word: z
-- id: 19
-  created_at: '2026-01-02T17:54:11.365Z'
-  description:
-  meaning:
-  part: consonant
-  updated_at: '2026-01-02T17:54:11.365Z'
-  user_id: 1
-  word: ž
-- id: 20
-  created_at: '2026-01-02T17:54:11.371Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.371Z'
-  user_id: 1
-  word: "'"
-- id: 21
-  created_at: '2026-01-02T17:54:11.395Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.395Z'
-  user_id: 1
-  word: "y"
-- id: 22
-  created_at: '2026-01-02T17:54:11.402Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.402Z'
-  user_id: 1
-  word: yy
-- id: 23
-  created_at: '2026-01-02T17:54:11.408Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-12T19:08:07.423Z'
-  user_id: 1
-  word: r
-- id: 24
-  created_at: '2026-01-02T17:54:11.417Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.417Z'
-  user_id: 1
-  word: ŕ
-- id: 25
-  created_at: '2026-01-02T17:54:11.423Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.423Z'
-  user_id: 1
-  word: hr
-- id: 26
-  created_at: '2026-01-02T17:54:11.429Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.429Z'
-  user_id: 1
-  word: l
-- id: 27
-  created_at: '2026-01-02T17:54:11.436Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.436Z'
-  user_id: 1
-  word: ĺ
-- id: 28
-  created_at: '2026-01-02T17:54:11.443Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.443Z'
-  user_id: 1
-  word: hl
-- id: 29
-  created_at: '2026-01-02T17:54:11.457Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.457Z'
-  user_id: 1
-  word: w
-- id: 30
-  created_at: '2026-01-02T17:54:11.464Z'
-  description:
-  meaning:
-  part: bridge
-  updated_at: '2026-01-02T17:54:11.464Z'
-  user_id: 1
-  word: hw
-- id: 31
-  created_at: '2026-01-02T17:54:11.470Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.470Z'
-  user_id: 1
-  word: a
-- id: 32
-  created_at: '2026-01-02T17:54:11.477Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.477Z'
-  user_id: 1
-  word: ä
-- id: 33
-  created_at: '2026-01-02T17:54:11.484Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.484Z'
-  user_id: 1
-  word: ă
-- id: 34
-  created_at: '2026-01-02T17:54:11.490Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.490Z'
-  user_id: 1
-  word: e
-- id: 35
-  created_at: '2026-01-02T17:54:11.497Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.497Z'
-  user_id: 1
-  word: ë
-- id: 36
-  created_at: '2026-01-02T17:54:11.504Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.504Z'
-  user_id: 1
-  word: i
-- id: 37
-  created_at: '2026-01-02T17:54:11.510Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.510Z'
-  user_id: 1
-  word: ï
-- id: 38
-  created_at: '2026-01-02T17:54:11.518Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.518Z'
-  user_id: 1
-  word: o
-- id: 39
-  created_at: '2026-01-02T17:54:11.525Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.525Z'
-  user_id: 1
-  word: ö
-- id: 40
-  created_at: '2026-01-02T17:54:11.532Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.532Z'
-  user_id: 1
-  word: u
-- id: 41
-  created_at: '2026-01-02T17:54:11.538Z'
-  description:
-  meaning:
-  part: vowel
-  updated_at: '2026-01-02T17:54:11.538Z'
-  user_id: 1
-  word: ü
 - id: 42
   created_at: '2026-01-02T17:54:11.544Z'
   description:
@@ -502,7 +174,7 @@
   part: morpheme
   updated_at: '2026-01-02T17:54:11.686Z'
   user_id: 1
-  word: yy
+  word: ŷ
 - id: 64
   created_at: '2026-01-02T17:54:11.693Z'
   description:
@@ -1566,7 +1238,7 @@
   part: affix, noun
   updated_at: '2026-01-03T01:50:51.744Z'
   user_id: 1
-  word: yyï
+  word: ŷï
 - id: 198
   created_at: '2026-01-03T01:50:51.784Z'
   description: stream/flow of nurture
@@ -1638,7 +1310,7 @@
   part: noun
   updated_at: '2026-01-03T01:50:52.051Z'
   user_id: 1
-  word: nmayyï
+  word: nmaŷï
 - id: 207
   created_at: '2026-01-03T01:50:52.081Z'
   description: ''
@@ -1678,7 +1350,7 @@
   part: noun
   updated_at: '2026-01-03T01:50:52.182Z'
   user_id: 1
-  word: nhlabyyïš
+  word: nhlabŷïš
 - id: 212
   created_at: '2026-01-03T01:50:52.211Z'
   description: ''
@@ -1710,7 +1382,7 @@
   part: noun
   updated_at: '2026-01-03T01:50:52.286Z'
   user_id: 1
-  word: nhlyyït
+  word: nhlŷït
 - id: 216
   created_at: '2026-01-03T01:50:52.308Z'
   description: ''
@@ -1742,7 +1414,7 @@
   part: noun
   updated_at: '2026-01-03T01:50:52.366Z'
   user_id: 1
-  word: bšyyïd
+  word: bšŷïd
 - id: 220
   created_at: '2026-01-03T01:50:52.384Z'
   description: ''
@@ -1887,7 +1559,7 @@
   part: noun
   updated_at: '2026-01-03T14:20:49.203Z'
   user_id: 1
-  word: nšyyïŧ
+  word: nšŷïŧ
 - id: 238
   created_at: '2026-01-03T14:20:49.225Z'
   description: ''
@@ -1959,7 +1631,7 @@
   part: noun
   updated_at: '2026-01-03T14:20:49.418Z'
   user_id: 1
-  word: yyg
+  word: ŷg
 - id: 247
   created_at: '2026-01-03T14:20:49.441Z'
   description: ''

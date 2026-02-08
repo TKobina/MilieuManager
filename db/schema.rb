@@ -13,11 +13,11 @@
 ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "compositions", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "sublexeme_id_id", null: false
-    t.integer "suplexeme_id_id", null: false
+    t.integer "sublexeme_id", null: false
+    t.integer "suplexeme_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["sublexeme_id_id"], name: "index_compositions_on_sublexeme_id_id"
-    t.index ["suplexeme_id_id"], name: "index_compositions_on_suplexeme_id_id"
+    t.index ["sublexeme_id"], name: "index_compositions_on_sublexeme_id"
+    t.index ["suplexeme_id"], name: "index_compositions_on_suplexeme_id"
   end
 
   create_table "dialects", force: :cascade do |t|
@@ -80,6 +80,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.boolean "public"
     t.json "text"
     t.datetime "updated_at", null: false
+    t.index ["eid"], name: "index_entities_on_eid"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
     t.index ["milieu_id"], name: "index_entities_on_milieu_id"
@@ -114,6 +115,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "entity_id", null: false
+    t.string "maxlexeid"
     t.string "name"
     t.datetime "updated_at", null: false
     t.index ["entity_id"], name: "index_languages_on_entity_id"
@@ -138,10 +140,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "lexemes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
+    t.string "eid"
+    t.string "kind"
     t.integer "language_id", null: false
     t.string "meaning"
     t.datetime "updated_at", null: false
     t.string "word"
+    t.index ["eid"], name: "index_lexemes_on_eid"
     t.index ["language_id"], name: "index_lexemes_on_language_id"
     t.index ["word"], name: "index_lexemes_on_word"
   end
@@ -252,8 +257,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["milieu_id"], name: "index_ydates_on_milieu_id"
   end
 
-  add_foreign_key "compositions", "lexemes", column: "sublexeme_id_id"
-  add_foreign_key "compositions", "lexemes", column: "suplexeme_id_id"
+  add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
+  add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
   add_foreign_key "efiles", "efolders"
   add_foreign_key "efiles", "encyclopedia"

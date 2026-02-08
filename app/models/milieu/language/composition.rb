@@ -1,4 +1,4 @@
 class Composition < ApplicationRecord
-  belongs_to :language
-  has_and_belongs_to_many :lexemes
+  belongs_to :suplexeme, class_name: "Lexeme"
+  belongs_to :sublexeme, class_name: "Lexeme"
 end
