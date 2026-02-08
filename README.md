@@ -2,6 +2,7 @@
 ## QUESTIONS
 
 ## PRIORITIEs
+* IF EVENTS CHANGE, REPROC THINGS FROM EVENTS, BUT DON'T TOUCHE LANGUAGE; SHOULD BE INDEPENDENT
 * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
 * CHECK FOR DUPLICATE EVENTS
 * PROCCING OF ALL EVENT TYPES, ENTITIES
@@ -11,7 +12,6 @@
   * hiercharcy can include multiple parents for houses/societies
 * CC, CCC: groups of consonants: char(?) in pattern for naming
   * write out permissible groups of consonants
-* IF EVENTS CHANGE, REPROC THINGS FROM EVENTS
 * Relations: remove excess fields
 
 ### DATABASE
