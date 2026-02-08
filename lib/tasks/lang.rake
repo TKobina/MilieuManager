@@ -48,6 +48,7 @@ namespace :lang do
     lexemes = YAML.load_file("#{Rails.root}/lib/yldra/ledru/roots.yml")
     lexemes.each do |lexeme|
       leid = lexeme.keys.first
+      next if !leid.present?
       lex = Lexeme.where(eid: leid).first
       lexeme[leid].each do |rootid|
         root = Lexeme.where(eid: rootid).first
@@ -55,7 +56,7 @@ namespace :lang do
       end
     end
 
-    blank_roots = [""=> []].to_yaml
+    blank_roots = ("- \'\': []\n"*20).as_json.to_yaml
     File.open("#{Rails.root}/lib/yldra/ledru/roots.yml", "w") {|file| file.write(blank_roots)}
   end
 end
