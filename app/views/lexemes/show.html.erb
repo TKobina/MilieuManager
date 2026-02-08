@@ -1,0 +1,22 @@
+<%= link_to "Lexeme List", lexemes_path %></br>
+<%= link_to "Back", "javascript:history.back()" %></br>
+<h1><%= @lexeme.word %></h1>
+
+<p>
+<h3>Part of Speech: <%= @lexeme.kind %> </h3>
+<h3>Definition: <%= @lexeme.meaning %> </h3>
+<h3>Details: <%= @lexeme.details %> </h3>
+
+<h2>Roots:</h2>
+<% @lexeme.sublexemes.each do |sublex| %>
+  <div>
+  <%= link_to sublex.word, lexeme_path(sublex.id) %>: <%= sublex.meaning%></br>
+  </div>
+<% end %>
+
+<h2>Suplexemes:</h2>
+<% @lexeme.suplexemes.each do |suplex| %>
+  <div>
+  <%= link_to suplex.word, lexeme_path(suplex.id) %>: <%= suplex.meaning%></br>
+  </div>
+<% end %>
