@@ -26,10 +26,39 @@ namespace :lang do
         eid: lexeme["eid"])
         progressbar.increment
     end
-    
+  end
+
+  task addwords: :environment do
+    lexemes = YAML.load_file("#{Rails.root}/lib/yldra/ledru/lexemes.yml")
+    lexemes.each do |lexeme|
+      next if !lexeme["word"].present?
+      Lexeme.create!(
+        language: Language.first,
+        word: lexeme["word"], 
+        meaning: lexeme["meaning"], 
+        kind: lexeme["kind"], 
+        details: "")
+    end
+
+    blank_lexeme = [{"details"=>"","meaning"=>"","kind"=>"","word"=>""}].to_yaml
+    File.open("#{Rails.root}/lib/yldra/ledru/lexemes.yml", "w") {|file| file.write(blank_lexeme)}
+  end
+
+  task addroots: :environment do
+    lexemes = YAML.load_file("#{Rails.root}/lib/yldra/ledru/roots.yml")
+    lexemes.each do |lexeme|
+      leid = lexeme.keys.first
+      lex = Lexeme.where(eid: leid).first
+      lexeme[leid].each do |rootid|
+        root = Lexeme.where(eid: rootid).first
+        lex.sublexemes << root
+      end
+    end
+
+    blank_roots = [""=> []].to_yaml
+    File.open("#{Rails.root}/lib/yldra/ledru/roots.yml", "w") {|file| file.write(blank_roots)}
   end
 end
-
 
 
 

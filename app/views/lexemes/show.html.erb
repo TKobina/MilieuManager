@@ -10,13 +10,13 @@
 <h2>Roots:</h2>
 <% @lexeme.sublexemes.each do |sublex| %>
   <div>
-  <%= link_to sublex.word, lexeme_path(sublex.id) %>: <%= sublex.meaning%></br>
+  <%= link_to sublex.word, lexeme_path(sublex.id) %><sup><%= sublex.eid%></sup>: <%= sublex.meaning%></br>
   </div>
 <% end %>
 
 <h2>Suplexemes:</h2>
 <% @lexeme.suplexemes.each do |suplex| %>
   <div>
-  <%= link_to suplex.word, lexeme_path(suplex.id) %>: <%= suplex.meaning%></br>
+  <%= link_to suplex.word, lexeme_path(suplex.id) %><sup><%= suplex.eid%></sup>: <%= suplex.meaning%></br>
   </div>
 <% end %>
