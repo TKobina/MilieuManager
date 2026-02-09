@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   
 
   resources "lexemes"
+  resources "stories"
+  get '/export_csv', to: 'lexemes#export_csv'
 
   resources "pages"
   root "pages#index"

@@ -9,7 +9,7 @@ class Entity < ApplicationRecord
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior
   
-  has_one :language, dependent: :destroy
+  has_one :language
   has_one :dialect, dependent: :destroy
   has_many :properties, dependent: :destroy
   

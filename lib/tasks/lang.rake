@@ -59,6 +59,10 @@ namespace :lang do
     blank_roots = ("- \'\': []\n"*20).as_json.to_yaml
     File.open("#{Rails.root}/lib/yldra/ledru/roots.yml", "w") {|file| file.write(blank_roots)}
   end
+
+  task export: :environment do
+
+  end
 end
 
 
