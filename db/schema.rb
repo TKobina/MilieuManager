@@ -114,7 +114,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "languages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "entity_id", null: false
+    t.integer "entity_id"
     t.string "maxlexeid"
     t.string "name"
     t.datetime "updated_at", null: false
@@ -214,12 +214,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "chapter"
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "files_id", null: false
+    t.integer "efile_id"
     t.datetime "lastupdate"
+    t.integer "milieu_id", null: false
     t.boolean "public"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["files_id"], name: "index_stories_on_files_id"
+    t.index ["efile_id"], name: "index_stories_on_efile_id"
+    t.index ["milieu_id"], name: "index_stories_on_milieu_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -280,6 +282,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
-  add_foreign_key "stories", "files", column: "files_id"
+  add_foreign_key "stories", "efiles"
+  add_foreign_key "stories", "milieus"
   add_foreign_key "ydates", "milieus"
 end

@@ -31,6 +31,13 @@
 }
 
 /* Optional: Add basic table styling for clarity */
+
+.large-text-field {
+  width: 80%; /* 400px or a percentage, e.g., 80% */
+  height: 1000px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+}
+
 th {
   text-align: center;
 }

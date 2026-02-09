@@ -1,0 +1,7 @@
+<%= link_to "Chapters", stories_path %></br>
+<%= link_to "Back", "javascript:history.back()" %></br>
+<%= link_to "Edit", edit_story_path(@story) %></br>
+
+<h1><%= @story.chapter.to_s + ": " + @story.title %> </h1>
+
+<%= markdown(@story.details) %>

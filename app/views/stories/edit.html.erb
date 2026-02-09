@@ -1,0 +1,8 @@
+<%= link_to "Pages", pages_path %></br>
+<%= link_to "Back", "javascript:history.back()" %></br>
+<h1>Edit <%=@story.title %></h1>
+
+<%= render "form", story: @story %>
+
+
+<%= link_to "Cancel", stories_path %>

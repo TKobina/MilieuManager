@@ -2,18 +2,11 @@
 ## QUESTIONS
 
 ## PRIORITIEs
-* IF EVENTS CHANGE, REPROC THINGS FROM EVENTS, BUT DON'T TOUCHE LANGUAGE; SHOULD BE INDEPENDENT
-  * Here's the problem: language is tied to nation, which is created from event
-  * Better to create files for each word?
-  * No; can divide words up into different files, but yes, dictionary can exist in Obsidian??
-  * Or do we maintain the rails server, and export to obsidian?? But not update the stuff in Obsidian directly?
-  * SHOULDN'T GO BOTH WAYS; ONE OR THE OTHER
-  * WHERE DO I WANT TO WRITE?? WHERE WILL IT BE THE MOST CONVENIENT??
-  * Web, additional backup considerations, have to code some more stuff up front, BUT. A lot more flexibility with sharing, how I display and format stuff, all that stuff. What does Obsidian give me, really, other than easy linking ititially, with Aliases and such?
-  * MIGRATE TO WEB!!!!
+* MIGRATE EVERYTHING TO WEB!!!!
 * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
 * CHECK FOR DUPLICATE EVENTS
 * PROCCING OF ALL EVENT TYPES, ENTITIES
+  * Language should NOT BELONG TO entity, but entity can have one language
 * better names for entity relationships than political/etc.
 * Name generation abberations: 
   * abberations for societies

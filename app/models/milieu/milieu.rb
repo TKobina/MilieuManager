@@ -7,7 +7,7 @@ class Milieu < ApplicationRecord
   has_many :entities, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :languages, through: :entities
-  #has_many :stories, dependent: :destroy
+  has_many :stories, dependent: :destroy
 
   def get_date_from_strdate(strdate)
     Ydate.from_string(self, strdate)

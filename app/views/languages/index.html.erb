@@ -9,6 +9,7 @@
         <ul>
             <li> <%= link_to "statistics", controller: "dialects", action: "index", language_id: lang.id %> </li>
             <li> <%= link_to "lexemes", controller: "lexemes", action: "index", language_id: lang.id %> </li>
+            <li> <%= link_to "export lexemes csv", lexemes_path(format: 'csv') %> </li>
         </ul>
     <% end %>
     </ul>

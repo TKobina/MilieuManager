@@ -42,6 +42,8 @@ gem "image_processing", "~> 1.2"
 
 gem "devise"
 
+gem "redcarpet"
+
 gem "ar_lazy_preload"
 
 group :development, :test do
