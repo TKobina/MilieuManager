@@ -1,5 +1,3 @@
-<%= link_to "Pages", pages_path %></br>
-<%= link_to "Back", "javascript:history.back()" %></br>
 <h1>Entities</h1>
 <% cache @entities do %>
 
@@ -10,11 +8,8 @@
   <ul>
   <% @entities.each do |entity| %>
     <div>
-      <li><strong><%= link_to entity.name, entity_path(entity.id) %></strong> (<%=entity.kind%>)<sup><%=entity.id %></sup> </li>
+      <li><strong><%= link_to entity.name, entity_path(entity.id) %></strong> (<%=entity.kind%>)<sup><%=entity.eid %></sup> </li>
       <ul>  
-      <% entity.properties.each do |property| %>
-        <li><%= property.kind %>: <%= property.value %></li>
-      <% end %>
       </ul>
     </div>
   <% end %>

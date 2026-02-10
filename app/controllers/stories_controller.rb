@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   def index
-    @stories = current_user.milieus.first.stories
+    @stories = current_user.milieus.first.stories.sort
   end
 
   def show
@@ -33,6 +33,12 @@ class StoriesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @story = current_user.milieus.first.stories.find(params[:id])
+    @story.destroy
+    redirect_to stories_path
   end
 
 

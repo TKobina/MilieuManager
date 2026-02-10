@@ -1,6 +1,3 @@
-<%= link_to "Languages", languages_path %></br>
-<%= link_to "Back", "javascript:history.back()" %></br>
-
 <% cache @lexemes do %>
 <h1><%= @lexemes.first.language.name %> Lexemes </h1>
 

@@ -8,6 +8,74 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ @font-face {
+  font-family: 'IM FELL Ledru';
+  src: font-url('IM_FELL_Ledru.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Recommended for better user experience */
+}
+
+ @font-face {
+  font-family: 'Courier New';
+  src: font-url('cour.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Recommended for better user experience */
+}
+
+/* position: sticky; top: 0; background-color: white; z-index: 50;  */
+/* Optional: Add basic table styling for clarity */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-right: 10px;
+  height: 40px; /* Define height */
+  z-index: 1;
+  font-family: 'IM FELL Ledru';
+  background-color: #000000;
+  color: #C9C699;
+}
+
+a {
+  color: #BC46EB
+}
+
+body {
+  margin-top: 50px;
+  background-color: #222222;
+  color: #C9C699;
+}
+
+textarea {
+  background-color: #aaaaaa;
+}
+
+.text-field {
+  background-color: #aaaaaa;
+  width: 300px;
+}
+
+span.headerlogo {
+  float: right;
+  position: relative;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  margin-right: 20px;
+  height: 40px; /* Set a fixed height */
+  width: auto; /* Maintain aspect ratio */
+  /* Add other styling as needed (e.g., margins, alignment) */
+}
+
+
+.storytext {
+  font-family: 'Courier New';
+  /*font-weight: bold;*/
+}
+
 .rotate {
   /* Set a fixed height for the header row to accommodate the rotated text */
   height: 140px;
@@ -30,7 +98,9 @@
   /* transform: translate(0px, -100%) rotate(-90deg); */
 }
 
-/* Optional: Add basic table styling for clarity */
+h1 {
+  font-family: 'IM FELL Ledru';
+}
 
 .large-text-field {
   width: 80%; /* 400px or a percentage, e.g., 80% */

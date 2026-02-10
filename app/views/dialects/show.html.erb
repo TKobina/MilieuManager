@@ -1,0 +1,305 @@
+<!-- Note: You will likely need to replace all the min-h-[600px] with a min-h-screen -->
+
+<div class="flex h-full w-full flex-col relative" data-controller="sidebar" data-sidebar-storage-key-value="basicSidebar">
+  <!-- Mobile Sidebar Overlay -->
+  <div class="absolute inset-0 z-50 md:hidden hidden" data-sidebar-target="mobileSidebar">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/50 transition-opacity duration-300" data-sidebar-target="mobileBackdrop" data-action="click->sidebar#closeMobile"></div>
+
+    <!-- Sidebar Panel -->
+    <div class="absolute inset-y-0 left-0 w-64 bg-neutral-50 dark:bg-neutral-900 shadow-xl border-r border-neutral-200 dark:border-neutral-800 transition-transform duration-300 ease-out" data-sidebar-target="mobilePanel">
+      <div data-sidebar-target="sharedContent"></div>
+    </div>
+  </div>
+
+  <div class="relative z-0 flex h-full w-full">
+    <div class="relative flex h-full flex-row">
+      <details class="w-13 open:w-64 group/sidebar relative z-20 h-full shrink-0 overflow-hidden border-r border-neutral-200 bg-neutral-50 max-md:hidden motion-safe:transition-all motion-safe:duration-300 dark:border-neutral-800 dark:bg-neutral-900" data-sidebar-target="desktopSidebar">
+        <!-- Tiny Sidebar (shown when closed) -->
+        <summary class="group-open/sidebar:hidden flex min-h-[600px] h-full cursor-e-resize list-none flex-col items-start pl-2 pr-1.5">
+          <div class="flex h-13 w-full items-center justify-start">
+            <button class="cursor-e-resize flex size-10 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" data-action="click->sidebar#open">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="6.25" y1="2.75" x2="6.25" y2="15.25"></line><polyline points="10.25 6.5 12.75 9 10.25 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2" transform="translate(18 18) rotate(180)"></rect></g></svg>
+            </button>
+          </div>
+
+          <div class="mt-1.5 sm:mt-2 flex w-full flex-col items-start">
+            <a href="javascript:void(0)" aria-label="Dashboard" data-controller="tooltip" data-tooltip-content="Dashboard" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
+            </a>
+            <a href="javascript:void(0)" aria-label="Contacts" data-controller="tooltip" data-tooltip-content="Contacts" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><circle cx="9" cy="4.5" r="2.75"></circle><path d="M13.762,15.516c.86-.271,1.312-1.221,.947-2.045-.97-2.191-3.159-3.721-5.709-3.721s-4.739,1.53-5.709,3.721c-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734s3.537-.348,4.762-.734Z"></path></g></svg>
+            </a>
+            <a href="javascript:void(0)" aria-label="Companies" data-controller="tooltip" data-tooltip-content="Companies" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M7.75 16.25V7.75C7.75 7.198 8.198 6.75 8.75 6.75H14.25C14.802 6.75 15.25 7.198 15.25 7.75V16.25"></path> <path d="M2.75 16.25V4.412C2.75 4.01 2.99 3.64701 3.36 3.49101L7.86 1.58802C8.519 1.30902 9.25 1.79301 9.25 2.50901V3.75001"></path> <path d="M1.75 16.25H16.25"></path> <path d="M10.25 10.25V9.75"></path> <path d="M12.75 10.25V9.75"></path> <path d="M10.25 13.25V12.75"></path> <path d="M12.75 13.25V12.75"></path></g></svg>
+            </a>
+            <a href="javascript:void(0)" aria-label="Deals" data-controller="tooltip" data-tooltip-content="Deals" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="12.345" y1="11.75" x2="15.25" y2="11.75"></line><path d="M8.779,4.67l-.231-.313c-.283-.382-.73-.608-1.206-.608h-1.458c-.388,0-.761,.151-1.041,.42l-1.867,1.8c-.07,.067-.148,.123-.232,.167"></path><path d="M2.75,11.75h1.26c.303,0,.59,.138,.78,.374l1.083,1.349c.596,.742,1.632,.962,2.478,.525l3.274-1.693c1.111-.574,1.428-2.016,.661-3.003l-1.648-2.122"></path><path d="M15.258,6.138c-.085-.044-.163-.1-.233-.168l-1.867-1.8c-.28-.269-.653-.42-1.041-.42h-1.807c-.404,0-.791,.163-1.074,.453l-2.495,2.558c-.498,.51-.493,1.326,.011,1.83h0c.447,.447,1.15,.508,1.668,.145l2.83-1.985"></path><path d="M.75,5.25H1.75c.552,0,1,.448,1,1v6c0,.552-.448,1-1,1H.75"></path><path d="M17.25,5.25h-1c-.552,0-1,.448-1,1v6c0,.552,.448,1,1,1h1"></path></g></svg>
+            </a>
+            <a href="javascript:void(0)" aria-label="Tasks" data-controller="tooltip" data-tooltip-content="Tasks" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M7.99707 11.25L9.60605 12.75L13.0031 8.25"></path> <path d="M13.75 5.25H7.25C6.145 5.25 5.25 6.145 5.25 7.25V13.75C5.25 14.855 6.145 15.75 7.25 15.75H13.75C14.855 15.75 15.75 14.855 15.75 13.75V7.25C15.75 6.145 14.855 5.25 13.75 5.25Z"></path> <path d="M12.4012 2.74996C12.0022 2.06146 11.2151 1.64841 10.38 1.77291L3.45602 2.80196C2.36402 2.96386 1.61003 3.98093 1.77203 5.07393L2.75002 11.6547"></path></g></svg>
+            </a>
+            <a href="javascript:void(0)" aria-label="Calendar" data-controller="tooltip" data-tooltip-content="Calendar" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="5.75" y1="2.75" x2="5.75" y2=".75"></line><line x1="12.25" y1="2.75" x2="12.25" y2=".75"></line><rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2" ry="2"></rect><line x1="2.25" y1="6.25" x2="15.75" y2="6.25"></line></g></svg>
+            </a>
+          </div>
+
+          <div class="flex-grow"></div>
+
+          <div class="py-1 sm:py-1.5 flex items-start justify-center">
+            <button class="flex mb-1 h-8 w-9 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" aria-label="Profile" title="Profile">
+              <img alt="Profile image" class="size-6 rounded-full object-cover" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop">
+            </button>
+          </div>
+        </summary>
+
+        <!-- Full Sidebar (shown when open) -->
+        <div class="h-full w-64 overflow-x-clip overflow-y-auto bg-neutral-50 text-clip whitespace-nowrap dark:bg-neutral-900" data-sidebar-target="desktopContent">
+          <!-- Shared Sidebar Content Template -->
+          <template data-sidebar-target="contentTemplate">
+            <nav class="min-h-[600px] relative flex h-full w-full flex-1 flex-col overflow-y-auto select-none">
+            <div class="sticky top-0 z-30 bg-neutral-50 dark:bg-neutral-900">
+              <div class="px-1.5 sm:px-2">
+                <div class="flex h-13 items-center justify-between">
+                  <a href="javascript:void(0)" aria-label="Home" class="flex size-10 items-center justify-center rounded-lg text-neutral-900 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9C1 4.58168 4.58179 1 9 1C13.4182 1 17 4.58168 17 9C17 13.4183 13.4182 17 9 17C4.58179 17 1 13.4183 1 9Z" fill-opacity="0.4"></path></g></svg>
+                  </a>
+                  <div class="flex">
+                    <button class="flex size-10 cursor-w-resize items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" aria-expanded="true" aria-label="Close sidebar" data-state="closed" data-action="click->sidebar#close">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="11.75" y1="2.75" x2="11.75" y2="15.25"></line><polyline points="7.75 6.5 5.25 9 7.75 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2"></rect></g></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="relative bg-neutral-50 p-1.5 last:mb-5 sm:p-2 dark:bg-neutral-900">
+              <a href="javascript:void(0)" aria-label="Dashboard" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Dashboard</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘1
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="javascript:void(0)" aria-label="Contacts" title="Contacts" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><circle cx="9" cy="4.5" r="2.75"></circle><path d="M13.762,15.516c.86-.271,1.312-1.221,.947-2.045-.97-2.191-3.159-3.721-5.709-3.721s-4.739,1.53-5.709,3.721c-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734s3.537-.348,4.762-.734Z"></path></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Contacts</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘2
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="javascript:void(0)" aria-label="Companies" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M7.75 16.25V7.75C7.75 7.198 8.198 6.75 8.75 6.75H14.25C14.802 6.75 15.25 7.198 15.25 7.75V16.25"></path> <path d="M2.75 16.25V4.412C2.75 4.01 2.99 3.64701 3.36 3.49101L7.86 1.58802C8.519 1.30902 9.25 1.79301 9.25 2.50901V3.75001"></path> <path d="M1.75 16.25H16.25"></path> <path d="M10.25 10.25V9.75"></path> <path d="M12.75 10.25V9.75"></path> <path d="M10.25 13.25V12.75"></path> <path d="M12.75 13.25V12.75"></path></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Companies</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘3
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="javascript:void(0)" aria-label="Deals" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="12.345" y1="11.75" x2="15.25" y2="11.75"></line><path d="M8.779,4.67l-.231-.313c-.283-.382-.73-.608-1.206-.608h-1.458c-.388,0-.761,.151-1.041,.42l-1.867,1.8c-.07,.067-.148,.123-.232,.167"></path><path d="M2.75,11.75h1.26c.303,0,.59,.138,.78,.374l1.083,1.349c.596,.742,1.632,.962,2.478,.525l3.274-1.693c1.111-.574,1.428-2.016,.661-3.003l-1.648-2.122"></path><path d="M15.258,6.138c-.085-.044-.163-.1-.233-.168l-1.867-1.8c-.28-.269-.653-.42-1.041-.42h-1.807c-.404,0-.791,.163-1.074,.453l-2.495,2.558c-.498,.51-.493,1.326,.011,1.83h0c.447,.447,1.15,.508,1.668,.145l2.83-1.985"></path><path d="M.75,5.25H1.75c.552,0,1,.448,1,1v6c0,.552-.448,1-1,1H.75"></path><path d="M17.25,5.25h-1c-.552,0-1,.448-1,1v6c0,.552,.448,1,1,1h1"></path></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Deals</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘4
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="javascript:void(0)" aria-label="Tasks" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M7.99707 11.25L9.60605 12.75L13.0031 8.25"></path> <path d="M13.75 5.25H7.25C6.145 5.25 5.25 6.145 5.25 7.25V13.75C5.25 14.855 6.145 15.75 7.25 15.75H13.75C14.855 15.75 15.75 14.855 15.75 13.75V7.25C15.75 6.145 14.855 5.25 13.75 5.25Z"></path> <path d="M12.4012 2.74996C12.0022 2.06146 11.2151 1.64841 10.38 1.77291L3.45602 2.80196C2.36402 2.96386 1.61003 3.98093 1.77203 5.07393L2.75002 11.6547"></path></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Tasks</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘5
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="javascript:void(0)" aria-label="Calendar" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex min-w-0 items-center gap-1.5">
+                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="5.75" y1="2.75" x2="5.75" y2=".75"></line><line x1="12.25" y1="2.75" x2="12.25" y2=".75"></line><rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2" ry="2"></rect><line x1="2.25" y1="6.25" x2="15.75" y2="6.25"></line></g></svg>
+                  </div>
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate">Calendar</div>
+                  </div>
+                </div>
+                <div class="text-neutral-500 dark:text-neutral-400">
+                  <div class="hidden sm:block">
+                    <div class="hidden ml-auto group-hover:flex text-xs">
+                      ⌘6
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </aside>
+
+            <details class="group/options mb-4 px-1.5 sm:px-2" open>
+              <summary class="flex cursor-pointer list-none items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden [&::-webkit-details-marker]:hidden dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50" data-no-hover-bg="true" data-no-contents-gap="true">
+                <div class="flex w-full items-center justify-start gap-1 text-neutral-500 dark:text-neutral-400">
+                  <h2>Sales Pipelines</h2>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-2.5 opacity-0 transition-all duration-200 group-hover/options:opacity-100 group-open/options:rotate-90"width="12" height="12" viewBox="0 0 12 12"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><polyline points="4.25 10.25 8.5 6 4.25 1.75"></polyline></g></svg>
+                </div>
+              </summary>
+              <div>
+                <div class="w-full group relative flex items-center">
+                  <a href="javascript:void(0)" class="w-full flex items-center justify-between gap-2 rounded-md pl-2 pr-9 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <div class="flex min-w-0 items-center gap-1.5">
+                      <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                        <div class="truncate">Enterprise Sales</div>
+                      </div>
+                    </div>
+                    <div class="mr-auto text-xs text-neutral-500 dark:text-neutral-400">12</div>
+                  </a>
+                  <button class="absolute right-0 hidden group-hover:flex size-8 rounded-md items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="12" height="12" viewBox="0 0 12 12"><g fill="currentColor"><circle cx="6" cy="6" r="1" stroke-width="0"></circle><circle cx="2" cy="6" r="1" stroke-width="0"></circle><circle cx="10" cy="6" r="1" stroke-width="0"></circle></g></svg>
+                  </button>
+                </div>
+                <div class="w-full group relative flex items-center">
+                  <a href="javascript:void(0)" class="w-full flex items-center justify-between gap-2 rounded-md pl-2 pr-9 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <div class="flex min-w-0 items-center gap-1.5">
+                      <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                        <div class="truncate">SMB Sales</div>
+                      </div>
+                    </div>
+                    <div class="mr-auto text-xs text-neutral-500 dark:text-neutral-400">24</div>
+                  </a>
+                  <button class="absolute right-0 hidden group-hover:flex size-8 rounded-md items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="12" height="12" viewBox="0 0 12 12"><g fill="currentColor"><circle cx="6" cy="6" r="1" stroke-width="0"></circle><circle cx="2" cy="6" r="1" stroke-width="0"></circle><circle cx="10" cy="6" r="1" stroke-width="0"></circle></g></svg>
+                  </button>
+                </div>
+              </div>
+            </details>
+
+            <details class="group/options mb-4 px-1.5 sm:px-2" open>
+              <summary class="flex cursor-pointer list-none items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden [&::-webkit-details-marker]:hidden dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex w-full items-center justify-start gap-1 text-neutral-500 dark:text-neutral-400">
+                  <h2>Recent Deals</h2>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-2.5 opacity-0 transition-all duration-200 group-hover/options:opacity-100 group-open/options:rotate-90" width="12" height="12" viewBox="0 0 12 12"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><polyline points="4.25 10.25 8.5 6 4.25 1.75"></polyline></g></svg>
+                </div>
+              </summary>
+              <div>
+
+                <div class="w-full group relative flex items-center">
+                  <a href="javascript:void(0)" class="w-full flex items-center justify-between gap-2 rounded-md pl-2 pr-9 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <div class="flex min-w-0 items-center gap-1.5">
+                      <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                        <div class="truncate">Acme Corp - Enterprise Plan</div>
+                      </div>
+                    </div>
+                    <div class="mr-auto text-xs text-neutral-500 dark:text-neutral-400">$45k</div>
+                  </a>
+                  <button class="absolute right-0 hidden group-hover:flex size-8 rounded-md items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="12" height="12" viewBox="0 0 12 12"><g fill="currentColor"><circle cx="6" cy="6" r="1" stroke-width="0"></circle><circle cx="2" cy="6" r="1" stroke-width="0"></circle><circle cx="10" cy="6" r="1" stroke-width="0"></circle></g></svg>
+                  </button>
+                </div>
+
+                <div class="w-full group relative flex items-center">
+                  <a href="javascript:void(0)" class="w-full flex items-center justify-between gap-2 rounded-md pl-2 pr-9 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <div class="flex min-w-0 items-center gap-1.5">
+                      <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                        <div class="truncate">TechStart Inc - Starter Package</div>
+                      </div>
+                    </div>
+                    <div class="mr-auto text-xs text-neutral-500 dark:text-neutral-400">$12k</div>
+                  </a>
+                  <button class="absolute right-0 hidden group-hover:flex size-8 rounded-md items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="12" height="12" viewBox="0 0 12 12"><g fill="currentColor"><circle cx="6" cy="6" r="1" stroke-width="0"></circle><circle cx="2" cy="6" r="1" stroke-width="0"></circle><circle cx="10" cy="6" r="1" stroke-width="0"></circle></g></svg>
+                  </button>
+                </div>
+
+                <div class="w-full group relative flex items-center">
+                  <a href="javascript:void(0)" class="w-full flex items-center justify-between gap-2 rounded-md pl-2 pr-9 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <div class="flex min-w-0 items-center gap-1.5">
+                      <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                        <div class="truncate">Global Solutions - Consulting</div>
+                      </div>
+                    </div>
+                    <div class="mr-auto text-xs text-neutral-500 dark:text-neutral-400">$28k</div>
+                  </a>
+                  <button class="absolute right-0 hidden group-hover:flex size-8 rounded-md items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="12" height="12" viewBox="0 0 12 12"><g fill="currentColor"><circle cx="6" cy="6" r="1" stroke-width="0"></circle><circle cx="2" cy="6" r="1" stroke-width="0"></circle><circle cx="10" cy="6" r="1" stroke-width="0"></circle></g></svg>
+                  </button>
+                </div>
+              </div>
+            </details>
+
+            <div class="grow"></div>
+
+            <div class="sticky bottom-0 z-30 bg-neutral-50 p-1.5 empty:hidden sm:p-2 dark:bg-neutral-900">
+              <button class="w-full flex items-center gap-2 rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
+                <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
+                  <div class="flex size-6 shrink-0 overflow-hidden rounded-full bg-neutral-500/30">
+                    <img alt="Profile image" class="size-6 shrink-0 object-cover" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop">
+                  </div>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
+                    <div class="truncate text-xs">John Doe</div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </nav>
+          </template>
+        </div>
+      </details>
+    </div>
+
+    <main class="min-h-[600px] grow h-auto w-auto bg-white dark:bg-neutral-950 flex flex-col justify-center items-center relative">
+      <div class="w-full absolute top-0 z-10 flex items-center md:hidden p-2">
+        <button type="button" class="size-9 inline-flex items-center justify-center rounded-md focus:bg-neutral-100 focus:outline-hidden focus:ring-inset dark:focus:bg-neutral-700/50 active:opacity-50" data-action="click->sidebar#openMobile" aria-label="Open sidebar">
+          <span class="sr-only">Open sidebar</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="2.25" y1="9" x2="15.75" y2="9"></line><line x1="2.25" y1="3.75" x2="15.75" y2="3.75"></line><line x1="2.25" y1="14.25" x2="8.25" y2="14.25"></line></g></svg>
+        </button>
+      </div>
+      <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-800">
+        Your content
+      </div>
+    </main>
+  </div>
+</div>

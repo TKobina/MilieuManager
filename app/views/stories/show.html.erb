@@ -1,7 +1,10 @@
-<%= link_to "Chapters", stories_path %></br>
-<%= link_to "Back", "javascript:history.back()" %></br>
-<%= link_to "Edit", edit_story_path(@story) %></br>
+<h1><%= @story.title %> </h1>
 
-<h1><%= @story.chapter.to_s + ": " + @story.title %> </h1>
+        <%= link_to "Edit", edit_story_path(@story.id)%>
 
-<%= markdown(@story.details) %>
+<div class="container mx-auto px-4">
+<p>
+<div class = "storytext"><%= markdown(@story.details) %></div>
+<p>
+
+<%= button_to "Delete", @story, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
