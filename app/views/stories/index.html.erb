@@ -1,14 +1,12 @@
-<%= link_to "Pages", pages_path %></br>
-<%= link_to "Back", "javascript:history.back()" %></br>
-<%= link_to "New Story", new_story_path %>
-
 <h1>Stories</h1>
-
+<strong><%= link_to "Add Chapter", new_story_path %></strong>
+<p>
 <div id="stories">
   <% @stories.each do |story| %>
     <div>
-      <strong><%= link_to story.chapter.to_s + ": " + story.title, story_path(story.id) %></strong>
+      <strong><%= link_to story.title, story_path(story.id) %></strong>
     </div>
   <% end %>
   </ul>
 </div>
+

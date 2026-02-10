@@ -1,14 +1,13 @@
 <%= form_with model: @story do |form| %>
   <div>
+    <%= form.text_field :chapter, class: "text-field"  %>
     <%= form.label :chapter %></br>
-    <%= form.text_field :chapter %>
   </div>
   <div>
-    <%= form.label :title %></br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "text-field"  %>
+    <%= form.label :title %></br></br>
   </div>
   <div>
-    <%= form.label "Text" %></br>
     <%= form.text_area :details, class: "large-text-field" %>
   </div>
   </p>
