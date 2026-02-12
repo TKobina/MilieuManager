@@ -88,7 +88,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
-    t.boolean "public"
+    t.boolean "public", default: false
     t.json "text"
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_entities_on_eid"
@@ -110,7 +110,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
-    t.boolean "public"
+    t.boolean "public", default: false
     t.json "text"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
@@ -195,6 +195,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "entity_id", null: false
     t.integer "event_id", null: false
     t.string "kind"
+    t.boolean "public", default: false
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["entity_id"], name: "index_properties_on_entity_id"
@@ -210,7 +211,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "inferior_id", null: false
     t.string "kind"
     t.string "name"
-    t.boolean "public"
+    t.boolean "public", default: false
     t.integer "superior_id", null: false
     t.json "text"
     t.datetime "updated_at", null: false

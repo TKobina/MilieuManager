@@ -1,10 +1,13 @@
-<h1>Stories</h1>
-<strong><%= link_to "Add Chapter", new_story_path %></strong>
+<h1>Chapters</h1>
+
+<% if @milieu.owner == current_user%>
+  <strong><%= link_to "Add Chapter", new_story_path %></strong>
+<% end %>
 <p>
 <div id="stories">
   <% @stories.each do |story| %>
     <div>
-      <strong><%= link_to story.title, story_path(story.id) %></strong>
+      <strong><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></strong>
     </div>
   <% end %>
   </ul>

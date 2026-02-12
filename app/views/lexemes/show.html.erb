@@ -8,13 +8,13 @@
 <h2>Roots:</h2>
 <% @lexeme.sublexemes.each do |sublex| %>
   <div>
-  <%= link_to sublex.word, lexeme_path(sublex.id) %><sup><%= sublex.eid%>-<%=sublex.id%></sup>: <%= sublex.meaning%></br>
+  <%= link_to sublex.word, lexeme_path(sublex.id,current_milieu: @milieu) %><sup><%= sublex.eid%>-<%=sublex.id%></sup>: <%= sublex.meaning%></br>
   </div>
 <% end %>
 
 <h2>Suplexemes:</h2>
 <% @lexeme.suplexemes.each do |suplex| %>
   <div>
-  <%= link_to suplex.word, lexeme_path(suplex.id) %><sup><%= suplex.eid%>-<%=suplex.id%></sup>: <%= suplex.meaning%></br>
+  <%= link_to suplex.word, lexeme_path(suplex.id,current_milieu: @milieu) %><sup><%= suplex.eid%>-<%=suplex.id%></sup>: <%= suplex.meaning%></br>
   </div>
 <% end %>

@@ -1,12 +1,19 @@
 <%= form_with model: @story do |form| %>
+  <p>
   <div>
     <%= form.text_field :chapter, class: "text-field"  %>
-    <%= form.label :chapter %></br>
+    <%= form.label :chapter %></br></br>
   </div>
   <div>
     <%= form.text_field :title, class: "text-field"  %>
     <%= form.label :title %></br></br>
   </div>
+  <p>
+  <div>
+    <%= form.check_box :public %>
+    <%= form.label "Public?" %></br></br>
+  </div>
+  <p>
   <div>
     <%= form.text_area :details, class: "large-text-field" %>
   </div>

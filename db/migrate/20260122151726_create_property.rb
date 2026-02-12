@@ -8,6 +8,7 @@ class CreateProperty < ActiveRecord::Migration[8.1]
       t.string :kind
       t.string :value
       t.text :detail
+      t.boolean :public, default: false
     end
   end
 end
