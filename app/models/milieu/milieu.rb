@@ -1,5 +1,8 @@
 class Milieu < ApplicationRecord
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+  
+  has_many :accesses, class_name: 'Access', foreign_key: :milieu_id
+  has_many :readers, through: :accesses, source: :reader
   
   has_many :ydates, dependent: :destroy
   has_one :encyclopedium, dependent: :destroy

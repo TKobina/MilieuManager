@@ -11,6 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
+  create_table "accesses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "edit_rights", default: false
+    t.integer "milieu_id", null: false
+    t.boolean "private_rights", default: false
+    t.integer "reader_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["milieu_id"], name: "index_accesses_on_milieu_id"
+    t.index ["reader_id"], name: "index_accesses_on_reader_id"
+  end
+
   create_table "compositions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "sublexeme_id", null: false
@@ -155,9 +166,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "name"
+    t.integer "owner_id", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_milieus_on_user_id"
+    t.index ["owner_id"], name: "index_milieus_on_owner_id"
   end
 
   create_table "names", force: :cascade do |t|
@@ -259,6 +270,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["milieu_id"], name: "index_ydates_on_milieu_id"
   end
 
+  add_foreign_key "accesses", "milieus"
+  add_foreign_key "accesses", "users", column: "reader_id"
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
@@ -274,7 +287,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "events", "ydates"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
-  add_foreign_key "milieus", "users"
+  add_foreign_key "milieus", "users", column: "owner_id"
   add_foreign_key "names", "dialects"
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"

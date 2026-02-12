@@ -3,26 +3,26 @@
 </p>
 
 <h2>Information</h2>
-<%= @entity.text["pri"] %></p>
-<%= @entity.text["pub"] %></p>
+<%= @text_private %></p>
+<%= @text_public %></p>
 
 <h2>Relations</h2>
 <h3>Belongs To</h3>
 <% @superiors.zip(@superior_relations).each do |sup, rel| %>
   <div>
-    <%= rel.name.capitalize %> <%= link_to sup.name, entity_path(sup.id) %></br>
+    <%= rel.name.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
 <% end %>
 <h3>Possesses</h3>
 <% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
-    <%= link_to inf.name, entity_path(inf.id) %></br>
+    <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
 <% end %>
 <h2>Events</h2>
 <% @events.each do |event| %>
   <div>
-  <h3><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id) %></h3>
+  <h3><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></h3>
   <%= event.text["pri"] %></p>
   <%= event.text["pub"] %></p>
   </div>

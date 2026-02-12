@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :milieus, dependent: :destroy
-  has_many :events, through: :milieus 
-  has_many :entities, through: :milieus
-  has_many :languages, through: :milieus
+  has_many :milieus, class_name: 'Milieu', foreign_key: "owner_id", dependent: :destroy
+  has_many :accesses, class_name: 'Access', foreign_key: :reader_id
+  has_many :readings, through: :accesses, source: :milieu
 end

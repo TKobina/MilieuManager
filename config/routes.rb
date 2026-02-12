@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
+  resources "milieus"
   resources "entities"
   resources "events"
   resources "languages"
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
   get '/export_csv', to: 'lexemes#export_csv'
 
   resources "pages"
-  root "pages#index"
+  root "milieus#index"
 end

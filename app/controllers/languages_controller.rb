@@ -1,10 +1,10 @@
 class LanguagesController < ApplicationController
   def index
-    @languages = current_user.languages
+    @languages = @milieu.languages
   end
 
   def show
-    @language = current_user.languages.find(params[:id])
+    @language = @milieu.languages.find(params[:id])
   end
 end
 
