@@ -8,7 +8,7 @@
   <ul>
   <% @entities.each do |entity| %>
     <div>
-      <li><strong><%= link_to entity.name, entity_path(entity.id) %></strong> (<%=entity.kind%>)<sup><%=entity.eid %></sup> </li>
+      <li><strong><%= link_to entity.name, entity_path(entity.id, current_milieu: @milieu) %></strong> (<%=entity.kind%>)<sup><%=entity.eid %></sup> </li>
       <ul>  
       </ul>
     </div>

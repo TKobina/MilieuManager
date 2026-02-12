@@ -1,10 +1,14 @@
 class StoriesController < ApplicationController
   def index
-    @stories = current_user.milieus.first.stories.sort
+    @stories = @milieu.stories.sort
   end
 
   def show
-    @story = current_user.milieus.first.stories.find(params[:id])
+    @story = @milieu.stories.find(params[:id])
+
+    if (!@private && !@story.public)
+      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
   end
 
   def new
@@ -14,7 +18,7 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(story_params)
     @story.public = false
-    @story.milieu = current_user.milieus.first
+    @story.milieu = @milieu
     if @story.save
       redirect_to @story
     else
@@ -23,11 +27,11 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    @story = current_user.milieus.first.stories.find(params[:id])
+    @story = @milieu.stories.find(params[:id])
   end
 
   def update
-    @story = current_user.milieus.first.stories.find(params[:id])
+    @story = @milieu.stories.find(params[:id])
     if @story.update(story_params)
       redirect_to @story
     else
@@ -36,7 +40,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story = current_user.milieus.first.stories.find(params[:id])
+    @story = @milieu.stories.find(params[:id])
     @story.destroy
     redirect_to stories_path
   end

@@ -1,14 +1,12 @@
-<%= link_to "Pages", pages_path %></br>
-<%= link_to "Back", "javascript:history.back()" %></br>
-<h1>Languages by <%= current_user.email %></h1>
+<h1>Languages in <%= @milieu.name %></h1>
 
 <div>
     <ul>
     <% @languages.each do |lang| %>
         <li> <%= lang.name %></li>
         <ul>
-            <li> <%= link_to "statistics", controller: "dialects", action: "index", language_id: lang.id %> </li>
-            <li> <%= link_to "lexemes", controller: "lexemes", action: "index", language_id: lang.id %> </li>
+            <li> <%= link_to "statistics", controller: "dialects", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
+            <li> <%= link_to "lexemes", controller: "lexemes", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
             <li> <%= link_to "export lexemes csv", lexemes_path(format: 'csv') %> </li>
         </ul>
     <% end %>

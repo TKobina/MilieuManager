@@ -4,6 +4,7 @@
 ## PRIORITIEs
 * MIGRATE EVERYTHING TO WEB!!!!
 * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
+* Found societies manually??
 * CHECK FOR DUPLICATE EVENTS
 * PROCCING OF ALL EVENT TYPES, ENTITIES
   * Language should NOT BELONG TO entity, but entity can have one language

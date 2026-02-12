@@ -1,16 +1,15 @@
 class DialectsController < ApplicationController
   def index
-    language = Language.find(params[:language_id])
-    @language = language.entity.milieu.user == current_user ? language : nil
+    @language = @milieu.languages.find(params[:language_id])
     @stats = @language.stats?
     @dialects = @stats.keys
     @dialects.each do |dia| 
       @stats[dia][:rletters].keys.each {|key| @stats[dia][:rletters][key] = get_color(dia, @stats[dia][:rletters][key])}
       @stats[dia][:rpatterns].keys.each {|key| @stats[dia][:rpatterns][key] = get_color(dia, @stats[dia][:rpatterns][key])}
     end
-    
+  end
 
-
+  def show
     @columns = {}
     @columns[:core] =  @stats.values.map{|value| value[:core].keys}.flatten.uniq
     @columns[:letters] = language.letters.map{|letter| letter.value }
@@ -47,6 +46,7 @@ class DialectsController < ApplicationController
     rgb2 = [174, 252, 174]
     interpol(rgb1, rgb2, value)
   end
+
   def color(value)
     rgb1 = [50, 8, 6]
     rgb2 = [230, 202, 94]

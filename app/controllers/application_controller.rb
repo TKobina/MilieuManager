@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
   include Currency
   
   before_action :authenticate_user!
+  before_action :get_milieu
+
+
+  def get_milieu
+    @milieu = current_user.milieus.find_by(params[:current_milieu]) || current_user.readings.find_by(params[:current_milieu])
+  end
+
 end

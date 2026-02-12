@@ -8,7 +8,7 @@
   <% @events.each do |event| %>
     <div>
       <% kinds = event.kind.split(",") %>
-      <li><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id) %><sup>(<%=event.id %>)</sup> 
+      <li><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %><sup>(<%=event.id %>)</sup> 
       - 
       <%=kinds[..3].join(", ")%><%= "..." if kinds.length > 3%> <br></li>
     </div>

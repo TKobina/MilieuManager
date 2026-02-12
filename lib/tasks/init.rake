@@ -18,11 +18,13 @@ namespace :init do
     unless user = User.where(email: duser[:email]).first
       user = User.create!(email: duser[:email], password: duser[:password], password_confirmation: duser[:password])
     end
-    # unless user2 = User.where(email: tuser[:email]).first
-    #   user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
-    # end    
-    unless milieu = Milieu.where(user: user, name: "Ildera").first
-      milieu = Milieu.create!(user: user, name: "Ildera")
+    
+    unless user2 = User.where(email: tuser[:email]).first
+      user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
+    end
+
+    unless milieu = Milieu.where(owner: user, name: "Ildera").first
+      milieu = Milieu.create!(owner: user, name: "Ildera")
     end
      
     unless encyc = Encyclopedium.where(milieu: milieu).first
@@ -31,6 +33,20 @@ namespace :init do
 
     Dialect.first.generate_name
 
+    Lexeme.destroy_all
+
+    lexemes = YAML.load_file("#{Rails.root}/lib/backup_lexemes.yml")
+    progressbar = ProgressBar.create(title: "Importing Lexemes", total: lexemes.count)
+    lexemes.each do |lexeme|
+      Lexeme.create!(
+        language: Language.first,
+        word: lexeme["word"], 
+        meaning: lexeme["meaning"], 
+        kind: lexeme["part"], 
+        details: lexeme["description"],
+        eid: lexeme["eid"])
+        progressbar.increment
+    end
   end
   
   task namegen: :environment do
