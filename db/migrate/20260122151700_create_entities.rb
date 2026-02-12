@@ -7,7 +7,7 @@ class CreateEntities < ActiveRecord::Migration[8.1]
       t.string :kind
       t.string :name
       t.json :text
-      t.boolean :public
+      t.boolean :public, default: false
     end
   end
 

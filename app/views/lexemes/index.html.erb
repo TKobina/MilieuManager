@@ -5,7 +5,7 @@
 
 <div>
 <% @lexemes.each do |lexeme| %>
-    <%= link_to lexeme.word, lexeme_path(lexeme.id) %><sup><%= lexeme.eid%>-<%=lexeme.id%></sup> (<%= lexeme.kind %>): <%= lexeme.meaning %> </br>
+    <%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu) %><sup><%= lexeme.eid%>-<%=lexeme.id%></sup> (<%= lexeme.kind %>): <%= lexeme.meaning %> </br>
 <% end %>
 </div>
 <% end %>

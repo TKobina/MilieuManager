@@ -3,4 +3,4 @@
 <%= render "form", story: @story %>
 
 
-<%= link_to "Cancel", stories_path %>
+<%= link_to "Cancel", stories_path(current_milieu: @milieu) %>

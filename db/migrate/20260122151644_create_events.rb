@@ -9,7 +9,7 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.string :name
       t.json :code
       t.json :text
-      t.boolean :public
+      t.boolean :public, default: false
     end
   end
 end

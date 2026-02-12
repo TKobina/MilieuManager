@@ -5,14 +5,16 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
-  include Currency
+  include Privacy
   
   before_action :authenticate_user!
   before_action :get_milieu
 
-
   def get_milieu
+    return unless current_user.present?
     @milieu = current_user.milieus.find_by(params[:current_milieu]) || current_user.readings.find_by(params[:current_milieu])
+
+    set_privacy
   end
 
 end

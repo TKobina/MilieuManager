@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   def index
-    @stories = @milieu.stories.sort
+    @stories = filter_records(@milieu.stories).sort
   end
 
   def show
