@@ -29,6 +29,11 @@ class Lexeme < ApplicationRecord
     end
   end
 
+  def procsubs(eids)
+    self.sublexeme_ids = eids.split(",").map{|eid| self.language.lexemes.where(eid: eid.strip()).first.id}
+    self.save
+  end
+
   private
 
   def proc_new_lexeme

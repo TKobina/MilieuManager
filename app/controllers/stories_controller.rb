@@ -41,6 +41,9 @@ class StoriesController < ApplicationController
 
   def destroy
     @story = @milieu.stories.find(params[:id])
+    if (!@private && !@story.public)
+      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
     @story.destroy
     redirect_to stories_path(current_milieu: @milieu)
   end
