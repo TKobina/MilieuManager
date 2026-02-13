@@ -3,11 +3,13 @@
 <div>
     <ul>
     <% @languages.each do |lang| %>
-        <li> <%= lang.name %></li>
+        <li> <h3><%= lang.name %></h3></li>
         <ul>
-            <li> <%= link_to "statistics", controller: "dialects", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
-            <li> <%= link_to "lexemes", controller: "lexemes", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
-            <li> <%= link_to "export lexemes csv", lexemes_path(format: 'csv') %> </li>
+            <li> <%= link_to "Lexicon", controller: "lexemes", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
+            <% if @owner %>
+            <li> <%= link_to "Statistics", controller: "dialects", action: "index", current_milieu: @milieu, language_id: lang.id %> </li>
+            <li> <%= link_to "Export lexemes csv", lexemes_path(format: 'csv') %> </li>
+            <% end %>
         </ul>
     <% end %>
     </ul>

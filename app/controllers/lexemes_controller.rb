@@ -1,8 +1,9 @@
 class LexemesController < ApplicationController
   before_action :set_language
+  before_action :check_owner, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @lexemes = @language.lexemes.sort
+    @lexemes = cache_records(current_user.id.to_s + "Lexeme",@language.lexemes)
 
     respond_to do |format|
       format.html
@@ -13,7 +14,7 @@ class LexemesController < ApplicationController
   def show
     @lexeme = Lexeme.find(params[:id])
 
-    if (@lexeme.language.entity.milieu.owner != current_user && !@lexeme.language.entity.milieu.readers.include?(current_user))
+    if (!@owner && !@lexeme.language.entity.milieu.readers.include?(current_user))
       redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
     end
 
@@ -36,17 +37,10 @@ class LexemesController < ApplicationController
 
   def edit
     @lexeme = Lexeme.find(params[:id])
-
-    if (@language.entity.milieu.owner != current_user)
-      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
-    end
   end
 
   def update
     @lexeme = Lexeme.find(params[:id])
-    if (@language.entity.milieu.owner != current_user)
-      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
-    end
 
     if @lexeme.update(lexeme_params)
       @lexeme.procsubs(params[:sublexeme_eids])
@@ -57,16 +51,10 @@ class LexemesController < ApplicationController
   end
 
   def destroy
-      @lexeme = Lexeme.find(params[:id])
-
-    if (@language.entity.milieu.owner != current_user)
-      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
-    end
-
+    @lexeme = Lexeme.find(params[:id])
     @lexeme.destroy
     redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id)
   end
-
 
   private
   def lexeme_params
@@ -74,6 +62,12 @@ class LexemesController < ApplicationController
   end
 
   def set_language
-        @language = current_user.milieus.find_by(params[:current_milieu])&.languages&.find_by(params[:language_id]) || current_user.readings.find_by(params[:current_milieu]).languages.find_by(params[:language_id])
+    @language = current_user.milieus.find_by(params[:current_milieu])&.languages&.find_by(params[:language_id]) || current_user.readings.find_by(params[:current_milieu]).languages.find_by(params[:language_id])
+  end
+
+  def check_owner
+    unless @owner
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+    end
   end
 end

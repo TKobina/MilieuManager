@@ -1,18 +1,13 @@
 <h1>Entities</h1>
-<% cache @entities do %>
-
-
-</p>
-
 <div id="entities">
   <ul>
   <% @entities.each do |entity| %>
     <div>
-      <li><strong><%= link_to entity.name, entity_path(entity.id, current_milieu: @milieu) %></strong> (<%=entity.kind%>)<sup><%=entity.eid %></sup> </li>
+      <li><strong><%= link_to entity.name, entity_path(entity.id, current_milieu: @milieu) %></strong> (<%=entity.kind%>)
+      <% if @owner %><sup><%=entity.eid %></sup><%end%> </li>
       <ul>  
       </ul>
     </div>
   <% end %>
   </ul>
 </div>
-<% end %>

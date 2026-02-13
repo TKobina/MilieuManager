@@ -1,16 +1,16 @@
-<h1>Milieus</h1>
+<h2>Milieus</h2>
 
-<h2>Owned</h2>
+<h3>Owned</h3>
 <% @milieus.each do |mil| %>
 <%= link_to mil.name, milieu_path(mil.id, current_milieu: mil) %>
 <% end %>
-
-<h2>Editing</h2>
+</br>
+<h3>Editing</h3>
 <% @editings.each do |edi| %>
 <%= link_to edi.name, milieu_path(edi.id, current_milieu: edi) %>
 <% end %>
-
-<h2>Reading</h2>
+</br>
+<h3>Reading</h3>
 <% @readings.each do |rea| %>
 <%= link_to rea.name, milieu_path(rea.id, current_milieu: rea) %>
 <% end %>

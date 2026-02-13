@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+    before_action :check_owner, only: [:create, :edit, :update, :destroy]
+
   def index
     @events = filter_records(@milieu.events)
   end
@@ -14,42 +16,65 @@ class EventsController < ApplicationController
   end
 
   def new
-    #@story = Story.new
+    @event = Event.new
+    @event.text = {"pri"=>"", "pub"=>""}
+    @event.ydate = Ydate.from_days(@milieu, 0)
+    @event.code = []
   end
 
   def create
-    #@story = Story.new(story_params)
-    #@story.public = false
-    #@story.milieu = @milieu
-    #if @story.save
-    #  redirect_to @story
-    #else
-    #  render :new, status: :unprocessable_entity
-    #end
+    @event = Event.new(event_params)
+    @event.public = false
+    @event.milieu = @milieu
+    @event.text["pri"] = params[:textpri]
+    @event.text["pub"] = params[:textpub]
+    @event.code = params[:textcode].split("\n")
+
+    if @event.save
+      redirect_to event_path(@event, current_milieu: @milieu)
+    else
+      redirect_to new_event_path(current_milieu: @milieu), alert: "Event creation failed!"
+    end
   end
 
+
   def edit
-    #@story = @milieu.stories.find(params[:id])
+    @event = @milieu.events.find(params[:id])
   end
 
   def update
-    #@story = @milieu.stories.find(params[:id])
-    #if @story.update(story_params)
-    #  redirect_to @story
-    #else
-    #  render :edit, status: :unprocessable_entity
-    #end
+    @event = @milieu.events.find(params[:id])
+    @event.text["pri"] = params[:textpri]
+    @event.text["pub"] = params[:textpub]
+    @event.code = params[:textcode].split("\n")
+    if @event.update(event_params)
+      redirect_to event_path(@event, current_milieu: @milieu)
+    else
+      redirect_to new_event_path(current_milieu: @milieu), alert: "Entity edit failed!"
+    end
   end
 
   def destroy
-    #@story = @milieu.stories.find(params[:id])
-    #@story.destroy
-    #redirect_to stories_path
+    @event = @milieu.events.find(params[:id])
+    @event.destroy
+    redirect_to events_path
   end
 
-
   private
-    #def story_params
-    #  params.expect(story: [ :chapter, :title, :details ])
-    #end
+
+  def check_public
+    if (!@private && !@event.public)
+      redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
+  end
+
+  def check_owner
+    unless @owner
+      redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
+  end
+
+  def event_params
+    params.expect(event: [ :ydate_id, :kind, :name, :code, :text, :public ])
+  end
 end

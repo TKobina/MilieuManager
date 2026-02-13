@@ -1,6 +1,7 @@
 <h1>Events</h1>
-<% cache @events do %>
-
+<% if @owner%>
+  <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
+<% end %>
 </p>
 
 <div id="Events">
@@ -15,4 +16,3 @@
   <% end %>
   </ul>
 </div>
-<% end %>
