@@ -1,0 +1,26 @@
+<%= form_with model: @lexeme do |form| %>
+  <div>
+    <%= form.submit %>
+  </div>
+  <p>
+  <div>
+    <%= form.text_field :word, class: "text-field"  %>
+    <%= form.label :word %></br></br>
+  </div>
+  <div>
+    <%= form.text_field :kind, class: "text-field"  %>
+    <%= form.label :kind %></br></br>
+  </div>
+  <div>
+    <%= form.text_field :meaning, class: "text-field"  %>
+    <%= form.label :definition %></br></br>
+  </div>
+  <div>
+    <%= text_field_tag :sublexeme_eids, @lexeme.sublexemes.map{|sub| sub.eid}.join(",") , class: "text-field"%>
+    <%= form.label :sublexemes %></br></br>
+  </div>
+  <div>
+    <%= form.text_area :details, class: "large-text-field" %>
+  </div>
+  </p>
+<% end %>

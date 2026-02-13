@@ -1,6 +1,8 @@
 class LexemesController < ApplicationController
+  before_action :set_language
+
   def index
-    @lexemes = @milieu.languages.find(params[:language_id]).lexemes.sort
+    @lexemes = @language.lexemes.sort
 
     respond_to do |format|
       format.html
@@ -12,7 +14,7 @@ class LexemesController < ApplicationController
     @lexeme = Lexeme.find(params[:id])
 
     if (@lexeme.language.entity.milieu.owner != current_user && !@lexeme.language.entity.milieu.readers.include?(current_user))
-      redirect_to lexemes_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
     end
 
   end
@@ -23,41 +25,55 @@ class LexemesController < ApplicationController
 
   def create
     @lexeme = Lexeme.new(lexeme_params)
-    @story.language = params[:language_id]
+    @lexeme.language = @language
     if @lexeme.save
-      redirect_to @lexeme
+      @lexeme.procsubs(params[:sublexeme_eids])
+      redirect_to lexeme_path(@lexeme,current_milieu: @milieu, language_id: @language.id)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_lexeme_path(current_milieu: @milieu, language_id: @language.id), alert: "Update failed!"
     end
   end
 
   def edit
-    #@story = @milieu.stories.find(params[:id])
+    @lexeme = Lexeme.find(params[:id])
+
+    if (@language.entity.milieu.owner != current_user)
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+    end
   end
 
   def update
-    #@story = @milieu.stories.find(params[:id])
-    #if @story.update(story_params)
-    #  redirect_to @story
-    #else
-    #  render :edit, status: :unprocessable_entity
-    #end
+    @lexeme = Lexeme.find(params[:id])
+    if (@language.entity.milieu.owner != current_user)
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+    end
+
+    if @lexeme.update(lexeme_params)
+      @lexeme.procsubs(params[:sublexeme_eids])
+      redirect_to lexeme_path(@lexeme,current_milieu: @milieu, language_id: @language.id)
+    else
+      redirect_to edit_lexeme_path(@lexeme, current_milieu: @milieu, language_id: @language.id), alert: "Update failed!"
+    end
   end
 
   def destroy
-    #@story = @milieu.stories.find(params[:id])
-    #@story.destroy
-    #redirect_to stories_path
+      @lexeme = Lexeme.find(params[:id])
+
+    if (@language.entity.milieu.owner != current_user)
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+    end
+
+    @lexeme.destroy
+    redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id)
   end
 
 
   private
-    def lexeme_params
-      params.expect(lexeme: [ :word, :kind, :meaning ])
-    end
-end
+  def lexeme_params
+    params.expect(lexeme: [:language_id, :word, :kind, :meaning, :sublexeme_eids, :details ])
+  end
 
-    # @event = @milieu.events.find(params[:id])
-    # if (!@private && !@event.public)
-    #   redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
-    # end
+  def set_language
+        @language = current_user.milieus.find_by(params[:current_milieu])&.languages&.find_by(params[:language_id]) || current_user.readings.find_by(params[:current_milieu]).languages.find_by(params[:language_id])
+  end
+end
