@@ -9,7 +9,19 @@ textarea {
 }
 
 .large-text-field {
-  width: 80%; /* 400px or a percentage, e.g., 80% */
-  height: 1000px; /* 50px*/
+  width: 320%; /* 400px or a percentage, e.g., 80% */
+  height: 800px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+}
+
+.large-text-area {
+  width: 320%; /* 400px or a percentage, e.g., 80% */
+  height: 400px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+}
+
+.large-text-tag {
+  width: 320%; /* 400px or a percentage, e.g., 80% */
+  height: 800px; /* 50px*/
   font-size: 1em; /* To make the text inside larger */
 }

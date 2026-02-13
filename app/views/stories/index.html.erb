@@ -11,7 +11,7 @@
 </p>
 
 <p>
-<% if @milieu.owner == current_user%>
-  <strong><%= link_to "Add Chapter", new_story_path %></strong>
+<% if @owner%>
+  <strong><%= link_to "Add Chapter", new_story_path(current_milieu: @milieu) %></strong>
 <% end %>
 </p>

@@ -1,17 +1,14 @@
 <% @owner = @language.entity.milieu.owner == current_user%>
-<% cache @lexemes do %>
-<% language = @lexemes.first.language%>
-<h1><%= language.name %> Lexemes </h1>
+<h1><%= @language.name %> Lexemes </h1>
 <p>
 <% if @owner%>
-  <strong><%= link_to "Add Lexeme", new_lexeme_path(current_milieu: @milieu, language_id: language.id) %></strong>
+  <strong><%= link_to "Add Lexeme", new_lexeme_path(current_milieu: @milieu, language_id: @language.id) %></strong>
 <% end %>
 </p>
 
 <div>
 <% @lexemes.each do |lexeme| %>
-    <%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu, language_id: language.id) %>
+    <%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu, language_id: @language.id) %>
     <% if @owner%><sup><%= lexeme.eid%>-<%=lexeme.id%></sup><%end%> (<%= lexeme.kind %>): <%= lexeme.meaning %> </br>
 <% end %>
 </div>
-<% end %>

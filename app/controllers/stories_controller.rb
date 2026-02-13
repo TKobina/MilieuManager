@@ -1,14 +1,12 @@
 class StoriesController < ApplicationController
+  before_action :check_owner, only: [:new, :create, :edit, :update, :destroy]
   def index
     @stories = filter_records(@milieu.stories).sort
   end
 
   def show
     @story = @milieu.stories.find(params[:id])
-
-    if (!@private && !@story.public)
-      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
-    end
+    check_public
   end
 
   def new
@@ -22,7 +20,7 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to story_path(@story, current_milieu: @milieu)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_story_path(current_milieu: @milieu, language_id: @language.id), alert: "Story creation failed!"
     end
   end
 
@@ -35,23 +33,31 @@ class StoriesController < ApplicationController
     if @story.update(story_params)
       redirect_to story_path(@story, current_milieu: @milieu)
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to edit_story_path(current_milieu: @milieu, language_id: @language.id), alert: "Story editing failed!"
     end
   end
 
   def destroy
     @story = @milieu.stories.find(params[:id])
-    if (!@private && !@story.public)
-      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
-    end
     @story.destroy
     redirect_to stories_path(current_milieu: @milieu)
   end
 
 
   private
-    def story_params
-      params.expect(story: [ :chapter, :title, :details, :public ])
-    end
+  def story_params
+    params.expect(story: [ :chapter, :title, :details, :public ])
+  end
 
+  def check_public
+    if (!@private && !@story.public)
+      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
+  end
+
+  def check_owner
+    unless @owner
+      redirect_to stories_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+    end
+  end
 end

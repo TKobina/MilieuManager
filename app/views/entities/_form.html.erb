@@ -1,0 +1,27 @@
+<%= form_with model: @entity do |form| %>
+  <div>
+    <%= form.submit %>
+  </div>
+  <p>
+  <div>
+    <%= form.text_field :name, class: "text-field", readonly: true  %>
+    <strong><%= form.label "Name (edit in events)" %></br></br></strong>
+  </div>
+    <div>
+    <%= form.check_box :public %>
+    <strong><%= form.label "Public?" %></br></br></strong>
+  </div>
+  <div>
+    <%= form.text_field :kind, class: "text-field", readonly: true  %>
+    <strong><%= form.label "Kind (edit in events)" %></br></br></strong>
+  </div>
+  <div>
+    <strong><%= form.label :private_details %></br></strong>
+    <%= text_area_tag :textpri, @entity.text["pri"] , class: "large-text-area"%></br>
+  </div>
+    <div>
+    <strong><%= form.label :public_details %></br></strong>
+    <%= text_area_tag :textpub, @entity.text["pub"] , class: "large-text-area"%></br>
+  </div>
+  </p>
+<% end %>

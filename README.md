@@ -3,8 +3,11 @@
 
 ## PRIORITIEs
 * MIGRATE EVERYTHING TO WEB!!!!
+  * Strip efolders/efiles/encyclopedium stuff, once everything else functional??
+  * Implement export/import functionality
+  * Implement EID generation for entities as with Lexemes
 * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
-* Found societies manually??
+* Found societies manually!!
 * CHECK FOR DUPLICATE EVENTS
 * PROCCING OF ALL EVENT TYPES, ENTITIES
   * Language should NOT BELONG TO entity, but entity can have one language

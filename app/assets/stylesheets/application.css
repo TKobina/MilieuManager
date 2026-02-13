@@ -13,14 +13,6 @@
  @import url("./forms.css");
  @import url("./tables.css");
 
-h1, h2 {
-  font-family: 'IM FELL Ledru';
-}
-
-a {
-  color: #BC46EB
-}
-
 p {
   margin-bottom: 1.5rem; /* Adjust space between paragraphs */
 }
@@ -28,12 +20,34 @@ p {
 body {
   margin-top: 50px;
   background-color: #222222;
-  color: #C9C699;
+  color: #d6d3b4;
+}
+
+h1 {
+  font-size: 2.5rem; /* 2.5 * 16px = 40px */
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
+}
+
+h2 {
+  font-size: 2rem; /* 1.5 * 16px = 24px */
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
 }
 
 .storytext {
   font-family: 'Courier New';
   /*font-weight: bold;*/
+}
+
+a {
+  color: #BC46EB
 }
 
 .rotate {
