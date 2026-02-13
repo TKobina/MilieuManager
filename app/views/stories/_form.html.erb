@@ -1,4 +1,7 @@
 <%= form_with model: @story do |form| %>
+  <div>
+    <%= form.submit %>
+  </div>
   <p>
   <div>
     <%= form.text_field :chapter, class: "text-field"  %>
@@ -18,7 +21,4 @@
     <%= form.text_area :details, class: "large-text-field" %>
   </div>
   </p>
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

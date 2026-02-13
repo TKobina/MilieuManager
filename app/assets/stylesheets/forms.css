@@ -1,0 +1,15 @@
+
+textarea {
+  background-color: #333333;
+}
+
+.text-field {
+  background-color: #333333;
+  width: 300px;
+}
+
+.large-text-field {
+  width: 80%; /* 400px or a percentage, e.g., 80% */
+  height: 1000px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+}

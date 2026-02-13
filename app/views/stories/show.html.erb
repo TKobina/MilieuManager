@@ -1,6 +1,7 @@
 <h1><%= @story.title %> </h1>
 
 <% if @story.milieu.owner == current_user%>
+  [<%= @story.public ? "Public" : "Private" %>]</br>
   <%= link_to "Edit", edit_story_path(@story.id, current_milieu: @milieu), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }%>
 <% end %>
 
