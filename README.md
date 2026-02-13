@@ -50,3 +50,4 @@
   * Folder Index
   * Link with alias
 * git diff --stat $(git hash-object -t tree /dev/null)
+* Issue with loading CSS files: had to do rake assets:clobber ; rails assets:precompile

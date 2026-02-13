@@ -17,7 +17,44 @@ class LexemesController < ApplicationController
 
   end
 
+  def new
+    @lexeme = Lexeme.new
+  end
+
+  def create
+    @lexeme = Lexeme.new(lexeme_params)
+    @story.language = params[:language_id]
+    if @lexeme.save
+      redirect_to @lexeme
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    #@story = @milieu.stories.find(params[:id])
+  end
+
+  def update
+    #@story = @milieu.stories.find(params[:id])
+    #if @story.update(story_params)
+    #  redirect_to @story
+    #else
+    #  render :edit, status: :unprocessable_entity
+    #end
+  end
+
+  def destroy
+    #@story = @milieu.stories.find(params[:id])
+    #@story.destroy
+    #redirect_to stories_path
+  end
+
+
   private
+    def lexeme_params
+      params.expect(lexeme: [ :word, :kind, :meaning ])
+    end
 end
 
     # @event = @milieu.events.find(params[:id])
