@@ -3,9 +3,10 @@
 
 ## PRIORITIEs
 * MIGRATE EVERYTHING TO WEB!!!!
-  * Strip efolders/efiles/encyclopedium stuff, once everything else functional??
+  * Strip efolders/efiles/encyclopedium stuff, once everything else functional
   * Implement export/import functionality
   * Implement EID generation for entities as with Lexemes
+  * Make sure stories are tied to milieus
 * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
 * Found societies manually!!
 * CHECK FOR DUPLICATE EVENTS

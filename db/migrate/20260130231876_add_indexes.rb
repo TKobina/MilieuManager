@@ -1,6 +1,5 @@
 class AddIndexes < ActiveRecord::Migration[8.1]
   def change
-    add_reference :efolders, :parent, foreign_key: { to_table: :efolders }
     add_reference :languages, :entity, null: true, index: true
     add_reference :dialects, :entity, null: false, index: true
 
@@ -18,9 +17,7 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :entities, :eid
     add_index :entities, [:kind, :name]
 
-    add_index :events, :kind
     add_index :events, :name
-    add_index :events, [:kind, :ydate_id]
 
     add_index :dialects, :name
     add_index :dialects, [:language_id, :entity_id]

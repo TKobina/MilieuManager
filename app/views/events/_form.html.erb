@@ -1,6 +1,8 @@
 <%= form_with model: @event do |form| %>
   <div>
-    <%= form.submit %>
+    <h3>
+    <%= form.submit class: "form-button px-4 py-2 rounded-lg" %>
+    <h3>
   </div>
   <p>
 
@@ -21,11 +23,24 @@
   
   <div>
     <%= form.text_field :kind, class: "text-field", readonly: true  %>
-    <strong><%= form.label "Kind" %></br></br></strong>
+    <strong><%= form.label "Kinds" %></br></br></strong>
   </div>
 
+  <div class="field">
+    <%#= form.label :add_template %><br>
+    <%#= form.select :category_id, Event.get_kinds, html_options = {:style => "background-color: #3f3"} %>
+    <%#= form.select :category_id, options_for_select(@categories.collect{|category| [category.name, category.id]}), { class: "some_class" } %>
+  <%= form.fields_for :kind do |kind_form| %>
+    <%= render partial: "kind_fields", locals: { form: kind_form } %>
+  <% end %>
+  </div>
+
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add">Add Subevent</button>
+
   <div>
-    <% codestring = @event.code.join("\n") if @event.code.present? %>
+    <% codestring = "" %>
+    <% @event.instructions.each{|instruction| codestring += "#{instruction.code}\n"} if !@event.instructions.empty? %>
     <strong><%= form.label :instructions %></br></strong>
     <%= text_area_tag :textcode, codestring, class: "large-text-area"%></br>
   </div>

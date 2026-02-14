@@ -3,7 +3,7 @@ class Efile < ApplicationRecord
 
   belongs_to :encyclopedium
   belongs_to :efolder
-  has_many :events, dependent: :destroy
+  has_many :events
   after_create_commit :parse
 
   PROPERTIES = "---"
@@ -20,7 +20,6 @@ class Efile < ApplicationRecord
     self.contents = @contents
     self.save
 
-    #proc
   end
   
   def proc(target: nil)
@@ -50,16 +49,17 @@ class Efile < ApplicationRecord
       code[:insts] = self.contents[key]["code"][1..]
       code[:proc], code[:kind], code[:public] = self.contents[key]["code"]&.first&.split("|")
       
-      Event.create!(
+      event = Event.create!(
         milieu: self.encyclopedium.milieu,
         ydate: self.encyclopedium.milieu.get_date_from_strdate(self.name),
-        code: code[:insts], 
-        kind: code[:kinds].join(","), 
         name: key, 
         public: code[:public] == "public",
-        efile: self, 
         text: {pri: self.contents[key]["pri"], pub: self.contents[key]["pub"]}
       ) if code[:proc] == "proc"
+
+      
+
+      code[:insts].each {|instruction| Instruction.create!(event: event, code: instruction)}
     end
   end
 

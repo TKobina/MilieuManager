@@ -30,11 +30,10 @@
   </div>
 <% end %>
 </br>
+
+<div>
 <h2>Events</h2>
 <% @events.each do |event| %>
-  <div>
-  <h3><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></h3>
-  <% if @owner %> <%= event.text["pri"] %></p><% end %>
-  <%= event.text["pub"] %></p>
-  </div>
+  <%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %>
 <% end %>
+</div>

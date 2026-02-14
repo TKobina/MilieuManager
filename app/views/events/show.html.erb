@@ -5,22 +5,25 @@
 <% else %>
 </h1>
 <% end %>
-
 </p>
-<ul>
-<div>
+
+<% if @owner %>
+<div><ul>
 <h3>Event Specifications</h3>
-<% @event.code.each do |code| %>
-    <li><%= code.split("|").join(" | ") %></li>
+  <% @event.instructions.each do |instruction| %>
+    <li><%= instruction.code %></li>
+  <% end %>
+  </div></ul>
 <% end %>
-</div>
-</ul>
 
 <p>
 <h3>Details</h3>
-<%= @event.text["pub"] %></p>
+<%= @event.text["pub"] %>
+</p>
 
+<p>
 <% if @private %>
 <h3>Private Details</h3>
-<p><%= @event.text["pri"] %></p>
+<%= @event.text["pri"] %>
 <% end %>
+</p>

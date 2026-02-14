@@ -45,43 +45,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["name"], name: "index_dialects_on_name"
   end
 
-  create_table "efiles", force: :cascade do |t|
-    t.json "contents"
-    t.datetime "created_at", null: false
-    t.integer "efolder_id", null: false
-    t.integer "encyclopedium_id", null: false
-    t.datetime "lastupdate"
-    t.string "name"
-    t.string "path"
-    t.json "properties"
-    t.datetime "updated_at", null: false
-    t.index ["efolder_id"], name: "index_efiles_on_efolder_id"
-    t.index ["encyclopedium_id"], name: "index_efiles_on_encyclopedium_id"
-  end
-
-  create_table "efolders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "efolders_id"
-    t.integer "encyclopedium_id"
-    t.datetime "lastupdate"
-    t.string "name"
-    t.integer "parent_id"
-    t.string "path"
-    t.datetime "updated_at", null: false
-    t.index ["efolders_id"], name: "index_efolders_on_efolders_id"
-    t.index ["encyclopedium_id"], name: "index_efolders_on_encyclopedium_id"
-    t.index ["parent_id"], name: "index_efolders_on_parent_id"
-  end
-
-  create_table "encyclopedia", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "milieu_id", null: false
-    t.string "rootdir"
-    t.string "rootfolder"
-    t.datetime "updated_at", null: false
-    t.index ["milieu_id"], name: "index_encyclopedia_on_milieu_id"
-  end
-
   create_table "entities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "eid", null: false
@@ -104,22 +67,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.json "code"
     t.datetime "created_at", null: false
-    t.integer "efile_id", null: false
-    t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
     t.boolean "public", default: false
     t.json "text"
     t.datetime "updated_at", null: false
     t.integer "ydate_id", null: false
-    t.index ["efile_id"], name: "index_events_on_efile_id"
-    t.index ["kind", "ydate_id"], name: "index_events_on_kind_and_ydate_id"
-    t.index ["kind"], name: "index_events_on_kind"
     t.index ["milieu_id"], name: "index_events_on_milieu_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
+  end
+
+  create_table "instructions", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.string "description"
+    t.integer "event_id", null: false
+    t.string "kind"
+    t.boolean "public"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_instructions_on_event_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -226,13 +194,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "chapter"
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "efile_id"
     t.datetime "lastupdate"
     t.integer "milieu_id", null: false
     t.boolean "public"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["efile_id"], name: "index_stories_on_efile_id"
     t.index ["milieu_id"], name: "index_stories_on_milieu_id"
   end
 
@@ -276,16 +242,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
-  add_foreign_key "efiles", "efolders"
-  add_foreign_key "efiles", "encyclopedia"
-  add_foreign_key "efolders", "efolders", column: "efolders_id"
-  add_foreign_key "efolders", "efolders", column: "parent_id"
-  add_foreign_key "efolders", "encyclopedia"
-  add_foreign_key "encyclopedia", "milieus"
   add_foreign_key "entities", "milieus"
-  add_foreign_key "events", "efiles"
   add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
+  add_foreign_key "instructions", "events"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
   add_foreign_key "milieus", "users", column: "owner_id"
@@ -296,7 +256,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
-  add_foreign_key "stories", "efiles"
   add_foreign_key "stories", "milieus"
   add_foreign_key "ydates", "milieus"
 end

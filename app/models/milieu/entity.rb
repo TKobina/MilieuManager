@@ -33,26 +33,26 @@ class Entity < ApplicationRecord
 
   ## ----------------------------------CORE ENTITY EVENTS---------------------------------------
   def formation(instruction)
-    # formation | name-eid | kind | milieu
+    # formation | name-eid | kind | milieu | public
     instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.events.first.milieu
     self.eid = eid
     self.name = name
     self.kind = instrs[2]
-    self.public = false
+    self.public = instrs[-1] == "public"
     self.save!
   end
 
   def founding(instruction)
-    # founding | name-eid | kind | status | parent-eid | Language (if Nation)
+    # founding | name-eid | kind | status | parent-eid | Language (if Nation) | public  |
     instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.events.first.milieu
     self.eid = eid
     self.name = name
     self.kind = instrs[2]
-    self.public = false
+    self.public = instrs[-1] == "public"
     self.save!
 
     self.properties << Property.new(kind: "founding date", value: self.events.first.ydate)
@@ -64,7 +64,10 @@ class Entity < ApplicationRecord
     when "nation"
       rkind = "political"
       rname = "Nation of"
-      Language.create!(entity: self, name: instrs[5])
+      
+      lang = Language.find_or_create_by(name: instrs[5])
+      lang.update!(entity: self)
+      lang.get_base_abberations
     when "house" 
       rkind = "political" 
       rname = "House of"
@@ -75,14 +78,14 @@ class Entity < ApplicationRecord
   end
 
   def birth(instruction)
-    # birth | name-eid | gender | parent-eid | house-eid
+    # birth | name-eid | gender | parent-eid | house-eid | public
     instrs = instruction.split("|")
     name, eid = instrs[1].split("-")
     self.milieu = self.events.first.milieu
     self.eid = eid
     self.name = name
     self.kind = "person"
-    self.public = false
+    self.public = instrs[-1] == "public"
     self.save!
 
     set_parent(instrs[3], "familial", "child of")
@@ -93,7 +96,6 @@ class Entity < ApplicationRecord
 
     return self if self.name == "unknown"
     set_society(parenthouse: instrs[4])
-    Rails.cache.write("personids", Rails.cache.read("personids") << self.id)
   end
   
   def death (event, instrs)
@@ -127,19 +129,18 @@ class Entity < ApplicationRecord
 
   private
 
-  
   def not_exists?
     self.milieu.entities.where(eid: self.eid).empty?
   end
 
   def get_details
-    self.update!(text: {pri: "", pub: ""})    
-    efile = self.events.first.efile.encyclopedium.efiles.where(name: self.name + "-" + self.eid + ".md").first
-    efile&.proc(target: self)
+    #self.update!(text: {pri: "", pub: ""})    
+    #efile = self.events.first.efile.encyclopedium.efiles.where(name: self.name + "-" + self.eid + ".md").first
+    #efile&.proc(target: self)
   end
 
   def set_parent(piden, rkind, rname)
-    pname, peid = piden.split("-")
+    peid = piden.split("-").second
     parent = self.events.first.milieu.entities.where(eid: peid).first
     unless parent.nil?
       parent.events << self.events.last

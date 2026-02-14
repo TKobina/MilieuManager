@@ -4,10 +4,7 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :milieu, null: false, foreign_key: true
       t.references :ydate, null: false, foreign_key: true
-      t.references :efile, null: false, foreign_key: true
-      t.string :kind
       t.string :name
-      t.json :code
       t.json :text
       t.boolean :public, default: false
     end
