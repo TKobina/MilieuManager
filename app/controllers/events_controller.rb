@@ -2,7 +2,10 @@ class EventsController < ApplicationController
     before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index
-    @events = filter_records(@milieu.events)
+    @dates = {}
+    @milieu.ydates.each {|date| @dates[date.value] = filter_records(date.events) }
+    #@dates = keys.index_with([])
+    #filter_records(@milieu.events).each{|event| @dates[event.ydate.value] << event }
   end
 
   def show
@@ -10,9 +13,6 @@ class EventsController < ApplicationController
     if (!@private && !@event.public)
       redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
-
-    @text_public = @event.text["pub"]
-    @text_private = @private ? @event.text["pri"] : ""
   end
 
   def new

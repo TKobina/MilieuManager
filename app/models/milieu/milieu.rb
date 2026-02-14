@@ -5,7 +5,6 @@ class Milieu < ApplicationRecord
   has_many :readers, through: :accesses, source: :reader
   
   has_many :ydates, dependent: :destroy
-  has_one :encyclopedium, dependent: :destroy
   
   has_many :entities, dependent: :destroy
   has_many :events, dependent: :destroy

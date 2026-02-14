@@ -26,12 +26,12 @@ namespace :init do
     unless milieu = Milieu.where(owner: user, name: "Ildera").first
       milieu = Milieu.create!(owner: user, name: "Ildera")
     end
-     
-    unless encyc = Encyclopedium.where(milieu: milieu).first
-      encyc = Encyclopedium.create!(milieu: milieu, rootdir: Rails.root.join("lib"), rootfolder: "obsidian")
-    end
 
-    Dialect.first.generate_name
+    current_user.readings << milieu
+     
+    ObsidianImporterService.new(Rails.root.join("lib"), "obsidian", milieu)
+
+    #Dialect.first.generate_name
 
     Lexeme.destroy_all
 
