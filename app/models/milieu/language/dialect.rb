@@ -3,7 +3,7 @@ class Dialect < ApplicationRecord
   belongs_to :language
 
   has_many :names, dependent: :destroy
-   after_create_commit :get_base_abberations
+  after_create_commit :get_base_abberations
 
   VARS = ["pattern", "vowel", "consonant", "bridge"]
 

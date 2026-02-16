@@ -9,11 +9,21 @@
 
 <% if @owner %>
 <div><ul>
+  <h3> Public</h3>
+  <li><%= check_box_tag("public", '1', @event.public, disabled: true) %></li>
+</div>
+</br>
+<div>
+<h3>Event Code</h3>
+  <%= @event.code.first %>
+</div>
+<br>
+<div><ul>
 <h3>Event Specifications</h3>
   <% @event.instructions.each do |instruction| %>
     <li><%= instruction.code %></li>
   <% end %>
-  </div></ul>
+</div></ul>
 <% end %>
 
 <p>

@@ -1,58 +1,54 @@
 <%= form_with model: @event do |form| %>
   <div>
     <h3>
-    <%= form.submit class: "form-button px-4 py-2 rounded-lg" %>
+    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
     <h3>
   </div>
   <p>
 
   <div>
-    <%= form.check_box :public %>
-    <strong><%= form.label "Public?" %></br></br></strong>
-  </div>
-
-  <div>
-    <strong><%= form.text_field :ydate.to_s, class: "text-field" %></strong>
-    <strong><%= form.label "Date" %></br></br></strong>
+    <strong><%= text_field_tag :ydate, @event.ydate.to_s, class: "text-field" %></strong>
+    <strong><%= form.label :date %></br></br></strong>
   </div>
 
   <div>
     <%= form.text_field :name, class: "text-field" %>
-    <strong><%= form.label "Name" %></br></br></strong>
+    <strong><%= form.label :name %></br></br></strong>
+  </div>
+
+  <div>
+    <%= text_field_tag :code, @event.code&.first || "proc|event|private", class: "text-field" %>
+    <strong><%= form.label :code %></br></br></strong>
   </div>
   
   <div>
-    <%= form.text_field :kind, class: "text-field", readonly: true  %>
-    <strong><%= form.label "Kinds" %></br></br></strong>
-  </div>
-
-  <div class="field">
-    <%#= form.label :add_template %><br>
-    <%#= form.select :category_id, Event.get_kinds, html_options = {:style => "background-color: #3f3"} %>
-    <%#= form.select :category_id, options_for_select(@categories.collect{|category| [category.name, category.id]}), { class: "some_class" } %>
-  <%= form.fields_for :kind do |kind_form| %>
-    <%= render partial: "kind_fields", locals: { form: kind_form } %>
-  <% end %>
-  </div>
-
-  <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add">Add Subevent</button>
-
-  <div>
-    <% codestring = "" %>
-    <% @event.instructions.each{|instruction| codestring += "#{instruction.code}\n"} if !@event.instructions.empty? %>
-    <strong><%= form.label :instructions %></br></strong>
-    <%= text_area_tag :textcode, codestring, class: "large-text-area"%></br>
-  </div>
-
-  <div>
-    <strong><%= form.label :private_details %></br></strong>
-    <%= text_area_tag :textpri, @event&.text["pri"] , class: "large-text-area"%></br>
+    <h3><%= form.label :instructions %></h3>
+    <ul style="font-style: italic;">
+      <li> -founding | name-<%= @eidnext %> | kind | status | parent-eid | Language (if kind=Nation) | public  |</li>
+      <li> -birth | name-<%= @eidnext %> | gender | parent-eid | public</li>
+      <li> -exile | entity-eid | name-eid | public |</li>
+      <li> -raising | entity-eid| name-eid | title | newname-eid | public |</li>
+      <li> -claiming | name-eid | claimed-eid | kind | public |</li>
+      <li> -disclaiming | name-eid | disclaimed-eid | kind | public | </li>
+      <li> -hiring | entity-eid | name-eid | title | public |</li>
+      <li> -firing | entity-eid | name-eid | public |</li>
+      <li> -death | name-eid | public | </li>
+    </ul>
+    </br>
+    <% inststring = "" %>
+    <% @event.instructions.each{|instruction| inststring += "#{instruction.code}\n"} if !@event.instructions.empty? %>
+    <%= text_area_tag :instructions, inststring, class: "large-text-area"%></br>
   </div>
 
   <p>
   <div>
-    <strong><%= form.label :public_details %></br></strong>
+    <h3><%= form.label :private_details %></h3>
+    <%= text_area_tag :textpri, @event&.text["pri"] , class: "large-text-area"%></br>
+  </div>
+  </p>
+  <p>
+  <div>
+    <h3><%= form.label :public_details %></h3>
     <%= text_area_tag :textpub, @event&.text["pub"]  , class: "large-text-area"%></br>
   </div>
   </p>

@@ -1,5 +1,6 @@
 <h1>Events</h1>
 <% if @owner%>
+  <%= button_to 'Reprocess Chronology', proc_events_path, method: :post %>
   <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
 <% end %>
 </p>

@@ -1,6 +1,7 @@
 class Language < ApplicationRecord
   include Comparable
   belongs_to :entity
+  belongs_to :milieu
 
   has_many :letters, dependent: :destroy
   has_many :dialects, dependent: :destroy

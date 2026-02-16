@@ -3,6 +3,9 @@ class EntitiesController < ApplicationController
 
   def index
     @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities).where.not(kind: "world"))
+    
+    #@entities.sort
+    @eidnext = @entities.max_by{|ent| ent.eid.to_i}.eid.to_i + 1
   end
 
   def show
@@ -13,9 +16,6 @@ class EntitiesController < ApplicationController
     @superiors, @superior_relations = filter_joint_records(@entity.superiors, @entity.superior_relations)
     @inferiors, @inferior_relations = filter_joint_records(@entity.inferiors, @entity.inferior_relations)
     @events = filter_records(@entity.events)
-
-    @text_public = @entity.text["pub"]
-    @text_private = @private ? @entity.text["pri"] : ""
   end
 
   def create
@@ -36,8 +36,8 @@ class EntitiesController < ApplicationController
 
   def update
     @entity = @milieu.entities.find(params[:id])
-    @entity.text["pri"] = params[:textpri]
-    @entity.text["pub"] = params[:textpub]
+    @entity.text[:pri] = params[:textpri]
+    @entity.text[:pub] = params[:textpub]
     if @entity.update(entity_params)
       redirect_to @entity
     else

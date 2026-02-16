@@ -2,13 +2,15 @@ class Ydate < ApplicationRecord
   has_many :events, dependent: :destroy
   belongs_to :milieu
 
-  def <=>(other)
-    self.value <=> other.value
-  end
-
   DAYS_MONTH = 24
   DAYS_SEASON = 4 * DAYS_MONTH
   DAYS_YEAR = 4 * DAYS_SEASON
+
+  def <=>(other) = self.value <=> other.value
+
+  def proc_ydate
+    self.events.sort.each{|event| event.proc_event }
+  end
 
   def to_s
     return "" if self.value.nil?
@@ -16,7 +18,7 @@ class Ydate < ApplicationRecord
     season, r = r.divmod(DAYS_SEASON)
     month, day = r.divmod(DAYS_MONTH)
 
-   [year, season, month, day].map{ |val| (val += 1).to_s }.join(".")
+    [year, season, month, day].map{ |val| (val += 1).to_s }.join(".")
   end
 
   def self.to_str(intdate)
@@ -25,7 +27,7 @@ class Ydate < ApplicationRecord
     season, r = r.divmod(DAYS_SEASON)
     month, day = r.divmod(DAYS_MONTH)
 
-   [year, season, month, day].map{ |val| (val += 1).to_s }.join(".")
+    [year, season, month, day].map{ |val| (val += 1).to_s }.join(".")
   end
 
   def self.from_days(milieu, intdate)
@@ -49,9 +51,8 @@ class Ydate < ApplicationRecord
     days = (year * DAYS_YEAR) + (season * DAYS_SEASON) + (month * DAYS_MONTH) + day
     ydate = Ydate.find_by(milieu: Milieu.first, value: days)
 
-    ydate.nil? ? create!(milieu: milieu, value: days) : ydate
+    ydate.nil? ? Ydate.new(milieu: milieu, value: days) : ydate
   end
 
   private
 end
-

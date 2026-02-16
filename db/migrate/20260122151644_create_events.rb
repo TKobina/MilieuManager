@@ -4,9 +4,12 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :milieu, null: false, foreign_key: true
       t.references :ydate, null: false, foreign_key: true
+      t.integer :i
       t.string :name
       t.json :text
+      t.json :code
       t.boolean :public, default: false
+      t.boolean :proc
     end
   end
 end
