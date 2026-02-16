@@ -7,6 +7,7 @@ namespace :init do
     #Entity.destroy_all
     #Event.destroy_all
     #Language.destroy_all
+    Property.destroy_all
     Milieu.destroy_all
 
     puts "Initializing base users & milieus"
@@ -27,8 +28,8 @@ namespace :init do
       milieu = Milieu.create!(owner: user, name: "Ildera")
     end
 
-    current_user.readings << milieu
-     
+    user2.readings << milieu
+    
     ObsidianImporterService.new(Rails.root.join("lib"), "obsidian", milieu)
 
     #Dialect.first.generate_name

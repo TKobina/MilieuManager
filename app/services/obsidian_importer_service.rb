@@ -14,6 +14,8 @@ class ObsidianImporterService
     @files = {}
     @milieu = milieu
     import_obsidian(path, name)
+
+    @milieu.proc_chronology
   end
 
   def import_obsidian(path, name)
@@ -119,26 +121,16 @@ class ObsidianImporterService
   end
 
   def proc_date(filename, file)
-    file[:contents].keys.each do |key|
-      code = {}
-
-      code[:proc], code[:kind], code[:public] = file[:contents][key][:code]&.first&.split("|")
-
-      #file[:contents][key][:code][1..]&.map{|x| code[:kinds] << x.split("|").map{|y| y.strip()}[0] }
-      code[:instructions] = file[:contents][key][:code][1..]
-      if code[:proc] == "proc"
-        event = Event.new(
-          milieu: @milieu,
-          ydate: @milieu.get_date_from_strdate(filename),
-          name: key, 
-          public: code[:public] == "public",
-          text: {pri: file[:contents][key]["pri"], pub: file[:contents][key]["pub"]}
-        )
-
-        code[:instructions].each {|instruction| Instruction.create!(event: event, code: instruction)}
-
-        event.save
-      end
+    file[:contents].keys.each_with_index do |key, i|
+      Event.create!(
+        milieu: @milieu,
+        ydate: @milieu.get_date_from_strdate(filename),
+        name: key, 
+        i: i,
+        code: file[:contents][key][:code],
+        text: {
+          pri: file[:contents][key]["pri"], 
+          pub: file[:contents][key]["pub"]})
     end
   end
 end

@@ -1,3 +1,3 @@
 <h1>Edit Event</h1>
-<%= link_to "Cancel", events_path(current_milieu: @milieu) %>
+<%= link_to "Cancel", event_path(@event, current_milieu: @milieu) %>
 <%= render "form", event: @event %>
