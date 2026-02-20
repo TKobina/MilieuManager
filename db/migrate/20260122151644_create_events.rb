@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.references :ydate, null: false, foreign_key: true
       t.integer :i
       t.string :name
+      t.string :kind
       t.json :text
       t.json :code
       t.boolean :public, default: false

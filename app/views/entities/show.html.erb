@@ -14,26 +14,35 @@
 <p><%= @entity.text["pri"] %></p>
 <% end %>
 
+
+<h2>Properties</h2>
+<% if !@properties.nil? then @properties.each do |prop| %>
+<div>
+  <h3>(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%></h3>
+  <%= prop.detail %>
+</div>
+<% end %><% end %>
+
 </br>
 <h2>Relations</h2>
 <h3>Belongs To</h3>
-<% @superiors.zip(@superior_relations).each do |sup, rel| %>
+<% if !@superior_relations.nil? then @superiors.zip(@superior_relations).each do |sup, rel| %>
   <div>
     <%= rel.name.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
-<% end %>
+<% end %><% end %>
 </br>
 <h3>Possesses</h3>
-<% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
+<% if !@inferior_relations.nil? then @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
     <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
-<% end %>
+<% end %><% end %>
 </br>
 
 <div>
 <h2>Events</h2>
 <% @events.each do |event| %>
-  <%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %>
+  <%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></br>
 <% end %>
 </div>

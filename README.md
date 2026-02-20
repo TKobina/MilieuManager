@@ -5,9 +5,11 @@
 * MIGRATE EVERYTHING TO WEB!!!!
   * Implement export/import functionality
 * EVENTS
-  * CHECK FOR DUPLICATE EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
+  * handle changing of event ydate
+  * check for duplicate events
   * Found societies manually!!
+  * Remove instructions from controller, obsidian_importer_service; they're obsolete and empty, I believe
 * ENTITIES
   * UNKNOWN FOR EVERY HOUSE, REMOVE HOUSE FROM EVENT BIRTHS??
   * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
@@ -58,7 +60,8 @@
 * public/private
   * events: noted in the code block, private by default
   * entities: private by default, look for a file for the entity in the file directory by name
-* rail db:migrate VERSION=0 cascade=true
+* rails db:migrate VERSION=0 cascade=true
+  * rails db:migrate:primary
 * Obsidian Plugins
   * Folder Index
   * Link with alias

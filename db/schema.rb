@@ -70,6 +70,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.json "code"
     t.datetime "created_at", null: false
     t.integer "i"
+    t.string "kind"
     t.integer "milieu_id", null: false
     t.string "name"
     t.boolean "proc"
@@ -231,7 +232,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
 
   create_table "ydates", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "lastupdate"
     t.integer "milieu_id", null: false
     t.datetime "updated_at", null: false
     t.integer "value"

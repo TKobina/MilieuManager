@@ -5,14 +5,14 @@ class EntitiesController < ApplicationController
     @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities).where.not(kind: "world"))
     
     #@entities.sort
-    @eidnext = @entities.max_by{|ent| ent.eid.to_i}.eid.to_i + 1
+    @eidnext = @entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
   end
 
   def show
     @entity = @milieu.entities.find(params[:id])
     
     check_public
-
+    @properties = filter_records(@entity.properties)
     @superiors, @superior_relations = filter_joint_records(@entity.superiors, @entity.superior_relations)
     @inferiors, @inferior_relations = filter_joint_records(@entity.inferiors, @entity.inferior_relations)
     @events = filter_records(@entity.events)
