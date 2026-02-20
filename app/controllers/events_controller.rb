@@ -14,24 +14,15 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
-    @event.text = {pri: "", pub: ""}
+    @event = Event.new(:text => {:pri => "", :pub => ""})
     @event.ydate = Ydate.random(@milieu)
-
-    @eidnext = @milieu.entities.max_by{|ent| ent.eid.to_i}.eid.to_i + 1
+    @eidnext = @milieu.entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.public = false
-    @event.milieu = @milieu
-    @event.text[:pri] = params[:textpri]
-    @event.text[:pub] = params[:textpub]
-    @event.code = (params[:code] + "\n" + params[:instructions]).split("\n")
-    @event.ydate = Ydate.from_string(@milieu, params[:ydate])
-    
+    @event = Event.new(EventParamsService.call(@milieu, event_params))  
     if @event.save
-      @event.update_event
+      MilieuChronoprocJob.perform_now @milieu
       redirect_to event_path(@event, current_milieu: @milieu)
     else
       redirect_to new_event_path(current_milieu: @milieu), alert: "Event creation failed!"
@@ -39,20 +30,14 @@ class EventsController < ApplicationController
   end
 
   def edit
-
     @event = @milieu.events.find(params[:id])
     @eidnext = @milieu.entities.max_by{|ent| ent.eid.to_i}.eid.to_i + 1
   end
 
   def update
     @event = @milieu.events.find(params[:id])
-    @event.text["pri"] = params[:textpri]
-    @event.text["pub"] = params[:textpub]
-    @event.code = (params[:code] + "\n" + params[:instructions]).split("\n")
-    @event.ydate = Ydate.from_string(@milieu, params[:ydate])
-
-    if @event.update(event_params)
-      @event.update_event
+    if @event.update(EventParamsService.call(@milieu, event_params))
+      MilieuChronoprocJob.perform_now @milieu
       redirect_to event_path(@event, current_milieu: @milieu)
     else
       redirect_to new_event_path(current_milieu: @milieu), alert: "Entity edit failed!"
@@ -84,9 +69,8 @@ class EventsController < ApplicationController
       redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
   end
-
+  
   def event_params
-    params.expect(event: [ :ydate_id, :kind, :name, :code, :inststring, :text, :public,
-      instructions_attributes: [:id, :event_id, :i, :kind, :code, :description, :_destroy] ])
+    params.expect(:ydate, :name, :code, details: [:textpri, :textpub, :instructions])
   end
 end

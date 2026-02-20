@@ -11,7 +11,7 @@
 <h3><%= Ydate.from_days(@milieu, date) unless @dates[date].empty? %> </h3>
   <% @dates[date].each do |event| %>
     <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %>
-    <% if @owner %><sup><%=event.id %></sup><%end%> </br>
+    <% if @owner %><sup><%#=event.id %></sup><%end%> </br>
   <% end %>
   </p>
 <% end %>
