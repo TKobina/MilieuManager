@@ -89,13 +89,21 @@ class Instruction < ApplicationRecord
   def adoption
     # Entity.fetch(kind, self, self.code[index]).adoption(self, self.code[index])
     # # adoption | entity-eid (house, society) | name-eid | newname-eid
-    # instrs = instruction.split("|")
-    # name = instrs[3]&.split("-")&.first
-    # self.name = name if name.present?
-    # self.events << event
-    # self.save
-    # self.set_society(parenthouse: instrs[1])
-    # self.properties << Property.new(event: event, kind: "adoption", value: "by " + instrs[1].split("-").first)
+    #adoption|Nä'drë'e-3|unknown-27|Jiŷu-27|private
+    _, adopterid, oldnameid, newnameid, public  = self.code.split("|")
+    _, aeid = adopterid.split("-")
+    _, eid = oldnameid.split("-")
+    newname, _ = newnameid&.split("-")
+
+    dopter = Entity.where(eid: aeid).first
+    doptee = Entity.where(eid: eid).first
+    binding.pry if doptee.nil?
+    dopter.events << self.event
+    doptee.events << self.event
+
+    doptee.update!(name: newname) unless newname.nil?
+    
+    doptee.set_relation(aeid, "adoption")
   end
 
   def exiling

@@ -122,20 +122,24 @@ class ObsidianImporterService
 
   def proc_date(filename, file)
     file[:contents].keys.each_with_index do |key, i|
-      params = {
-        :milieu => @milieu, 
-        :ydate => filename, 
-        :name => key, 
-        :i => i, 
-        :code => file[:contents][key][:code].join("\n"),
-        :instructions => "",
-        :text => {
-            :pri => file[:contents][key]["pri"], 
-            :pub => file[:contents][key]["pub"]}
-      }
-      params = EventParamsService.call(params)
-      binding.pry
-      eve = Event.new(params)
+      # params = {text: {pri: "", pub: ""}}
+      # datestring, params[:name], params[:code], details = eparams
+      # params[:text][:pri], params[:text][:pub], instructions = details.values
+      # params[:code] += "\n" + instructions
+      # params[:ydate] = Ydate.from_string(milieu, datestring)
+      # params[:milieu] = milieu
+
+      params = [
+        filename, 
+        key,
+        file[:contents][key][:code].join("\n"), 
+        details: {
+          textpri: file[:contents][key]["pri"],
+          textpub: file[:contents][key]["pub"],
+          instructions: ""}]
+
+      params = EventParamsService.call(@milieu, params)
+      eve = Event.create!(params)
     end
   end
 end

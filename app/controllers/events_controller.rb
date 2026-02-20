@@ -31,7 +31,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = @milieu.events.find(params[:id])
-    @eidnext = @milieu.entities.max_by{|ent| ent.eid.to_i}.eid.to_i + 1
+    @eidnext = @milieu.entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
   end
 
   def update

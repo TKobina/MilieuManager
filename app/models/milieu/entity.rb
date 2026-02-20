@@ -16,15 +16,20 @@ class Entity < ApplicationRecord
 
   SUBLATIONS = {
     [:person, :person, :birth]  => ["familial", "child of"],
+    [:person, :nation, :birth]  => ["societal", "member of"],
+    
+    [:person, :house, :adoption] => ["societal", "adopted of"],
+
     [:person, :person, :consorting]  => ["familial", "consort of"],
     [:person, :person, :marriage]  => ["familial", "spouse of"],
-
+    
     [:person, :society, :of]   => ["fraternal", "member of"],
     [:person, :society, :for]   => ["fraternal", "employee for"],
     [:person, :house, :of]   => ["societal", "member of"],
     [:person, :house, :for]   => ["societal", "employee for"],
-
+    
     [:house, :society, nil]  => ["political", "house of"],
+    [:house, :nation, nil]  => ["political", "house of"],
     [:society, :nation, nil]   => ["political", "society of"],
     [:nation, :world, nil]   => ["political", "nation of"],
     [:unkown, :person, nil] => ["mysterious", "unknown relation of"]
@@ -48,6 +53,7 @@ class Entity < ApplicationRecord
     return unless superior.present?
     
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
+    binding.pry if rname.nil?
     superior.events << self.events.last
     Relation.create!(inferior: self, superior: superior, kind: rkind, name: rname)
   end
