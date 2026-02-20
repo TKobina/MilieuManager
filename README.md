@@ -1,34 +1,33 @@
 # README
 ## QUESTIONS
 
-## PRIORITIEs
-* UNKNOWN FOR EVERY HOUSE, REMOVE HOUSE FROM EVENT BIRTHS
+## PRIORITIES
 * MIGRATE EVERYTHING TO WEB!!!!
   * Implement export/import functionality
-  * Implement EID generation for entities as with Lexemes
-  * Why are properties preventing Milieu.destroy_all????
+* EVENTS
+  * CHECK FOR DUPLICATE EVENTS
+  * PROCCING OF ALL EVENT TYPES, ENTITIES
+  * Found societies manually!!
+* ENTITIES
+  * UNKNOWN FOR EVERY HOUSE, REMOVE HOUSE FROM EVENT BIRTHS??
+  * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
   * WHERE DO ENTITY DETAILS COME FROM? EVENTS?
     * How do we ensure they are restored after doing an event proc?
-  * LANGUAGE: BASE_ABBERATIONS: WHERE WILL SOURCE BE??
-* FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
-* Found societies manually!!
-* CHECK FOR DUPLICATE EVENTS
-* PROCCING OF ALL EVENT TYPES, ENTITIES
-  * Language should NOT BELONG TO entity, but entity can have one language
-* better names for entity relationships than political/etc.
-* Name generation abberations: 
-  * abberations for societies
-  * hiercharcy can include multiple parents for houses/societies
-* CC, CCC: groups of consonants: char(?) in pattern for naming
-  * write out permissible groups of consonants
-* Relations: remove excess fields
-* Remove lastupdate fields
+  * Implement EID generation for entities as with Lexemes
+* RELATIONS
+  * better names for entity relationships than political/etc.
+* PROPERTIES
+  * Why are properties preventing Milieu.destroy_all????
+* LANGUAGE
+  * BASE_ABBERATIONS: WHERE WILL SOURCE BE??
+* NAMING
+  * CC, CCC: groups of consonants: char(?) in pattern for naming
+    * write out permissible groups of consonants
+  * Name generation abberations: 
+    * abberations for societies
+    * hiercharcy can include multiple parents for houses/societies
 
-### DATABASE
-* Indices for encyclopedium stuff??
-
-## OBSIDIAN
-
+## EVENTS
 * Event Formatting
   * "## indicates title
   * Each line between ``` and ``` should be procc'd (has details about how to process event)
@@ -48,6 +47,12 @@
     * hiring | entity-eid | name-eid | title
     * firing | entity-eid | name-eid
     * death | name-eid
+
+
+  
+
+### DATABASE
+* 
 
 ### NOTES
 * public/private

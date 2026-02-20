@@ -12,7 +12,7 @@
   </div>
 
   <div>
-    <%= form.text_field :name, class: "text-field" %>
+    <%= text_field_tag :name, "", class: "text-field" %>
     <strong><%= form.label :name %></br></br></strong>
   </div>
 
@@ -24,32 +24,32 @@
   <div>
     <h3><%= form.label :instructions %></h3>
     <ul style="font-style: italic;">
-      <li> -founding | name-<%= @eidnext %> | kind | status | parent-eid | Language (if kind=Nation) | public  |</li>
-      <li> -birth | name-<%= @eidnext %> | gender | parent-eid | public</li>
-      <li> -exile | entity-eid | name-eid | public |</li>
-      <li> -raising | entity-eid| name-eid | title | newname-eid | public |</li>
-      <li> -claiming | name-eid | claimed-eid | kind | public |</li>
-      <li> -disclaiming | name-eid | disclaimed-eid | kind | public | </li>
-      <li> -hiring | entity-eid | name-eid | title | public |</li>
-      <li> -firing | entity-eid | name-eid | public |</li>
-      <li> -death | name-eid | public | </li>
+      <li> founding | name-<%= @eidnext %> | kind | status | parent-eid | Language (if kind=Nation) | public  |</li>
+      <li> birth | name-<%= @eidnext %> | gender | parent-eid | public</li>
+      <li> exile | entity-eid | name-eid | public |</li>
+      <li> raising | entity-eid| name-eid | title | newname-eid | public |</li>
+      <li> claiming | name-eid | claimed-eid | kind | public |</li>
+      <li> disclaiming | name-eid | disclaimed-eid | kind | public | </li>
+      <li> hiring | entity-eid | name-eid | title | public |</li>
+      <li> firing | entity-eid | name-eid | public |</li>
+      <li> death | name-eid | public | </li>
     </ul>
     </br>
     <% inststring = "" %>
     <% @event.instructions.each{|instruction| inststring += "#{instruction.code}\n"} if !@event.instructions.empty? %>
-    <%= text_area_tag :instructions, inststring, class: "large-text-area"%></br>
+    <%= text_area_tag "details[instructions]", inststring, class: "large-text-area"%></br>
   </div>
 
   <p>
   <div>
     <h3><%= form.label :private_details %></h3>
-    <%= text_area_tag :textpri, @event&.text["pri"] , class: "large-text-area"%></br>
+    <%= text_area_tag "details[textpri]", @event&.text[:pri] || "" , class: "large-text-area"%></br>
   </div>
   </p>
   <p>
   <div>
     <h3><%= form.label :public_details %></h3>
-    <%= text_area_tag :textpub, @event&.text["pub"]  , class: "large-text-area"%></br>
+    <%= text_area_tag "details[textpub]", @event&.text[:pub] || "", class: "large-text-area"%></br>
   </div>
   </p>
 <% end %>

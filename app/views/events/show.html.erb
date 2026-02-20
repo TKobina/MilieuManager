@@ -9,8 +9,11 @@
 
 <% if @owner %>
 <div><ul>
-  <h3> Public</h3>
-  <li><%= check_box_tag("public", '1', @event.public, disabled: true) %></li>
+  <% if @event.public %>
+    <h3> Public</h3>
+  <% else %>
+    <h3> Private </h3>
+  <% end %>
 </div>
 </br>
 <div>

@@ -16,7 +16,8 @@ class Instruction < ApplicationRecord
   "disclaiming",
   "hiring",
   "firing",
-  "status_change",
+  "statadd",
+  "statchange",
   "special"]
 
   def <=>(other) = self.i <=> other.i
