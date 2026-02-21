@@ -64,6 +64,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "entities_events", id: false, force: :cascade do |t|
     t.integer "entity_id", null: false
     t.integer "event_id", null: false
+    t.index ["entity_id", "event_id"], name: "index_entities_events_on_entity_id_and_event_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -167,11 +168,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "created_at", null: false
     t.text "detail"
     t.integer "entity_id", null: false
+    t.integer "event_id", null: false
     t.string "kind"
     t.boolean "public", default: false
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["entity_id"], name: "index_properties_on_entity_id"
+    t.index ["event_id"], name: "index_properties_on_event_id"
     t.index ["kind"], name: "index_properties_on_kind"
     t.index ["value"], name: "index_properties_on_value"
   end
@@ -179,6 +182,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "relations", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", null: false
+    t.integer "event_id", null: false
     t.integer "inferior_id", null: false
     t.string "kind"
     t.string "name"
@@ -186,6 +190,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "superior_id", null: false
     t.json "text"
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
     t.index ["kind"], name: "index_relations_on_kind"
     t.index ["name"], name: "index_relations_on_name"
@@ -254,8 +259,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "names", "dialects"
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"
+  add_foreign_key "properties", "events"
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
+  add_foreign_key "relations", "events"
   add_foreign_key "stories", "milieus"
   add_foreign_key "ydates", "milieus"
 end

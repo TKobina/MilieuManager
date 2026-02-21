@@ -8,6 +8,24 @@ class EventsController < ApplicationController
 
   def show
     @event = @milieu.events.find(params[:id])
+
+    @instructions = ""
+    
+    view_context.link_to('View invite', @matter)
+    
+    @event.instructions.each do |instruction|
+      instruction.code.split("|").each do |part|
+        if part.include?("-")
+          name, eid = part.split("-")
+          @instructions << view_context.link_to(name, entity_path(@milieu.entities.where(eid: eid).first.id, current_milieu: @milieu))
+        else
+          @instructions += part
+        end
+        @instructions << " | "
+      end
+      @instructions << "\n"
+    end
+
     if (!@private && !@event.public)
       redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
@@ -20,7 +38,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(EventParamsService.call(@milieu, event_params))  
+    @event = Event.new(get_params)  
     if @event.save
       MilieuChronoprocJob.perform_now @milieu
       redirect_to event_path(@event, current_milieu: @milieu)
@@ -36,7 +54,7 @@ class EventsController < ApplicationController
 
   def update
     @event = @milieu.events.find(params[:id])
-    if @event.update(EventParamsService.call(@milieu, event_params))
+    if @event.update(get_params)
       MilieuChronoprocJob.perform_now @milieu
       redirect_to event_path(@event, current_milieu: @milieu)
     else
@@ -69,7 +87,23 @@ class EventsController < ApplicationController
       redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
   end
-  
+
+  def get_params
+    eparams = {text: {pri: "", pub: ""}}
+    eparams[:milieu] = @milieu
+    datestring, eparams[:name], eparams[:code], details = event_params
+    eparams[:ydate] = Ydate.from_string(@milieu, datestring)
+    eparams[:text][:pri], eparams[:text][:pub], instructions = details.values
+    
+    eparams[:code] = "#{eparams[:code]}\n#{instructions.to_s}".split("\n").map{|x| x.strip}
+    cproc, ckind, cpublic = eparams[:code]&.first&.split("|")
+    eparams[:proc] = cproc == "proc"
+    eparams[:kind] = ckind
+    eparams[:public] = cpublic == "public"
+
+    eparams
+  end
+
   def event_params
     params.expect(:ydate, :name, :code, details: [:textpri, :textpub, :instructions])
   end

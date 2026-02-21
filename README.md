@@ -38,17 +38,17 @@
   * Everything between titles not in a code block is are details
   * public details between ~ and ~
   * Specifics
-    * formation | name-eid | "World" | milieu
-    * founding | name-eid | kind | status | parentname-eid
-    * birth | name-eid | gender | parent-parentname-eid
-    * adoption | entity-eid | name-eid | newname-eid
-    * exile | entity-eid | name-eid
-    * raising | entity-eid| name-eid | title | newname-eid
-    * claiming | name-eid | claimed-eid | kind
-    * disclaiming | name-eid | disclaimed-eid | kind
-    * hiring | entity-eid | name-eid | title
-    * firing | entity-eid | name-eid
-    * death | name-eid
+    * formation | name-eid | "World" | milieu | public
+    * founding | name-eid | kind | status | parentname-eid | public
+    * birth | name-eid | gender | parent-parentname-eid | public
+    * adoption | entity-eid | name-eid | newname-eid | public
+    * exile | entity-eid | name-eid | public
+    * raising | entity-eid| name-eid | title | newname-eid | public
+    * claiming | name-eid | claimed-eid | kind | public
+    * disclaiming | name-eid | disclaimed-eid | kind | public
+    * hiring | entity-eid | name-eid | title | public
+    * firing | entity-eid | name-eid | public
+    * death | name-eid | public
 
 
   

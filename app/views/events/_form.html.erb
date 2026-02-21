@@ -43,13 +43,13 @@
   <p>
   <div>
     <h3><%= form.label :private_details %></h3>
-    <%= text_area_tag "details[textpri]", @event&.text[:pri] || "" , class: "large-text-area"%></br>
+    <%= text_area_tag "details[textpri]", @event&.text["pri"] || "" , class: "large-text-area"%></br>
   </div>
   </p>
   <p>
   <div>
     <h3><%= form.label :public_details %></h3>
-    <%= text_area_tag "details[textpub]", @event&.text[:pub] || "", class: "large-text-area"%></br>
+    <%= text_area_tag "details[textpub]", @event&.text["pub"] || "", class: "large-text-area"%></br>
   </div>
   </p>
 <% end %>

@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :entity
+  belongs_to :event
 
   after_find :property_accessed
   

@@ -7,6 +7,7 @@ class Milieu < ApplicationRecord
   has_many :ydates, dependent: :destroy
   has_many :entities, dependent: :destroy
   has_many :properties, through: :entities
+  has_many :inferiors, through: :entities
   
   has_many :languages, dependent: :destroy
   has_many :events, through: :ydates
@@ -34,7 +35,6 @@ class Milieu < ApplicationRecord
   end
 
   def proc_chronology
-    self.entities.each {|ent| ent.properties.destroy_all}
     self.entities.destroy_all
     self.ydates.sort.each{|ydate| ydate.proc_ydate}
   end

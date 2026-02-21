@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   belongs_to :milieu
   belongs_to :ydate
   
+  has_many :properties, dependent: :destroy
+  has_many :relations, dependent: :destroy
   has_and_belongs_to_many :entities
 
   has_many :instructions, dependent: :destroy

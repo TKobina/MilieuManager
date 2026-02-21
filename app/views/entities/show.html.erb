@@ -1,8 +1,6 @@
 <h1><%= @entity.name %>
 <% if @owner%>
-  <sup><%= @entity.eid%></sup>
-  </h1>
-  <%#= link_to "Edit", edit_entity_path(@entity.id, current_milieu: @milieu), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }%>
+  <sup><%= @entity.eid%></sup> (<%= @entity.public ? "Public" : "Private" %>)</h1>
 <% else %>
 </h1>
 <% end %>

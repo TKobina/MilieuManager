@@ -25,7 +25,7 @@ module Privacy
       visible[0] = records
       visible[1] = joints
     else
-      records.zip(joints).each do |rec, joi|
+      records.zip(joints).sort_by { |pair| pair[0] }.each do |rec, joi|
         next unless rec.public
         visible.first << rec
         visible.second << joi
