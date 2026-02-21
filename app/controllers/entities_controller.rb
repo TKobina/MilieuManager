@@ -6,6 +6,7 @@ class EntitiesController < ApplicationController
     
     #@entities.sort
     @eidnext = @entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
+    
   end
 
   def show

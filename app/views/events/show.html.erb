@@ -16,6 +16,8 @@
   <% end %>
 </div>
 </br>
+
+
 <div>
 <h3>Event Code</h3>
   <%= @event.code.first %>
@@ -23,20 +25,20 @@
 <br>
 <div><ul>
 <h3>Event Specifications</h3>
-  <% @event.instructions.each do |instruction| %>
-    <li><%= instruction.code %></li>
-  <% end %>
-</div></ul>
+  <%= simple_format(@instructions.html_safe) %>
 <% end %>
+</div></ul>
+
+
 
 <p>
 <h3>Details</h3>
-<%= @event.text["pub"] %>
+<%= simple_format(@event.text["pub"]) %>
 </p>
 
 <p>
 <% if @private %>
 <h3>Private Details</h3>
-<%= @event.text["pri"] %>
+<%= simple_format(@event.text["pri"]) %>
 <% end %>
 </p>

@@ -9,25 +9,24 @@ class Entity < ApplicationRecord
   has_many :inferiors, through: :inferior_relations, source: :inferior
   
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
-  has_many :superiors, through: :superior_relations, source: :superior
+  has_many :superiors, through: :superior_relations, source: :superior, dependent: :destroy
   
   has_one :language
   has_one :dialect, dependent: :destroy
 
   SUBLATIONS = {
-    [:person, :person, :birth]  => ["familial", "child of"],
     [:person, :nation, :birth]  => ["societal", "member of"],
+    [:person, :house, :birth] => ["societal", "of"],
+    [:person, :person, :birth]  => ["familial", "child of"],
     
     [:person, :house, :adoption] => ["societal", "adopted of"],
+    [:person, :house, :first] => ["societal", "first of"],
+    [:person, :house, :second] => ["societal", "second of"],
+    [:person, :house, :third] => ["societal", "third of"],
 
     [:person, :person, :consorting]  => ["familial", "consort of"],
     [:person, :person, :marriage]  => ["familial", "spouse of"],
-    
-    [:person, :society, :of]   => ["fraternal", "member of"],
-    [:person, :society, :for]   => ["fraternal", "employee for"],
-    [:person, :house, :of]   => ["societal", "member of"],
-    [:person, :house, :for]   => ["societal", "employee for"],
-    
+
     [:house, :society, nil]  => ["political", "house of"],
     [:house, :nation, nil]  => ["political", "house of"],
     [:society, :nation, nil]   => ["political", "society of"],
@@ -47,15 +46,15 @@ class Entity < ApplicationRecord
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
     
-  def set_relation(supeid, relkind = nil)
-    seid = supeid.split("-").second
-    superior = self.milieu.entities.where(eid: seid).first
-    return unless superior.present?
-    
+  def set_relation(event, superior, relkind = nil)
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
-    binding.pry if rname.nil?
-    superior.events << self.events.last
-    Relation.create!(inferior: self, superior: superior, kind: rkind, name: rname)
+    relation = Relation.find_or_create_by(event: event, inferior: self, superior: superior, kind: rkind, name: rname)
+  end
+
+  def mod_relation(event, superior, relkind)
+    rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
+    relation = self.superior_relations.where(superior_id: superior.id).sort.last
+    relation.update!(kind: rkind, name: rname)
   end
 
   def death (event, instrs)
@@ -72,6 +71,7 @@ class Entity < ApplicationRecord
   private
 
   def set_society(parenthouse: nil)
+    event = self.events.last
     gender = self.properties.where(kind: "gender").first.value
     if !parenthouse.nil?
       peid = parenthouse.split("-").second
@@ -83,7 +83,7 @@ class Entity < ApplicationRecord
     society = phouse.inferiors.where(kind: "society").where("entities.name LIKE ?", "%#{gender}").first
     binding.pry if society.nil?
     society.events << self.events.last
-    Relation.create!(superior: society, inferior: self, kind: "society", name: society.name)
+    Relation.create!(event: event, superior: society, inferior: self, kind: "society", name: society.name)
     return society
   end
 
