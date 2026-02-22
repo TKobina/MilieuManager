@@ -7,7 +7,7 @@
 
 <div class="container mx-auto px-4">
 <p>
-<div class = "storytext"><%= markdown(@story.details) %></div>
+<div class = "storytext"><%= markdown(@text) %></div>
 <p>
 <% if @owner%>
   <%= button_to "Delete", @story, method: :delete, data: { turbo_confirm: "Are you sure?" } %>

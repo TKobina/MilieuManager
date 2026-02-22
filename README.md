@@ -42,7 +42,7 @@
     * founding | name-eid | kind | status | parentname-eid | public
     * birth | name-eid | gender | parent-parentname-eid | public
     * adoption | entity-eid | name-eid | newname-eid | public
-    * exile | entity-eid | name-eid | public
+    * exile | entity-eid | name-eid | newname-eid | public
     * raising | entity-eid| name-eid | title | newname-eid | public
     * claiming | name-eid | claimed-eid | kind | public
     * disclaiming | name-eid | disclaimed-eid | kind | public

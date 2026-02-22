@@ -23,6 +23,7 @@ class Entity < ApplicationRecord
     [:person, :house, :first] => ["societal", "first of"],
     [:person, :house, :second] => ["societal", "second of"],
     [:person, :house, :third] => ["societal", "third of"],
+    [:person, :house, :exile] => ["societal", "exile of"],
 
     [:person, :person, :consorting]  => ["familial", "consort of"],
     [:person, :person, :marriage]  => ["familial", "spouse of"],
@@ -48,6 +49,8 @@ class Entity < ApplicationRecord
     
   def set_relation(event, superior, relkind = nil)
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
+    rkind = rkind.nil? ? "unknown" : rkind
+    rname = rname.nil? ? "unknown" : rkind
     relation = Relation.find_or_create_by(event: event, inferior: self, superior: superior, kind: rkind, name: rname)
   end
 
@@ -55,13 +58,6 @@ class Entity < ApplicationRecord
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
     relation = self.superior_relations.where(superior_id: superior.id).sort.last
     relation.update!(kind: rkind, name: rname)
-  end
-
-  def death (event, instrs)
-
-  end
-  
-  def adoption(event, instruction)
   end
 
   def proc_name

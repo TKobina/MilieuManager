@@ -114,6 +114,7 @@ class ObsidianImporterService
   def proc_file(filename, file, target: nil)
     case file[:properties]["kind"]
     when "date" then proc_date(filename, file)
+    when "story" then proc_story(filename, file)
     #when "event" then  proc_details(target)
     #when "entity" then proc_details(target)
     else
@@ -136,6 +137,20 @@ class ObsidianImporterService
         text: {
           pri: file[:contents][key][:pri],
           pub: file[:contents][key][:pub]})
+    end
+  end
+
+  def proc_story(filename, file)
+    file[:contents].keys.each_with_index do |key, i|
+      textpri = file[:contents][key][:pri] || ""
+      textpub = file[:contents][key][:pub] || ""
+      Story.create!(
+        milieu: @milieu,
+        chapter: file[:properties]["chapter"].to_i,
+        title: file[:properties]["title"],
+        public: textpub.present?,
+        details: textpri + " " + textpub
+      )
     end
   end
 end
