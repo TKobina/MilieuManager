@@ -7,6 +7,7 @@ class StoriesController < ApplicationController
   def show
     @story = @milieu.stories.find(params[:id])
     check_public
+    @text = replace_tags(@story.details)
   end
 
   def new
@@ -59,5 +60,22 @@ class StoriesController < ApplicationController
     unless @owner
       redirect_to stories_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
     end
+  end
+
+  def replace_tags(text)
+    temp = text.gsub!(/\[\[(.*?)\]\]/) { |match| build_link($1) }
+    temp.nil? ? text : temp
+  end
+
+  def build_link(tag)
+    arr = tag.split("|")
+    iden = arr[0].split("-")
+    eid = iden[1]
+    name = arr[1] || iden[0]
+    
+    entity = Entity.where(eid: eid)&.first
+    return name unless entity.present?
+
+    "[#{name}](#{request.base_url + entity_path(entity.id, current_milieu: @milieu)})"
   end
 end

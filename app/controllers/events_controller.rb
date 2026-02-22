@@ -8,26 +8,24 @@ class EventsController < ApplicationController
 
   def show
     @event = @milieu.events.find(params[:id])
+    
+    if (!@private && !@event.public)
+      redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
+    end
 
-    @instructions = ""
-    
-    view_context.link_to('View invite', @matter)
-    
+    @instructions = ""    
     @event.instructions.each do |instruction|
       instruction.code.split("|").each do |part|
         if part.include?("-")
           name, eid = part.split("-")
-          @instructions << view_context.link_to(name, entity_path(@milieu.entities.where(eid: eid).first.id, current_milieu: @milieu))
+          entity = @milieu.entities.where(eid: eid).first
+          @instructions += entity.present? ? view_context.link_to(name, entity_path(entity.id, current_milieu: @milieu)) : part
         else
-          @instructions += part
+          @instructions << part
         end
         @instructions << " | "
       end
       @instructions << "\n"
-    end
-
-    if (!@private && !@event.public)
-      redirect_to events_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
   end
 

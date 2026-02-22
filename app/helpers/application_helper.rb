@@ -7,12 +7,14 @@ module ApplicationHelper
         hard_wrap:       true,
         link_attributes: { rel: 'nofollow', target: "_self" },
         space_after_headers: true,
-        fenced_code_blocks: true
-    }
-    extensions = {
+        fenced_code_blocks: true,
+        no_intra_emphasis: true
+      }
+      extensions = {
         autolink:           true,
         superscript:        false,
-        disable_indented_code_blocks: true
+        disable_indented_code_blocks: true,
+        footnotes: true, # Enables footnote support
     }
 
     renderer = ::Redcarpet::Render::HTML.new(options)
