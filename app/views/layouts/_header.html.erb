@@ -7,8 +7,9 @@
     <nav style="float:left;">
       <%= link_to "The Story", stories_path(current_milieu: @milieu) %>    <strong><|></strong>
       <%= link_to "The Language", languages_path(current_milieu: @milieu) %> <strong><|></strong>
-      <%= link_to "A Glossary", entities_path(current_milieu: @milieu) %>  <strong><|></strong>
       <%= link_to "A Chronology", events_path(current_milieu: @milieu) %>  <strong><|></strong>
+      <%= link_to "A Glossary", entities_path(current_milieu: @milieu) %>  <strong><|></strong>
+      <% if @owner %><%= link_to "References", references_path(current_milieu: @milieu)%><strong><|></strong><%end%>
     </nav>
   <% end %>
 </header>

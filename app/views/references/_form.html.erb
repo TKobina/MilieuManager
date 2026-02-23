@@ -1,0 +1,29 @@
+<%= form_with model: @reference do |form| %>
+  <div>
+    <h3>
+    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
+    <h3>
+  </div>
+  <p>
+<div>
+  <%= text_field_tag :name, @reference.name, class: "text-field" %>
+  <strong><%= form.label :name %></br></br></strong>
+</div>
+
+<div>
+  <%= text_field_tag :eid, @reference.eid, class: "text-field" %>
+  <strong><%= form.label :eid %></br></br></strong>
+</div>
+  <p>
+  <div>
+    <h3><%= form.label :private_details %></h3>
+    <%= text_area_tag "text[pri]", @reference.text["pri"] || "" , class: "large-text-area"%></br>
+  </div>
+  </p>
+  <p>
+  <div>
+    <h3><%= form.label :public_details %></h3>
+    <%= text_area_tag "text[pub]", @reference.text["pub"] || "", class: "large-text-area"%></br>
+  </div>
+  </p>
+<% end %>

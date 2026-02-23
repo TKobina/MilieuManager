@@ -1,6 +1,7 @@
 class Entity < ApplicationRecord
   include Comparable
   belongs_to :milieu
+  belongs_to :reference, optional: true
   has_and_belongs_to_many :events
   
   has_many :properties, dependent: :destroy
@@ -35,8 +36,12 @@ class Entity < ApplicationRecord
     [:unkown, :person, nil] => ["mysterious", "unknown relation of"]
   }
 
-  def <=>(other) 
-    return self.language?.sort(self.name, other.name)
+  def <=>(other)
+    slang = self.language?
+    return slang.sort(self.name, other.name) unless slang.nil? 
+    olang = other.language? 
+    return olang.sort(self.name, other.name) unless olang.nil? 
+    Language.first.sort(self.name, other.name)
   end
 
   def language? 

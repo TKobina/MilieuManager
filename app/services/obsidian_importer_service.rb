@@ -29,11 +29,6 @@ class ObsidianImporterService
     puts "Collecting statistics on names..."
     Rails.cache.read(@milieu.id.to_s + "personids").each {|entid| Entity.find(entid).proc_name}
     
-
-    ##ISSUES WITH ORDER OF PROCCING
-    ##NEED TO PROC EVENTS FIRST, SO LANGUAGES & LETTERS GET BUILT
-    ##CHECK SORTING OF DATES
-    ##WHY IS NAME GETTING PROCCED BEFORE LANGUAGE?? SORTING HERE SHOULD RESOLVE THAT!
     puts "Parsing complete."
   end
 
@@ -115,8 +110,7 @@ class ObsidianImporterService
     case file[:properties]["kind"]
     when "date" then proc_date(filename, file)
     when "story" then proc_story(filename, file)
-    #when "event" then  proc_details(target)
-    #when "entity" then proc_details(target)
+    when "reference" then proc_reference(filename, file)
     else
     end
   end
@@ -149,8 +143,25 @@ class ObsidianImporterService
         chapter: file[:properties]["chapter"].to_i,
         title: file[:properties]["title"],
         public: textpub.present?,
-        details: textpri + " " + textpub
-      )
+        details: textpri + " " + textpub)
     end
+  end
+
+  def proc_reference(filename, file)
+    name, eid = filename.split(".")&.first&.split("-")
+    return if eid.nil?
+
+    textpri = ""
+    textpub = ""
+    file[:contents].keys.each_with_index do |key, i|
+      textpri += "##" + key + "\n" + file[:contents][key][:pri]
+      textpub += "##" + key + "\n" + file[:contents][key][:pub]
+    end
+    binding.pry if filename.include?("129")
+    Reference.create!(
+      milieu: @milieu,
+      name: name,
+      eid: eid,
+      text: {"pri": textpri, "pub": textpub})
   end
 end

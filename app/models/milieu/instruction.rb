@@ -27,24 +27,27 @@ class Instruction < ApplicationRecord
   def proc_instruction 
     entities = send(self.kind.to_sym) if self.code.present? && KINDS.include?(self.kind)
     if entities.present?
-      entities.each { |ent| ent.events << self.event unless ent.events.include?(self.event) }
+      entities.each { |ent| ent.events << self.event unless ent.nil? || ent.events.include?(self.event) }
     end
   end
 
   def formation
-    # formation | name-eid | kind | milieu | public
-    _, nameid, entkind, _, public = self.code.split("|") 
+    # formation | name-eid | kind | creator-eid | public
+    _, nameid, entkind, creatoreid, public = self.code.split("|") 
     name, eid = nameid.split("-")
     ent = Entity.create!(
       name: name, 
       eid: eid, 
       milieu: self.event.milieu, 
       kind: entkind, 
-      text: {pri: "", pub: ""},
       public: public == "public",
-      events: [self.event])
+      events: [self.event],
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
     ent.properties << Property.new(kind: "formation date", value: self.event.ydate.to_s)
-    [ent]
+
+    creator = fetch_entity(creatoreid)
+
+    [ent, creator]
   end
 
   def founding
@@ -58,16 +61,15 @@ class Instruction < ApplicationRecord
       eid: eid, 
       milieu: self.event.milieu, 
       kind: entkind, 
-      text: {pri: "", pub: ""},
       public: public == "public",
-      events: [self.event])
-      
+      events: [self.event],
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
     ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
     ent.set_relation(self.event, parent)
     
     Language.find_or_create_by(name: lang, milieu: ent.milieu).update!(entity: ent) if entkind == "nation"
-    
+
     [ent, parent]
   end
 
@@ -81,9 +83,9 @@ class Instruction < ApplicationRecord
       eid: eid,
       name: name,
       kind: "person",
-      text: {pri: "", pub: ""},
       public: public == "public",
-      events: [self.event])
+      events: [self.event],
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
 
     parent = fetch_entity(pareid)
 
@@ -97,7 +99,7 @@ class Instruction < ApplicationRecord
 
     ent.properties << Property.new(event: self.event, kind: "birth date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "gender", value: gender)
-
+    
     [ent, parent]
   end
 

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :dialects
   resources :lexemes
   resources :stories
+  resources :references
   get '/export_csv', to: 'lexemes#export_csv'
   
   resources :pages

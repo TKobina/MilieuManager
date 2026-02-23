@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @dates = {}
-    @milieu.ydates.sort.each {|date| @dates[date.value] = filter_records(date.events) }
+    @milieu.ydates.each {|date| @dates[date.value] = filter_records(date.events) }
   end
 
   def show

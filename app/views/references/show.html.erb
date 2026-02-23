@@ -1,0 +1,15 @@
+<h1>
+<% if @reference.entity %>
+<%= link_to @reference.name, entity_path(@reference.entity.id, current_milieu: @milieu) %>
+<% else %>
+<%= @reference.name %>
+<% end %>
+<sup><%= @reference.eid%></sup></h1>
+<%= link_to "Edit", edit_reference_path(@reference.id, current_milieu: @milieu)%>
+
+<h2>Private</h2>
+<%= markdown(@reference.text["pri"], @milieu, request)%>
+
+
+<h2>Public</h2>
+<%= markdown(@reference.text["pub"], @milieu, request)%>

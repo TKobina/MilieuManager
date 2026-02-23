@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
   def show
     @story = @milieu.stories.find(params[:id])
     check_public
-    @text = replace_tags(@story.details)
+    @text = @story.details
   end
 
   def new
