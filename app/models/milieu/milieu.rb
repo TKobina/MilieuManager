@@ -13,6 +13,7 @@ class Milieu < ApplicationRecord
   has_many :events, through: :ydates
   
   has_many :stories, dependent: :destroy
+  has_many :references, dependent: :destroy
 
   def get_date_from_strdate(strdate)
     Ydate.from_string(self, strdate)
@@ -36,6 +37,7 @@ class Milieu < ApplicationRecord
 
   def proc_chronology
     self.entities.destroy_all
-    self.ydates.sort.each{|ydate| ydate.proc_ydate}
+    progressbar = ProgressBar.create(title: "Parsing Events", total: self.ydates.count)
+    self.ydates.sort.each{|ydate| ydate.proc_ydate; progressbar.increment }
   end
 end

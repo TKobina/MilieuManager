@@ -38,7 +38,7 @@
   * Everything between titles not in a code block is are details
   * public details between ~ and ~
   * Specifics
-    * formation | name-eid | "World" | milieu | public
+    * formation | name-eid | kind | creator-eid | public
     * founding | name-eid | kind | status | parentname-eid | public
     * birth | name-eid | gender | parent-parentname-eid | public
     * adoption | entity-eid | name-eid | newname-eid | public

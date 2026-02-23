@@ -52,13 +52,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "milieu_id", null: false
     t.string "name"
     t.boolean "public", default: false
-    t.json "text"
+    t.integer "reference_id"
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_entities_on_eid"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
     t.index ["milieu_id"], name: "index_entities_on_milieu_id"
     t.index ["name"], name: "index_entities_on_name"
+    t.index ["reference_id"], name: "index_entities_on_reference_id"
   end
 
   create_table "entities_events", id: false, force: :cascade do |t|
@@ -179,6 +180,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["value"], name: "index_properties_on_value"
   end
 
+  create_table "references", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "eid"
+    t.integer "milieu_id", null: false
+    t.string "name"
+    t.json "text"
+    t.datetime "updated_at", null: false
+    t.index ["eid"], name: "index_references_on_eid"
+    t.index ["milieu_id"], name: "index_references_on_milieu_id"
+  end
+
   create_table "relations", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", null: false
@@ -249,6 +261,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
   add_foreign_key "entities", "milieus"
+  add_foreign_key "entities", "references"
   add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
   add_foreign_key "instructions", "events"
@@ -260,6 +273,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "patterns", "languages"
   add_foreign_key "properties", "entities"
   add_foreign_key "properties", "events"
+  add_foreign_key "references", "milieus"
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"

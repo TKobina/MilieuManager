@@ -2,9 +2,12 @@ class AddIndexes < ActiveRecord::Migration[8.1]
   def change
     add_reference :languages, :entity, null: true, index: true
     add_reference :dialects, :entity, null: false, index: true
+    add_reference :entities, :reference, null: true, foreign_key: true
 
     add_index :languages, :name
-
+    
+    add_index :events, :name
+    
     add_index :letters, :sortkey
     add_index :letters, :kind
     add_index :letters, :value
@@ -17,7 +20,7 @@ class AddIndexes < ActiveRecord::Migration[8.1]
     add_index :entities, :eid
     add_index :entities, [:kind, :name]
 
-    add_index :events, :name
+    add_index :references, :eid
 
     add_index :dialects, :name
     add_index :dialects, [:language_id, :entity_id]

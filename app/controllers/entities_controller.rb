@@ -2,10 +2,10 @@ class EntitiesController < ApplicationController
   before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index
-    @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities).where.not(kind: "world"))
+    @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities))
     
     #@entities.sort
-    @eidnext = @entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
+    @eidnext = "" # @entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
     
   end
 
