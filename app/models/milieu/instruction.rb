@@ -66,7 +66,7 @@ class Instruction < ApplicationRecord
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
     ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
-    ent.set_relation(self.event, parent)
+    ent.set_relation(self.event, parent,,public)
     
     Language.find_or_create_by(name: lang, milieu: ent.milieu).update!(entity: ent) if entkind == "nation"
 
@@ -89,7 +89,7 @@ class Instruction < ApplicationRecord
 
     parent = fetch_entity(pareid)
 
-    ent.set_relation(self.event, parent, "birth")
+    ent.set_relation(self.event, parent, "birth", public)
 
     unless ["world","nation","house","society"].include?(parent.kind)
       phouse = parent.superiors.where(kind: ["world","nation","house"]).last
@@ -121,7 +121,7 @@ class Instruction < ApplicationRecord
     doptee = fetch_entity(oldnameid)
 
     doptee.update!(name: newname) if !newname.nil?
-    doptee.set_relation(self.event, dopter, "adoption")
+    doptee.set_relation(self.event, dopter, "adoption", public)
 
     [dopter, doptee]
   end
@@ -135,7 +135,7 @@ class Instruction < ApplicationRecord
     ent = fetch_entity(oldnameid)
 
     ent.update!(name: newname) if !newname.nil?
-    ent.mod_relation(self.event, exiler, "exile")
+    ent.mod_relation(self.event, exiler, "exile", public)
 
     [exiler, ent]
   end
@@ -149,12 +149,19 @@ class Instruction < ApplicationRecord
     ent = fetch_entity(oldnameid)
 
     ent.update!(name: newname) if !newname.nil?
-    ent.mod_relation(self.event, raiser, title)
+    ent.mod_relation(self.event, raiser, title, public)
 
     [raiser, ent]
   end
 
   def claiming
+    # claiming | name-eid | claimed-eid | kind | public
+    _, claimerid, claimedeid, kind, public  = self.code.split("|")
+
+    claimer = fetch_entity(claimereid)
+    claimed = fetch_entity(claimedeid)
+
+    claimed.set_relation(self.event, claimer, kind, public)
   end
 
   def disclaiming

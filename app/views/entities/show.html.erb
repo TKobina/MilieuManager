@@ -34,7 +34,7 @@
 <h3>Possesses</h3>
 <% if !@inferior_relations.nil? then @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
-    <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
+    <%= rel.relrev(rel.name).capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
 <% end %><% end %>
 </br>

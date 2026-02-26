@@ -1,12 +1,14 @@
 class Language < ApplicationRecord
   include Comparable
-  belongs_to :entity
+  belongs_to :nation, class_name: 'Entity', foreign_key: 'nation_id'
+
   belongs_to :milieu
 
   has_many :letters, dependent: :destroy
   has_many :dialects, dependent: :destroy
   has_many :lexemes, dependent: :destroy
   has_many :patterns, dependent: :destroy
+  has_many :entities
 
   after_create_commit :proc_new_language
 

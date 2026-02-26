@@ -2,6 +2,10 @@ class Ydate < ApplicationRecord
   has_many :events, dependent: :destroy
   belongs_to :milieu
 
+  validates :value, uniqueness: { scope: :language_id, message: "You have already created a letter with this value." }
+
+  
+
   DAYS_MONTH = 24
   DAYS_SEASON = 4 * DAYS_MONTH
   DAYS_YEAR = 4 * DAYS_SEASON

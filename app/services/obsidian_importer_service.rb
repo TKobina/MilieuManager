@@ -127,7 +127,7 @@ class ObsidianImporterService
         proc: cproc == "proc",
         kind: ckind,
         public: cpublic == "public",
-        code: code.map{|x| x.strip}, 
+        code: code[1..]&.map{|x| x.strip}, 
         text: {
           pri: file[:contents][key][:pri],
           pub: file[:contents][key][:pub]})
@@ -135,16 +135,19 @@ class ObsidianImporterService
   end
 
   def proc_story(filename, file)
+    textpri = ""
+    textpub = ""
     file[:contents].keys.each_with_index do |key, i|
-      textpri = file[:contents][key][:pri] || ""
-      textpub = file[:contents][key][:pub] || ""
-      Story.create!(
-        milieu: @milieu,
-        chapter: file[:properties]["chapter"].to_i,
-        title: file[:properties]["title"],
-        public: textpub.present?,
-        details: textpri + " " + textpub)
+      textpri += file[:contents][key][:pri]
+      textpub += file[:contents][key][:pub]
     end
+
+    Story.create!(
+      milieu: @milieu,
+      chapter: file[:properties]["chapter"].to_i,
+      title: file[:properties]["title"],
+      public: !textpri.present?,
+      details: textpri + " " + textpub)
   end
 
   def proc_reference(filename, file)
@@ -157,7 +160,7 @@ class ObsidianImporterService
       textpri += "##" + key + "\n" + file[:contents][key][:pri]
       textpub += "##" + key + "\n" + file[:contents][key][:pub]
     end
-    binding.pry if filename.include?("129")
+
     Reference.create!(
       milieu: @milieu,
       name: name,

@@ -1,15 +1,15 @@
 <h1>Events</h1>
 <% if @owner%>
-  <%#= button_to 'Reprocess Chronology', proc_events_path, method: :post %>
   <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
 <% end %>
 </p>
 
 <div id="Events">
-<% @dates.keys.each do |date| %>
+<%# @dates.keys.each do |date| %>
+<% @dates.each do |date, events| %>
 <p style="text-indent: 30px;">
-<h3><%= Ydate.from_days(@milieu, date) unless @dates[date].empty? %> </h3>
-  <% @dates[date].each do |event| %>
+<h3><%= date unless events.empty? %> </h3>
+  <% events.each do |event| %>
     <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %>
     <% if @owner %><sup><%#=event.id %></sup><%end%> </br>
   <% end %>

@@ -9,15 +9,17 @@ class Event < ApplicationRecord
   has_many :instructions, dependent: :destroy
   accepts_nested_attributes_for :instructions, allow_destroy: true
 
+  validates :eid, uniqueness: { scope: :milieu_id, message: "You have already created an event with this eid." }
+
   after_commit :gen_instructions
 
   def date? = self.ydate.to_s
   def <=>(other) = self.ydate == other.ydate ? self.i <=> other.i : self.ydate <=> other.ydate
 
   def gen_instructions
-    return unless saved_change_to_code?
+    return unless saved_change_to_proc? || saved_change_to_code?
     self.instructions.destroy_all
-    self.code[1..].each_with_index do |instruction, i|
+    self.code.each_with_index do |instruction, i|
       Instruction.create!(event: self, code: instruction, i: i)
     end
   end

@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "created_at", null: false
     t.string "eid", null: false
     t.string "kind"
+    t.integer "language_id"
     t.integer "milieu_id", null: false
     t.string "name"
     t.boolean "public", default: false
@@ -57,6 +58,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.index ["eid"], name: "index_entities_on_eid"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
+    t.index ["language_id"], name: "index_entities_on_language_id"
+    t.index ["milieu_id", "eid"], name: "index_entities_on_milieu_id_and_eid", unique: true
     t.index ["milieu_id"], name: "index_entities_on_milieu_id"
     t.index ["name"], name: "index_entities_on_name"
     t.index ["reference_id"], name: "index_entities_on_reference_id"
@@ -99,14 +102,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   create_table "languages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "details"
-    t.integer "entity_id"
     t.string "maxlexeid"
     t.integer "milieu_id", null: false
     t.string "name"
+    t.integer "nation_id"
     t.datetime "updated_at", null: false
-    t.index ["entity_id"], name: "index_languages_on_entity_id"
+    t.index ["milieu_id", "name"], name: "index_languages_on_milieu_id_and_name", unique: true
     t.index ["milieu_id"], name: "index_languages_on_milieu_id"
     t.index ["name"], name: "index_languages_on_name"
+    t.index ["nation_id"], name: "index_languages_on_nation_id"
   end
 
   create_table "letters", force: :cascade do |t|
@@ -119,6 +123,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["kind"], name: "index_letters_on_kind"
+    t.index ["language_id", "value"], name: "index_letters_on_language_id_and_value", unique: true
     t.index ["language_id"], name: "index_letters_on_language_id"
     t.index ["sortkey"], name: "index_letters_on_sortkey"
     t.index ["value"], name: "index_letters_on_value"
@@ -134,6 +139,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.datetime "updated_at", null: false
     t.string "word"
     t.index ["eid"], name: "index_lexemes_on_eid"
+    t.index ["language_id", "eid"], name: "index_lexemes_on_language_id_and_eid", unique: true
     t.index ["language_id"], name: "index_lexemes_on_language_id"
     t.index ["word"], name: "index_lexemes_on_word"
   end
@@ -188,25 +194,34 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.json "text"
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_references_on_eid"
+    t.index ["milieu_id", "eid"], name: "index_references_on_milieu_id_and_eid", unique: true
     t.index ["milieu_id"], name: "index_references_on_milieu_id"
   end
 
   create_table "relations", force: :cascade do |t|
-    t.string "code"
     t.datetime "created_at", null: false
     t.integer "event_id", null: false
     t.integer "inferior_id", null: false
-    t.string "kind"
-    t.string "name"
     t.boolean "public", default: false
+    t.integer "relclass_id", null: false
     t.integer "superior_id", null: false
     t.json "text"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
-    t.index ["kind"], name: "index_relations_on_kind"
-    t.index ["name"], name: "index_relations_on_name"
+    t.index ["relclass_id"], name: "index_relations_on_relclass_id"
     t.index ["superior_id"], name: "index_relations_on_superior_id"
+  end
+
+  create_table "relclasses", force: :cascade do |t|
+    t.string "bottomtop"
+    t.datetime "created_at", null: false
+    t.string "kind"
+    t.integer "milieu_id", null: false
+    t.string "topbottom"
+    t.datetime "updated_at", null: false
+    t.index ["kind", "topbottom"], name: "index_relclasses_on_kind_and_topbottom", unique: true
+    t.index ["milieu_id"], name: "index_relclasses_on_milieu_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -252,6 +267,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
     t.integer "milieu_id", null: false
     t.datetime "updated_at", null: false
     t.integer "value"
+    t.index ["milieu_id", "value"], name: "index_ydates_on_milieu_id_and_value", unique: true
     t.index ["milieu_id"], name: "index_ydates_on_milieu_id"
   end
 
@@ -260,11 +276,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
+  add_foreign_key "entities", "languages"
   add_foreign_key "entities", "milieus"
   add_foreign_key "entities", "references"
   add_foreign_key "events", "milieus"
   add_foreign_key "events", "ydates"
   add_foreign_key "instructions", "events"
+  add_foreign_key "languages", "entities", column: "nation_id"
   add_foreign_key "languages", "milieus"
   add_foreign_key "letters", "languages"
   add_foreign_key "lexemes", "languages"
@@ -277,6 +295,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_30_231876) do
   add_foreign_key "relations", "entities", column: "inferior_id"
   add_foreign_key "relations", "entities", column: "superior_id"
   add_foreign_key "relations", "events"
+  add_foreign_key "relations", "relclasses"
+  add_foreign_key "relclasses", "milieus"
   add_foreign_key "stories", "milieus"
   add_foreign_key "ydates", "milieus"
 end

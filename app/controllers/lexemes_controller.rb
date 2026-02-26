@@ -5,10 +5,10 @@ class LexemesController < ApplicationController
   def index
     @lexemes = cache_records(current_user.id.to_s + "Lexeme",@language.lexemes)
 
-    respond_to do |format|
-      format.html
-      format.csv { send_data @lexemes.to_csv, filename: "lexemes-#{Date.today}.csv" }
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.csv { send_data @lexemes.to_csv, filename: "lexemes-#{Date.today}.csv" }
+    # end
   end
 
   def show
@@ -17,7 +17,6 @@ class LexemesController < ApplicationController
     if (!@owner && !@lexeme.language.entity.milieu.readers.include?(current_user))
       redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
     end
-
   end
 
   def new
