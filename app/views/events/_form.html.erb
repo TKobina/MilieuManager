@@ -15,11 +15,6 @@
     <%= text_field_tag :name, @event.name, class: "text-field" %>
     <strong><%= form.label :name %></br></br></strong>
   </div>
-
-  <div>
-    <%= text_field_tag :code, @event.code&.first || "proc|event|private", class: "text-field" %>
-    <strong><%= form.label :code %></br></br></strong>
-  </div>
   
   <div>
     <h3><%= form.label :instructions %></h3>

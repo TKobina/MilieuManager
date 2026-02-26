@@ -2,8 +2,15 @@ class EventsController < ApplicationController
     before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index
-    @dates = {}
-    @milieu.ydates.each {|date| @dates[date.value] = filter_records(date.events) }
+    @dates = {}    
+    #@private ? records : records.where(public: true)
+    if @private
+      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events }
+    else
+      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events.where(public: true) }
+    end
+    #@dates = @dates.sort
+    #@milieu.ydates.order(:value).each {|date| @dates[date.value] = filter_records(date.events) }
   end
 
   def show
@@ -38,7 +45,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(get_params)  
     if @event.save
-      MilieuChronoprocJob.perform_now @milieu
+      MilieuChronoprocJob.perform_now(@milieu, 0) #@event.ydate.value)
       redirect_to event_path(@event, current_milieu: @milieu)
     else
       redirect_to new_event_path(current_milieu: @milieu), alert: "Event creation failed!"
@@ -53,7 +60,9 @@ class EventsController < ApplicationController
   def update
     @event = @milieu.events.find(params[:id])
     if @event.update(get_params)
-      MilieuChronoprocJob.perform_now @milieu
+      procchange = @event.saved_changes.keys.any? { |key| ['ydate_id', 'code'].include?(key) }
+      MilieuChronoprocJob.perform_now(@milieu, @event.ydate.value) if procchange
+      
       redirect_to event_path(@event, current_milieu: @milieu)
     else
       redirect_to new_event_path(current_milieu: @milieu), alert: "Entity edit failed!"

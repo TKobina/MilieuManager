@@ -12,13 +12,16 @@ class Entity < ApplicationRecord
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior, dependent: :destroy
   
-  has_one :language
+  belongs_to :language
   has_one :dialect, dependent: :destroy
+
+  validates :eid, uniqueness: { scope: :milieu_id, message: "You have already created an entity with this eid." }
 
   SUBLATIONS = {
     [:person, :nation, :birth]  => ["societal", "member of"],
     [:person, :house, :birth] => ["societal", "of"],
     [:person, :person, :birth]  => ["familial", "child of"],
+    [:person, :person, :marriage] => ["spoused", "spouse of"],
     
     [:person, :house, :adoption] => ["societal", "adopted of"],
     [:person, :house, :first] => ["societal", "first of"],
@@ -49,20 +52,21 @@ class Entity < ApplicationRecord
     return self.superiors.first.language? unless self.superiors.empty?
     nil
   end
+  
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
     
-  def set_relation(event, superior, relkind = nil)
+  def set_relation(event, superior, relkind = nil, public)
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
     rkind = rkind.nil? ? "unknown" : rkind
     rname = rname.nil? ? "unknown" : rkind
-    relation = Relation.find_or_create_by(event: event, inferior: self, superior: superior, kind: rkind, name: rname)
+    relation = Relation.find_or_create_by(event: event, inferior: self, superior: superior, kind: rkind, name: rname, public: public=="public")
   end
 
-  def mod_relation(event, superior, relkind)
+  def mod_relation(event, superior, relkind, public)
     rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
     relation = self.superior_relations.where(superior_id: superior.id).sort.last
-    relation.update!(kind: rkind, name: rname)
+    relation.update!(kind: rkind, name: rname, public: public=="public")
   end
 
   def proc_name

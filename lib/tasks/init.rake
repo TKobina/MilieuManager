@@ -7,7 +7,7 @@ namespace :init do
     #Entity.destroy_all
     #Event.destroy_all
     #Language.destroy_all
-    Property.destroy_all
+    #Property.destroy_all
     Milieu.destroy_all
 
     puts "Initializing base users & milieus"

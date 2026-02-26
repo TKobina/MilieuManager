@@ -8,6 +8,7 @@ class Milieu < ApplicationRecord
   has_many :entities, dependent: :destroy
   has_many :properties, through: :entities
   has_many :inferiors, through: :entities
+  has_many :relclasses, dependent: :destroy
   
   has_many :languages, dependent: :destroy
   has_many :events, through: :ydates
@@ -35,9 +36,10 @@ class Milieu < ApplicationRecord
 
   end
 
-  def proc_chronology
-    self.entities.destroy_all
-    progressbar = ProgressBar.create(title: "Parsing Events", total: self.ydates.count)
-    self.ydates.sort.each{|ydate| ydate.proc_ydate; progressbar.increment }
+  def proc_chronology(ydate: 0)
+    to_reproc = self.ydates.order(:value).where(value: ydate..)
+    to_reproc.each{|ydate| ydate.events.each {|eve| eve.entities.destroy_all}}
+    progressbar = ProgressBar.create(title: "Parsing Events", total: to_reproc.count)
+    to_reproc.each{|ydate| ydate.proc_ydate; progressbar.increment }
   end
 end
