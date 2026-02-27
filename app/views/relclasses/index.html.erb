@@ -1,0 +1,10 @@
+<h1>Relation Classes</h1>
+  <strong><%= link_to "Add Relation Class", new_relclass_path(current_milieu: @milieu) %></strong>
+</p>
+
+<div id="Relclass">
+<% @relclasses.each do |ref| %>
+      <%= link_to ref.kind, relclass_path(ref.id, current_milieu: @milieu) %>
+      (<%= ref.topbottom %>,<%= ref.bottomtop %>)</br>
+<% end %>
+</div>
