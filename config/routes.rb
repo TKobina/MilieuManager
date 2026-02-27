@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :lexemes
   resources :stories
   resources :references
+  resources :relclasses
   get '/export_csv', to: 'lexemes#export_csv'
   
   resources :pages
