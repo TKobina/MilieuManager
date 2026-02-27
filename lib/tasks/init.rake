@@ -1,12 +1,28 @@
 require 'yaml'
 
+  RELCLASSES = {
+    "birthparent" => ["child of","parent of"],
+    "birthhouse" => ["of","house of"],
+    "nation" => ["nation of","world of"],
+    "house" => ["house of","nation of"],
+    "adoption" => ["adopted of","adopted"],
+    "exile" => ["exile of","exile"],
+    "wife" => ["wife of","wife"],
+    "husband" => ["husband of","husband"],
+    "consort" => ["consortee of","consort"],
+    "first" => ["firsted by","first"],
+    "second" => ["seconded by","second"],
+    "third" => ["thirded by","third"],
+    nil => ["mystery", "unknown relation"]
+  }
+
 namespace :init do
   desc "Create new base user, milieu, language"
   task base: :environment do
     #Ydate.destroy_all
     #Entity.destroy_all
     #Event.destroy_all
-    #Language.destroy_all
+    Language.destroy_all
     #Property.destroy_all
     Milieu.destroy_all
 
@@ -29,6 +45,10 @@ namespace :init do
     end
 
     user2.readings << milieu
+
+    RELCLASSES.each do |key, values|
+      Relclass.create!(milieu: milieu, kind: key, topbottom: values.first, bottomtop: values.second)
+    end
     
     ObsidianImporterService.new(Rails.root.join("lib"), "obsidian", milieu)
 

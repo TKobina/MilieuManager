@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   has_many :instructions, dependent: :destroy
   accepts_nested_attributes_for :instructions, allow_destroy: true
 
-  validates :eid, uniqueness: { scope: :milieu_id, message: "You have already created an event with this eid." }
+  validates :name, uniqueness: { scope: :milieu_id, message: "You have already created an event with name" }
 
   after_commit :gen_instructions
 

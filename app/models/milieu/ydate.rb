@@ -2,7 +2,7 @@ class Ydate < ApplicationRecord
   has_many :events, dependent: :destroy
   belongs_to :milieu
 
-  validates :value, uniqueness: { scope: :language_id, message: "You have already created a letter with this value." }
+  validates :value, uniqueness: { scope: :milieu_id, message: "You have already created a ydate with this value." }
 
   
 
