@@ -27,14 +27,14 @@
 <h3>Belongs To</h3>
 <% if !@superior_relations.nil? then @superiors.zip(@superior_relations).each do |sup, rel| %>
   <div>
-    <%= rel.name.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
+    <%= rel.relclass.topbottom&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
 <% end %><% end %>
 </br>
 <h3>Possesses</h3>
 <% if !@inferior_relations.nil? then @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
-    <%= rel.relrev(rel.name).capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
+    <%= rel.relclass.bottomtop&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
 <% end %><% end %>
 </br>

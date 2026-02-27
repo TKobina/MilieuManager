@@ -12,32 +12,10 @@ class Entity < ApplicationRecord
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior, dependent: :destroy
   
-  belongs_to :language
+  belongs_to :language, optional: true
   has_one :dialect, dependent: :destroy
 
   validates :eid, uniqueness: { scope: :milieu_id, message: "You have already created an entity with this eid." }
-
-  SUBLATIONS = {
-    [:person, :nation, :birth]  => ["societal", "member of"],
-    [:person, :house, :birth] => ["societal", "of"],
-    [:person, :person, :birth]  => ["familial", "child of"],
-    [:person, :person, :marriage] => ["spoused", "spouse of"],
-    
-    [:person, :house, :adoption] => ["societal", "adopted of"],
-    [:person, :house, :first] => ["societal", "first of"],
-    [:person, :house, :second] => ["societal", "second of"],
-    [:person, :house, :third] => ["societal", "third of"],
-    [:person, :house, :exile] => ["societal", "exile of"],
-
-    [:person, :person, :consorting]  => ["familial", "consort of"],
-    [:person, :person, :marriage]  => ["familial", "spouse of"],
-
-    [:house, :society, nil]  => ["political", "house of"],
-    [:house, :nation, nil]  => ["political", "house of"],
-    [:society, :nation, nil]   => ["political", "society of"],
-    [:nation, :world, nil]   => ["political", "nation of"],
-    [:unkown, :person, nil] => ["mysterious", "unknown relation of"]
-  }
 
   def <=>(other)
     slang = self.language?
@@ -56,17 +34,18 @@ class Entity < ApplicationRecord
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
     
-  def set_relation(event, superior, relkind = nil, public)
-    rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
-    rkind = rkind.nil? ? "unknown" : rkind
-    rname = rname.nil? ? "unknown" : rkind
-    relation = Relation.find_or_create_by(event: event, inferior: self, superior: superior, kind: rkind, name: rname, public: public=="public")
+  def set_relation(event, superior, relkind, public)
+    #rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
+    relclass = Relclass.find_or_create_by(milieu: self.milieu, kind: relkind)
+    relation = Relation.find_or_create_by(event: event, relclass: relclass, inferior: self, superior: superior, public: public)
   end
 
   def mod_relation(event, superior, relkind, public)
-    rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
-    relation = self.superior_relations.where(superior_id: superior.id).sort.last
-    relation.update!(kind: rkind, name: rname, public: public=="public")
+    #rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]
+    relclass = Relclass.find_or_create_by(milieu: self.milieu, kind: relkind)
+    relation = self.superior_relations.where(superior: superior).sort.last
+    binding.pry if relation.nil?
+    relation.update!(event: event, relclass: relclass, public: public)
   end
 
   def proc_name

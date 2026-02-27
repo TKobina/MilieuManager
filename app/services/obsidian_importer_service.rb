@@ -153,7 +153,6 @@ class ObsidianImporterService
   def proc_reference(filename, file)
     name, eid = filename.split(".")&.first&.split("-")
     return if eid.nil?
-
     textpri = ""
     textpub = ""
     file[:contents].keys.each_with_index do |key, i|

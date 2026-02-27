@@ -35,7 +35,8 @@ class Instruction < ApplicationRecord
     # formation | name-eid | kind | creator-eid | public
     _, nameid, entkind, creatoreid, public = self.code.split("|") 
     name, eid = nameid.split("-")
-    ent = Entity.create!(
+
+    ent = Entity.new(
       name: name, 
       eid: eid, 
       milieu: self.event.milieu, 
@@ -43,9 +44,14 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
-    ent.properties << Property.new(kind: "formation date", value: self.event.ydate.to_s)
 
-    creator = fetch_entity(creatoreid)
+    if !["world","info"].include?(entkind)
+      creator = fetch_entity(creatoreid)
+      ent.language = creator.language
+      ent.set_relation(self.event, creator, kind, public=="public")
+    end
+    ent.save!
+    ent.properties << Property.new(kind: "formation date", value: self.event.ydate.to_s)
 
     [ent, creator]
   end
@@ -56,20 +62,24 @@ class Instruction < ApplicationRecord
     name, eid  = nameid.split("-")
 
     parent = fetch_entity(pareid)
+    #binding.pry if entkind == "nation"
+    language = Language.find_or_create_by(name: lang, milieu: parent.milieu) if entkind == "nation"
+    language ||= parent.language
+
     ent = Entity.create!(
       name: name, 
       eid: eid, 
       milieu: self.event.milieu, 
-      kind: entkind, 
+      kind: entkind,
+      language: language, 
       public: public == "public",
       events: [self.event],
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
     ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
-    ent.set_relation(self.event, parent,,public)
-    
-    Language.find_or_create_by(name: lang, milieu: ent.milieu).update!(entity: ent) if entkind == "nation"
+    ent.set_relation(self.event, parent,entkind,public=="public")
 
+    language.update!(nation: ent) if entkind == "nation"
     [ent, parent]
   end
 
@@ -89,11 +99,11 @@ class Instruction < ApplicationRecord
 
     parent = fetch_entity(pareid)
 
-    ent.set_relation(self.event, parent, "birth", public)
+    ent.set_relation(self.event, parent, "birthparent", public=="public")
 
     unless ["world","nation","house","society"].include?(parent.kind)
       phouse = parent.superiors.where(kind: ["world","nation","house"]).last
-      ent.set_relation(self.event, phouse, "birth")
+      ent.set_relation(self.event, phouse, "birthhouse", public=="public")
       phouse.events << self.event unless phouse.events.include?(self.event)
     end
 
@@ -121,7 +131,7 @@ class Instruction < ApplicationRecord
     doptee = fetch_entity(oldnameid)
 
     doptee.update!(name: newname) if !newname.nil?
-    doptee.set_relation(self.event, dopter, "adoption", public)
+    doptee.set_relation(self.event, dopter, "adoption", public=="public")
 
     [dopter, doptee]
   end
@@ -130,12 +140,12 @@ class Instruction < ApplicationRecord
     # exile | entity-eid | name-eid | newname-eid | public
     _, exilerid, oldnameid, newnameid, public  = self.code.split("|")
     newname = newnameid&.split("-")&.first
-    
+
     exiler = fetch_entity(exilerid)
     ent = fetch_entity(oldnameid)
 
     ent.update!(name: newname) if !newname.nil?
-    ent.mod_relation(self.event, exiler, "exile", public)
+    ent.mod_relation(self.event, exiler, "exile", public=="public")
 
     [exiler, ent]
   end
@@ -149,19 +159,21 @@ class Instruction < ApplicationRecord
     ent = fetch_entity(oldnameid)
 
     ent.update!(name: newname) if !newname.nil?
-    ent.mod_relation(self.event, raiser, title, public)
+    ent.mod_relation(self.event, raiser, title, public=="public")
 
     [raiser, ent]
   end
 
   def claiming
     # claiming | name-eid | claimed-eid | kind | public
-    _, claimerid, claimedeid, kind, public  = self.code.split("|")
+    _, claimereid, claimedeid, kind, public  = self.code.split("|")
 
     claimer = fetch_entity(claimereid)
     claimed = fetch_entity(claimedeid)
 
-    claimed.set_relation(self.event, claimer, kind, public)
+    claimed.set_relation(self.event, claimer, kind, public=="public")
+
+    [claimer, claimed]
   end
 
   def disclaiming
