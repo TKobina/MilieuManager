@@ -9,10 +9,6 @@ default: &default
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   host: localhost
-#   username: <%= ENV.fetch("DB_USER") %> # Your PostgreSQL username
-#   password: <%= ENV.fetch("DB_PWD") %>
-#   host: <%= ENV.fetch("DB_PRIMARY") %>
-#   port: 5432 # Default port
 
 # # development:
 # #   <<: *default
