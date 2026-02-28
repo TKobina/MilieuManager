@@ -6,5 +6,6 @@ class MilieusController < ApplicationController
   end
 
   def show
+    @milieu = Milieu.first
   end
 end
