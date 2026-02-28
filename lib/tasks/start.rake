@@ -12,9 +12,9 @@ end
 
 task "start_open" => :environment do
   host = Rails.application.credentials.host
-  start_command = "rails server -p " + host[:port_open] + " -b " + host[:ip]
+  start_command = "rails server -p " + host[:port_open] + " -b " + host[:ip] + " -e production"
   ENV["CURRENT_IP"] = host[:ip]
   ENV["CURRENT_PORT"] = host[:port_open]
-
+  ENV["DATABASE_URL"] = host[:url]
   system start_command
 end
