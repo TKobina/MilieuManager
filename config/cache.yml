@@ -12,7 +12,5 @@ test:
   <<: *default
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
-# production:
-#   database: cache
-#   <<: *default
+  database: cache
+  <<: *default
