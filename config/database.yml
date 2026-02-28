@@ -33,7 +33,8 @@
 
 # # Store production database in the storage/ directory, which by default
 # # is mounted as a persistent Docker volume in config/deploy.yml.
-# production:
+production:
+  url: <%= ENV['DATABASE_URL'] %>
 #   adapter: postgresql
 #   max_connections: 5 #<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 #   timeout: 5000
