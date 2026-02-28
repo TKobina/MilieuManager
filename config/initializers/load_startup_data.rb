@@ -3,15 +3,16 @@ Rails.application.config.after_initialize do
   if defined?(Rails::Server) || defined?(Puma::Server) || defined?(Unicorn::Server)
     ActiveRecord::Base.with_connection do
       duser = ENV['DUSER'] #Rails.application.credentials.default_user
+      dpwd = ENV["DPWD"]
       tuser = ENV['TUSER'] #Rails.application.credentials.test_user
       
       #if default user doesn't exist, create it
-      unless user = User.where(email: duser[:email]).first
-        user = User.create!(email: duser[:email], password: duser[:password], password_confirmation: duser[:password])
+      unless user = User.where(email: duser).first
+        user = User.create!(email: duser, password: dpwd, password_confirmation: dpwd)
       end
       
-      unless user2 = User.where(email: tuser[:email]).first
-        user2 = User.create!(email: tuser[:email], password: tuser[:password], password_confirmation: tuser[:password])
+     unless user = User.where(email: tuser).first
+        user = User.create!(email: tuser, password: dpwd, password_confirmation: dpwd)
       end
 
       unless milieu = Milieu.where(owner: user, name: "Ildera").first
