@@ -35,14 +35,14 @@ class Ydate < ApplicationRecord
   end
 
   def self.from_days(milieu, intdate)
-    ydate = Ydate.find_by(milieu: Milieu.first, value: intdate)
+    ydate = Ydate.where(milieu: Milieu.first, value: intdate).first
     ydate.nil? ? create!(milieu: milieu, value: intdate) : ydate
   end
 
   def self.from_string(milieu, strdate)
     year, season, month, day = strdate.split(".").map! { |s| (s.to_i - 1) }
     days = (year * DAYS_YEAR) + (season * DAYS_SEASON) + (month * DAYS_MONTH) + day
-    ydate = Ydate.find_by(milieu: Milieu.first, value: days)
+    ydate = Ydate.where(milieu: Milieu.first, value: days).first
 
     ydate.nil? ? create!(milieu: milieu, value: days) : ydate
   end
@@ -53,7 +53,7 @@ class Ydate < ApplicationRecord
     month = Random.new.rand(1...4)
     day = Random.new.rand(1...24)
     days = (year * DAYS_YEAR) + (season * DAYS_SEASON) + (month * DAYS_MONTH) + day
-    ydate = Ydate.find_by(milieu: Milieu.first, value: days)
+    ydate = Ydate.where(milieu: Milieu.first, value: days).first
 
     ydate.nil? ? Ydate.new(milieu: milieu, value: days) : ydate
   end

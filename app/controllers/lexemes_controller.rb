@@ -61,7 +61,8 @@ class LexemesController < ApplicationController
   end
 
   def set_language
-    @language = current_user.milieus.find_by(params[:current_milieu])&.languages&.find_by(params[:language_id]) || current_user.readings.find_by(params[:current_milieu]).languages.find_by(params[:language_id])
+    @language = current_user.milieus.where(id: params[:current_milieu]).first&.languages&.where(id: params[:language_id]).first || 
+      current_user.readings.where(id: params[:current_milieu]).languages.where(id: params[:language_id]).first
   end
 
   def check_owner
