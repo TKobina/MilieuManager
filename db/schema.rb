@@ -17,9 +17,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   create_table "accesses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.boolean "edit_rights", default: false
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.boolean "private_rights", default: false
-    t.integer "reader_id", null: false
+    t.bigint "reader_id", null: false
     t.datetime "updated_at", null: false
     t.index ["milieu_id"], name: "index_accesses_on_milieu_id"
     t.index ["reader_id"], name: "index_accesses_on_reader_id"
@@ -55,8 +55,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
 
   create_table "compositions", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "sublexeme_id", null: false
-    t.integer "suplexeme_id", null: false
+    t.bigint "sublexeme_id", null: false
+    t.bigint "suplexeme_id", null: false
     t.datetime "updated_at", null: false
     t.index ["sublexeme_id"], name: "index_compositions_on_sublexeme_id"
     t.index ["suplexeme_id"], name: "index_compositions_on_suplexeme_id"
@@ -64,12 +64,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
 
   create_table "dialects", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "entity_id", null: false
-    t.integer "language_id", null: false
+    t.bigint "entity_id", null: false
+    t.bigint "language_id", null: false
     t.string "name"
-    t.json "occurrences"
+    t.jsonb "occurrences"
     t.datetime "updated_at", null: false
-    t.json "variances"
+    t.jsonb "variances"
     t.index ["entity_id"], name: "index_dialects_on_entity_id"
     t.index ["language_id", "entity_id"], name: "index_dialects_on_language_id_and_entity_id"
     t.index ["language_id"], name: "index_dialects_on_language_id"
@@ -79,14 +79,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   create_table "entities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "eid", null: false
+    t.bigint "genvent_id", null: false
     t.string "kind"
-    t.integer "language_id"
-    t.integer "milieu_id", null: false
+    t.bigint "language_id"
+    t.bigint "milieu_id", null: false
     t.string "name"
     t.boolean "public", default: false
-    t.integer "reference_id"
+    t.bigint "reference_id"
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_entities_on_eid"
+    t.index ["genvent_id"], name: "index_entities_on_genvent_id"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
     t.index ["language_id"], name: "index_entities_on_language_id"
@@ -97,23 +99,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   end
 
   create_table "entities_events", id: false, force: :cascade do |t|
-    t.integer "entity_id", null: false
-    t.integer "event_id", null: false
+    t.bigint "entity_id", null: false
+    t.bigint "event_id", null: false
     t.index ["entity_id", "event_id"], name: "index_entities_events_on_entity_id_and_event_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
-    t.json "code"
+    t.jsonb "code"
     t.datetime "created_at", null: false
     t.integer "i"
     t.string "kind"
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.string "name"
     t.boolean "proc"
     t.boolean "public", default: false
-    t.json "text"
+    t.jsonb "text"
     t.datetime "updated_at", null: false
-    t.integer "ydate_id", null: false
+    t.bigint "ydate_id", null: false
     t.index ["milieu_id"], name: "index_events_on_milieu_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["ydate_id"], name: "index_events_on_ydate_id"
@@ -123,7 +125,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.string "code"
     t.datetime "created_at", null: false
     t.string "description"
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.integer "i"
     t.string "kind"
     t.datetime "updated_at", null: false
@@ -134,9 +136,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "maxlexeid"
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.string "name"
-    t.integer "nation_id"
+    t.bigint "nation_id"
     t.datetime "updated_at", null: false
     t.index ["milieu_id", "name"], name: "index_languages_on_milieu_id_and_name", unique: true
     t.index ["milieu_id"], name: "index_languages_on_milieu_id"
@@ -148,7 +150,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.datetime "created_at", null: false
     t.string "details"
     t.string "kind"
-    t.integer "language_id", null: false
+    t.bigint "language_id", null: false
     t.integer "sortkey"
     t.string "sound"
     t.datetime "updated_at", null: false
@@ -165,7 +167,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.text "details"
     t.string "eid"
     t.string "kind"
-    t.integer "language_id", null: false
+    t.bigint "language_id", null: false
     t.string "meaning"
     t.datetime "updated_at", null: false
     t.string "word"
@@ -179,14 +181,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.datetime "created_at", null: false
     t.text "details"
     t.string "name"
-    t.integer "owner_id", null: false
+    t.bigint "owner_id", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_milieus_on_owner_id"
   end
 
   create_table "names", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "dialect_id", null: false
+    t.bigint "dialect_id", null: false
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["dialect_id"], name: "index_names_on_dialect_id"
@@ -194,7 +196,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
 
   create_table "patterns", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "language_id", null: false
+    t.bigint "language_id", null: false
     t.datetime "updated_at", null: false
     t.string "value"
     t.index ["language_id"], name: "index_patterns_on_language_id"
@@ -202,11 +204,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.json "code"
+    t.jsonb "code"
     t.datetime "created_at", null: false
     t.text "detail"
-    t.integer "entity_id", null: false
-    t.integer "event_id", null: false
+    t.bigint "entity_id", null: false
+    t.bigint "event_id", null: false
     t.string "kind"
     t.boolean "public", default: false
     t.datetime "updated_at", null: false
@@ -220,9 +222,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   create_table "references", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "eid"
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.string "name"
-    t.json "text"
+    t.jsonb "text"
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_references_on_eid"
     t.index ["milieu_id", "eid"], name: "index_references_on_milieu_id_and_eid", unique: true
@@ -231,12 +233,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
 
   create_table "relations", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "event_id", null: false
-    t.integer "inferior_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "inferior_id", null: false
     t.boolean "public", default: false
-    t.integer "relclass_id", null: false
-    t.integer "superior_id", null: false
-    t.json "text"
+    t.bigint "relclass_id", null: false
+    t.bigint "superior_id", null: false
+    t.jsonb "text"
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_relations_on_event_id"
     t.index ["inferior_id"], name: "index_relations_on_inferior_id"
@@ -248,7 +250,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.string "bottomtop"
     t.datetime "created_at", null: false
     t.string "kind"
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.string "topbottom"
     t.datetime "updated_at", null: false
     t.index ["kind", "topbottom"], name: "index_relclasses_on_kind_and_topbottom", unique: true
@@ -271,7 +273,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
     t.datetime "created_at", null: false
     t.text "details"
     t.datetime "lastupdate"
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.boolean "public"
     t.string "title"
     t.datetime "updated_at", null: false
@@ -306,7 +308,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
 
   create_table "ydates", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "milieu_id", null: false
+    t.bigint "milieu_id", null: false
     t.datetime "updated_at", null: false
     t.integer "value"
     t.index ["milieu_id", "value"], name: "index_ydates_on_milieu_id_and_value", unique: true
@@ -320,6 +322,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
+  add_foreign_key "entities", "events", column: "genvent_id"
   add_foreign_key "entities", "languages"
   add_foreign_key "entities", "milieus"
   add_foreign_key "entities", "references"

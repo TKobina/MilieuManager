@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :properties, dependent: :destroy
   has_many :relations, dependent: :destroy
   has_and_belongs_to_many :entities
-
+  has_many :children, class_name: 'Entity', foreign_key: :genvent_id, dependent: :destroy
   has_many :instructions, dependent: :destroy
   accepts_nested_attributes_for :instructions, allow_destroy: true
 

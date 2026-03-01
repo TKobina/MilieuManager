@@ -49,6 +49,17 @@ class LexemesController < ApplicationController
     end
   end
 
+  def import
+    file = params[:file]
+
+    if file.present? && ['text/csv', 'application/csv', 'application/vnd.ms-excel'].include?(file.content_type)
+      Event.from_csv(file)
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), notice: 'Events imported successfully!'
+    else
+      redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: 'Please upload a valid CSV file.'
+    end
+  end
+
   def destroy
     @lexeme = Lexeme.find(params[:id])
     @lexeme.destroy
