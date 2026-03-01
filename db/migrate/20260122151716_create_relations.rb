@@ -6,7 +6,7 @@ class CreateRelations < ActiveRecord::Migration[8.1]
       t.references :relclass, null: false, foreign_key: true
       t.references :superior, null: false, foreign_key: { to_table: :entities }
       t.references :inferior, null: false, foreign_key: { to_table: :entities }
-      t.json :text
+      t.jsonb :text
       t.boolean :public, default: false
     end
   end

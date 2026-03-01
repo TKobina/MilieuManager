@@ -4,8 +4,8 @@ class CreateDialects < ActiveRecord::Migration[8.1]
       t.timestamps
       t.references :language, null: false, foreign_key: true
       t.string :name
-      t.json :occurrences
-      t.json :variances
+      t.jsonb :occurrences
+      t.jsonb :variances
     end
   end
 end

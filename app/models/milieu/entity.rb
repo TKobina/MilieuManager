@@ -1,6 +1,7 @@
 class Entity < ApplicationRecord
   include Comparable
   belongs_to :milieu
+  belongs_to :genvent, class_name: "Event"
   belongs_to :reference, optional: true
   has_and_belongs_to_many :events
   
@@ -11,7 +12,9 @@ class Entity < ApplicationRecord
   
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior, dependent: :destroy
-  
+
+  has_one :tongue, class_name: "Language", foreign_key: :nation_id, dependent: :destroy
+
   belongs_to :language, optional: true
   has_one :dialect, dependent: :destroy
 

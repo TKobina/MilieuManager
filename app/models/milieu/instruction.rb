@@ -43,6 +43,7 @@ class Instruction < ApplicationRecord
       kind: entkind, 
       public: public == "public",
       events: [self.event],
+      genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
 
     if !["world","info"].include?(entkind)
@@ -51,6 +52,7 @@ class Instruction < ApplicationRecord
       ent.set_relation(self.event, creator, kind, public=="public")
     end
     ent.save!
+
     ent.properties << Property.new(kind: "formation date", value: self.event.ydate.to_s)
 
     [ent, creator]
@@ -74,11 +76,12 @@ class Instruction < ApplicationRecord
       language: language, 
       public: public == "public",
       events: [self.event],
+      genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+    
     ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
     ent.set_relation(self.event, parent,entkind,public=="public")
-
     language.update!(nation: ent) if entkind == "nation"
     [ent, parent]
   end
@@ -95,8 +98,9 @@ class Instruction < ApplicationRecord
       kind: "person",
       public: public == "public",
       events: [self.event],
+      genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
-
+    
     parent = fetch_entity(pareid)
 
     ent.set_relation(self.event, parent, "birthparent", public=="public")

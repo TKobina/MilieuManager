@@ -7,8 +7,8 @@ class CreateEvents < ActiveRecord::Migration[8.1]
       t.integer :i
       t.string :name
       t.string :kind
-      t.json :text
-      t.json :code
+      t.jsonb :text
+      t.jsonb :code
       t.boolean :public, default: false
       t.boolean :proc
     end

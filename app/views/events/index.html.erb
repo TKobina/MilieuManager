@@ -1,6 +1,10 @@
 <h1>Events</h1>
 <% if @owner%>
   <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
+  <%= form_with url: import_events_path(current_milieu: @milieu), multipart: true do |form| %>
+    <%= form.file_field :file, accept: '.csv' %>
+    <%= form.submit "Import Events" %>
+  <% end %>
 <% end %>
 </p>
 

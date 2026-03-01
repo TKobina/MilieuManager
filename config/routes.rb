@@ -16,14 +16,20 @@ Rails.application.routes.draw do
   resources :entities
   resources :events do
     collection do
-      post :proc
+      post :import
     end
   end
   resources :languages
   resources :dialects
-  resources :lexemes
-  resources :stories
-  resources :references
+  resources :lexemes do
+    collection { post :import }
+  end
+  resources :stories do
+    collection { post :import }
+  end
+  resources :references do
+    collection { post :import }
+  end
   resources :relclasses
   get '/export_csv', to: 'lexemes#export_csv'
   

@@ -3,6 +3,8 @@
 
 ## PRIORITIES
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
+* REMOVE BINDING.PRY FROM PRODUCTION!!!!
+* ACTIVE.STORAGE SET TO LOCAL; MIGRATE TO AW3 PER PAAS
 * MIGRATE EVERYTHING TO WEB!!!!
   * Implement export/import functionality
   * Upload from library?
@@ -85,6 +87,9 @@
 * Obsidian Plugins
   * Folder Index
   * Link with alias
+
+#### Rails Commands
+* RAILS_ENV=production rails c
 
 #### Rails Assets
 * Issue with loading CSS files: had to do rake assets:clobber ; rails assets:precompile

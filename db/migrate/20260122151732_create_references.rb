@@ -5,7 +5,7 @@ class CreateReferences < ActiveRecord::Migration[8.1]
       t.string :name
       t.references :milieu, null: false, foreign_key: true
       t.string :eid
-      t.json :text
+      t.jsonb :text
     end
   end
 end

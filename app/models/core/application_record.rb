@@ -23,32 +23,42 @@ class ApplicationRecord < ActiveRecord::Base
     filename = "#{self.name.downcase.pluralize}-#{Date.today}.csv"
 
     data = CSV.generate(headers: true) do |csv|
-      csv << attributes
+      csv << attributes.join(",").gsub("ydate_id", "ydate_string").split(",")
 
       all.each do |record|
-        csv << attributes.map { |attr| record.send(attr) }
+        fields = []
+        attributes.map do |attr|
+          if attr == "ydate_id"
+            fields << Ydate.find(record.send(attr)).to_s
+          else
+            fields << record.send(attr).join("<>")
+          end
+        end
+        csv << fields
       end
     end
 
     File.open(Rails.root.join('storage/csv', filename), "wb", encoding: "utf-8") {|file| file.write(data)}
   end
 
-  def self.from_csv
-    # def process_csv_upload(product_import)
-    #   product_import.csv_file.open do |tempfile|
-    #     CSV.foreach(tempfile.path, headers: true) do |row|
-    #       # Process each row, e.g., create a database record
-    #       Product.create!(
-    #         name: row['Name'],
-    #         price: row['Price'],
-    #         # ... map other attributes
-    #       )
-    #     end
-    #   end
-    # end
-    path = Rails.root.join('storage/csv/*')
-    csvfile = Dir.glob(path).select{|fname| fname.include?(self.name.downcase.pluralize)}.max_by { |f| File.mtime(f) }
+  def self.from_csv(csvfile = nil)
+    csvfile ||=  Rails.root.join("storage","csv","events.csv")
+    
+    milieus = {}
+    ydates = {}
+    CSV.foreach(csvfile, headers: true, encoding: "utf-8") do |row|
+      if row.headers.include?("ydate_string")
+        milieus[row["milieu_id"]] ||= Milieu.find(row["milieu_id"])
+        ydates[row["ydate_string"]] ||= Ydate.from_string(milieus[row["milieu_id"]], row["ydate_string"])
+        row["ydate_id"] = ydates[row["ydate_string"]].id
+        row.delete("ydate_string")
+      end
+      row["code"] = row["code"].delete("[\"]").split("<>")
+      
+      event = self.find_or_create_by(row.to_hash)
+    end 
 
-    CSV.foreach(csvfile, headers: true, encoding: "utf-8") {|row| self.find_or_create(row.to_hash)}
+    binding.pry
+    milieus.values.each {|milieu| milieu.proc_chronology}
   end
 end

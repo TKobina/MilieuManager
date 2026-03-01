@@ -65,7 +65,18 @@ class EventsController < ApplicationController
       
       redirect_to event_path(@event, current_milieu: @milieu)
     else
-      redirect_to new_event_path(current_milieu: @milieu), alert: "Entity edit failed!"
+      redirect_to new_event_path(current_milieu: @milieu), alert: "Event edit failed!"
+    end
+  end
+
+  def import
+    file = params[:file]
+
+    if file.present? && ['text/csv', 'application/csv', 'application/vnd.ms-excel'].include?(file.content_type)
+      Event.from_csv(file)
+      redirect_to events_path(current_milieu: @milieu), notice: 'Events imported successfully!'
+    else
+      redirect_to events_path(current_milieu: @milieu), alert: 'Please upload a valid CSV file.'
     end
   end
 
