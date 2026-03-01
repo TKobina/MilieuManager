@@ -4,7 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.enable_reloading = false
+  config.enable_reloading = true
 
   # Eager load code on boot for better performance and memory savings (ignored by Rake tasks).
   config.eager_load = true
@@ -22,7 +22,8 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  #config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # config.assume_ssl = true

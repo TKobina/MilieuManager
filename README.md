@@ -2,10 +2,10 @@
 ## QUESTIONS
 
 ## PRIORITIES
-* FINISH CONVERTING LANGUAGES TO NATION, ENTITIES TO LANGUAGES
-* FINISH BUILDING OUT RELCLASSES
+* CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * MIGRATE EVERYTHING TO WEB!!!!
   * Implement export/import functionality
+  * Upload from library?
 * EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
   * handle changing of event ydate
@@ -14,7 +14,6 @@
   * Found societies manually!!
   * speed efficiency of milieu reproccing, problem of duplicating relations
 * ENTITIES
-  * FIX ENTITY.RB DIALECT? : SHOULD NOT BE FIRST DIALECT AUTOMAGIC
   * Filter by type, letter
 * RELATIONS
   * add references for relations (supid|infid); modify public/private relation here?
@@ -81,12 +80,37 @@
 * public/private
   * events: noted in the code block, private by default
   * entities: private by default, look for a file for the entity in the file directory by name
-* rails db:migrate VERSION=0 cascade=true
-  * rails db:migrate:primary
+* Stories
+  * If there is ANY private text in a chapter (between ~ and ~), that chapter will be marked private
 * Obsidian Plugins
   * Folder Index
   * Link with alias
-* git diff --stat $(git hash-object -t tree /dev/null)
+
+#### Rails Assets
 * Issue with loading CSS files: had to do rake assets:clobber ; rails assets:precompile
-* Stories
-  * If there is ANY private text in a chapter (between ~ and ~), that chapter will be marked private
+
+#### Rails Migrations
+* rails db:migrate VERSION=0 cascade=true
+  * rails db:migrate:primary
+
+#### Git
+* git diff --stat $(git hash-object -t tree /dev/null)
+
+#### Creating Solid Cache in DB
+CREATE TABLE solid_cache_entries (
+    id BIGSERIAL PRIMARY KEY,
+    key BYTEA NOT NULL,
+    value BYTEA NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    key_hash BIGINT NOT NULL,
+    byte_size INTEGER NOT NULL
+    );
+
+    CREATE INDEX index_solid_cache_entries_on_byte_size
+    ON solid_cache_entries (byte_size);
+
+    CREATE INDEX index_solid_cache_entries_on_key_hash_and_byte_size
+    ON solid_cache_entries (key_hash, byte_size);
+
+    CREATE UNIQUE INDEX index_solid_cache_entries_on_key_hash
+    ON solid_cache_entries (key_hash);
