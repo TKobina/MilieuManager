@@ -1,4 +1,5 @@
 class EntitiesController < ApplicationController
+  before_action :get_milieu
   before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index

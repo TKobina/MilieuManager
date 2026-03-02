@@ -15,16 +15,16 @@
     <h3> Private </h3>
   <% end %>
 </div>
+<div>
+  <% if @event.proc %>
+    <h3> Proccessed</h3>
+  <% else %>
+    <h3> Not Proccessed </h3>
+  <% end %>
 </br>
 
-
-<div>
-<h3>Event Code</h3>
-  <%= @event.code.first %>
-</div>
-<br>
 <div><ul>
-<h3>Event Specifications</h3>
+<h3>Event Code</h3>
   <%= simple_format(@instructions.html_safe) %>
 <% end %>
 </div></ul>

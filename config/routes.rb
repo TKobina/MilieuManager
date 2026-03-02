@@ -25,13 +25,13 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :stories do
-    collection { post :import }
+    #collection { post :import }
   end
   resources :references do
-    collection { post :import }
+    #collection { post :import }
   end
   resources :relclasses
-  get '/export_csv', to: 'lexemes#export_csv'
+  #get '/export_csv', to: 'lexemes#export_csv'
   
   resources :pages
   

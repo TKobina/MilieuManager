@@ -2,8 +2,8 @@
 <% if @owner%>
   <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
   <%= form_with url: import_events_path(current_milieu: @milieu), multipart: true do |form| %>
-    <%= form.file_field :file, accept: '.csv' %>
-    <%= form.submit "Import Events" %>
+    <%= form.file_field :file, accept: '.csv', class: "text-field" %>
+        <%= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
   <% end %>
 <% end %>
 </p>

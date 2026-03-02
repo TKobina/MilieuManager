@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :check_owner, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @stories = filter_records(@milieu.stories).sort
   end
@@ -21,7 +22,7 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to story_path(@story, current_milieu: @milieu)
     else
-      redirect_to new_story_path(current_milieu: @milieu, language_id: @language.id), alert: "Story creation failed!"
+      redirect_to new_story_path(current_milieu: @milieu), alert: "Story creation failed!"
     end
   end
 
@@ -34,7 +35,7 @@ class StoriesController < ApplicationController
     if @story.update(story_params)
       redirect_to story_path(@story, current_milieu: @milieu)
     else
-      redirect_to edit_story_path(current_milieu: @milieu, language_id: @language.id), alert: "Story editing failed!"
+      redirect_to edit_story_path(current_milieu: @milieu), alert: "Story editing failed!"
     end
   end
 
@@ -47,7 +48,7 @@ class StoriesController < ApplicationController
 
   private
   def story_params
-    params.expect(story: [ :chapter, :title, :details, :public ])
+    params.expect(story: [ :chapter, :title, :details, :public] )
   end
 
   def check_public
@@ -58,7 +59,7 @@ class StoriesController < ApplicationController
 
   def check_owner
     unless @owner
-      redirect_to stories_path(current_milieu: @milieu, language_id: @language.id), alert: "Not authorized or record not found."
+      redirect_to stories_path(current_milieu: @milieu), alert: "Not authorized or record not found."
     end
   end
 

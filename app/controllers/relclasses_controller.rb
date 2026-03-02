@@ -1,4 +1,5 @@
 class RelclassesController < ApplicationController
+  before_action :get_milieu  
   before_action :check_owner 
   def index
     return unless @owner

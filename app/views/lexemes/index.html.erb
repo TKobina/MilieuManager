@@ -3,6 +3,10 @@
 <p>
 <% if @owner%>
   <strong><%= link_to "Add Lexeme", new_lexeme_path(current_milieu: @milieu, language_id: @language.id) %></strong>
+    <%= form_with url: import_lexemes_path(current_milieu: @milieu, language_id: @language.id), multipart: true do |form| %>
+      <%= form.file_field :file, accept: '.csv', class: "text-field" %>
+      <%= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
+    <% end %>
 <% end %>
 </p>
 

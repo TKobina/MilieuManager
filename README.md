@@ -5,39 +5,15 @@
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * REMOVE BINDING.PRY FROM PRODUCTION!!!!
 * ACTIVE.STORAGE SET TO LOCAL; MIGRATE TO AW3 PER PAAS
-* MIGRATE EVERYTHING TO WEB!!!!
-  * Implement export/import functionality
-  * Upload from library?
 * EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
-  * handle changing of event ydate
-  * split proc, public out of code, it's really ony useful for initial stuff, and changing to private shouldn't reproc everything
   * check for duplicate events
   * Found societies manually!!
   * speed efficiency of milieu reproccing, problem of duplicating relations
 * ENTITIES
   * Filter by type, letter
-* RELATIONS
-  * add references for relations (supid|infid); modify public/private relation here?
-  * modify names for relations here??
-  * better names for entity relationships than political/etc.
-    * add table for relation names?? including reversed names/roles/titles??
-    * Milieu, Primary Kind, Secondary Kind, Relation Value, suptoinf, inftosup
-    * means removing some parts of relations?? kind and value?? 
-      - society of /
-      - house of /
-      - child / parent
-      - nation of / 
-      - [title of] /
-      - adopted of
-      - spouse/husband/wife(???) 
-      - consort of / consortee
-      - exile of / exile
-      - divorcee(?) / divorced by
-      - member of(?)
-      - founder of(?) / founded by
-      - creator of(?) / created by
-      - owner of(?) / owned by
+* RELCLASSES
+  * Make editable (don't even bother with an index, just the form?)
 
 * LANGUAGE
   * BASE_ABBERATIONS: WHERE WILL SOURCE BE??

@@ -1,4 +1,5 @@
 class LexemesController < ApplicationController
+  before_action :get_milieu
   before_action :set_language
   before_action :check_owner, only: [:new, :create, :edit, :update, :destroy]
 
@@ -53,7 +54,7 @@ class LexemesController < ApplicationController
     file = params[:file]
 
     if file.present? && ['text/csv', 'application/csv', 'application/vnd.ms-excel'].include?(file.content_type)
-      Event.from_csv(file)
+      Lexeme.from_csv(csvfile: file, language: @language)
       redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), notice: 'Events imported successfully!'
     else
       redirect_to lexemes_path(current_milieu: @milieu, language_id: @language.id), alert: 'Please upload a valid CSV file.'
