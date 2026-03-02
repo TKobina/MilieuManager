@@ -1,16 +1,13 @@
 class EventsController < ApplicationController
-    before_action :check_owner, only: [:create, :edit, :update, :destroy]
+  before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index
     @dates = {}    
-    #@private ? records : records.where(public: true)
     if @private
       @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events }
     else
       @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events.where(public: true) }
     end
-    #@dates = @dates.sort
-    #@milieu.ydates.order(:value).each {|date| @dates[date.value] = filter_records(date.events) }
   end
 
   def show
@@ -65,7 +62,7 @@ class EventsController < ApplicationController
       
       redirect_to event_path(@event, current_milieu: @milieu)
     else
-      redirect_to new_event_path(current_milieu: @milieu), alert: "Event edit failed!"
+      redirect_to event_path(@event, current_milieu: @milieu), alert: "Event edit failed!"
     end
   end
 
@@ -73,7 +70,7 @@ class EventsController < ApplicationController
     file = params[:file]
 
     if file.present? && ['text/csv', 'application/csv', 'application/vnd.ms-excel'].include?(file.content_type)
-      Event.from_csv(file)
+      Event.from_csv(csvfile: file, milieu: @milieu)
       redirect_to events_path(current_milieu: @milieu), notice: 'Events imported successfully!'
     else
       redirect_to events_path(current_milieu: @milieu), alert: 'Please upload a valid CSV file.'
@@ -84,7 +81,7 @@ class EventsController < ApplicationController
     @event = @milieu.events.find(params[:id])
     @event.destroy
     @milieu.proc_chronology
-    redirect_to events_path
+    redirect_to events_path(current_milieu: @milieu)
   end
 
   def proc
@@ -109,20 +106,18 @@ class EventsController < ApplicationController
   def get_params
     eparams = {text: {pri: "", pub: ""}}
     eparams[:milieu] = @milieu
-    datestring, eparams[:name], eparams[:code], details = event_params
+    datestring, eparams[:name], event, details = event_params
     eparams[:ydate] = Ydate.from_string(@milieu, datestring)
     eparams[:text][:pri], eparams[:text][:pub], instructions = details.values
     
-    eparams[:code] = "#{eparams[:code]}\n#{instructions.to_s}".split("\n").map{|x| x.strip}
-    cproc, ckind, cpublic = eparams[:code]&.first&.split("|")
-    eparams[:proc] = cproc == "proc"
-    eparams[:kind] = ckind
-    eparams[:public] = cpublic == "public"
+    eparams[:code] = "#{instructions.to_s}".split("\n").map{|x| x.strip}
+    eparams[:proc] = event[:proc]
+    eparams[:public] = event[:public]
 
     eparams
   end
 
   def event_params
-    params.expect(:ydate, :name, :code, details: [:textpri, :textpub, :instructions])
+    params.expect(:ydate, :name, event: [:public, :proc], details: [:textpri, :textpub, :instructions])
   end
 end

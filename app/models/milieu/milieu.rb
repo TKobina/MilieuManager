@@ -39,7 +39,7 @@ class Milieu < ApplicationRecord
   def proc_chronology(ydate: 0)
     to_reproc = self.ydates.order(:value).where(value: ydate..)
     to_reproc.each{|ydate| ydate.events.each {|eve| eve.children.destroy_all}}
-    binding.pry
+
     progressbar = ProgressBar.create(title: "Parsing Events", total: to_reproc.count)
     to_reproc.each{|ydate| ydate.proc_ydate; progressbar.increment }
   end

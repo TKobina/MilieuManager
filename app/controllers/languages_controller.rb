@@ -1,4 +1,5 @@
 class LanguagesController < ApplicationController
+  before_action :get_milieu
   def index
     @languages = @milieu.languages
   end

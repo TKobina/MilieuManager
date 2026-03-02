@@ -2,6 +2,10 @@ class Letter < ApplicationRecord
   belongs_to :language
 
   def <=>(other)
+      return -1 if  self.nil? && !other.nil?
+      return 0  if  self.nil? &&  other.nil?
+      return 1  if !self.nil? &&  other.nil?
+
     return self.sortkey <=> other.sortkey
   end
 

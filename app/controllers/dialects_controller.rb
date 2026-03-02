@@ -1,4 +1,5 @@
 class DialectsController < ApplicationController
+  before_action :get_milieu
   def index
     @language = @milieu.languages.find(params[:language_id])
     @stats = @language.stats?

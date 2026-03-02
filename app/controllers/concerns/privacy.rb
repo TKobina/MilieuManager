@@ -4,8 +4,7 @@ module Privacy
   def get_milieu
     return unless current_user.present?
     @milieu = current_user.milieus.where(id: params[:current_milieu]).first || current_user.readings.where(id: params[:current_milieu]).first
-    return unless @milieu.present?
-    @owner = @milieu.owner == current_user
+    @owner = @milieu&.owner == current_user
     set_privacy
   end
 

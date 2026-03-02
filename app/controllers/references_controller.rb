@@ -1,4 +1,5 @@
 class ReferencesController < ApplicationController
+  before_action :get_milieu
   before_action :check_owner 
   def index
     @references = cache_records(current_user.id.to_s + "Reference", filter_records(@milieu.references.order(:eid)))
