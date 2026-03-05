@@ -1,0 +1,180 @@
+Avënŕe:
+  patterns: 20
+  vowels: 10
+  consonants: 5
+  bridges: 15
+Avënŕe-w:
+  patterns: 20
+  vowels: 10
+  consonants: 5
+  bridges: 15
+Avënŕe-n:
+  patterns: 30
+  vowels: 20
+  consonants: 20
+  bridges: 10
+Avënŕe-m:
+  patterns: 25
+  vowels: 5
+  consonants: 10
+  bridges: 15
+Des'Ëdär:
+  patterns: 15
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Des'Ëdär-w:
+  patterns: 15
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Des'Ëdär-n:
+  patterns: 25
+  vowels: 20
+  consonants: 20
+  bridges: 10
+Des'Ëdär-m:
+  patterns: 20
+  vowels: 10
+  consonants: 20
+  bridges: 15
+Des'Mäŧën:
+  patterns: 10
+  vowels: 5
+  consonants: 2
+  bridges: 2
+Des'Mäŧën-w:
+  patterns: 10
+  vowels: 5
+  consonants: 2
+  bridges: 2
+Des'Mäŧën-n:
+  patterns: 20
+  vowels: 5
+  consonants: 2
+  bridges: 8
+Des'Mäŧën-m:
+  patterns: 15
+  vowels: 10
+  consonants: 4
+  bridges: 8
+Des'Müŕ:
+  patterns: 25
+  vowels: 10
+  consonants: 10
+  bridges: 20
+Des'Müŕ-w:
+  patterns: 25
+  vowels: 10
+  consonants: 10
+  bridges: 20
+Des'Müŕ-n:
+  patterns: 40
+  vowels: 50
+  consonants: 30
+  bridges: 30
+Des'Müŕ-m:
+  patterns: 30
+  vowels: 5
+  consonants: 60
+  bridges: 10
+Ašënŕe:
+  patterns: 25
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Ašënŕe-w:
+  patterns: 25
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Ašënŕe-n:
+  patterns: 35
+  vowels: 20
+  consonants: 20
+  bridges: 10
+Ašënŕe-m:
+  patterns: 30
+  vowels: 6
+  consonants: 10
+  bridges: 15
+Trö'Müŕ:
+  patterns: 25
+  vowels: 12
+  consonants: 10
+  bridges: 19
+Trö'Müŕ-w:
+  patterns: 25
+  vowels: 12
+  consonants: 10
+  bridges: 19
+Trö'Müŕ-n:
+  patterns: 40
+  vowels: 30
+  consonants: 30
+  bridges: 20
+Trö'Müŕ-m:
+  patterns: 20
+  vowels: 10
+  consonants: 60
+  bridges: 15
+Nä'drë'e:
+  patterns: 20
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Nä'drë'e-w:
+  patterns: 20
+  vowels: 10
+  consonants: 5
+  bridges: 5
+Nä'drë'e-n:
+  patterns: 30
+  vowels: 20
+  consonants: 20
+  bridges: 10
+Nä'drë'e-m:
+  patterns: 15
+  vowels: 6
+  consonants: 10
+  bridges: 15
+Ŧëc:
+  patterns: 15
+  vowels: 10
+  consonants: 8
+  bridges: 10
+Ŧëc-w:
+  patterns: 15
+  vowels: 10
+  consonants: 8
+  bridges: 10
+Ŧëc-n:
+  patterns: 30
+  vowels: 30
+  consonants: 30
+  bridges: 15
+Ŧëc-m:
+  patterns: 20
+  vowels: 5
+  consonants: 30
+  bridges: 10
+Yldra:
+  patterns: 25
+  vowels: 20
+  consonants: 15
+  bridges: 20
+Yldra-w:
+  patterns: 25
+  vowels: 20
+  consonants: 15
+  bridges: 20
+Yldra-n:
+  patterns: 45
+  vowels: 50
+  consonants: 30
+  bridges: 30
+Yldra-m:
+  patterns: 30
+  vowels: 10
+  consonants: 60
+  bridges: 15

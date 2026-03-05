@@ -1,5 +1,8 @@
 # README
-## QUESTIONS
+## BUGS
+* IS LANGUAGE CAUSING ALL THE ISSUES? Can't access the letters, sort_keys for them....
+* Something is giving issues with genvent_id in web that worked locally
+* EID, Name not getting procc'd to references
 
 ## PRIORITIES
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
