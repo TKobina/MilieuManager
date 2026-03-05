@@ -37,6 +37,8 @@ class Milieu < ApplicationRecord
   end
 
   def proc_chronology(ydate: 0)
+    self.languages.each {|lang| lang.update!(nation: nil)}
+
     to_reproc = self.ydates.order(:value).where(value: ydate..)
     to_reproc.each{|ydate| ydate.events.each {|eve| eve.children.destroy_all}}
 
