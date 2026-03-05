@@ -79,7 +79,7 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
     
     ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
@@ -101,7 +101,7 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
     
     parent = fetch_entity(pareid)
 

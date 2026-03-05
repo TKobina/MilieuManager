@@ -13,7 +13,7 @@ class Entity < ApplicationRecord
   has_many :superior_relations, class_name: "Relation", foreign_key: "inferior_id"
   has_many :superiors, through: :superior_relations, source: :superior, dependent: :destroy
 
-  has_one :tongue, class_name: "Language", foreign_key: :nation_id, dependent: :destroy
+  has_one :tongue, class_name: "Language", foreign_key: :nation_id, dependent: :nullify
 
   belongs_to :language, optional: true
   has_one :dialect, dependent: :destroy
