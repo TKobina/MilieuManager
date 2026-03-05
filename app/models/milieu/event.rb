@@ -20,7 +20,8 @@ class Event < ApplicationRecord
     return unless saved_change_to_proc? || saved_change_to_code?
     self.instructions.destroy_all
     self.code.each_with_index do |instruction, i|
-      Instruction.create!(event: self, code: instruction, i: i)
+      instruction = instruction.split("|").map{|x| x.strip}.join("|")
+      Instruction.create!(event: self, code: instruction, i: i) if instruction.present?
     end
   end
 

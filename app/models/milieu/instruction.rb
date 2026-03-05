@@ -4,7 +4,7 @@ class Instruction < ApplicationRecord
   include Comparable
   belongs_to :event
 
-  after_create_commit :set_kind
+  before_save :set_kind
 
   KINDS = [
   "formation",
@@ -23,7 +23,9 @@ class Instruction < ApplicationRecord
   "special"]
 
   def <=>(other) = self.i <=> other.i
-  def set_kind = self.update!(kind: self.code.split("|").first)
+  def set_kind
+    self.kind = self.code.split("|").first.strip
+  end
   def proc_instruction 
     entities = send(self.kind.to_sym) if self.code.present? && KINDS.include?(self.kind)
     if entities.present?

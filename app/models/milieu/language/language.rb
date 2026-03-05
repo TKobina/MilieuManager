@@ -1,6 +1,6 @@
 class Language < ApplicationRecord
   include Comparable
-  belongs_to :nation, class_name: 'Entity', foreign_key: 'nation_id'
+  belongs_to :nation, class_name: 'Entity', foreign_key: 'nation_id', optional: true
 
   belongs_to :milieu
 
