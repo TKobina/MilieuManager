@@ -1,17 +1,7 @@
-<header>
-  <span class="headerlogo">
-    <strong><|></strong>
-    <%= link_to "Home", root_path %> 
-  </span>
-  <% if params[:current_milieu].present? %>
-    <nav style="float:left;">
-      <%= link_to "The Story", stories_path(current_milieu: @milieu) %>    <strong><|></strong>
-      <%= link_to "The Language", languages_path(current_milieu: @milieu) %> <strong><|></strong>
-      <%= link_to "A Chronology", events_path(current_milieu: @milieu) %>  <strong><|></strong>
-      <%= link_to "A Glossary", entities_path(current_milieu: @milieu) %>  <strong><|></strong>
-      <% if @owner %>
-        <%= link_to "References", references_path(current_milieu: @milieu)%><strong><|></strong>
-        <%= link_to "Relation Classes", relclasses_path(current_milieu: @milieu)%><strong><|></strong><%end%>
-    </nav>
-  <% end %>
-</header>
+
+<div class="max-md:hidden"> 
+  <%= render partial: 'layouts/header/desktop'%>
+</div>
+<div class="block md:hidden"> 
+  <%= render partial: 'layouts/header/mobile'%>
+</div>

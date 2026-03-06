@@ -1,17 +1,17 @@
 # README
 ## BUGS
-* References: generated references missing names!
+* CHECK: References: generated references missing names!
 * Fix sort order: h
-* Not setting nation of language?!?
-* Story: on creation, ignores "public" and sets to private
-* Word count for story
-* References: on edit, redirect to entity path
+* CHECK: Story: on creation, ignores "public" and sets to private
+* CHECK: References: on edit, redirect to entity path
 
 ## PRIORITIES
+* Reactive headers
+* PREVENT USER CREATION
 * RELCLASSES
   * Make editable (don't even bother with an index, just the form?)
+* Word count for story
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
-* ON NAME CHANGE, FIND & CHANGE REFERENCE DOCUMENT??
 * EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
   * check for duplicate events
@@ -19,7 +19,7 @@
   * speed efficiency of milieu reproccing, problem of duplicating relations
 * ENTITIES
   * Filter by type, letter
-* LANGUAGE
+* LANGUAGE 1'2,3.
   * BASE_ABBERATIONS: WHERE WILL SOURCE BE??
   * LEXEMES
     * Filter by type, letter
@@ -29,6 +29,8 @@
   * Name generation abberations: 
     * abberations for societies
     * hiercharcy can include multiple parents for houses/societies
+* REFERENCES
+  * Add add functionality??
 * STORIES
   * Link to Lexemes(??)
 * Sidebar
