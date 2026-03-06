@@ -4,9 +4,12 @@
 * Fix sort order: h
 * CHECK: Story: on creation, ignores "public" and sets to private
 * CHECK: References: on edit, redirect to entity path
+* Why grayspace at top of page??
 
 ## PRIORITIES
 * Reactive headers
+* Hide private/public sections, if that part of the text is blank
+* Link to events, words
 * PREVENT USER CREATION
 * RELCLASSES
   * Make editable (don't even bother with an index, just the form?)

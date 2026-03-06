@@ -4,9 +4,9 @@ class EventsController < ApplicationController
   def index
     @dates = {}    
     if @private
-      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events }
+      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events.order(:i) }
     else
-      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events.where(public: true) }
+      @milieu.ydates.order(:value).map {|date| @dates[date.to_s] = date.events.where(public: true).order(:i) }
     end
   end
 
@@ -106,18 +106,17 @@ class EventsController < ApplicationController
   def get_params
     eparams = {text: {pri: "", pub: ""}}
     eparams[:milieu] = @milieu
-    datestring, eparams[:name], event, details = event_params
+    datestring, eparams[:name], eparams[:i], event, details = event_params
     eparams[:ydate] = Ydate.from_string(@milieu, datestring)
     eparams[:text][:pri], eparams[:text][:pub], instructions = details.values
     
     eparams[:code] = "#{instructions.to_s}".split("\n").map{|x| x.strip}
     eparams[:proc] = event[:proc]
     eparams[:public] = event[:public]
-
     eparams
   end
 
   def event_params
-    params.expect(:ydate, :name, event: [:public, :proc], details: [:textpri, :textpub, :instructions])
+    params.expect(:ydate, :name, :i, event: [:public, :proc], details: [:textpri, :textpub, :instructions])
   end
 end
