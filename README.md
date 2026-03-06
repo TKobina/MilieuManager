@@ -1,12 +1,15 @@
 # README
 ## BUGS
-* Lexemes being destroyed
-* Languages preventing Entities from being destroy(?)
+- References: generated references missing names!
+- Fix sort order: h
+- Not setting nation of language?!?
+- Story: on creation, ignores "public" and sets to private
 
 ## PRIORITIES
+* RELCLASSES
+  * Make editable (don't even bother with an index, just the form?)
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
-* REMOVE BINDING.PRY FROM PRODUCTION!!!!
-* ACTIVE.STORAGE SET TO LOCAL; MIGRATE TO AW3 PER PAAS
+* ON NAME CHANGE, FIND & CHANGE REFERENCE DOCUMENT??
 * EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
   * check for duplicate events
@@ -14,9 +17,6 @@
   * speed efficiency of milieu reproccing, problem of duplicating relations
 * ENTITIES
   * Filter by type, letter
-* RELCLASSES
-  * Make editable (don't even bother with an index, just the form?)
-
 * LANGUAGE
   * BASE_ABBERATIONS: WHERE WILL SOURCE BE??
   * LEXEMES
