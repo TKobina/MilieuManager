@@ -64,11 +64,11 @@ class Instruction < ApplicationRecord
     # founding | name-eid | kind | status | parent-eid | Language (if Nation) | public  |
     _, nameid, entkind, status, pareid, lang, public = self.code.split("|") 
     name, eid  = nameid.split("-")
-
+    puts "#{name}-#{eid}"
     parent = fetch_entity(pareid)
-    #binding.pry if entkind == "nation"
+
     language = Language.find_or_create_by(name: lang, milieu: parent.milieu) if entkind == "nation"
-    language ||= parent.language
+    language ||= parent.language if parent.present?
 
     ent = Entity.create!(
       name: name, 
