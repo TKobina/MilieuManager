@@ -33,12 +33,12 @@
 
 <p>
 <h3>Details</h3>
-<%= simple_format(@event.text["pub"]) %>
+<%= markdown(@event.text["pub"], @milieu, request) %>
 </p>
 
 <p>
 <% if @private %>
 <h3>Private Details</h3>
-<%= simple_format(@event.text["pri"]) %>
+<%= markdown(@event.text["pri"], @milieu, request) %>
 <% end %>
 </p>

@@ -73,7 +73,7 @@ class LexemesController < ApplicationController
   end
 
   def set_language
-    @language = current_user.milieus.where(id: params[:current_milieu]).first&.languages&.where(id: params[:language_id]).first || 
+    @language = current_user.milieus.where(id: params[:current_milieu])&.first&.languages&.where(id: params[:language_id])&.first || 
       current_user.readings.where(id: params[:current_milieu]).first.languages.where(id: params[:language_id]).first
   end
 

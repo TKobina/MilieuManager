@@ -1,10 +1,11 @@
 # README
 ## BUGS
-- References: generated references missing names!
-- Fix sort order: h
-- Not setting nation of language?!?
-- Story: on creation, ignores "public" and sets to private
-- Width of text boxes in story edit too wide
+* References: generated references missing names!
+* Fix sort order: h
+* Not setting nation of language?!?
+* Story: on creation, ignores "public" and sets to private
+* Word count for story
+* References: on edit, redirect to entity path
 
 ## PRIORITIES
 * RELCLASSES
