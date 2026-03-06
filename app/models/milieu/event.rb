@@ -17,7 +17,7 @@ class Event < ApplicationRecord
   def <=>(other) 
     return self.ydate <=> other.ydate if self.ydate != other.ydate 
     
-    self.i || 999 <=> other.i || 999
+    (self.i || 999) <=> (other.i || 999)
   end
 
   def gen_instructions
