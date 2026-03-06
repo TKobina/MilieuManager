@@ -4,6 +4,7 @@
 - Fix sort order: h
 - Not setting nation of language?!?
 - Story: on creation, ignores "public" and sets to private
+- Width of text boxes in story edit too wide
 
 ## PRIORITIES
 * RELCLASSES
