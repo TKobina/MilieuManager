@@ -14,7 +14,11 @@ class Event < ApplicationRecord
   after_commit :gen_instructions
 
   def date? = self.ydate.to_s
-  def <=>(other) = self.ydate == other.ydate ? self.i <=> other.i : self.ydate <=> other.ydate
+  def <=>(other) 
+    return self.ydate <=> other.ydate if self.ydate != other.ydate 
+    
+    self.i || -99 <=> other.i || -99
+  end
 
   def gen_instructions
     return unless saved_change_to_proc? || saved_change_to_code?
