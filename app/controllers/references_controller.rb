@@ -19,7 +19,7 @@ class ReferencesController < ApplicationController
     @reference = Reference.new(get_params)
     @reference.milieu = @milieu
     if @reference.save
-      redirect_to reference_path(@reference, current_milieu: @milieu)
+      redirect_to entity_path(@reference.entity, current_milieu: @milieu)
     else
       redirect_to new_reference_path(current_milieu: @milieu), alert: "Reference creation failed!"
     end
@@ -32,7 +32,7 @@ class ReferencesController < ApplicationController
   def update   
     @reference = @milieu.references.find(params[:id])
     if @reference.update(get_params)
-      redirect_to reference_path(@reference, current_milieu: @milieu)
+      redirect_to entity_path(@reference.entity, current_milieu: @milieu)
     else
       redirect_to edit_reference_path(current_milieu: @milieu), alert: "Reference editing failed!"
     end
