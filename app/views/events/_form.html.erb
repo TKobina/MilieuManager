@@ -15,6 +15,10 @@
     <strong><%= form.label :name %></br></br></strong>
   </div>
     <div>
+    <%= text_field_tag :i, @event.i || "-", class: "text-field" %>
+    <strong><%= form.label :i %></br></br></strong>
+  </div>
+  <div>
     <%= form.check_box :public %>
     <%= form.label "Public?" %></br>
   </div>
