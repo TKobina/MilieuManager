@@ -46,7 +46,7 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
 
     if !["world","info"].include?(entkind)
       creator = fetch_entity(creatoreid)

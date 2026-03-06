@@ -17,7 +17,6 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
-    @story.public = false
     @story.milieu = @milieu
     if @story.save
       redirect_to story_path(@story, current_milieu: @milieu)
