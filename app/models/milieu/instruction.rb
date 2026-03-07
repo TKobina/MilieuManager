@@ -26,10 +26,15 @@ class Instruction < ApplicationRecord
   def set_kind
     self.kind = self.code.split("|").first.strip
   end
-  def proc_instruction 
-    entities = send(self.kind.to_sym) if self.code.present? && KINDS.include?(self.kind)
-    if entities.present?
-      entities.each { |ent| ent.events << self.event unless ent.nil? || ent.events.include?(self.event) }
+  def proc_instruction
+    begin 
+      entities = send(self.kind.to_sym) if self.code.present? && KINDS.include?(self.kind)
+      if entities.present?
+        entities.each { |ent| ent.events << self.event unless ent.nil? || ent.events.include?(self.event) }
+      end
+    rescue StandardError => e
+      puts "Failed instruction code: #{self.code}"
+      Rails.error.report(e)
     end
   end
 
@@ -37,7 +42,6 @@ class Instruction < ApplicationRecord
     # formation | name-eid | kind | creator-eid | public
     _, nameid, entkind, creatoreid, public = self.code.split("|") 
     name, eid = nameid.split("-")
-
     ent = Entity.new(
       name: name, 
       eid: eid, 
@@ -46,7 +50,7 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
 
     if !["world","info"].include?(entkind)
       creator = fetch_entity(creatoreid)

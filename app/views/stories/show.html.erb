@@ -10,5 +10,5 @@
 <div class = "storytext"><%= markdown(@text, @milieu, request) %></div>
 <p>
 <% if @owner%>
-  <%= button_to "Delete", @story, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <%= button_to "Delete", @story, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu} %>
 <% end %>

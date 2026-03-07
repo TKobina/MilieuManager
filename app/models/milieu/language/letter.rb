@@ -17,7 +17,7 @@ class Letter < ApplicationRecord
     when Integer then rem = (other + index).divmod(self.language.letters.count).second
     when Letter then rem = (@letters.index(other) + index).divmod(self.language.letters.count).second
     end
-    return @letters[rem] + 1 if @letters[rem].value.first == "h"
+    #return @letters[rem] + 1 if @letters[rem].value.first == "h"
     @letters[rem]
   end
 

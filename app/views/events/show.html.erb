@@ -29,16 +29,21 @@
 <% end %>
 </div></ul>
 
-
-
+<% if @event.text["pub"].present? %>
 <p>
 <h3>Details</h3>
-<%= markdown(@event.text["pub"], @milieu, request) %>
+<%= markdown(@event.text["pub"], @milieu, request)  %>
 </p>
+<% end %>
 
+<% if @event.text["pri"].present? %>
 <p>
 <% if @private %>
 <h3>Private Details</h3>
 <%= markdown(@event.text["pri"], @milieu, request) %>
 <% end %>
-</p>
+<% end %>
+
+<% if @owner%>
+  <%= button_to "Delete", @event, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu} %>
+<% end %>

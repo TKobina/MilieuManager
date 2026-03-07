@@ -11,7 +11,7 @@
   color: #C9C699;
 } */
 
-header.desktop {
+/* header.desktop {
   position: fixed;
   top: 0;
   width: 100%;
@@ -21,8 +21,8 @@ header.desktop {
   font-family: 'IM FELL Ledru';
   background-color: #000000;
   color: #C9C699;
-}
-
+} */
+/* 
 span.headerlogo {
   float: right;
   position: relative;
@@ -32,4 +32,4 @@ span.headerlogo {
   margin-right: 20px;
   height: 40px;
   width: auto;
-}
+} */
