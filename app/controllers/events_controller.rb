@@ -79,7 +79,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = @milieu.events.find(params[:id])
-    @event.destroy
+    @event.destroy!
     @milieu.proc_chronology
     redirect_to events_path(current_milieu: @milieu)
   end

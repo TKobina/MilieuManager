@@ -5,17 +5,22 @@
 <% else %>
 </h1>
 <% end %>
+
+<% if @entity.reference&.text["pub"].present? %>
 <h3>Details</h3>
 <p><%= markdown(@entity.reference&.text["pub"], @milieu, request) %></p>
+<% end %>
 
+<% if @entity.reference&.text["pri"].present? %>
 <% if @private %>
 <h3>Private Details</h3>
 <p><%= markdown(@entity.reference&.text["pri"], @milieu, request) %></p>
 <% end %>
+<% end %>
 
-
+<% unless @properties.empty? then %>
 <h2>Properties</h2>
-<% if !@properties.nil? then @properties.each do |prop| %>
+<% @properties.each do |prop| %>
 <div>
   <h3>(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%></h3>
   <%= prop.detail %>
@@ -24,15 +29,18 @@
 
 </br>
 <h2>Relations</h2>
+<% unless @superior_relations.empty? %>
 <h3>Belongs To</h3>
-<% if !@superior_relations.nil? then @superiors.zip(@superior_relations).each do |sup, rel| %>
+<% @superiors.zip(@superior_relations).each do |sup, rel| %>
   <div>
     <%= rel.relclass.topbottom&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
 <% end %><% end %>
 </br>
+
+<% unless @inferior_relations.empty? %>
 <h3>Possesses</h3>
-<% if !@inferior_relations.nil? then @inferiors.zip(@inferior_relations).each do |inf, rel| %>
+<% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
   <div>
     <%= rel.relclass.bottomtop&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
