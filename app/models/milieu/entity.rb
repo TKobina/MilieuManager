@@ -36,6 +36,10 @@ class Entity < ApplicationRecord
   
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
+  def mod_name(new_name)
+    self.update!(name: newname)
+    self.reference.update!(name: newname)
+  end
     
   def set_relation(event, superior, relkind, public)
     #rkind, rname = SUBLATIONS[[self.kind.to_sym, superior.kind.to_sym, relkind.nil? ? nil : relkind.to_sym]]

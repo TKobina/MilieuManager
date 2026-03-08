@@ -4,7 +4,7 @@
 
 <div id="References">
 <% @references.each do |ref| %>
-      <%= link_to ref.name || ref.entity.name, reference_path(ref.id, current_milieu: @milieu) %>
+      <%= link_to ref.name || ref.entity&.name || ref.eid, reference_path(ref.id, current_milieu: @milieu) %>
       <sup><%= ref.eid %></sup></br>
 <% end %>
 </div>

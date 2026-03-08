@@ -1,5 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-    --font-ledru: 'IM FELL Ledru', sans-serif;
+    --font-ledru: "IM FELL Ledru", sans-serif;
+}
+
+p {
+  margin-bottom: 1.5rem; /* Adjust space between paragraphs */
+}
+
+body {
+  background-color: #222222;
+  color: #d6d3b4;
+}
+
+h1 {
+  font-size: 2.5rem; /* 2.5 * 16px = 40px */
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
+}
+
+h2 {
+  font-size: 2rem; /* 1.5 * 16px = 24px */
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-family: 'IM FELL Ledru';
+  color: #a39e6a;
+}
+
+.storytext {
+  font-family: 'Courier New';
+  /*font-weight: bold;*/
+}
+
+a {
+  color: #BC46EB
+}
+
+.rotate {
+  /* Set a fixed height for the header row to accommodate the rotated text */
+  height: 140px;
+  /* Ensures the text stays on one line before rotation */
+  white-space: nowrap; 
+}
+
+.rotate span {
+  /* Position the span within the th */
+  display: block;
+  /* Set a specific width that becomes the column width after rotation */
+  width: 30px; 
+  
+  /* Apply the rotation */
+  transform: rotate(-90deg);
+  /* Adjust the origin of the transform to align correctly */
+  transform-origin: 0% 0%; 
+  transform: translate(0px, +400%) rotate(-90deg);
+  /* You might need to use translate to fine-tune the position */
+  /* transform: translate(0px, -100%) rotate(-90deg); */
 }
