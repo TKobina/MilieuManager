@@ -11,11 +11,9 @@
 <p><%= markdown(@entity.reference&.text["pub"], @milieu, request) %></p>
 <% end %>
 
-<% if @entity.reference&.text["pri"].present? %>
-<% if @private %>
+<% if @entity.reference&.text["pri"].present? && @private %>
 <h3>Private Details</h3>
 <p><%= markdown(@entity.reference&.text["pri"], @milieu, request) %></p>
-<% end %>
 <% end %>
 
 <% unless @properties.empty? then %>
@@ -25,9 +23,9 @@
   <h3>(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%></h3>
   <%= prop.detail %>
 </div>
+</br>
 <% end %><% end %>
 
-</br>
 <% unless @superior_relations.empty? && @inferior_relations.empty? %>
 <h2>Relations</h2>
 <% end %>
@@ -37,8 +35,9 @@
   <div>
     <%= rel.relclass.topbottom&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
+<% end %>
 </br>
-<% end %><% end %>
+<% end %>
 
 <% unless @inferior_relations.empty? %>
 <h3>Possesses</h3>
@@ -46,8 +45,9 @@
   <div>
     <%= rel.relclass.bottomtop&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
+<% end %>
 </br>
-<% end %><% end %>
+<% end %>
 
 <div>
 <h2>Events</h2>
