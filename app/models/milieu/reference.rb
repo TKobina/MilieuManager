@@ -5,8 +5,8 @@ class Reference < ApplicationRecord
   before_save :init
   def <=>(other)
     return self.entity<=>other.entity if self.entity && other.entity
-    selfname = self.name || self.entity.name || " "
-    othername = other.name || other.entity.name
+    selfname = self&.name || self&.entity&.name || " "
+    othername = other&.name || other&.entity&.name || " "
     Language.first.sort(selfname, othername)
   end
 

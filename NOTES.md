@@ -2,7 +2,7 @@
 * RAILS_ENV=production rails c
 
 ## Rails Assets
-* Issue with loading CSS files: had to do rake assets:clobber ; rails assets:precompile
+* Issue with loading CSS files: had to do rails assets:clobber ; rails assets:precompile
 
 ## Rails Migrations
 * rails db:migrate VERSION=0 cascade=true

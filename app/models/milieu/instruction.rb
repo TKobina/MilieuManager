@@ -137,13 +137,13 @@ class Instruction < ApplicationRecord
     _, adopterid, oldnameid, newnameid, public  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
-    dopter = fetch_entity(adopterid)
-    doptee = fetch_entity(oldnameid)
+    adopter = fetch_entity(adopterid)
+    ent = fetch_entity(oldnameid)
 
-    doptee.update!(name: newname) if !newname.nil?
-    doptee.set_relation(self.event, dopter, "adoption", public=="public")
+    ent.mod_name(newname) if newname.present?
+    ent.set_relation(self.event, adopter, "adoption", public=="public")
 
-    [dopter, doptee]
+    [adopter, ent]
   end
 
   def exiling
@@ -154,7 +154,7 @@ class Instruction < ApplicationRecord
     exiler = fetch_entity(exilerid)
     ent = fetch_entity(oldnameid)
 
-    ent.update!(name: newname) if !newname.nil?
+    ent.mod_name(newname) if newname.present?
     ent.mod_relation(self.event, exiler, "exile", public=="public")
 
     [exiler, ent]
@@ -168,7 +168,7 @@ class Instruction < ApplicationRecord
     raiser = fetch_entity(raiserid)
     ent = fetch_entity(oldnameid)
 
-    ent.update!(name: newname) if !newname.nil?
+    ent.mod_name(newname) if newname.present?
     ent.mod_relation(self.event, raiser, title, public=="public")
 
     [raiser, ent]

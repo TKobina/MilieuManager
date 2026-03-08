@@ -5,11 +5,6 @@
 <%= link_to mil.name, milieu_path(mil.id, current_milieu: mil) %>
 <% end %>
 </br>
-<h3>Editing</h3>
-<% @editings.each do |edi| %>
-<%= link_to edi.name, milieu_path(edi.id, current_milieu: edi) %>
-<% end %>
-</br>
 <h3>Reading</h3>
 <% @readings.each do |rea| %>
 <%= link_to rea.name, milieu_path(rea.id, current_milieu: rea) %>

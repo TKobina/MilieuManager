@@ -1,9 +1,10 @@
- @font-face {
-  font-family: 'IM FELL Ledru';
-  src: font-url('IM_FELL_Ledru.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Recommended for better user experience */
+@font-face {
+    font-family: 'IM FELL Ledru';
+    src: url('IM_FELL_Ledru.woff2') format('woff2'),
+        url('IM_FELL_Ledru.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {

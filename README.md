@@ -42,8 +42,9 @@
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
+* Add "Back" buttons at tops of pages
+* Entity properties all private??
 * Edit properties (statuses)??
-* Change reference name to match entity name (when chronology is procced? when reference is accessed?)
 * Link to events, lexemes as link to entities
 * RELCLASSES
   * Make editable (don't even bother with an index, just the form?)
@@ -52,7 +53,7 @@
   * PROCCING OF ALL EVENT TYPES, ENTITIES
   * check for duplicate events
   * Found societies manually!!
-  * speed efficiency of milieu reproccing, problem of duplicating relations
+  * speed efficiency of milieu reproccing
 * ENTITIES
   * Filter by type, letter
 * LANGUAGE
