@@ -105,7 +105,7 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
     
     parent = fetch_entity(pareid)
 
@@ -134,6 +134,7 @@ class Instruction < ApplicationRecord
 
   def adoption
     # # adoption | entity-eid (house, society) | name-eid | newname-eid | public
+    puts self.code
     _, adopterid, oldnameid, newnameid, public  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 

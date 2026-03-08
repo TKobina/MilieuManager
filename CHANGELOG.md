@@ -1,4 +1,8 @@
-# WORKING | v0.8.2
+# v0.8.3
+* FIX: Reference name change fix wasn't working; adoptions, raisings stopped working
+* FIX: Spacing on Relations was off
+
+# v0.8.2
 * FIX: Fonts served properly from server (had to convert otf to woff)
 * FIX: Hide "Relations" heading if there are no relations
 * FIX: Reference name changes when Entity name changes

@@ -42,6 +42,9 @@
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
+* If there are issues with instructions, display them as errors
+* Fix: formatting of Entity Relations: too much space; make it a list?
+* Fix: other types of formations not working??
 * Add "Back" buttons at tops of pages
 * Entity properties all private??
 * Edit properties (statuses)??

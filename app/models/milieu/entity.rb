@@ -37,8 +37,8 @@ class Entity < ApplicationRecord
   def dialect? = self.dialect.present? ? self.dialect : self.superiors.first.dialect?  
 
   def mod_name(new_name)
-    self.update!(name: newname)
-    self.reference.update!(name: newname)
+    self.update!(name: new_name)
+    self.reference.update!(name: new_name)
   end
     
   def set_relation(event, superior, relkind, public)
