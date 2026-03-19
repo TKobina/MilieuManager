@@ -4,7 +4,8 @@
 <div id="stories">
   <% @stories.each do |story| %>
     <div><li class="marker:text-dlavender">
-      <strong><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></strong>
+      <strong><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></strong> 
+      <% if @owner %> [<%= story.chapter %>] <% end %>
     </li></div>
   <% end %>
   </ul>

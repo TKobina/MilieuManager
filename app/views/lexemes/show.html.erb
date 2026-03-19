@@ -17,7 +17,7 @@
 <div>
 <% @lexeme.sublexemes.each do |sublex| %>
   <%= link_to sublex.word, lexeme_path(sublex.id,current_milieu: @milieu, language_id: @language.id) %>
-  <% if @owner%><sup><%= sublex.eid%>-<%=sublex.id%></sup><%end%>
+  <% if @owner%><sup><%= sublex.eid%></sup><%end%>
   : <%= sublex.meaning%></br>
 <% end %>
 </div>
@@ -26,7 +26,7 @@
 <div>
 <% @lexeme.suplexemes.each do |suplex| %>
   <%= link_to suplex.word, lexeme_path(suplex.id,current_milieu: @milieu, language_id: @language.id) %>
-    <% if @owner%><sup><%= suplex.eid%>-<%=sublex.id%></sup><%end%>: <%= suplex.meaning%></br>
+    <% if @owner%><sup><%= suplex.eid%></sup><%end%>: <%= suplex.meaning%></br>
 <% end %>
 </div>
 
