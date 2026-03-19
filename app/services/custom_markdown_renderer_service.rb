@@ -28,6 +28,14 @@ class CustomMarkdownRendererService < Redcarpet::Render::HTML
     "[#{name}](#{@options[:request].base_url + "/entities/#{entity.id}?current_milieu=#{@options[:milieu].id}"})"
   end
 
+  def list_item(content, list_type)
+    "<li class=\"marker:text-fuchsia-800\">#{content}</li>"
+  end
+
+  def list(content, list_type)
+    "<ul class=\"list-disc list-inside pl-5\">\n#{content}</ul>"
+  end
+
   # To include features from other modules, like syntax highlighting with Rouge:
   # include Rouge::Plugins::Redcarpet # requires 'rouge/plugins/redcarpet'
   # def block_code(code, language)

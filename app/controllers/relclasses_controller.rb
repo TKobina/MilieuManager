@@ -2,40 +2,37 @@ class RelclassesController < ApplicationController
   before_action :get_milieu  
   before_action :check_owner 
   def index
-    return unless @owner
     @relclasses = filter_records(@milieu.relclasses.order(:kind))
   end
 
   def show
-    return unless @owner
     @relclass = @milieu.relclasses.find(params[:id])
   end
 
   def new
-    #@reference = Reference.new(text: {pri: "", pub: ""})
+    @relclass = Relclass.new
   end
 
   def create
-    # @reference = Reference.new(get_params)
-    # @reference.milieu = @milieu
-    # if @reference.save
-    #   redirect_to reference_path(@reference, current_milieu: @milieu)
-    # else
-    #   redirect_to new_reference_path(current_milieu: @milieu), alert: "Reference creation failed!"
-    # end
+    @relclass = Relclass.new(relclass_params)
+    @relclass.milieu = @milieu
+    if @relclass.save
+      redirect_to relclasses_path(current_milieu: @milieu)
+    else
+      redirect_to edit_relclass_path(@relclass.id, current_milieu: @milieu), alert: "Relclass editing failed!"
+    end
   end
 
   def edit
-    return unless @owner
-    @relclasses = @milieu.relclasses.find(params[:id])
+    @relclass = @milieu.relclasses.find(params[:id])
   end
 
   def update   
     @relclass = @milieu.relclasses.find(params[:id])
-    if @relclass.update(reference_params)
-      redirect_to relclass_path(@relclass, current_milieu: @milieu)
+    if @relclass.update!(relclass_params)
+      redirect_to relclasses_path(current_milieu: @milieu)
     else
-      redirect_to edit_relclass_path(current_milieu: @milieu), alert: "Relclass editing failed!"
+      redirect_to edit_relclass_path(@relclass.id, current_milieu: @milieu), alert: "Relclass editing failed!"
     end
   end
 
@@ -44,8 +41,8 @@ class RelclassesController < ApplicationController
 
   private
 
-  def reference_params
-    params.expect(:kind, :bottomtop, :tobbottom)
+  def relclass_params
+    params.expect(relclass: [:kind, :bottomtop, :topbottom])
   end
 
   def check_owner

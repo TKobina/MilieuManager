@@ -68,9 +68,9 @@ class Instruction < ApplicationRecord
     # founding | name-eid | kind | status | parent-eid | Language (if Nation) | public  |
     _, nameid, entkind, status, pareid, lang, public = self.code.split("|") 
     name, eid  = nameid.split("-")
-    puts "#{name}-#{eid}"
+    #puts "#{name}-#{eid}"
     parent = fetch_entity(pareid)
-
+    
     language = Language.find_or_create_by(name: lang, milieu: parent.milieu) if entkind == "nation"
     language ||= parent.language if parent.present?
 
@@ -83,9 +83,9 @@ class Instruction < ApplicationRecord
       public: public == "public",
       events: [self.event],
       genvent: self.event,
-      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid, name: name))
-    
-    ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
+      reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+      
+    #ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
     ent.set_relation(self.event, parent,entkind,public=="public")
     language.update!(nation: ent) if entkind == "nation"
@@ -117,7 +117,7 @@ class Instruction < ApplicationRecord
       phouse.events << self.event unless phouse.events.include?(self.event)
     end
 
-    ent.properties << Property.new(event: self.event, kind: "birth date", value: self.event.ydate.to_s)
+    #ent.properties << Property.new(event: self.event, kind: "birth date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "gender", value: gender)
     
     [ent, parent]
@@ -134,7 +134,6 @@ class Instruction < ApplicationRecord
 
   def adoption
     # # adoption | entity-eid (house, society) | name-eid | newname-eid | public
-    puts self.code
     _, adopterid, oldnameid, newnameid, public  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
@@ -156,7 +155,7 @@ class Instruction < ApplicationRecord
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.mod_relation(self.event, exiler, "exile", public=="public")
+    ent.set_relation(self.event, exiler, "exile", public=="public")
 
     [exiler, ent]
   end
@@ -165,13 +164,12 @@ class Instruction < ApplicationRecord
     # raising | entity-eid| name-eid | title | newname-eid | public
     _, raiserid, oldnameid, title, newnameid, public  = self.code.split("|")
     newname = newnameid&.split("-")&.first
-
+    
     raiser = fetch_entity(raiserid)
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.mod_relation(self.event, raiser, title, public=="public")
-
+    ent.set_relation(self.event, raiser, title, public=="public")
     [raiser, ent]
   end
 
@@ -180,11 +178,11 @@ class Instruction < ApplicationRecord
     _, claimereid, claimedeid, kind, public  = self.code.split("|")
 
     claimer = fetch_entity(claimereid)
-    claimed = fetch_entity(claimedeid)
+    ent = fetch_entity(claimedeid)
 
-    claimed.set_relation(self.event, claimer, kind, public=="public")
+    ent.set_relation(self.event, claimer, kind, public=="public")
 
-    [claimer, claimed]
+    [claimer, ent]
   end
 
   def disclaiming

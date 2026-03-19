@@ -1,10 +1,11 @@
 <p>
 <h1>Chapters</h1>
+<ul class="list-disc list-inside pl-2">
 <div id="stories">
   <% @stories.each do |story| %>
-    <div>
+    <div><li class="marker:text-dlavender">
       <strong><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></strong>
-    </div>
+    </li></div>
   <% end %>
   </ul>
 </div>

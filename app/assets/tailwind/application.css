@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --font-ledru: "IM FELL Ledru", sans-serif;
+  --font-ledru: "IM FELL Ledru", sans-serif;
+  --color-dlavender: #5b21b6;
+  --color-lavender: #BC46EB;
 }
 
 p {
@@ -22,13 +24,19 @@ h1 {
 h2 {
   font-size: 2rem; /* 1.5 * 16px = 24px */
   font-family: 'IM FELL Ledru';
-  color: #a39e6a;
+  color: #938e60;
 }
 
 h3 {
   font-size: 1.5rem;
   font-family: 'IM FELL Ledru';
-  color: #a39e6a;
+  color: #78754d;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-family: 'IM FELL Ledru';
+  color: #626040;
 }
 
 .storytext {

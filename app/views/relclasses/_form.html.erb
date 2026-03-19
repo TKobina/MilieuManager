@@ -1,0 +1,18 @@
+<%= form_with model: @relclass do |form| %>
+  <div>
+    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
+    <%= hidden_field_tag :current_milieu, @milieu.id %>
+  </div>
+  <div>
+    <%= form.text_field :kind, class: "text-field"  %>
+    <%= form.label :kind %></br></br>
+  </div>
+  <div>
+    <%= form.text_field :bottomtop, class: "text-field"  %>
+    <%= form.label :bottomtop %></br></br>
+  </div>
+  <div>
+    <%= form.text_field :topbottom, class: "text-field"  %>
+    <%= form.label :topbottom %></br></br>
+  </div>
+<% end %>

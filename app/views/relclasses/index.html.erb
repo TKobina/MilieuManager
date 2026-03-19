@@ -4,7 +4,7 @@
 
 <div id="Relclass">
 <% @relclasses.each do |ref| %>
-      <%= link_to ref.kind, relclass_path(ref.id, current_milieu: @milieu) %>
+      <%= link_to ref.kind, edit_relclass_path(ref.id, current_milieu: @milieu) %>
       (<%= ref.topbottom %>,<%= ref.bottomtop %>)</br>
 <% end %>
 </div>

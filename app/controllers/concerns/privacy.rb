@@ -18,6 +18,18 @@ module Privacy
     @private ? records : records.where(public: true)
   end
 
+  def filter_relations(rels, kind)
+    related_entities = []
+    relations = []
+
+    rels.each do |rel|
+      relations << rel if @private || rel.public
+      related_entities << rel.send(kind) if @private || rel.public
+    end
+
+    [related_entities, relations]
+  end
+
   def filter_joint_records(records, joints)
     visible = [[],[]]
     if @private
@@ -26,8 +38,8 @@ module Privacy
     else
       records.zip(joints).sort_by { |pair| pair[0] }.each do |rec, joi|
         next unless rec.public
-        visible.first << rec
-        visible.second << joi
+        visible[0] << rec
+        visible[1] << joi
       end
     end
     visible

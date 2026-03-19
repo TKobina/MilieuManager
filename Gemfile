@@ -47,7 +47,7 @@ gem "redcarpet"
 gem "ar_lazy_preload"
 gem "csv"
 
-#gem "pry-rails" #REMOVE THIS BEFORE DEPLOYING
+gem "pry-rails" #REMOVE THIS BEFORE DEPLOYING
 
 gem "ruby-progressbar"
 

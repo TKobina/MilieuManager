@@ -4,9 +4,8 @@ class EntitiesController < ApplicationController
 
   def index
     @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities))
-    
-    #@entities.sort
-    @eidnext = "" # @entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
+
+    @eidnext = "" #@entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
     
   end
 
@@ -15,8 +14,8 @@ class EntitiesController < ApplicationController
     
     check_public
     @properties = filter_records(@entity.properties)
-    @superiors, @superior_relations = filter_joint_records(@entity.superiors, @entity.superior_relations)
-    @inferiors, @inferior_relations = filter_joint_records(@entity.inferiors, @entity.inferior_relations)
+    @superiors, @superior_relations = filter_relations(@entity.superior_relations, "superior")
+    @inferiors, @inferior_relations = filter_relations(@entity.inferior_relations, "inferior")
     @events = filter_records(@entity.events)
   end
 
@@ -48,9 +47,7 @@ class EntitiesController < ApplicationController
   end
 
   def destroy
-    #@story = @milieu.stories.find(params[:id])
-    #@story.destroy
-    #redirect_to stories_path
+
   end
 
 
