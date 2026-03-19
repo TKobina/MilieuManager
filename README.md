@@ -28,8 +28,8 @@
   * adoption | entity-eid | name-eid | newname-eid | public
   * exile | entity-eid | name-eid | newname-eid | public
   * raising | entity-eid| name-eid | title | newname-eid | public
-  * claiming | name-eid | claimed-eid | kind | public
-  * disclaiming | name-eid | disclaimed-eid | kind | public
+  * claiming | name-eid | claimed-eid | kind | newname-eid  | public
+  * disclaming | entity-eid | name-eid | newname-eid | public
   * hiring | entity-eid | name-eid | title | public
   * firing | entity-eid | name-eid | public
   * death | name-eid | public
