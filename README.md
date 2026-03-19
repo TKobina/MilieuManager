@@ -39,24 +39,32 @@
 ### Lexemes
 
 ## Known Issues
+* Raising is connecting with the wrong entity!!!
+* Founding of säl's are failing
+* New entitie's not propogating "name" field in reference, failing saving of new reference the first time.
+* Markup/html outlines not working: css/tailwind?? Seems to be in HTML, although not necessarily correctly
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
+* REMOVE BINDING.PRY BEFORE UPLOADING!
+* INSTRUCTION TO ADD EVENT TO ENTITY (eg, ravaging of Nä'drë'e)
+* STORY: Change "Chapter" to "Chapter Number"
+* Implement uploading/display of maps/images
+* RELCLASSES
+  * Make editable (don't even bother with an index, just the form?)
+* Link to events, lexemes as link to entities
+* Display word count for story
 * If there are issues with instructions, display them as errors
-* Fix: formatting of Entity Relations: too much space; make it a list?
-* Fix: other types of formations not working??
+* Make events dynamic form (drop-down for classes of instructions??)
 * Add "Back" buttons at tops of pages
 * Entity properties all private??
 * Edit properties (statuses)??
-* Link to events, lexemes as link to entities
-* RELCLASSES
-  * Make editable (don't even bother with an index, just the form?)
-* Display word count for story
 * EVENTS
   * PROCCING OF ALL EVENT TYPES, ENTITIES
   * check for duplicate events
   * Found societies manually!!
   * speed efficiency of milieu reproccing
+* Delete buttons (maybe some others?): make them look like buttons 
 * ENTITIES
   * Filter by type, letter
 * LANGUAGE

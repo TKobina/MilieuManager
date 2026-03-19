@@ -1,3 +1,7 @@
+# v0.8.4
+* FIX: RelationEntity / Relationships mispaired by filter_joint_records
+* FIX: Milieu: proc_chronology not occurring on update of "proc" in Events
+
 # v0.8.3
 * FIX: Reference name change fix wasn't working; adoptions, raisings stopped working
 * FIX: Spacing on Relations was off

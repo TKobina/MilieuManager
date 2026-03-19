@@ -57,7 +57,7 @@ class EventsController < ApplicationController
   def update
     @event = @milieu.events.find(params[:id])
     if @event.update(get_params)
-      procchange = @event.saved_changes.keys.any? { |key| ['ydate_id', 'code'].include?(key) }
+      procchange = @event.saved_changes.keys.any? { |key| ['ydate_id', 'code', 'proc'].include?(key) }
       MilieuChronoprocJob.perform_now(@milieu, @event.ydate.value) if procchange
       
       redirect_to event_path(@event, current_milieu: @milieu)
