@@ -174,21 +174,43 @@ class Instruction < ApplicationRecord
   end
 
   def claiming
-    # claiming | name-eid | claimed-eid | kind | public
-    _, claimereid, claimedeid, kind, public  = self.code.split("|")
+    # claiming | name-eid | claimed-eid | kind | newname-eid | public
+    _, claimereid, claimedeid, kind, newnameid, public  = self.code.split("|")
+    newname = newnameid&.split("-")&.first
 
     claimer = fetch_entity(claimereid)
     ent = fetch_entity(claimedeid)
 
+    ent.mod_name(newname) if newname.present?
     ent.set_relation(self.event, claimer, kind, public=="public")
 
     [claimer, ent]
   end
 
   def disclaiming
+    # disclaming | entity-eid | name-eid | newname-eid | public
+    _, disclaimerid, oldnameid, newnameid, public  = self.code.split("|")
+    newname = newnameid&.split("-")&.first
+
+    disclaimer = fetch_entity(disclaimerid)
+    ent = fetch_entity(oldnameid)
+
+    ent.mod_name(newname) if newname.present?
+    ent.set_relation(self.event, disclaimer, "disclaimed", public=="public")
+
+    [disclaimer, ent]
   end
 
   def hiring
+    # hiring | entity-eid | name-eid | title | public
+    _, hirereid, enteid, title, public  = self.code.split("|")
+
+    hirer = fetch_entity(hirereid)
+    ent = fetch_entity(enteid)
+
+    ent.set_relation(self.event, hirer, title, public=="public")
+
+    [hirer, ent]
   end
 
   def firing

@@ -1,7 +1,11 @@
-# V0.8.6
+# v0.9.0
+* ADD: Disclaiming, Hiring functionality added
+* FIX: @owner issue with lexeme index
+
+# v0.8.6
 * ADD: display chapter nummers in index if @owner
 * FIX: suplex/sublex display for lexemes breaking things
-* FIX: bulleted lexeme list
+* FIX: bulleted lexeme index
 
 # v0.8.5
 * FIX: raisings connect to wrong entity
