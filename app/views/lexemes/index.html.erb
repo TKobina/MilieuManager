@@ -11,8 +11,12 @@
 </p>
 
 <div>
+<ul class="list-disc list-inside pl-2">
 <% @lexemes.each do |lexeme| %>
+    <div><li class="marker:text-dlavender">
     <%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu, language_id: @language.id) %>
-    <% if @owner%><sup><%= lexeme.eid%>-<%=lexeme.id%></sup><%end%> (<%= lexeme.kind %>): <%= lexeme.meaning %> </br>
+    <% if @owner%><sup><%= lexeme.eid%></sup><%end%> (<%= lexeme.kind %>): <%= lexeme.meaning %>
+    </li>
 <% end %>
+</ul>
 </div>

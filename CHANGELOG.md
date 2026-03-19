@@ -1,3 +1,14 @@
+# V0.8.6
+* ADD: display chapter nummers in index if @owner
+* FIX: suplex/sublex display for lexemes breaking things
+* FIX: bulleted lexeme list
+
+# v0.8.5
+* FIX: raisings connect to wrong entity
+* FIX: Founding of säl's are failing
+* FIX: Outline formatting in markdown
+* FIX: H4 formatting
+
 # v0.8.4
 * FIX: RelationEntity / Relationships mispaired by filter_joint_records
 * FIX: Milieu: proc_chronology not occurring on update of "proc" in Events

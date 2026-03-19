@@ -39,10 +39,10 @@
 ### Lexemes
 
 ## Known Issues
-* Raising is connecting with the wrong entity!!!
-* Founding of säl's are failing
 * New entitie's not propogating "name" field in reference, failing saving of new reference the first time.
-* Markup/html outlines not working: css/tailwind?? Seems to be in HTML, although not necessarily correctly
+* Formatting lists for entities' displays
+* Formatting chronology (table??)
+* Formatting for story forms too indented
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
