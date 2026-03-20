@@ -214,6 +214,15 @@ class Instruction < ApplicationRecord
   end
 
   def firing
+    # firing | entity-eid | name-eid | public
+    _, firereid, enteid, public  = self.code.split("|")
+
+    firer = fetch_entity(firereid)
+    ent = fetch_entity(enteid)
+
+    ent.set_relation(self.event, firer, "fired", public=="public")
+
+    [hirer, ent]
   end
 
   def status_change
