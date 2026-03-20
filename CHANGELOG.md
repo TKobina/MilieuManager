@@ -1,3 +1,7 @@
+# v0.9.1
+* FIX: Counting issues with maxlexeid and spaces/multiple-character letters
+* ADD: Firing functionality added
+
 # v0.9.0
 * ADD: Disclaiming, Hiring functionality added
 * FIX: @owner issue with lexeme index

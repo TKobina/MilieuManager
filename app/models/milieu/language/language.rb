@@ -41,7 +41,12 @@ class Language < ApplicationRecord
     carried = true
     revletters.each do |letter|
       if carried
-        incarr << letter + 1
+        nextletter = letter
+        while true
+          nextletter = (nextletter + 1)
+          break unless [" ","hw","hr","hy","hl","-","'"].include?(nextletter.value)
+        end
+        incarr << nextletter
         carry = incarr.last <=> letter
         carried = carry==-1 ? true : false
       else

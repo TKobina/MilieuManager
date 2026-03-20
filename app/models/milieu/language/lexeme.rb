@@ -19,18 +19,6 @@ class Lexeme < ApplicationRecord
   def <=>(other)
     self.language.sort(self.word, other.word)
   end
-  
-  # def self.to_csv
-  #   attributes = %w{language_id word eid kind meaning details} # Replace with your actual column names
-
-  #   CSV.generate(headers: true) do |csv|
-  #     csv << attributes
-
-  #     all.each do |lexeme|
-  #       csv << attributes.map{ |attr| lexeme.send(attr) }
-  #     end
-  #   end
-  # end
 
   def procsubs(eids)
     self.sublexeme_ids = eids.split(",").map{|eid| self.language.lexemes.where(eid: eid.strip()).first.id}
