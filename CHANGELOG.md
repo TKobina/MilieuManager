@@ -1,3 +1,10 @@
+# v0.9.3
+* FIX: Cancel new lexeme resolved
+* FIX: Delete buttons location & styling for Events, Stories, & Lexemes
+* FIX: Added a little height to lexemes table header
+* CHANGE: Pad yielded part of body in application layout
+* CHANGE: Entities' information outlined
+
 # v0.9.2
 * FIX: Font: Ă and ă characters not working with Lëdru font
 * FIX: Lexemes: definitions, meanings, etc. should not be in header font
