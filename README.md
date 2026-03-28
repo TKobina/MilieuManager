@@ -33,27 +33,26 @@
   * hiring | entity-eid | name-eid | title | public
   * firing | entity-eid | name-eid | public
   * death | name-eid | public
+  * link | entity-eid
 ### Relations
 ### Statuses
 ### Languages
 ### Lexemes
 
 ## Known Issues
+* CREATE DEFAULT "ENGLISH" LANGUAGE??
+  * If no language on entity, sort according to English??
+* PASSWORD RESET & EMAIL CONFIRMATION
+* Relations aren't being cleared when entities are being cleared??
 * New entitie's not propogating "name" field in reference, failing saving of new reference the first time.
 * Formatting lists for entities' displays
-* Formatting chronology (table??)
-* Formatting for story forms too indented
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * REMOVE BINDING.PRY BEFORE UPLOADING!
-* INSTRUCTION TO ADD EVENT TO ENTITY (eg, ravaging of Nä'drë'e)
-* STORY: Change "Chapter" to "Chapter Number"
+* LEXICON: Permit linking of other words in text (e.g., "see also")
 * Implement uploading/display of maps/images
-* RELCLASSES
-  * Make editable (don't even bother with an index, just the form?)
 * Link to events, lexemes as link to entities
-* Display word count for story
 * If there are issues with instructions, display them as errors
 * Make events dynamic form (drop-down for classes of instructions??)
 * Add "Back" buttons at tops of pages

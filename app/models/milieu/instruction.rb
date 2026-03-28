@@ -20,7 +20,8 @@ class Instruction < ApplicationRecord
   "firing",
   "statadd",
   "statchange",
-  "special"]
+  "special",
+  "link"]
 
   def <=>(other) = self.i <=> other.i
   def set_kind
@@ -227,6 +228,12 @@ class Instruction < ApplicationRecord
 
   def status_change
     
+  end
+
+  def link
+    # link | entity-eid
+    _, enteid, public = self.code.split("|")
+    [fetch_entity(enteid)]
   end
 
   def special

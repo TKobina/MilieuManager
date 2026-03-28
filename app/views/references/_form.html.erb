@@ -1,7 +1,7 @@
 <%= form_with model: @reference do |form| %>
   <div>
     <h3>
-    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
+    <%= form.submit "Save", class: "form-button px-2 py-1 rounded-lg" %>
     <%= hidden_field_tag :current_milieu, @milieu.id %>
     <h3>
   </div>

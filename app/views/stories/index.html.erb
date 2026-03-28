@@ -1,19 +1,33 @@
-<p>
 <h1>Chapters</h1>
+<% if @owner %>
+<%= link_to "Add Chapter", new_story_path(current_milieu: @milieu), class: "form-button" %>
+<table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr>
+      <th>Number </th>
+      <th>Title</th>
+      <th>Words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%= story.chapter %></td>
+        <td><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></td>
+        <td><%= story.details.split.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
 <ul class="list-disc list-inside pl-2">
 <div id="stories">
   <% @stories.each do |story| %>
     <div><li class="marker:text-dlavender">
       <strong><%= link_to story.title, story_path(story.id, current_milieu: @milieu) %></strong> 
-      <% if @owner %> [<%= story.chapter %>] <% end %>
     </li></div>
   <% end %>
   </ul>
 </div>
 </p>
-
-<p>
-<% if @owner%>
-  <strong><%= link_to "Add Chapter", new_story_path(current_milieu: @milieu) %></strong>
 <% end %>
-</p>

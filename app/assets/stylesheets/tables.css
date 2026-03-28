@@ -7,9 +7,26 @@ th {
 }
 
 td, tr {
-  border: 1px solid #ccc;
+  border: 0.5px solid #414141;
   padding: 5px 10px;
   text-align: center;
+}
+
+.left-aligned-table th {
+  font-size: 1.25rem;
+  font-family: 'IM FELL Ledru';
+  color: #626040;
+  border: 0.5px solid #414141;
+  text-align: left;
+  padding: 2px;
+  padding-right: 10px;
+}
+.left-aligned-table td {
+  border: 0.5px solid #414141;
+  text-align: left;
+  padding: 2px;
+  padding-right: 10px;
+  /*padding: 8px; /* Optional: adds space for readability */
 }
 
 /*

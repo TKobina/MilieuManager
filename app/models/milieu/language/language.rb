@@ -62,19 +62,32 @@ class Language < ApplicationRecord
     return 0  if  xword.nil? &&  yword.nil?
     return 1  if !xword.nil? &&  yword.nil?
     
-    xword = xword.downcase.chars.reject {|char| char == "h"}
-    yword = yword.downcase.chars.reject {|char| char == "h"}
+    xword = join_h(xword.downcase.chars)
+    yword = join_h(yword.downcase.chars)
 
     xword.zip(yword).each do |x, y|
-      return -1 if  x.nil? && !y.nil?
+      return -1 if  x.nil? && y.present?
       return 0  if  x.nil? &&  y.nil?
-      return 1  if !x.nil? &&  y.nil?
+      return 1  if  x.present? &&  y.nil?
 
       comp = self.letters.where(value: x).first <=> self.letters.where(value: y).first
       return comp if comp!= 0
     end
     0
   end
+
+  def join_h(array)
+    result = []
+    array.each do |element|
+      if result.last == "h"
+        result[-1] = "#{result.last}#{element}"
+      else
+        result << element
+      end
+    end
+    result
+  end
+
 
   def stats?
     stats = {}

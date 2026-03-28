@@ -1,21 +1,36 @@
 <h1>Events</h1>
 <% if @owner%>
-  <strong><%= link_to "Add Event", new_event_path(current_milieu: @milieu) %></strong>
-  <%= form_with url: import_events_path(current_milieu: @milieu), multipart: true do |form| %>
-    <%= form.file_field :file, accept: '.csv', class: "text-field" %>
-        <%= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
-  <% end %>
+<%= link_to "Add Event", new_event_path(current_milieu: @milieu), class: "form-button" %>
+  <%#= form_with url: import_events_path(current_milieu: @milieu), multipart: true do |form| %>
+    <%#= form.file_field :file, accept: '.csv', class: "text-field" %>
+        <%#= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
+  <%# end %>
 <% end %>
-</p>
 
-<div id="Events">
-<% @dates.each do |date, events| %>
-<p style="text-indent: 30px;">
-<h3><%= date unless events.empty? %> </h3>
-  <% events.each do |event| %>
-    <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %>
-    <% if @owner %><sup><%#=event.id %></sup><%end%> </br>
-  <% end %>
-  </p>
-<% end %>
-</div>
+<table class="rotated-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr class="custom-header">
+      <th class="left-align"><div></span>Event</span></div></th>
+      <th class="rotate"><div></span>Year</span></div></th>
+      <th class="rotate"><div></span>Season</span></div></th>
+      <th class="rotate"><div></span>Month</span></div></th>
+      <th class="rotate"><div></span>Day</span></div></th>
+      <% if @owner %><th class="rotate"><div></span>Index</span></div></th><% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dates.each do |date, events| %>
+    <% year,season,month,day = date.split(".") %>
+    <% events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></td>
+        <td><%= year %></td>
+        <td><%= season %></td>
+        <td><%= month %></td>
+        <td><%= day %></td>
+        <% if @owner %><td><%= event.i %></td> <% end %>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>

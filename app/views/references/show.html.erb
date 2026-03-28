@@ -5,7 +5,7 @@
 <%= @reference.name %>
 <% end %>
 <sup><%= @reference.eid%></sup></h1>
-<%= link_to "Edit", edit_reference_path(@reference.id, current_milieu: @milieu)%>
+<%= link_to "Edit", edit_reference_path(@reference.id, current_milieu: @milieu), class: "form-button"%>
 
 <h2>Private</h2>
 <%= markdown(@reference.text["pri"], @milieu, request)%>

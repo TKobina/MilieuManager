@@ -1,18 +1,28 @@
 <%= form_with model: @relclass do |form| %>
   <div>
-    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
+    <%= form.submit "Save", class: "form-button" %>
     <%= hidden_field_tag :current_milieu, @milieu.id %>
   </div>
-  <div>
-    <%= form.text_field :kind, class: "text-field"  %>
-    <%= form.label :kind %></br></br>
-  </div>
-  <div>
-    <%= form.text_field :bottomtop, class: "text-field"  %>
-    <%= form.label :bottomtop %></br></br>
-  </div>
-  <div>
-    <%= form.text_field :topbottom, class: "text-field"  %>
-    <%= form.label :topbottom %></br></br>
-  </div>
+
+<table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Top -> Bottom</th>
+      <th>Bottom -> Top</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= form.text_field :kind %></td>
+        <td><%= form.text_field :topbottom %></td>
+        <td><%= form.text_field :bottomtop %></td>
+      </tr>
+  </tbody>
+</table>
 <% end %>
+
+<ul class="list-disc list-inside pl-2">
+  <li>Top -> Bottom | Nä'drë'e <%= @relclass.topbottom %> Ešoŧ</li>
+  <li>Bottom -> Top | Ešoŧ <%= @relclass.bottomtop %> Nä'drë'e</li>
+</ul>

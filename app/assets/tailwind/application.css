@@ -41,6 +41,7 @@ h4 {
 
 .storytext {
   font-family: 'Courier New';
+  padding-left: 5px;
   /*font-weight: bold;*/
 }
 
@@ -48,24 +49,36 @@ a {
   color: #BC46EB
 }
 
-.rotate {
-  /* Set a fixed height for the header row to accommodate the rotated text */
-  height: 140px;
-  /* Ensures the text stays on one line before rotation */
-  white-space: nowrap; 
-}
+.rotated-table {
+  td {
+    border: 0.5px solid #414141;
+    text-align: left;
+  }
+  th.left-align {
+    font-size: 1.25rem;
+    font-family: 'IM FELL Ledru';
+    color: #626040;
+    text-align: left;
+    vertical-align: bottom;
+    padding: 5px 5px;
+  }
+  th.rotate {
+    font-size: 1.25rem;
+    font-family: 'IM FELL Ledru';
+    color: #626040;
+    height: 80px; 
+    white-space: nowrap;
+    vertical-align: bottom;
+    padding: 0;
 
-.rotate span {
-  /* Position the span within the th */
-  display: block;
-  /* Set a specific width that becomes the column width after rotation */
-  width: 30px; 
-  
-  /* Apply the rotation */
-  transform: rotate(-90deg);
-  /* Adjust the origin of the transform to align correctly */
-  transform-origin: 0% 0%; 
-  transform: translate(0px, +400%) rotate(-90deg);
-  /* You might need to use translate to fine-tune the position */
-  /* transform: translate(0px, -100%) rotate(-90deg); */
+    div {
+      transform: rotate(-90deg); 
+      width: 0px;
+      margin-left: 20px; 
+
+      span {
+        padding: 0px 10px;
+      }
+    }
+  }
 }

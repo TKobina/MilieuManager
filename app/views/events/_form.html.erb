@@ -1,6 +1,6 @@
 <%= form_with model: @event do |form| %>
   <div>
-    <%= form.submit class: "form-button px-2 py-1 rounded-lg" %>
+    <%= form.submit "Save", class: "form-button px-2 py-1 rounded-lg" %>
     <%= hidden_field_tag :current_milieu, @milieu.id %>
   </div>
   <p>
@@ -34,11 +34,12 @@
       <li> birth | name-<%= @eidnext %> | gender | parent-eid | public</li>
       <li> exile | entity-eid | name-eid | public |</li>
       <li> raising | entity-eid| name-eid | title | newname-eid | public |</li>
-      <li> claiming | name-eid | claimed-eid | kind | public |</li>
+      <li> claiming | name-eid | claimed-eid | kind | newname-eid | public</li>
       <li> disclaiming | name-eid | disclaimed-eid | kind | public | </li>
       <li> hiring | entity-eid | name-eid | title | public |</li>
       <li> firing | entity-eid | name-eid | public |</li>
       <li> death | name-eid | public | </li>
+      <li> link | entity-eid | </li>
     </ul>
     </br>
     <% inststring = "" %>
