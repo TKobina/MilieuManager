@@ -2,35 +2,34 @@
 <% if @owner%>
   <sup><%= @lexeme.eid%></sup>
   </h1>
-  <%= link_to "Edit", edit_lexeme_path(@lexeme.id, current_milieu: @milieu, language_id: @language.id), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }, class: "form-button"%>
-  <%= button_to "Delete", @lexeme, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu, language_id: @language.id } %>
+  <%= button_to "Delete", @lexeme, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu, language_id: @language.id }, class: "form-button" %>
+  <%= link_to "Edit", edit_lexeme_path(@lexeme.id, current_milieu: @milieu, language_id: @language.id), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }, class: "form-button"%></br>
+  <%= link_to "Back", lexemes_path(current_milieu: @milieu, language_id: @language.id), class: "form-button"%>
 <% else %>
 </h1>
 <% end %>
 
 <p>
-<h4>Part of Speech:</h4> <%= @lexeme.kind %>
-<h4>Definition:</h4> <%= @lexeme.meaning %>
-<h4>Details:</h4> <%= @lexeme.details %>
+<h3>Part of Speech:</h3> <%= @lexeme.kind %>
+<h3>Definition:</h3> <%= @lexeme.meaning %>
+<h3>Details:</h3> <%= @lexeme.details %>
 
-<h2>Roots:</h2>
 <div>
+<h3>Roots:</h3>
+<ul class="list-disc list-inside pl-2">
 <% @lexeme.sublexemes.sort.each do |sublex| %>
-  <%= link_to sublex.word, lexeme_path(sublex.id,current_milieu: @milieu, language_id: @language.id) %>
-  <% if @owner%><sup><%= sublex.eid%></sup><%end%>
-  : <%= sublex.meaning%></br>
+  <li class="marker:text-dlavender"><%= link_to sublex.word, lexeme_path(sublex.id,current_milieu: @milieu, language_id: @language.id) %>
+  <% if @owner%><sup><%= sublex.eid%></sup><%end%> : <%= sublex.meaning%></li>
 <% end %>
+</ul>
 </div>
 
-<h2>Derivatives:</h2>
 <div>
+<h3>Derivatives:</h3>
+<ul class="list-disc list-inside pl-2">
 <% @lexeme.suplexemes.sort.each do |suplex| %>
-  <%= link_to suplex.word, lexeme_path(suplex.id,current_milieu: @milieu, language_id: @language.id) %>
-    <% if @owner%><sup><%= suplex.eid%></sup><%end%>: <%= suplex.meaning%></br>
+  <li class="marker:text-dlavender"><%= link_to suplex.word, lexeme_path(suplex.id,current_milieu: @milieu, language_id: @language.id) %>
+    <% if @owner%><sup><%= suplex.eid%></sup><%end%>: <%= suplex.meaning%></li>
 <% end %>
-</div>
-
-<p>
-<div>
-<%= link_to "Back to Dictionary", lexemes_path(current_milieu: @milieu, language_id: @language.id)%>
+</ul>
 </div>

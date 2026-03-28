@@ -41,7 +41,7 @@ h4 {
 
 .storytext {
   font-family: 'Courier New';
-  padding-left: 5px;
+  padding-left: 0px;
   /*font-weight: bold;*/
 }
 
@@ -66,7 +66,7 @@ a {
     font-size: 1.25rem;
     font-family: 'IM FELL Ledru';
     color: #626040;
-    height: 80px; 
+    height: 85px; 
     white-space: nowrap;
     vertical-align: bottom;
     padding: 0;

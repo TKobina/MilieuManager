@@ -17,39 +17,40 @@
 <% end %>
 
 <% unless @properties.empty? then %>
-<h2>Properties</h2>
+<ul class="list-disc list-inside pl-2"><h2>Properties</h2>
 <% @properties.each do |prop| %>
 <div>
-  <h3>(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%></h3>
-  <%= prop.detail %>
+  <li class="marker:text-dlavender">(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%>
+  <%= prop.detail %><li>
 </div>
-</br>
-<% end %><% end %>
+<% end %>
+<% end %>
+</ul>
 
 <% unless @superior_relations.empty? && @inferior_relations.empty? %>
-<h2>Relations</h2>
+<ul class="list-disc list-inside pl-2"><h2>Relations</h2>
 <% end %>
 <% unless @superior_relations.empty? %>
-<% @superiors.zip(@superior_relations).sort_by { |sup, rel| sup }.each do |sup, rel| %>
-  <div>
-    <%= rel.relclass.bottomtop&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
-  </div>
-<% end %>
-</br>
-<% end %>
+  <% @superiors.zip(@superior_relations).sort_by { |sup, rel| sup }.each do |sup, rel| %>
+    <div>
+      <li class="marker:text-dlavender"><%= rel.relclass.bottomtop&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></li>
+    </div>
+  <% end %>
+  <% end %>
 
 <% unless @inferior_relations.empty? %>
-<% @inferiors.zip(@inferior_relations).sort_by { |inf, rel| inf }.each do |inf, rel| %>
-  <div>
-    <%= rel.relclass.topbottom&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
-  </div>
-<% end %>
-</br>
-<% end %>
+  <% @inferiors.zip(@inferior_relations).sort_by { |inf, rel| inf }.each do |inf, rel| %>
+    <div>
+      <li class="marker:text-dlavender"><%= rel.relclass.topbottom&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></li>
+    </div>
+  <% end %>
+  <% end %>
+</ul>
 
 <div>
-<h2>Events</h2>
+<ul class="list-disc list-inside pl-2"><h2>Events</h2>
 <% @events.each do |event| %>
-  <%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></br>
+  <li class="marker:text-dlavender"><%= event.ydate.to_s %>: <%= link_to event.name, event_path(event.id, current_milieu: @milieu) %></li>
 <% end %>
 </div>
+</ul>
