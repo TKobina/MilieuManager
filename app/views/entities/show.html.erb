@@ -30,20 +30,18 @@
 <h2>Relations</h2>
 <% end %>
 <% unless @superior_relations.empty? %>
-<h3>Belongs To</h3>
-<% @superiors.zip(@superior_relations).each do |sup, rel| %>
+<% @superiors.zip(@superior_relations).sort_by { |sup, rel| sup }.each do |sup, rel| %>
   <div>
-    <%= rel.relclass.topbottom&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
+    <%= rel.relclass.bottomtop&.capitalize %> <%= link_to sup.name, entity_path(sup.id, current_milieu: @milieu) %></br>
   </div>
 <% end %>
 </br>
 <% end %>
 
 <% unless @inferior_relations.empty? %>
-<h3>Possesses</h3>
-<% @inferiors.zip(@inferior_relations).each do |inf, rel| %>
+<% @inferiors.zip(@inferior_relations).sort_by { |inf, rel| inf }.each do |inf, rel| %>
   <div>
-    <%= rel.relclass.bottomtop&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
+    <%= rel.relclass.topbottom&.capitalize %> <%= link_to inf.name, entity_path(inf.id, current_milieu: @milieu) %></br>
   </div>
 <% end %>
 </br>

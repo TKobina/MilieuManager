@@ -1,13 +1,19 @@
 <h1>Entities</h1>
-<div id="entities">
-  <ul>
-  <% @entities.each do |entity| %>
-    <div>
-      <li><strong><%= link_to entity.name, entity_path(entity.id, current_milieu: @milieu) %></strong> (<%=entity.kind%>)
-      <% if @owner %><sup><%=entity.eid %></sup><%end%> </li>
-      <ul>  
-      </ul>
-    </div>
-  <% end %>
-  </ul>
-</div>
+<table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr>
+      <% if @owner %> <th>EID</th> <% end %>
+      <th>Name </th>
+      <th>Entity Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entities.each do |entity| %>
+      <tr>
+        <% if @owner %><td><%= entity.eid%></td> <% end %>
+        <td><%= link_to entity.name, entity_path(entity.id, current_milieu: @milieu) %></td>
+        <td><%= entity.kind %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,22 @@
+# v0.9.2
+* FIX: Font: Ă and ă characters not working with Lëdru font
+* FIX: Lexemes: definitions, meanings, etc. should not be in header font
+* FIX: Entities: Events in Show Entity not listed chronologically
+* FIX: Lexemes: deleting lexeme not working
+* FIX: Instructions: Claiming: need to be able to change name with a claiming
+* FIX: Stories: Padding to left of story-writing text field
+* FIX: LEXEMES: Error if try to delete Lexeme that has derivatives/roots
+* FIX: RELCLASSES: bottomtop vs topbottom
+* CHANGE: Events: add instruction to link event to entity (eg, ravaging of Nä'drë'e)
+* CHANGE: Lexemes: sub/sup-lexemes now sorted alphabetically
+* CHANGE: Lexemes: tabled the index
+* CHANGE: Stories: Form: Change "Chapter" to "Chapter Number"
+* CHANGE: Events, Entities, Stories: tabled the index
+* CHANGE: Relclasses: tabled
+* CHANGE: Moved "cancel" to before forms
+* ADD: changed stories index to table for @owner, added word counts to table
+* ADD: styling for buttons, links
+
 # v0.9.1
 * FIX: Counting issues with maxlexeid and spaces/multiple-character letters
 * ADD: Firing functionality added

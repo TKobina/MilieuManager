@@ -1,21 +1,29 @@
 <h1><%= @language.name %> Lexemes </h1>
-<p>
-<% if @owner%>
-  <strong><%= link_to "Add Lexeme", new_lexeme_path(current_milieu: @milieu, language_id: @language.id) %></strong>
-    <%= form_with url: import_lexemes_path(current_milieu: @milieu, language_id: @language.id), multipart: true do |form| %>
-      <%= form.file_field :file, accept: '.csv', class: "text-field" %>
-      <%= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
-    <% end %>
+<% if @owner %>
+<%= link_to "Add Lexeme", new_lexeme_path(current_milieu: @milieu, language_id: @language.id) , class: "form-button"%>
+  <%# <%= form_with url: import_lexemes_path(current_milieu: @milieu, language_id: @language.id), multipart: true do |form| %>
+    <%#= form.file_field :file, accept: '.csv', class: "text-field" %>
+    <%#= form.submit "Import", class: "form-button px-2 py-1 rounded-lg" %>
+  <%# end %>
 <% end %>
-</p>
 
-<div>
-<ul class="list-disc list-inside pl-2">
-<% @lexemes.each do |lexeme| %>
-    <div><li class="marker:text-dlavender">
-    <%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu, language_id: @language.id) %>
-    <% if @owner%><sup><%= lexeme.eid%></sup><%end%> (<%= lexeme.kind %>): <%= lexeme.meaning %>
-    </li>
-<% end %>
-</ul>
-</div>
+<table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr>
+      <% if @owner %> <th>EID</th> <% end %>
+      <th>Lexeme </th>
+      <th>Part</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lexemes.each do |lexeme| %>
+      <tr>
+        <% if @owner %><td><%= lexeme.eid%></td> <% end %>
+        <td><%= link_to lexeme.word, lexeme_path(lexeme.id,current_milieu: @milieu, language_id: @language.id) %></td>
+        <td><%= lexeme.kind %></td>
+        <td><%= lexeme.meaning %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

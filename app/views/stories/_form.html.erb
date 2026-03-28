@@ -1,12 +1,12 @@
 <%= form_with model: @story do |form| %>
   <div>
-    <%= form.submit class: "form-button px-2 py-1 rounded-lg"%>
+    <%= form.submit "Save", class: "form-button" %>
     <%= hidden_field_tag :current_milieu, @milieu.id %>
   </div>
   <p>
   <div>
     <%= form.text_field :chapter, class: "text-field"  %>
-    <%= form.label :chapter %></br></br>
+    <%= form.label :chapter, "Chapter Number" %></br></br>
   </div>
   <div>
     <%= form.text_field :title, class: "text-field"  %>

@@ -8,7 +8,7 @@ class Lexeme < ApplicationRecord
   has_many :sublexeme_compositions, class_name: "Composition", foreign_key: "suplexeme_id", dependent: :destroy
   has_many :sublexemes, through: :sublexeme_compositions, source: :sublexeme
 
-  has_many :suplexeme_compositions, class_name: "Composition", foreign_key: "sublexeme_id"
+  has_many :suplexeme_compositions, class_name: "Composition", foreign_key: "sublexeme_id", dependent: :destroy
   has_many :suplexemes, through: :suplexeme_compositions, source: :suplexeme
 
   validates :eid, uniqueness: { scope: :language_id, message: "You have already created a lexeme with this eid." }

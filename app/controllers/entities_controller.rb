@@ -16,7 +16,7 @@ class EntitiesController < ApplicationController
     @properties = filter_records(@entity.properties)
     @superiors, @superior_relations = filter_relations(@entity.superior_relations, "superior")
     @inferiors, @inferior_relations = filter_relations(@entity.inferior_relations, "inferior")
-    @events = filter_records(@entity.events)
+    @events = filter_records(@entity.events).sort
   end
 
   def create

@@ -1,10 +1,28 @@
+<% if @owner %>
 <h1>Relation Classes</h1>
-  <strong><%= link_to "Add Relation Class", new_relclass_path(current_milieu: @milieu) %></strong>
-</p>
+<%= link_to "Add Relation Class", new_relclass_path(current_milieu: @milieu), class: "form-button" %>
 
-<div id="Relclass">
-<% @relclasses.each do |ref| %>
-      <%= link_to ref.kind, edit_relclass_path(ref.id, current_milieu: @milieu) %>
-      (<%= ref.topbottom %>,<%= ref.bottomtop %>)</br>
+<ul class="list-disc list-inside pl-2">
+<li>Top -> Bottom | Nä'drë'e <%= @relclasses.first.topbottom %> Ešoŧ</li>
+<li>Bottom -> Top | Ešoŧ <%= @relclasses.first.bottomtop %> Nä'drë'e</li>
+</ul>
+
+<table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Top -> Bottom</th>
+      <th>Bottom -> Top</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%  @relclasses.each do |ref| %>
+      <tr>
+        <td><%= link_to ref.kind, edit_relclass_path(ref.id, current_milieu: @milieu) %></td>
+        <td><%= ref.topbottom %></td>
+        <td><%= ref.bottomtop %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <% end %>
-</div>
