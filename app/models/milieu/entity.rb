@@ -22,10 +22,10 @@ class Entity < ApplicationRecord
 
   def <=>(other)
     slang = self.language?
-    return slang.sort(self.name, other.name) unless slang.nil? 
     olang = other.language? 
-    return olang.sort(self.name, other.name) unless olang.nil? 
-    Language.first.sort(self.name, other.name)
+    
+    return self.name.to_s <=> other.name.to_s if slang.nil? || olang.nil?
+    return slang.sort(self.name, other.name) 
   end
 
   def language? 

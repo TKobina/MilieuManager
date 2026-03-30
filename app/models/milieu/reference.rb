@@ -3,11 +3,10 @@ class Reference < ApplicationRecord
   has_one :entity
 
   before_save :init
+
   def <=>(other)
-    return self.entity<=>other.entity if self.entity && other.entity
-    selfname = self&.name || self&.entity&.name || " "
-    othername = other&.name || other&.entity&.name || " "
-    Language.first.sort(selfname, othername)
+    return self.entity <=> other.entity if self.entity.present? && other.entity.present?
+    return self.name.to_s <=> other.name.to_s
   end
 
   def pri? = self.text[:pri]

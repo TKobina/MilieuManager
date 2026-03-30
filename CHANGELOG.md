@@ -1,3 +1,6 @@
+# 0.9.3.1
+* FIX: sorting for References, Entities broken
+
 # v0.9.3
 * FIX: Cancel new lexeme resolved
 * FIX: Delete buttons location & styling for Events, Stories, & Lexemes

@@ -70,7 +70,11 @@ class Language < ApplicationRecord
       return 0  if  x.nil? &&  y.nil?
       return 1  if  x.present? &&  y.nil?
 
-      comp = self.letters.where(value: x).first <=> self.letters.where(value: y).first
+      xletter = self.letters.where(value: x).first
+      yletter = self.letters.where(value: y).first
+
+      comp = xletter.present? && yletter.present? ? xletter <=> yletter : x <=> y
+      
       return comp if comp!= 0
     end
     0
