@@ -28,10 +28,10 @@ class LexemesController < ApplicationController
     @lexeme = Lexeme.new(lexeme_params)
     @lexeme.language = @language
     if @lexeme.save
-      @lexeme.procsubs(params[:sublexeme_eids])
+      #@lexeme.procsubs(params[:sublexeme_eids])
       redirect_to lexeme_path(@lexeme,current_milieu: @milieu, language_id: @language.id)
     else
-      redirect_to new_lexeme_path(current_milieu: @milieu, language_id: @language.id), alert: "Update failed!"
+      render new_lexeme_path(current_milieu: @milieu, language_id: @language.id), status: :unprocessable_entity
     end
   end
 
@@ -43,10 +43,10 @@ class LexemesController < ApplicationController
     @lexeme = Lexeme.find(params[:id])
 
     if @lexeme.update(lexeme_params)
-      @lexeme.procsubs(params[:sublexeme_eids])
+      #@lexeme.procsubs(params[:sublexeme_eids])
       redirect_to lexeme_path(@lexeme,current_milieu: @milieu, language_id: @language.id)
     else
-      redirect_to edit_lexeme_path(@lexeme, current_milieu: @milieu, language_id: @language.id), alert: "Update failed!"
+      render edit_lexeme_path(@lexeme, current_milieu: @milieu, language_id: @language.id), status: :unprocessable_entity
     end
   end
 
@@ -69,6 +69,18 @@ class LexemesController < ApplicationController
 
   private
   def lexeme_params
+    if params[:sublexeme_eids].present?
+      sublexes = []
+      params[:sublexeme_eids].split(",").map do |eid|
+        sublex = @lexeme.language.lexemes.where(eid: eid.strip()).first
+        if sublex.nil?
+          @lexeme.errors.add(:eid, "eid does not match any Lexeme")
+        else
+          sublexes << sublex.id
+        end
+      end
+      @lexeme.sublexeme_ids = sublexes
+    end
     params.expect(lexeme: [:language_id, :word, :kind, :meaning, :sublexeme_eids, :details ])
   end
 

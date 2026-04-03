@@ -7,7 +7,7 @@
   </div>
   <p>
 <div>
-  <%= text_field_tag :name, @reference.name, class: "text-field" %>
+  <%= text_field_tag :name, @reference.name || @reference.entity.name, class: "text-field" %>
   <strong><%= form.label :name %></br></br></strong>
 </div>
 

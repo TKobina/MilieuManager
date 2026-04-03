@@ -11,6 +11,8 @@ class Lexeme < ApplicationRecord
   has_many :suplexeme_compositions, class_name: "Composition", foreign_key: "sublexeme_id", dependent: :destroy
   has_many :suplexemes, through: :suplexeme_compositions, source: :suplexeme
 
+  accepts_nested_attributes_for :sublexemes
+
   validates :eid, uniqueness: { scope: :language_id, message: "You have already created a lexeme with this eid." }
 
 
@@ -21,8 +23,13 @@ class Lexeme < ApplicationRecord
   end
 
   def procsubs(eids)
-    self.sublexeme_ids = eids.split(",").map{|eid| self.language.lexemes.where(eid: eid.strip()).first.id}
-    self.save
+    sublexes = []
+    eids.split(",").map do |eid|
+      sublex = self.language.lexemes.where(eid: eid.strip()).first
+      return self.errors.add(:eid, "eid does not match any Lexeme") if sublex.nil?
+      sublexes << sublex.id
+    end
+    self.update!(sublexeme_ids: sublexes)
   end
 
   private

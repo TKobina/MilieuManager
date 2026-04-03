@@ -1,4 +1,14 @@
 <%= form_with model: @lexeme do |form| %>
+<% if @lexeme.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@lexeme.errors.count, "error") %> prohibited this from being saved:</h2>
+    <ul>
+      <% @lexeme.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <div>
     <%= form.submit "Save", class: "form-button px-2 py-1 rounded-lg"%>
     <%= hidden_field_tag :current_milieu, @milieu.id %>

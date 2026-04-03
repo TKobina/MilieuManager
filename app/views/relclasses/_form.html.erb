@@ -1,8 +1,10 @@
 <%= form_with model: @relclass do |form| %>
-  <div>
-    <%= form.submit "Save", class: "form-button" %>
-    <%= hidden_field_tag :current_milieu, @milieu.id %>
-  </div>
+<div>
+  <%= form.submit "Save", class: "form-button" %>
+  <%= hidden_field_tag :current_milieu, @milieu.id %>
+</div>
+
+<p>
 
 <table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
   <thead>
@@ -14,15 +16,17 @@
   </thead>
   <tbody>
       <tr>
-        <td><%= form.text_field :kind %></td>
-        <td><%= form.text_field :topbottom %></td>
-        <td><%= form.text_field :bottomtop %></td>
+        <td class="left-align-table bg-[#2d2c2c]"><%= form.text_field :kind %></td>
+        <td class="left-align-table bg-[#2d2c2c]"><%= form.text_field :topbottom %></td>
+        <td class="left-align-table bg-[#2d2c2c]"><%= form.text_field :bottomtop %></td>
       </tr>
   </tbody>
 </table>
 <% end %>
 
-<ul class="list-disc list-inside pl-2">
-  <li>Top -> Bottom | Nä'drë'e <%= @relclass.topbottom %> Ešoŧ</li>
-  <li>Bottom -> Top | Ešoŧ <%= @relclass.bottomtop %> Nä'drë'e</li>
+<p>
+
+<ul class="list-disc list-inside pl-2"><h3>Examples</h3>
+  <li><strong>Top -> Bottom: </strong>Nä'drë'e <%= @relclass.topbottom %> Ešoŧ</li>
+  <li><strong>Bottom -> Top: </strong>Ešoŧ <%= @relclass.bottomtop %> Nä'drë'e</li>
 </ul>

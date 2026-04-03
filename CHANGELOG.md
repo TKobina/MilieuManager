@@ -1,4 +1,15 @@
-# 0.9.3.1
+# v0.9.4
+* FIX: Lexemes: sublexemes: can't change sublexemes without first emptying
+* FIX: Entities: properties display w/ an extra bullet
+* FIX: References: name should be propogated from reference, or from entity (the first time)
+* FIX: If entities don't have a language in the hierarchy, sort according to English
+* ADD: Display Entity Kinds
+* ADD: Links in Markdown to Events and Lexemes
+* ADD: Back buttons for a variety of pages
+* CHANGE: Formatting of Relclass editting page
+* NOTE: Re: entities being turned private: due to incorrect instructions, NOT code
+
+# v0.9.3.1
 * FIX: sorting for References, Entities broken
 
 # v0.9.3

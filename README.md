@@ -15,6 +15,10 @@
 ## Useage
 
 ### Stories
+* Linking
+  * Entity: "[[entity_name-eid|display name]]"
+  * Lexeme: "[[lexeme-eid-language_name|display word]]"
+  * Event: "[[event-id|display name]]
 ### Entities
 ### Events
 ### Instructions
@@ -40,22 +44,15 @@
 ### Lexemes
 
 ## Known Issues
-* CREATE DEFAULT "ENGLISH" LANGUAGE??
-  * If no language on entity, sort according to English??
 * PASSWORD RESET & EMAIL CONFIRMATION
-* Relations aren't being cleared when entities are being cleared??
-* New entitie's not propogating "name" field in reference, failing saving of new reference the first time.
-* Formatting lists for entities' displays
+* LOGOUT OPTION
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * REMOVE BINDING.PRY BEFORE UPLOADING!
-* LEXICON: Permit linking of other words in text (e.g., "see also")
 * Implement uploading/display of maps/images
-* Link to events, lexemes as link to entities
 * If there are issues with instructions, display them as errors
 * Make events dynamic form (drop-down for classes of instructions??)
-* Add "Back" buttons at tops of pages
 * Entity properties all private??
 * Edit properties (statuses)??
 * EVENTS
@@ -63,7 +60,6 @@
   * check for duplicate events
   * Found societies manually!!
   * speed efficiency of milieu reproccing
-* Delete buttons (maybe some others?): make them look like buttons 
 * ENTITIES
   * Filter by type, letter
 * LANGUAGE

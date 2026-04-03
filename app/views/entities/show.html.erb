@@ -1,9 +1,11 @@
-<h1><%= @entity.name %>
+<h1><%= @entity.kind.titlecase %> <%= @entity.name.titlecase %>
 <% if @owner%>
   <sup><%= @entity.eid%></sup> (<%= @entity.public ? "Public" : "Private" %>)</h1>
+  <%= link_to "Back", :back, class: "form-button" %></br>
     <%= link_to :edit_reference, edit_reference_path(@entity.reference.id, current_milieu: @milieu)%>
 <% else %>
-</h1>
+  </h1>
+  <%= link_to "Back", :back, class: "form-button" %></br>
 <% end %>
 
 <% if @entity.reference&.text["pub"].present? %>
@@ -20,8 +22,9 @@
 <ul class="list-disc list-inside pl-2"><h2>Properties</h2>
 <% @properties.each do |prop| %>
 <div>
-  <li class="marker:text-dlavender">(<%= prop.public == true ? "Public" : "Private" %>) <%= prop.kind.titleize%>: <%= prop.value%>
-  <%= prop.detail %><li>
+  <li class="marker:text-dlavender">
+    <% if @owner %>(<%= prop.public == true ? "Public" : "Private" %>) <% end %><%= prop.kind.titleize%>: <%= prop.value%>
+  <%= prop.detail %></li>
 </div>
 <% end %>
 <% end %>

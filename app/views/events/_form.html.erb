@@ -1,4 +1,5 @@
 <%= form_with model: @event do |form| %>
+
   <div>
     <%= form.submit "Save", class: "form-button px-2 py-1 rounded-lg" %>
     <%= hidden_field_tag :current_milieu, @milieu.id %>

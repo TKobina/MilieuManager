@@ -41,14 +41,14 @@ class Instruction < ApplicationRecord
 
   def formation
     # formation | name-eid | kind | creator-eid | public
-    _, nameid, entkind, creatoreid, public = self.code.split("|") 
+    _, nameid, entkind, creatoreid, visibility = self.code.split("|") 
     name, eid = nameid.split("-")
     ent = Entity.new(
       name: name, 
       eid: eid, 
       milieu: self.event.milieu, 
       kind: entkind, 
-      public: public == "public",
+      public: visibility == "public",
       events: [self.event],
       genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
@@ -56,7 +56,7 @@ class Instruction < ApplicationRecord
     if !["world","info"].include?(entkind)
       creator = fetch_entity(creatoreid)
       ent.language = creator.language
-      ent.set_relation(self.event, creator, kind, public=="public")
+      ent.set_relation(self.event, creator, kind, visibility=="public")
     end
     ent.save!
 
@@ -67,7 +67,7 @@ class Instruction < ApplicationRecord
 
   def founding
     # founding | name-eid | kind | status | parent-eid | Language (if Nation) | public  |
-    _, nameid, entkind, status, pareid, lang, public = self.code.split("|") 
+    _, nameid, entkind, status, pareid, lang, visibility = self.code.split("|") 
     name, eid  = nameid.split("-")
     #puts "#{name}-#{eid}"
     parent = fetch_entity(pareid)
@@ -81,21 +81,21 @@ class Instruction < ApplicationRecord
       milieu: self.event.milieu, 
       kind: entkind,
       language: language, 
-      public: public == "public",
+      public: visibility == "public",
       events: [self.event],
       genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
       
     #ent.properties << Property.new(event: self.event, kind: "founding date", value: self.event.ydate.to_s)
     ent.properties << Property.new(event: self.event, kind: "status", value: status) if status.present?
-    ent.set_relation(self.event, parent,entkind,public=="public")
+    ent.set_relation(self.event, parent,entkind,visibility=="public")
     language.update!(nation: ent) if entkind == "nation"
     [ent, parent]
   end
 
   def birth
     # birth | name-eid | gender | parent-eid | public
-    _, nameid, gender, pareid, public = self.code.split("|")
+    _, nameid, gender, pareid, visibility = self.code.split("|")
     name, eid = nameid.split("-")
 
     ent = Entity.create!(
@@ -103,10 +103,12 @@ class Instruction < ApplicationRecord
       eid: eid,
       name: name,
       kind: "person",
-      public: public == "public",
+      public: visibility == "public",
       events: [self.event],
       genvent: self.event,
       reference: Reference.find_or_create_by(milieu: self.event.milieu, eid: eid))
+    
+    ent.properties << Property.new(event: self.event, kind: "gender", value: gender, public: visibility == "public") if gender.present?
     
     parent = fetch_entity(pareid)
 
@@ -114,7 +116,7 @@ class Instruction < ApplicationRecord
 
     unless ["world","nation","house","society"].include?(parent.kind)
       phouse = parent.superiors.where(kind: ["world","nation","house"]).last
-      ent.set_relation(self.event, phouse, "birthhouse", public=="public")
+      ent.set_relation(self.event, phouse, "birthhouse", visibility=="public")
       phouse.events << self.event unless phouse.events.include?(self.event)
     end
 
@@ -126,7 +128,7 @@ class Instruction < ApplicationRecord
 
   def death
     # death | name-eid | public
-    _, nameid, public = self.code.split("|")
+    _, nameid, visibility = self.code.split("|")
     ent = fetch_entity(nameid)
     ent.properties << Property.new(event: self.event, kind: "death date", value: self.event.ydate.to_s)
 
@@ -135,93 +137,93 @@ class Instruction < ApplicationRecord
 
   def adoption
     # # adoption | entity-eid (house, society) | name-eid | newname-eid | public
-    _, adopterid, oldnameid, newnameid, public  = self.code.split("|")
+    _, adopterid, oldnameid, newnameid, visibility  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
     adopter = fetch_entity(adopterid)
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.set_relation(self.event, adopter, "adoption", public=="public")
+    ent.set_relation(self.event, adopter, "adoption", visibility=="public")
 
     [adopter, ent]
   end
 
   def exiling
     # exile | entity-eid | name-eid | newname-eid | public
-    _, exilerid, oldnameid, newnameid, public  = self.code.split("|")
+    _, exilerid, oldnameid, newnameid, visibility  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
     exiler = fetch_entity(exilerid)
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.set_relation(self.event, exiler, "exile", public=="public")
+    ent.set_relation(self.event, exiler, "exile", visibility=="public")
 
     [exiler, ent]
   end
 
   def raising
     # raising | entity-eid| name-eid | title | newname-eid | public
-    _, raiserid, oldnameid, title, newnameid, public  = self.code.split("|")
+    _, raiserid, oldnameid, title, newnameid, visibility  = self.code.split("|")
     newname = newnameid&.split("-")&.first
     
     raiser = fetch_entity(raiserid)
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.set_relation(self.event, raiser, title, public=="public")
+    ent.set_relation(self.event, raiser, title, visibility=="public")
     [raiser, ent]
   end
 
   def claiming
     # claiming | name-eid | claimed-eid | kind | newname-eid | public
-    _, claimereid, claimedeid, kind, newnameid, public  = self.code.split("|")
+    _, claimereid, claimedeid, kind, newnameid, visibility  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
     claimer = fetch_entity(claimereid)
     ent = fetch_entity(claimedeid)
 
     ent.mod_name(newname) if newname.present?
-    ent.set_relation(self.event, claimer, kind, public=="public")
+    ent.set_relation(self.event, claimer, kind, visibility=="public")
 
     [claimer, ent]
   end
 
   def disclaiming
     # disclaming | entity-eid | name-eid | newname-eid | public
-    _, disclaimerid, oldnameid, newnameid, public  = self.code.split("|")
+    _, disclaimerid, oldnameid, newnameid, visibility  = self.code.split("|")
     newname = newnameid&.split("-")&.first
 
     disclaimer = fetch_entity(disclaimerid)
     ent = fetch_entity(oldnameid)
 
     ent.mod_name(newname) if newname.present?
-    ent.set_relation(self.event, disclaimer, "disclaimed", public=="public")
+    ent.set_relation(self.event, disclaimer, "disclaimed", visibility=="public")
 
     [disclaimer, ent]
   end
 
   def hiring
     # hiring | entity-eid | name-eid | title | public
-    _, hirereid, enteid, title, public  = self.code.split("|")
+    _, hirereid, enteid, title, visibility  = self.code.split("|")
 
     hirer = fetch_entity(hirereid)
     ent = fetch_entity(enteid)
 
-    ent.set_relation(self.event, hirer, title, public=="public")
+    ent.set_relation(self.event, hirer, title, visibility=="public")
 
     [hirer, ent]
   end
 
   def firing
     # firing | entity-eid | name-eid | public
-    _, firereid, enteid, public  = self.code.split("|")
+    _, firereid, enteid, visibility  = self.code.split("|")
 
     firer = fetch_entity(firereid)
     ent = fetch_entity(enteid)
 
-    ent.set_relation(self.event, firer, "fired", public=="public")
+    ent.set_relation(self.event, firer, "fired", visibility=="public")
 
     [hirer, ent]
   end
@@ -232,7 +234,7 @@ class Instruction < ApplicationRecord
 
   def link
     # link | entity-eid
-    _, enteid, public = self.code.split("|")
+    _, enteid, visibility = self.code.split("|")
     [fetch_entity(enteid)]
   end
 

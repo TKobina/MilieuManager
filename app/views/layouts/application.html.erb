@@ -25,6 +25,13 @@
 
   <body>
     <%= render partial: 'layouts/header'%>
+    
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %>">
+        <%= message %>
+      </div>
+    <% end %>
+
     <%#= render 'layouts/sidebar' %>
     <div class="px-4">
       <%= yield %>
