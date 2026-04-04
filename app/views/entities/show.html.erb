@@ -10,12 +10,12 @@
 
 <% if @entity.reference&.text["pub"].present? %>
 <h3>Details</h3>
-<p><%= markdown(@entity.reference&.text["pub"], @milieu, request) %></p>
+<%= markdown(@entity.reference&.text["pub"], @milieu, request) %><p>
 <% end %>
 
 <% if @entity.reference&.text["pri"].present? && @private %>
 <h3>Private Details</h3>
-<p><%= markdown(@entity.reference&.text["pri"], @milieu, request) %></p>
+<%= markdown(@entity.reference&.text["pri"], @milieu, request) %><p>
 <% end %>
 
 <% unless @properties.empty? then %>

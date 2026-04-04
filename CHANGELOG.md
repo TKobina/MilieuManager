@@ -1,3 +1,7 @@
+# v0.9.5
+* FIX: sublexemes for new Lexemes should be resolved
+* NOTE: the issue with lexemes with "-" in eid may have already been resolved; check again after adding a few more lexemes
+
 # v0.9.4
 * FIX: Lexemes: sublexemes: can't change sublexemes without first emptying
 * FIX: Entities: properties display w/ an extra bullet
