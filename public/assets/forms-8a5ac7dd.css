@@ -1,0 +1,80 @@
+
+textarea {
+  background-color: #333333;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-button {
+  /* Basic button styling */
+  display: inline-block;
+  width: 170px; 
+  padding: 5px 10px;
+  background-color: #2d2c2c; /* Example background color */
+  
+  /*font-weight: bold;*/
+  font-size: 1rem;
+  font-family: 'IM FELL Ledru';
+  color: blueviolet; /* Example text color */
+  text-align: center;
+  text-decoration: none; /* Remove default link underline */
+
+  border: 1px solid #222222; /* Example border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  
+  /* Ensure consistent box model behavior */
+  box-sizing: border-box;
+}
+
+.form-button:hover {
+  background-color: #000000; /* Darker background on hover */
+}
+.form-select {
+  background-color: blueviolet;
+  color: #560000;
+}
+
+.text-field {
+  background-color: #333333;
+  width: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.large-text-field {
+  width: 90%; /* 400px or a percentage, e.g., 80% */
+  height: 800px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.large-text-area {
+  width: 90%; /* 400px or a percentage, e.g., 80% */
+  height: 400px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.large-text-tag {
+  width: 320%; /* 400px or a percentage, e.g., 80% */
+  height: 800px; /* 50px*/
+  font-size: 1em; /* To make the text inside larger */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.trix-content ul,
+.trix-content ol {
+  /* Move bullets inside the list flow, aligning them with text */
+  list-style-position: inside;
+  padding-left: 0; /* Remove default left padding */
+}
+
+.trix-content li {
+  /* Ensure consistent alignment */
+  text-indent: -1em;
+  padding-left: 1em;
+}

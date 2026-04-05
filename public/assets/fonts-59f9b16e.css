@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'IM FELL Ledru';
+    src: url("/assets/IM_FELL_Ledru-fbf42765.woff2") format('woff2'),
+        url("/assets/IM_FELL_Ledru-b8add5d8.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier New';
+  src: font-url("/assets/cour-d1eac7f9.ttf") format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Recommended for better user experience */
+}

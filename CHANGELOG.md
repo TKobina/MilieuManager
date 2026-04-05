@@ -1,3 +1,7 @@
+# v0.9.55
+* FIX: credentials issue that broke the local prod/test environment
+* CHANGE: cleaned up a few files no longer in use in the hierarchy
+
 # v0.9.5
 * FIX: sublexemes for new Lexemes should be resolved
 * NOTE: the issue with lexemes with "-" in eid may have already been resolved; check again after adding a few more lexemes

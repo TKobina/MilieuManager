@@ -1,5 +1,6 @@
 ## Rails Commands
 * RAILS_ENV=production rails c
+* rails credentials:edit --environment production
 
 ## Rails Assets
 * Issue with loading CSS files: had to do rails assets:clobber ; rails assets:precompile
