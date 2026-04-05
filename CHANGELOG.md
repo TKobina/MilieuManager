@@ -1,3 +1,6 @@
+# v0.9.5.6
+* FIX: restoring .gitignore (??? WHY WAS IT REMOVED??)
+
 # v0.9.55
 * FIX: credentials issue that broke the local prod/test environment
 * CHANGE: cleaned up a few files no longer in use in the hierarchy
