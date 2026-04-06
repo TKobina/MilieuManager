@@ -46,10 +46,13 @@
 ## Known Issues
 * PASSWORD RESET & EMAIL CONFIRMATION
 * LOGOUT OPTION
+* Relation between Aïle and Kiŧlï not present....why??
+* Tab behavior in text area
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * REMOVE BINDING.PRY BEFORE UPLOADING!
+* Implement rich text areas, instead of text areas?
 * Implement uploading/display of maps/images
 * If there are issues with instructions, display them as errors
 * Make events dynamic form (drop-down for classes of instructions??)
