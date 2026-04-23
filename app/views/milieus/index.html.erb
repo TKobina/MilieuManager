@@ -1,11 +1,15 @@
 <h2>Milieus</h2>
-
+<%= link_to "Add Milieu", new_milieu_path(), class: "form-button" %>
 <h3>Owned</h3>
 <% @milieus.each do |mil| %>
-<%= link_to mil.name, milieu_path(mil.id, current_milieu: mil) %>
+    <div>
+    <%= link_to mil.name, milieu_path(mil.id, current_milieu: mil) %>
+    </div>
 <% end %>
 </br>
 <h3>Reading</h3>
 <% @readings.each do |rea| %>
-<%= link_to rea.name, milieu_path(rea.id, current_milieu: rea) %>
+    <div>
+    <%= link_to rea.name, milieu_path(rea.id, current_milieu: rea) %>
+    </div>
 <% end %>

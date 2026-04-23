@@ -1,2 +1,10 @@
 <h1><%= @milieu.name %></h1>
+<% if @owner%>
+  <%= link_to "Back", milieus_path, class: "form-button" %></br>
+  <%= link_to "Edit", edit_milieu_path(@milieu.id), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }, class: "form-button"%>
+  <%= button_to "Delete", @milieu, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu}, class: "form-button" %>
+<% else %>
+  <%= link_to "Back", :back, class: "form-button" %></br>
+<% end %>
+
 <%= markdown(@milieu.details ||= "", @milieu, request)%>

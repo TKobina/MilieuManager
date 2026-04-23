@@ -1,3 +1,6 @@
+# v0.9.6
+* ADD: Milieu creation/editing/deleting
+
 # v0.9.5.6
 * FIX: restoring .gitignore (??? WHY WAS IT REMOVED??)
 

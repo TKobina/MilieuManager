@@ -1,0 +1,13 @@
+<%= form_with model: @milieu do |form| %>
+  <div>
+    <%= form.submit "Save", class: "form-button" %>
+  </div>
+  <p>
+  <div>
+    <%= form.text_field :name, class: "text-field"  %>
+    <%= form.label :name, "Milieu Name" %></br></br>
+  </div>
+  <p>
+    <%= form.text_area :details, class: "large-text-field" %>
+  </div>
+<% end %>
