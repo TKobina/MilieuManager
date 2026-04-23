@@ -45,4 +45,8 @@ class Milieu < ApplicationRecord
     progressbar = ProgressBar.create(title: "Parsing Events", total: to_reproc.count)
     to_reproc.each{|ydate| ydate.proc_ydate; progressbar.increment }
   end
+
+  def <=>(other)
+    self.name <=> other.name
+  end
 end
