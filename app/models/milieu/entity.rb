@@ -1,7 +1,6 @@
 class Entity < ApplicationRecord
   include Comparable
   belongs_to :milieu
-  belongs_to :genvent, class_name: "Event"
   belongs_to :reference, optional: true
   has_and_belongs_to_many :events
   

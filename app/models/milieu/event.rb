@@ -5,7 +5,6 @@ class Event < ApplicationRecord
   has_many :properties, dependent: :destroy
   has_many :relations, dependent: :destroy
   has_and_belongs_to_many :entities
-  has_many :children, class_name: 'Entity', foreign_key: :genvent_id, dependent: :destroy
   has_many :instructions, dependent: :destroy
   accepts_nested_attributes_for :instructions, allow_destroy: true
 
@@ -14,14 +13,15 @@ class Event < ApplicationRecord
   after_commit :gen_instructions
 
   def date? = self.ydate.to_s
-  def <=>(other) 
-    return self.ydate <=> other.ydate if self.ydate != other.ydate 
+  def <=>(other)
+    return self.ydate <=> other.ydate if self.ydate != other.ydate
     
     (self.i || 999) <=> (other.i || 999)
   end
 
   def gen_instructions
     return unless saved_change_to_proc? || saved_change_to_code?
+    
     self.instructions.destroy_all
     self.code.each_with_index do |instruction, i|
       instruction = instruction.split("|").map{|x| x.strip}.join("|")

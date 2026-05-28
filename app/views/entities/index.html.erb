@@ -1,5 +1,9 @@
-<h1>Entities</h1>
+<% if @owner %>
+  <%= link_to "Add Entity", new_entity_path(current_milieu: @milieu), class: "form-button" %></br>
+<% end %>
 <%= link_to "Back", :back, class: "form-button" %></br>
+
+<h1>Entities</h1>
 <table class="left-aligned-table"> <!-- Add CSS classes for styling (e.g., Tailwind CSS) -->
   <thead>
     <tr>

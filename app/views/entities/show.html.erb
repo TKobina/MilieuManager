@@ -1,13 +1,17 @@
+<% if @owner%>
+  <%= link_to "Edit", edit_entity_path(@entity.id, current_milieu: @milieu), data: { controller: "tooltip", tooltip_content_value: "A helpful tip for the link" }, class: "form-button"%>
+  <%= button_to "Delete", @entity, method: :delete, data: { turbo_confirm: "Are you sure?" }, params: { current_milieu: @milieu}, class: "form-button" %>
+<% end %>
+<%= link_to "Back", :back, class: "form-button" %></br>
+
 <h1><%= @entity.kind.titlecase %> <%= @entity.name.titlecase %>
 <% if @owner%>
   <sup><%= @entity.eid%></sup> (<%= @entity.public ? "Public" : "Private" %>)</h1>
-  <%= link_to "Back", :back, class: "form-button" %></br>
-    <%= link_to :edit_reference, edit_reference_path(@entity.reference.id, current_milieu: @milieu)%>
 <% else %>
   </h1>
-  <%= link_to "Back", :back, class: "form-button" %></br>
 <% end %>
 
+<% if @entity.reference.present? %>
 <% if @entity.reference&.text["pub"].present? %>
 <h3>Details</h3>
 <%= markdown(@entity.reference&.text["pub"], @milieu, request) %><p>
@@ -17,7 +21,7 @@
 <h3>Private Details</h3>
 <%= markdown(@entity.reference&.text["pri"], @milieu, request) %><p>
 <% end %>
-
+<% end %>
 <% unless @properties.empty? then %>
 <ul class="list-disc list-inside pl-2"><h2>Properties</h2>
 <% @properties.each do |prop| %>

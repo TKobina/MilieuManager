@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_11_170355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -79,16 +79,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   create_table "entities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "eid", null: false
-    t.bigint "genvent_id", null: false
     t.string "kind"
     t.bigint "language_id"
     t.bigint "milieu_id", null: false
     t.string "name"
     t.boolean "public", default: false
     t.bigint "reference_id"
+    t.jsonb "text", default: {"pri"=>"", "pub"=>""}, null: false
     t.datetime "updated_at", null: false
     t.index ["eid"], name: "index_entities_on_eid"
-    t.index ["genvent_id"], name: "index_entities_on_genvent_id"
     t.index ["kind", "name"], name: "index_entities_on_kind_and_name"
     t.index ["kind"], name: "index_entities_on_kind"
     t.index ["language_id"], name: "index_entities_on_language_id"
@@ -322,7 +321,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_132446) do
   add_foreign_key "compositions", "lexemes", column: "sublexeme_id"
   add_foreign_key "compositions", "lexemes", column: "suplexeme_id"
   add_foreign_key "dialects", "languages"
-  add_foreign_key "entities", "events", column: "genvent_id"
   add_foreign_key "entities", "languages"
   add_foreign_key "entities", "milieus"
   add_foreign_key "entities", "references"

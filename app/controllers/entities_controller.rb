@@ -3,10 +3,7 @@ class EntitiesController < ApplicationController
   before_action :check_owner, only: [:create, :edit, :update, :destroy]
 
   def index
-    @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities))
-
-    @eidnext = "" #@entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
-    
+    @entities = cache_records(current_user.id.to_s + "Entity",filter_records(@milieu.entities))    
   end
 
   def show
@@ -19,12 +16,17 @@ class EntitiesController < ApplicationController
     @events = filter_records(@entity.events).sort
   end
 
+  def new
+    @entity = Entity.new
+  end
+
   def create
     @entity = Entity.new(entity_params)
-    @entity.public = false
     @entity.milieu = @milieu
-
-    if @entity.save
+    @entity.eid = @milieu.get_nexteid
+    @entity.text["pri"] = params[:textpri]
+    @entity.text["pub"] = params[:textpub]
+    if @entity.save!
       redirect_to entity_path(@entity, current_milieu: @milieu)
     else
       redirect_to new_entity_path(current_milieu: @milieu), alert: "Entity creation failed!"
@@ -47,7 +49,9 @@ class EntitiesController < ApplicationController
   end
 
   def destroy
-
+    @entity = @milieu.entities.find(params[:id])
+    @entity.destroy
+    redirect_to entities_path(current_milieu: @milieu)
   end
 
 

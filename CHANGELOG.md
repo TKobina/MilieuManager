@@ -1,3 +1,8 @@
+# v0.9.7
+* CHANGE: Collapsed Milieu & Chapters into same page
+* CHANGE: Deprecated proccing of events
+* FIX: readers couldn't access stories
+
 # v0.9.6
 * ADD: Milieu creation/editing/deleting
 

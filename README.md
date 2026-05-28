@@ -48,10 +48,17 @@
 * LOGOUT OPTION
 * Relation between Aïle and Kiŧlï not present....why??
 * Tab behavior in text area
+  * Markdown doesn't support typical tabulations; would richtext be better?
+* Stories index breaks if chapters saved without number
 
 ## Roadmap
 * CHANGE PRODUCTION CONFIG RELOAD_CODE BACK TO FALSE
 * REMOVE BINDING.PRY BEFORE UPLOADING!
+* PRIORITIES
+  * Implement Editing of Entities
+  * Migrate all references to entities, remove references??
+  * Implement Linking of Entities, Events in Editing of both
+
 * Implement rich text areas, instead of text areas?
 * Implement uploading/display of maps/images
 * If there are issues with instructions, display them as errors

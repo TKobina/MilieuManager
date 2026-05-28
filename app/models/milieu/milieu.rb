@@ -16,6 +16,8 @@ class Milieu < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :references, dependent: :destroy
 
+  def get_nexteid = self.entities.max_by{|ent| ent.eid.to_i}&.eid.to_s.to_i + 1
+
   def get_date_from_strdate(strdate)
     Ydate.from_string(self, strdate)
   end
@@ -37,13 +39,13 @@ class Milieu < ApplicationRecord
   end
 
   def proc_chronology(ydate: 0)
-    self.languages.each {|lang| lang.update!(nation: nil)}
+    # self.languages.each {|lang| lang.update!(nation: nil)}
 
-    to_reproc = self.ydates.order(:value).where(value: ydate..)
-    to_reproc.each{|ydate| ydate.events.each {|eve| eve.children.destroy_all}}
+    # to_reproc = self.ydates.order(:value).where(value: ydate..)
+    # to_reproc.each{|ydate| ydate.events.each {|eve| eve.children.destroy_all}}
 
-    progressbar = ProgressBar.create(title: "Parsing Events", total: to_reproc.count)
-    to_reproc.each{|ydate| ydate.proc_ydate; progressbar.increment }
+    # progressbar = ProgressBar.create(title: "Parsing Events", total: to_reproc.count)
+    # to_reproc.each{|ydate| ydate.proc_ydate; progressbar.increment }
   end
 
   def <=>(other)

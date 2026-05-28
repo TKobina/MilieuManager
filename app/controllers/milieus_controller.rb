@@ -1,26 +1,26 @@
 class MilieusController < ApplicationController
   def index
     @milieus = current_user.milieus.sort
-    @editings = current_user.accesses.where(edit_rights: true).map{|acc| acc.milieu }
-    @readings = current_user.accesses.where(edit_rights: false).map{|acc| acc.milieu }
+    @editings = current_user.accesses.where(edit_rights: true).map { |acc| acc.milieu }
+    @readings = current_user.accesses.where(edit_rights: false).map { |acc| acc.milieu }
   end
 
   def show
-    @milieu = current_user.milieus.find(params[:current_milieu])
+    @milieu = current_user.milieus.where(id: params[:current_milieu]).first || current_user.readings.find(params[:current_milieu])
+    @stories = filter_records(@milieu.stories).sort
   end
 
-  
   def new
     @milieu = Milieu.new
   end
 
   def create
     @milieu = Milieu.new(get_params)
-    @milieu.owner = current_user  
+    @milieu.owner = current_user
     if @milieu.save
       redirect_to milieu_path(@milieu, current_milieu: @milieu)
     else
-      redirect_to new_milieu_path, alert: "Milieu creation failed!"
+      redirect_to new_milieu_path, alert: 'Milieu creation failed!'
     end
   end
 
@@ -33,7 +33,7 @@ class MilieusController < ApplicationController
     if @milieu.update(get_params)
       redirect_to milieu_path(@milieu, current_milieu: @milieu)
     else
-      redirect_to edit_milieu_path(params[:id]), alert: "Milieu update failed!"
+      redirect_to edit_milieu_path(params[:id]), alert: 'Milieu update failed!'
     end
   end
 
@@ -46,6 +46,6 @@ class MilieusController < ApplicationController
   private
 
   def get_params
-    params.expect(milieu: [:name, :details])
+    params.expect(milieu: %i[name details])
   end
 end
